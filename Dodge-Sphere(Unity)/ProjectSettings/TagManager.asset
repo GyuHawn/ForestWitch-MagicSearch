@@ -7,21 +7,26 @@ TagManager:
   - Check
   - Floor
   - Other
+  - Item
+  - Shop
+  - Event
+  - Monster
+  - Rest
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Check
   - Floor
   - Other
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Item
+  - Shop
+  - Event
+  - Monter
+  - Rest
   - 
   - 
   - 

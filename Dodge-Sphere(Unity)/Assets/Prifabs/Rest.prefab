@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4964589544686409237}
   - component: {fileID: 7033378398252535495}
   - component: {fileID: 7795659662550223558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rest
-  m_TagString: Untagged
+  m_TagString: Other
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,14 +26,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1925897502157821394}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.94150007, z: -0, w: -0.33701292}
-  m_LocalPosition: {x: 3.3751574, y: 21.648975, z: -23.333622}
+  m_LocalRotation: {x: 0, y: 0.9396927, z: -0, w: -0.3420201}
+  m_LocalPosition: {x: 0.3, y: 0, z: 0.3}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6322802119969826551}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 219.39, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 220, z: 0}
 --- !u!33 &7033378398252535495
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bonfire_01
       objectReference: {fileID: 0}
+    - target: {fileID: 8475171451159580080, guid: 6046a64e832cdad44ac9e18fe66d19f1, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9139504745563969290, guid: 6046a64e832cdad44ac9e18fe66d19f1, type: 3}
       propertyPath: m_LocalScale.x
       value: 2
@@ -114,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9139504745563969290, guid: 6046a64e832cdad44ac9e18fe66d19f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.53666425
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9139504745563969290, guid: 6046a64e832cdad44ac9e18fe66d19f1, type: 3}
       propertyPath: m_LocalPosition.z

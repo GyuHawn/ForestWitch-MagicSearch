@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3418614215426830769}
   - component: {fileID: 8693046102314252785}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: Other
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6968981525649048120}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -1.4398427, y: 21.649975, z: -23.375622}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -65,7 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8474237194095527997}
   - component: {fileID: 4548604203156040198}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WoodChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5994241272821317192}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,6 +240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Animated PBR Chest _Fx_D
       objectReference: {fileID: 0}
+    - target: {fileID: 2395224567168844716, guid: 890ae7669926a2848bc4d3e31b3e0872, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2395224568040358670, guid: 890ae7669926a2848bc4d3e31b3e0872, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -251,6 +255,10 @@ PrefabInstance:
     - target: {fileID: 2395224568040358670, guid: 890ae7669926a2848bc4d3e31b3e0872, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2395224568040358671, guid: 890ae7669926a2848bc4d3e31b3e0872, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

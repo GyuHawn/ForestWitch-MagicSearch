@@ -9,14 +9,20 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 targetPosition; // 이동 위치
     public GameObject tileCheck; // 타일체크 범위
     public bool tile; // 타일맵인지
+    public int currentTile; // 0 - 빈 타일, 1 - 휴식 타일, 2 - 아이템 타일, 3 - 이벤트 타일, 4 - 상점 타일, 5 - 몬스터 타일
     public bool game; // 게임맵인지
 
     public float moveDistance = 2.3f; // 이동 거리
     public float moveSpd = 5f; // 이동 속도
 
+    private Rigidbody rb;
+
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+
         moveNum = 1;
+        currentTile = 0;
         tileCheck.GetComponent<Collider>().enabled = false;
         tile = true;
         game = false;
@@ -114,6 +120,37 @@ public class PlayerMovement : MonoBehaviour
                 break;
             default:
                 break;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (tile)  // 0 - 빈 타일, 1 - 휴식 타일, 2 - 아이템 타일, 3 - 이벤트 타일, 4 - 상점 타일, 5 - 몬스터 타일
+        {
+            if (collision.gameObject.CompareTag("Rest"))
+            {
+                currentTile = 1;
+            }
+            else if (collision.gameObject.CompareTag("Item"))
+            {
+                currentTile = 2;
+            }
+            else if (collision.gameObject.CompareTag("Event"))
+            {
+                currentTile = 3;
+            }
+            else if (collision.gameObject.CompareTag("Shop"))
+            {
+                currentTile = 4;
+            }
+            else if (collision.gameObject.CompareTag("Monster"))
+            {
+                currentTile = 5;
+            }
+            else
+            {
+                currentTile = 0;
+            }
         }
     }
 }
