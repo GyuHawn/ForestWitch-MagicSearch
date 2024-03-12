@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         moveNum = 1;
-        tileCheck.SetActive(false);
+        tileCheck.GetComponent<Collider>().enabled = false;
         tile = true;
         game = false;
     }
@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         // 이동불가시 1초뒤 타일체크
         if (moveNum > 0)
         {
-            tileCheck.SetActive(false);
+            tileCheck.GetComponent<Collider>().enabled = false;
 
             foreach (GameObject move in moveBtn)
             {
@@ -95,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator TileCheck() // 타일체크
     {
         yield return new WaitForSeconds(1f);
-        tileCheck.SetActive(true);
+        tileCheck.GetComponent<Collider>().enabled = true;
     }
 
     void MovePlayer(int direction) // 이동거리
