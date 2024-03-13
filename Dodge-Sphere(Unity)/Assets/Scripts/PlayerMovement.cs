@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,80 +23,108 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         moveNum = 1;
-        currentTile = 0;
+        //currentTile = 0;
+        currentTile = 5; // 몬스터 싸움 기능 제작중
         tileCheck.GetComponent<Collider>().enabled = false;
-        tile = true;
-        game = false;
+        //tile = true;
+        //game = false;
+        tile = false;
+        game = true;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
+        if (currentTile != 5 && !game)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
             {
-                for (int i = 0; i < moveBtn.Length; i++)
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
                 {
-                    if (hit.collider.gameObject == moveBtn[i])
+                    for (int i = 0; i < moveBtn.Length; i++)
                     {
-                        MovePlayer(i);
-                        break;
+                        if (hit.collider.gameObject == moveBtn[i])
+                        {
+                            MovePlayer(i);
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        // Lerp를 사용하여 목표 위치로 이동
-        float newY = transform.position.y; // 현재 y값 저장
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpd);
-        transform.position = new Vector3(transform.position.x, newY, transform.position.z); // y값 복원
+            // Lerp를 사용하여 목표 위치로 이동
+            float newY = transform.position.y; // 현재 y값 저장
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * moveSpd);
+            transform.position = new Vector3(transform.position.x, newY, transform.position.z); // y값 복원
 
-        // 타일이 없는곳으로는 이동불가
-        if (transform.position.x <= -4f)
-        {
-            moveBtn[0].SetActive(false);
-            moveBtn[0].GetComponent<Collider>().enabled = false;
-        }
-        else
-        {
-            moveBtn[0].SetActive(true);
-            moveBtn[0].GetComponent<Collider>().enabled = true;
-        }
+            // 타일이 없는곳으로는 이동불가
+            if (transform.position.x <= -4f)
+            {
+                moveBtn[0].SetActive(false);
+                moveBtn[0].GetComponent<Collider>().enabled = false;
+            }
+            else
+            {
+                moveBtn[0].SetActive(true);
+                moveBtn[0].GetComponent<Collider>().enabled = true;
+            }
 
-        if (transform.position.x >= 4f)
-        {
-            moveBtn[2].SetActive(false);
-            moveBtn[2].GetComponent<Collider>().enabled = false;
-        }
-        else
-        {
-            moveBtn[2].SetActive(true);
-            moveBtn[2].GetComponent<Collider>().enabled = true;
-        }
+            if (transform.position.x >= 4f)
+            {
+                moveBtn[2].SetActive(false);
+                moveBtn[2].GetComponent<Collider>().enabled = false;
+            }
+            else
+            {
+                moveBtn[2].SetActive(true);
+                moveBtn[2].GetComponent<Collider>().enabled = true;
+            }
 
-        // 이동불가시 1초뒤 타일체크
-        if (moveNum > 0)
+            // 이동불가시 1초뒤 타일체크
+            if (moveNum > 0)
+            {
+                tileCheck.GetComponent<Collider>().enabled = false;
+
+                foreach (GameObject move in moveBtn)
+                {
+                    move.SetActive(true);
+                    move.GetComponent<Collider>().enabled = true;
+                }
+            }
+            else
+            {
+                StartCoroutine(TileCheck());
+                foreach (GameObject move in moveBtn)
+                {
+                    move.SetActive(false);
+                    move.GetComponent<Collider>().enabled = false;
+                }
+            }
+        }
+        else if (currentTile == 5 && game)
         {
             tileCheck.GetComponent<Collider>().enabled = false;
+
+            foreach (GameObject move in moveBtn)
+            {
+                move.SetActive(false);
+                move.GetComponent<Collider>().enabled = false;
+            }
+
+            // 키보드 움직임 기능 추가 필요
+        }
+/*        else // 몬스터 싸움 종료후
+        {
+            tileCheck.GetComponent<Collider>().enabled = true;
 
             foreach (GameObject move in moveBtn)
             {
                 move.SetActive(true);
                 move.GetComponent<Collider>().enabled = true;
             }
-        }
-        else
-        {
-            StartCoroutine(TileCheck());
-            foreach (GameObject move in moveBtn)
-            {
-                move.SetActive(false);
-                move.GetComponent<Collider>().enabled = false;
-            }
-        }
+        }*/
     }
 
     IEnumerator TileCheck() // 타일체크
@@ -123,34 +152,4 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (tile)  // 0 - 빈 타일, 1 - 휴식 타일, 2 - 아이템 타일, 3 - 이벤트 타일, 4 - 상점 타일, 5 - 몬스터 타일
-        {
-            if (collision.gameObject.CompareTag("Rest"))
-            {
-                currentTile = 1;
-            }
-            else if (collision.gameObject.CompareTag("Item"))
-            {
-                currentTile = 2;
-            }
-            else if (collision.gameObject.CompareTag("Event"))
-            {
-                currentTile = 3;
-            }
-            else if (collision.gameObject.CompareTag("Shop"))
-            {
-                currentTile = 4;
-            }
-            else if (collision.gameObject.CompareTag("Monster"))
-            {
-                currentTile = 5;
-            }
-            else
-            {
-                currentTile = 0;
-            }
-        }
-    }
 }

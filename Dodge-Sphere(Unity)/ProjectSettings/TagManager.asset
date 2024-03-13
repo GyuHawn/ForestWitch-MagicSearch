@@ -12,6 +12,8 @@ TagManager:
   - Event
   - Monster
   - Rest
+  - Bullet
+  - M.Fire
   layers:
   - Default
   - TransparentFX
@@ -27,8 +29,8 @@ TagManager:
   - Event
   - Monter
   - Rest
-  - 
-  - 
+  - Bullet
+  - M.Fire
   - 
   - 
   - 
