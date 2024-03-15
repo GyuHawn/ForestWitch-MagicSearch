@@ -26,6 +26,7 @@ public class TileObject : MonoBehaviour
     {
         if (gameObject.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
         {
+            // 타일 관련
             if (gameObject.CompareTag("Rest"))
             {
                 playerMovement.currentTile = 1;
@@ -46,9 +47,11 @@ public class TileObject : MonoBehaviour
                 playerMovement.currentTile = 4;
                 StartCoroutine(PlayerTileReset());
             }
-            else if (gameObject.CompareTag("Monster"))
+
+            // 몬스터 관련
+            if (gameObject.CompareTag("M.Fire")) // 불 형태 몬스터
             {
-                playerMovement.currentTile = 5;
+                playerMovement.currentTile = 5.1f;
                 StartCoroutine(PlayerTileReset());
             }
         }
@@ -58,7 +61,7 @@ public class TileObject : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        //playerMovement.currentTile = 0;
+        playerMovement.currentTile = 0;
         Destroy(gameObject);
     }
 }

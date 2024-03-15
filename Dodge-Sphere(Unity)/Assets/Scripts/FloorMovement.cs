@@ -13,7 +13,7 @@ public class FloorMovement : MonoBehaviour
         FloorUpMove();
     }
 
-    void FloorUpMove()
+    void FloorUpMove() // 플레이어 주변 바닥 이동
     {
         foreach (GameObject floor in floors)
         {           

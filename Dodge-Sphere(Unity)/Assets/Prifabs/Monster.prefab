@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5198350900994098410}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: RigHair1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1352714807190884017}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1463717567387148550}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: RigJaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1247384905934224801}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: RigHair2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6496088479349479561}
   - component: {fileID: 6887694249443827364}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +226,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5578015648494648119}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: RigHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 464456428381681779}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: RigHair3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - component: {fileID: 1955485175966191899}
   - component: {fileID: 1754106723409889275}
   - component: {fileID: 8314092189228140725}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: FX Spark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5124,9 +5124,9 @@ GameObject:
   - component: {fileID: 3717127843485684290}
   - component: {fileID: -8545732626406637225}
   - component: {fileID: 7022454008848012956}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: Monster
-  m_TagString: Monster
+  m_TagString: M.Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5192,7 +5192,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8122836286654719828}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: RigHair4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

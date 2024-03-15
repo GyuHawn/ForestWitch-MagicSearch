@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CamereMovement : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private MonsterMap monsterMap;
 
     public GameObject player;
 
-    public Vector3 offset;
+    public Vector3 offset; // 플레이어 사이 거리
+    public bool fix; // 카메라 고정 여부
 
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
     }
 
     void Start()
@@ -21,19 +25,29 @@ public class CamereMovement : MonoBehaviour
         {
             player = GameObject.Find("Player");
         }
+        fix = true;
     }
  
     void Update()
     {
-        if(playerMovement.currentTile != 5)
+        if(playerMovement.currentTile < 5 && playerMovement.tile) // 타일맵 - 카메라 이동
         {
             offset = new Vector3(0, 8, -1.5f);
+            transform.position = player.transform.position + offset;
         }
-        else
+        else if (monsterMap.fireMoved && fix) // 몬스터맵 - 카메라 고정
         {
-            offset = new Vector3(0, 31.75f, -1.5f);
+            fix = false;
+            StartCoroutine(MonsterMapCamera());
         }
+        
+    }
 
+    IEnumerator MonsterMapCamera()
+    {
+        yield return new WaitForSeconds(2);
+
+        offset = new Vector3(0, 31.75f, -1.5f);
         transform.position = player.transform.position + offset;
     }
 }

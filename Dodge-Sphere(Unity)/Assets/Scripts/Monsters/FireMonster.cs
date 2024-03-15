@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FireMonster : MonoBehaviour
 {
+    // 기본 스탯
+    public int maxHealth;
+    public int currentHealth;
+
     // 기본 패턴
     public GameObject b_AttackPrefab; // 총알 프리팹
     public float b_AttackSpd; // 총알 속도
@@ -47,15 +51,33 @@ public class FireMonster : MonoBehaviour
         r_AttackSpd = 7f;
         r_AttackNum = 3;
 
-        //InvokeRepeating("StartBaseAttacks", 1f, 10f);
-        //InvokeRepeating("StartCryAttacks", 1f, 5f);
-        //InvokeRepeating("StartJumpAttacks", 1f, 10f);
-        InvokeRepeating("StartRollAttack", 1f, 10f);
+        InvokeRepeating("StartPattern", 1f, 10f); // 랜덤 패턴 실행
     }
 
     void Update()
     {
 
+    }
+
+    void StartPattern() // 랜덤 패턴 선택
+    {
+        int randomPattern = Random.Range(0, 4); // 0 ~ 3 랜덤
+
+        switch (randomPattern)
+        {
+            case 0:
+                StartBaseAttacks();
+                break;
+            case 1:
+                StartCryAttacks();
+                break;
+            case 2:
+                StartJumpAttacks();
+                break;
+            case 3:
+                StartRollAttack();
+                break;
+        }
     }
 
     private void StartBaseAttacks()
@@ -98,7 +120,7 @@ public class FireMonster : MonoBehaviour
 
     IEnumerator CryAttacks() // 탄환을 몬스터 주위 원형으로 발사
     {
-        for (int i = 0; i < 2; i++) // 총 2번 발사
+        for (int i = 0; i < 4; i++) // 총 2번 발사
         {
             // c_AttackAngles1에서 3번 발사
             for (int j = 0; j < 3; j++)
@@ -113,7 +135,7 @@ public class FireMonster : MonoBehaviour
                 Destroy(bullet, 4f); // 4초 후 총알 제거
             }
 
-            yield return new WaitForSeconds(1f); // 1초 대기
+            yield return new WaitForSeconds(0.75f); // 1초 대기
 
             // c_AttackAngles2에서 2번 발사
             for (int k = 0; k < 2; k++)
@@ -131,11 +153,20 @@ public class FireMonster : MonoBehaviour
     }
 
     public void StartJumpAttacks()
+    {       
+        StartCoroutine(JumpAttack());
+    }
+
+    IEnumerator JumpAttack()
     {
-        for(int i = 0; i < j_AttackNum; i++)
+        for (int i = 0; i < 2; i++)
         {
-            float angle = Random.Range(135, 225);
-            StartCoroutine(Jumpbullet(angle));
+            yield return new WaitForSeconds(3);
+            for (int j = 0; j < j_AttackNum; j++)
+            {
+                float angle = Random.Range(135, 225);
+                StartCoroutine(Jumpbullet(angle));
+            }
         }
     }
 
