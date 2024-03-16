@@ -543,19 +543,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72ad50f98882054e8888cd4d5e66c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  b_AttackPrefab: {fileID: 5044721178292256704, guid: a6d08e854267b44489da91180075fcbb, type: 3}
+  maxHealth: 0
+  currentHealth: 0
+  b_AttackPrefab: {fileID: 753377332303072254, guid: 2ee60fedafb427842b92ac7d9eb126c2, type: 3}
   b_AttackSpd: 10
   b_BulletNum: 0
-  c_AttackPrefab: {fileID: 5044721178292256704, guid: 976650134ac5bc94e95794d336aa3cf7, type: 3}
+  c_AttackPrefab: {fileID: 6650751342583130970, guid: c2349ba60cfbb28448cb85cc345a04b0, type: 3}
   c_AttackSpd: 0
   c_AttackNum: 0
   c_AttackAngles1: 
   c_AttackAngles2: []
-  j_AttackPrefab: {fileID: 5044721178292256704, guid: a6d08e854267b44489da91180075fcbb, type: 3}
+  j_AttackPrefab: {fileID: 753377332303072254, guid: 2ee60fedafb427842b92ac7d9eb126c2, type: 3}
   j_AttackSpd: 20
   j_AttackNum: 10
   j_BulletNum: 10
-  r_AttackPrefab: {fileID: 7425236879032214463, guid: af039303cdbf08c4ba52eebda491733e, type: 3}
+  r_AttackPrefab: {fileID: 4843811793590643846, guid: af039303cdbf08c4ba52eebda491733e, type: 3}
   r_AttackPos:
   - {fileID: 5188514399799381207}
   - {fileID: 1063623248134188101}

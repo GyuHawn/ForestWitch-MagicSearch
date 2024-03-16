@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private float vAxis;
     private Vector3 moveVec;
 
+    // 공격 관련
+    public int attackNum;
+
     // 타일맵 관련
     public int moveNum; // 플레이어 이동 유무(일단 int사용, 확인후 bool변경)
     public GameObject[] moveBtn; // 플레이어 이동버튼
@@ -35,14 +38,15 @@ public class PlayerMovement : MonoBehaviour
         moveSpd = 5;
         rotateSpd = 5f;
 
+        maxHealth = 10;
+        currentHealth = maxHealth;
+
         moveNum = 1;
         currentTile = 0;
         //currentTile = 5; // 몬스터 싸움 기능 제작중
         tileCheck.GetComponent<Collider>().enabled = false;
         tile = true;
         game = false;
-        //tile = false;
-        //game = true;
     }
 
     void Update()
@@ -196,6 +200,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            currentHealth -= bullet.damamge;
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("P_Attack"))
+        {
+            attackNum++;
             Destroy(collision.gameObject);
         }
     }

@@ -51,7 +51,8 @@ public class FireMonster : MonoBehaviour
         r_AttackSpd = 7f;
         r_AttackNum = 3;
 
-        InvokeRepeating("StartPattern", 1f, 10f); // 랜덤 패턴 실행
+       // InvokeRepeating("StartPattern", 1f, 10f); // 랜덤 패턴 실행
+        InvokeRepeating("StartRollAttack", 1f, 10f); // 랜덤 패턴 실행
     }
 
     void Update()
@@ -195,7 +196,7 @@ public class FireMonster : MonoBehaviour
     {
         Vector3 direction = Quaternion.Euler(0, 180, 0) * Vector3.forward; // 각도에 따른 방향 계산
         Vector3 bulletPos = new Vector3(r_AttackPos[0].transform.position.x, 2f, r_AttackPos[0].transform.position.z); // 총알 위치 설정
-        GameObject bullet = Instantiate(r_AttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
+        GameObject bullet = Instantiate(r_AttackPrefab, bulletPos, Quaternion.Euler(90,0,0)); // 총알 생성
         bullet.name = "RollFireAttack"; // 총알 이름 변경         
         bullet.GetComponent<Rigidbody>().velocity = direction * r_AttackSpd; // 탄환 방향 설정
 
@@ -207,7 +208,7 @@ public class FireMonster : MonoBehaviour
         {
             direction = Quaternion.Euler(0, 180, 0) * Vector3.forward; // 각도에 따른 방향 계산
             bulletPos = new Vector3(r_AttackPos[j + 1].transform.position.x, 2f, r_AttackPos[j + 1].transform.position.z); // 총알 위치 설정
-            bullet = Instantiate(r_AttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
+            bullet = Instantiate(r_AttackPrefab, bulletPos, Quaternion.Euler(90, 0, 0)); // 총알 생성
             bullet.name = "RollFireAttack"; // 총알 이름 변경         
             bullet.GetComponent<Rigidbody>().velocity = direction * r_AttackSpd; // 탄환 방향 설정
 

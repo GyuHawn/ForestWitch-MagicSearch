@@ -3049,10 +3049,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39dfc064074b75c4bbb66a1386e9d917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 10
   currentHealth: 0
   moveSpd: 3
   rotateSpd: 5
+  attackNum: 0
   moveNum: 0
   moveBtn:
   - {fileID: 742419510}
@@ -7195,6 +7196,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 697017828}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069399407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1069399408}
+  m_Layer: 0
+  m_Name: Fire
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1069399408
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069399407}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 151.5, y: 1.5, z: 9.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1947719883}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1109382502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9951,6 +9983,7 @@ GameObject:
   - component: {fileID: 1666040353}
   - component: {fileID: 1666040355}
   - component: {fileID: 1666040356}
+  - component: {fileID: 1666040357}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -10144,6 +10177,25 @@ MonoBehaviour:
   playerFireMapSpawnPos: {fileID: 1623932119}
   fireMonsterPrefab: {fileID: 6568113874001399780, guid: b8548f972efb3314cb5f4c15cfaee617, type: 3}
   fireMonsterSpawnPos: {fileID: 310196116}
+--- !u!114 &1666040357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666040352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3781dd369f2139642a6cd45b82a0d070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  f_SpawnPoint: {fileID: 1069399407}
+  f_BoxSize: {x: 28, y: 0, z: 18}
+  p_AttackPrefab: {fileID: 8432271879288445155, guid: 37fd3a5e9a523bf4d8c64bcf430f3eb0, type: 3}
+  spawnPoint: {fileID: 0}
+  boxSize: {x: 0, y: 0, z: 0}
+  spawned: 0
+  currentAttack: {fileID: 0}
 --- !u!1 &1693420482
 GameObject:
   m_ObjectHideFlags: 0
@@ -11336,6 +11388,38 @@ Transform:
   m_Children:
   - {fileID: 6315394}
   - {fileID: 257083246}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1947719882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1947719883}
+  m_Layer: 0
+  m_Name: PlayerAttackSpawns
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1947719883
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947719882}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1069399408}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1950660908
@@ -12779,6 +12863,7 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1701418800}
   - {fileID: 1938259444}
+  - {fileID: 1947719883}
   - {fileID: 384891021}
   - {fileID: 1666040354}
   - {fileID: 675404037}

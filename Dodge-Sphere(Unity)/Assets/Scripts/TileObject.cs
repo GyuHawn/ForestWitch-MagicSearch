@@ -49,7 +49,7 @@ public class TileObject : MonoBehaviour
             }
 
             // 몬스터 관련
-            if (gameObject.CompareTag("M.Fire")) // 불 형태 몬스터
+            if (gameObject.CompareTag("M_Fire")) // 불 형태 몬스터
             {
                 playerMovement.currentTile = 5.1f;
                 StartCoroutine(PlayerTileReset());

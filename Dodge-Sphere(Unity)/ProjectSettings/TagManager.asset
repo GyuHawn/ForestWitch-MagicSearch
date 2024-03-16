@@ -13,7 +13,8 @@ TagManager:
   - Monster
   - Rest
   - Bullet
-  - M.Fire
+  - P_Attack
+  - M_Fire
   layers:
   - Default
   - TransparentFX
@@ -30,8 +31,8 @@ TagManager:
   - Monter
   - Rest
   - Bullet
-  - M.Fire
-  - 
+  - M_Fire
+  - P_Attack
   - 
   - 
   - 
