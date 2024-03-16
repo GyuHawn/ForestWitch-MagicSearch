@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveVec;
 
     // 공격 관련
-    public int attackNum;
+    public int bulletNum;
 
     // 타일맵 관련
     public int moveNum; // 플레이어 이동 유무(일단 int사용, 확인후 bool변경)
@@ -207,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("P_Attack"))
         {
-            attackNum++;
+            bulletNum++;
             Destroy(collision.gameObject);
         }
     }
