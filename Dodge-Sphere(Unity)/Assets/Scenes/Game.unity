@@ -3057,8 +3057,8 @@ GameObject:
   m_Component:
   - component: {fileID: 384891021}
   - component: {fileID: 384891020}
-  - component: {fileID: 384891019}
   - component: {fileID: 384891017}
+  - component: {fileID: 384891019}
   - component: {fileID: 384891018}
   - component: {fileID: 384891022}
   m_Layer: 3
@@ -3099,6 +3099,7 @@ MonoBehaviour:
   game: 0
   tileMoveSpd: 5
   moveDistance: 2.3
+  finalPlayerPos: {x: 0, y: 0, z: 0}
 --- !u!65 &384891018
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10239,12 +10240,14 @@ MonoBehaviour:
   player: {fileID: 0}
   fireMoved: 0
   monsterNum: 0
+  monster: {fileID: 0}
   playerFireMapSpawnPos: {fileID: 1623932119}
   fireMonsterPrefab: {fileID: 6568113874001399780, guid: b8548f972efb3314cb5f4c15cfaee617, type: 3}
   fireMonsterSpawnPos: {fileID: 310196116}
   cannonPoints:
   - {fileID: 34628503}
   - {fileID: 561520285}
+  cannons: []
 --- !u!114 &1666040357
 MonoBehaviour:
   m_ObjectHideFlags: 0

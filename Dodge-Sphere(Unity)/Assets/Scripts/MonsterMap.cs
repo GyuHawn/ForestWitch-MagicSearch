@@ -10,11 +10,14 @@ public class MonsterMap : MonoBehaviour
     public bool fireMoved;
     public int monsterNum;
 
+    public GameObject monster; // 현재 몬스터
+
     public GameObject playerFireMapSpawnPos; // 불 몬스터 맵 플레이어 스폰 포인트 
     public GameObject fireMonsterPrefab; // 불 몬스터 프리팹
     public GameObject fireMonsterSpawnPos; // 불 몬스터 스폰 포인트
 
     public GameObject[] cannonPoints; // 대포 설치 위치
+    public List<GameObject> cannons;
 
     private void Awake()
     {
@@ -36,18 +39,17 @@ public class MonsterMap : MonoBehaviour
     void Update()
     {
         // 전투 맵 이동 준비
-        if(playerMovement.currentTile == 5.1f)
+        if(playerMovement.currentTile == 5.1f) // 불몬스터
         {
             fireMoved = true;
         }
 
         // 맵 이동 & 몬스터 소환
-        if (fireMoved && monsterNum > 0)
+        if (fireMoved && monsterNum > 0) // 불몬스터
         {
-            playerMovement.tile = false;
-            playerMovement.game = true;
+            playerMovement.OnGame();
             StartCoroutine(MoveFireMonsterMap());
-            InstallationCannons();
+            InstallationCannons();   
         }
     }
 
@@ -59,7 +61,7 @@ public class MonsterMap : MonoBehaviour
         player.transform.position = playerFireMapSpawnPos.transform.position;
 
         Vector3 monsterPos = new Vector3(fireMonsterSpawnPos.transform.position.x, -1.35f, fireMonsterSpawnPos.transform.position.z);
-        GameObject monster = Instantiate(fireMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
+        monster = Instantiate(fireMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "FireMonster";
     }
 
@@ -79,8 +81,17 @@ public class MonsterMap : MonoBehaviour
                 cannonY = 135; 
             }
             GameObject p_cannon = Instantiate(cannon, cannonPos, Quaternion.Euler(0, cannonY, 0));
+            cannons.Add(p_cannon);
             p_cannon.name = "PlayerCannon";
             cannonIndex++;
         }       
+    }
+
+    public void DeleteCannon()
+    {
+        foreach(GameObject cannon in cannons)
+        {
+            Destroy(cannon);
+        }
     }
 }

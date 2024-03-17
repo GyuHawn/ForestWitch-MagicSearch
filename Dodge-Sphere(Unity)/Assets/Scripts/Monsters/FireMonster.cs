@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FireMonster : MonoBehaviour
 {
+    private PlayerMovement playerMovement;
+    private MonsterMap monsterMap;
+    private P_AttackSpawn p_AttackSpawn;
+    private CameraMovement cameraMovement;
+
     // 기본 스탯
     public int maxHealth;
     public int currentHealth;
@@ -34,11 +39,18 @@ public class FireMonster : MonoBehaviour
     public float r_AttackSpd; // 총알 속도
     public int r_AttackNum; // 발사 수
 
+     private void Awake()
+    {
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
+        p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
+        cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
+    }
+
     void Start()
     {
-        maxHealth = 20;
+        maxHealth = 1;
         currentHealth = maxHealth;
-        Debug.Log(currentHealth);
 
         b_AttackSpd = 10f;
         b_BulletNums = new int[] { 30, 29, 30, 29, 30 };
@@ -55,13 +67,32 @@ public class FireMonster : MonoBehaviour
         r_AttackSpd = 7f;
         r_AttackNum = 3;
 
-       // InvokeRepeating("StartPattern", 1f, 10f); // 랜덤 패턴 실행
-        InvokeRepeating("StartRollAttack", 1f, 10f); // 랜덤 패턴 실행
+        InvokeRepeating("StartBaseAttacks", 1f, 10f); // 랜덤 패턴 실행
+        //InvokeRepeating("StartPattern", 1f, 10f); // 랜덤 패턴 실행
     }
 
     void Update()
     {
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
 
+    void Die()
+    {
+        playerMovement.OnTile();
+        playerMovement.MoveFinalPosition();
+        playerMovement.moveNum = 1;
+
+        monsterMap.fireMoved = false;
+        p_AttackSpawn.spawned = false;
+
+        cameraMovement.fix = true;
+
+        monsterMap.DeleteCannon();
+
+        Destroy(gameObject);
     }
 
     void StartPattern() // 랜덤 패턴 선택
@@ -127,7 +158,6 @@ public class FireMonster : MonoBehaviour
     {
         for (int i = 0; i < 4; i++) // 총 2번 발사
         {
-            // c_AttackAngles1에서 3번 발사
             for (int j = 0; j < 3; j++)
             {
                 float angle = c_AttackAngles1[j]; // 탄환의 각도 계산                                             
@@ -142,7 +172,6 @@ public class FireMonster : MonoBehaviour
 
             yield return new WaitForSeconds(0.75f); // 1초 대기
 
-            // c_AttackAngles2에서 2번 발사
             for (int k = 0; k < 2; k++)
             {
                 float angle = c_AttackAngles2[k]; // 탄환의 각도 계산                                             

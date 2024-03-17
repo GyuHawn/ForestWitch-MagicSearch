@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class CamereMovement : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private MonsterMap monsterMap;

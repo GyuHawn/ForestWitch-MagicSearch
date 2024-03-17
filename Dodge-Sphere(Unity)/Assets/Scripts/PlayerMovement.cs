@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private MonsterMap monsterMap;
+
     // 전투관련 플레이어 스탯
     public int maxHealth;
     public int currentHealth;
@@ -31,11 +34,22 @@ public class PlayerMovement : MonoBehaviour
     public float tileMoveSpd = 5f; // 이동 속도
     public float moveDistance = 2.3f; // 이동 거리
 
-    private Rigidbody rb;
+    private Vector3 previousPosition; // 이전 플레이어 위치
+    private float timeSinceLastMovement; // 마지막으로 움직인 시간
+    public Vector3 finalPlayerPos; // 마지막 타일 위치
+
+    private Rigidbody rigid;
+    private Collider collider;
+
+    private void Awake()
+    {
+        monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
+    }
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rigid = GetComponent<Rigidbody>();
+        collider = GetComponent<Collider>();
 
         moveSpd = 10;
         rotateSpd = 5f;
@@ -45,18 +59,25 @@ public class PlayerMovement : MonoBehaviour
 
         moveNum = 1;
         currentTile = 0;
-        //currentTile = 5; // 몬스터 싸움 기능 제작중
         tileCheck.GetComponent<Collider>().enabled = false;
         tile = true;
         game = false;
     }
 
+
     void Update()
-    {
+    {      
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+
         if (currentTile < 5 && !game)
         {
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
             {
+                monsterMap.monsterNum = 1;
+
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
 
@@ -101,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
                 moveBtn[2].GetComponent<Collider>().enabled = true;
             }
 
-            // 이동불가시 1초뒤 타일체크
+            // 이동시 1초뒤 타일체크
             if (moveNum > 0)
             {
                 tileCheck.GetComponent<Collider>().enabled = false;
@@ -136,7 +157,6 @@ public class PlayerMovement : MonoBehaviour
             GetInput();
             Move();
             Rotate();
-
         }
 /*        else // 몬스터 싸움 종료후
         {
@@ -148,6 +168,44 @@ public class PlayerMovement : MonoBehaviour
                 move.GetComponent<Collider>().enabled = true;
             }
         }*/
+    }
+
+    /*void OnCollider() // 플레이어 충돌 켜기
+    {
+        collider.enabled = true;
+    }
+    IEnumerator delayOnCollider(float delay) // 일정시간 후 플레이어 충돌 켜기
+    {
+        yield return new WaitForSeconds(delay);
+        collider.enabled = true;
+    }
+    void OffCollider() // 플레이어 충돌 끄기
+    {
+        collider.enabled = false;
+    }*/
+
+    public void OnTile() // 타일 맵으로 이동
+    {
+        tile = true;
+        game = false;
+
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+    }
+    public void OnGame() // 게임맵으로 이동
+    {
+        tile = false;
+        game = true;
+    }
+
+    IEnumerator SaveFinalPosition() // 마지막 위치 저장
+    {
+        yield return new WaitForSeconds(1.5f);
+        finalPlayerPos = transform.position;    
+    }
+
+    public void MoveFinalPosition() // 타 스크립트 코드용
+    {
+        transform.position = finalPlayerPos;
     }
 
     IEnumerator TileCheck() // 타일체크
@@ -173,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
             default:
                 break;
         }
+        StartCoroutine(SaveFinalPosition());
     }
 
     // 전투중 이동 관련
@@ -196,6 +255,11 @@ public class PlayerMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(moveVec.normalized, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpd);
         }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)

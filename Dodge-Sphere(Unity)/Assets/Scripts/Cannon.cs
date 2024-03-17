@@ -131,7 +131,7 @@ public class Cannon : MonoBehaviour
             direction.Normalize();
 
             // 총알에 가해질 힘을 설정
-            float bulletSpeed = 10f; // 총알의 속도
+            float bulletSpeed = 50f; // 총알의 속도
             Vector3 force = direction * bulletSpeed;
 
             // 총알에 힘을 가하여 발사
