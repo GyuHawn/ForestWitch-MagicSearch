@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5642675895576805529}
   - component: {fileID: 6705888570903650430}
   - component: {fileID: 295047656008562517}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Corona
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4855,9 +4855,10 @@ GameObject:
   - component: {fileID: 7349638633232314291}
   - component: {fileID: 5763594622284088822}
   - component: {fileID: 2179001485784552312}
-  m_Layer: 0
+  - component: {fileID: 3000736482387788580}
+  m_Layer: 18
   m_Name: P_MiddleAttack
-  m_TagString: Untagged
+  m_TagString: CannonBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9736,8 +9737,21 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3000736482387788580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2477517216801799326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715551f7ee5f4074a8ee3950cbce3940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &4297042831542343331
 GameObject:
   m_ObjectHideFlags: 0
@@ -9748,7 +9762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3829647521060396736}
   - component: {fileID: 7027816234650340988}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9843,7 +9857,7 @@ GameObject:
   - component: {fileID: 7248661629102285898}
   - component: {fileID: 5645359519353147801}
   - component: {fileID: 3138843907158757352}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SunSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9926,7 +9940,7 @@ GameObject:
   - component: {fileID: 1124834708683792524}
   - component: {fileID: 3803978801847579343}
   - component: {fileID: 1150129029361037808}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Loops
   m_TagString: Untagged
   m_Icon: {fileID: 0}

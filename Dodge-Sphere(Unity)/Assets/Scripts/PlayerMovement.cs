@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     private float vAxis;
     private Vector3 moveVec;
 
+    public GameObject[] cannons; // 대포 리스트
+
     // 공격 관련
     public int bulletNum;
 
@@ -35,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
 
-        moveSpd = 5;
+        moveSpd = 10;
         rotateSpd = 5f;
 
         maxHealth = 10;
@@ -201,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            currentHealth -= bullet.damamge;
+            currentHealth -= bullet.damage;
             Destroy(collision.gameObject);
         }
 

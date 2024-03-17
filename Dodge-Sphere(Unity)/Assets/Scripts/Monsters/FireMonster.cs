@@ -36,6 +36,10 @@ public class FireMonster : MonoBehaviour
 
     void Start()
     {
+        maxHealth = 20;
+        currentHealth = maxHealth;
+        Debug.Log(currentHealth);
+
         b_AttackSpd = 10f;
         b_BulletNums = new int[] { 30, 29, 30, 29, 30 };
 
@@ -215,4 +219,19 @@ public class FireMonster : MonoBehaviour
             Destroy(bullet, 8f);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("CannonBullet"))
+        {
+            Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
+            if (bulletComponent != null)
+            {
+                currentHealth -= bulletComponent.damage;
+            }
+            Debug.Log(currentHealth);
+            Destroy(collision.gameObject);
+        }
+    }
+
 }

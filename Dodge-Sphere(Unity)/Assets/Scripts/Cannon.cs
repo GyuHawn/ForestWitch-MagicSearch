@@ -15,9 +15,8 @@ public class Cannon : MonoBehaviour
     public GameObject shotPos; // 총알 발사 위치
     public float reloadDelay = 1f; // 재장전 딜레이
     private bool reloading = false; // 총알 재장전 중 여부
-
+    public GameObject shotBullet; // 발사 준비된 총알 
     public GameObject shotBulletPrefab; // 발사할 총알 프리팹
-
     public TMP_Text currentBulletText; // 현재 총알 상태 텍스트
 
 
@@ -52,6 +51,11 @@ public class Cannon : MonoBehaviour
         else if (ready)
         {
             ShotBullet(); // 총알 생성
+        }
+
+        if (shotBullet != null)
+        {
+            AttackMonster();
         }
     }
 
@@ -104,6 +108,36 @@ public class Cannon : MonoBehaviour
     {
         ready = false;
         currentBullet = 0;
-        Instantiate(shotBulletPrefab, shotPos.transform.position, Quaternion.identity);
+        shotBullet = Instantiate(shotBulletPrefab, shotPos.transform.position, Quaternion.identity);
     }
+
+    void AttackMonster()
+    {
+        GameObject monster = GameObject.FindGameObjectWithTag("Monster");
+
+        if (monster != null && shotBullet != null)
+        {
+            // 총알의 현재 위치를 기준으로 y 값이 고정된 벡터 생성
+            Vector3 shotBulletPosition = shotBullet.transform.position;
+            Vector3 fixedYVector = new Vector3(0f, 0.5f, 0f); // 여기서 y 값을 원하는 값으로 변경
+
+            // 몬스터 방향으로 향하는 벡터 계산
+            Vector3 monsterDirection = (monster.transform.position - shotBulletPosition).normalized;
+
+            // y 값이 고정된 벡터와 몬스터 방향 벡터를 합하여 최종 방향 벡터 계산
+            Vector3 direction = monsterDirection + fixedYVector;
+
+            // 최종 방향 벡터 정규화
+            direction.Normalize();
+
+            // 총알에 가해질 힘을 설정
+            float bulletSpeed = 10f; // 총알의 속도
+            Vector3 force = direction * bulletSpeed;
+
+            // 총알에 힘을 가하여 발사
+            Rigidbody bulletRb = shotBullet.GetComponent<Rigidbody>();
+            bulletRb.velocity = force;
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1573996453639844400}
   - component: {fileID: 5909643261974940748}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1298799779890433863}
   - component: {fileID: 8095530449384015481}
   - component: {fileID: 2296545961564671849}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: SunSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 8610198745337405688}
   - component: {fileID: 3444032592584921621}
   - component: {fileID: 5770023443514591578}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Loops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5030,7 +5030,7 @@ GameObject:
   - component: {fileID: 209470891970525928}
   - component: {fileID: 7331835628162471403}
   - component: {fileID: 4252338289033253398}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Corona
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9874,9 +9874,10 @@ GameObject:
   - component: {fileID: 9144928544293864714}
   - component: {fileID: 910913218391015241}
   - component: {fileID: 3382133251202472458}
-  m_Layer: 0
+  - component: {fileID: 20207260897054137}
+  m_Layer: 18
   m_Name: P_SmallAttack
-  m_TagString: Untagged
+  m_TagString: CannonBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14755,5 +14756,18 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &20207260897054137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9019681578275587116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715551f7ee5f4074a8ee3950cbce3940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2

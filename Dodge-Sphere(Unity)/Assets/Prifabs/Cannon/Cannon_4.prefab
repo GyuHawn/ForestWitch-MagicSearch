@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5001605337830100311}
   - component: {fileID: 7955400046118464059}
   - component: {fileID: 5534381748265900827}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ColliderObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5972183837801849497}
   - component: {fileID: 3544695122925938720}
   - component: {fileID: 6781049169196177402}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: CurrentBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -287,9 +287,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7890078812483601779}
   - component: {fileID: 2472126274121131486}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Cannon_4
-  m_TagString: Untagged
+  m_TagString: Cannon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -330,6 +330,7 @@ MonoBehaviour:
   currentBullet: 0
   loadBullet: {fileID: 1007577766436517659}
   shotPos: {fileID: 9221333179325126158}
+  reloadDelay: 1
   shotBulletPrefab: {fileID: 7594548682318510379, guid: c852468e8ca5cff46b29213630492175, type: 3}
   currentBulletText: {fileID: 6781049169196177402}
 --- !u!1 &9221333179325126158
@@ -341,7 +342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7215366570792058032}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: ShotPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,6 +376,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 511599a8f906249d184bd735555babb1, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 511599a8f906249d184bd735555babb1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -385,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 511599a8f906249d184bd735555babb1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 511599a8f906249d184bd735555babb1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -469,6 +514,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3127787765446499866, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 1
@@ -499,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -16.700003
+      value: -14.7
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -536,6 +585,10 @@ PrefabInstance:
     - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_Name
       value: BulletLoad
+      objectReference: {fileID: 0}
+    - target: {fileID: 3992058561654064293, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
