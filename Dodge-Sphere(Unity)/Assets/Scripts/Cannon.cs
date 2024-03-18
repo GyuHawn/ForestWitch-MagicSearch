@@ -18,7 +18,7 @@ public class Cannon : MonoBehaviour
     public GameObject shotBullet; // 발사 준비된 총알 
     public GameObject shotBulletPrefab; // 발사할 총알 프리팹
     public TMP_Text currentBulletText; // 현재 총알 상태 텍스트
-
+    float bulletSpeed; // 총알의 속도
 
     private void Awake()
     {
@@ -131,7 +131,7 @@ public class Cannon : MonoBehaviour
             direction.Normalize();
 
             // 총알에 가해질 힘을 설정
-            float bulletSpeed = 50f; // 총알의 속도
+            bulletSpeed = 30f; // 총알의 속도
             Vector3 force = direction * bulletSpeed;
 
             // 총알에 힘을 가하여 발사

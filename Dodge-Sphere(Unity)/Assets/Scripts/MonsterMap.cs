@@ -60,7 +60,7 @@ public class MonsterMap : MonoBehaviour
 
         player.transform.position = playerFireMapSpawnPos.transform.position;
 
-        Vector3 monsterPos = new Vector3(fireMonsterSpawnPos.transform.position.x, -1.35f, fireMonsterSpawnPos.transform.position.z);
+        Vector3 monsterPos = new Vector3(fireMonsterSpawnPos.transform.position.x, 0f, fireMonsterSpawnPos.transform.position.z);
         monster = Instantiate(fireMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "FireMonster";
     }
@@ -71,14 +71,14 @@ public class MonsterMap : MonoBehaviour
         int cannonY = 0;
         foreach (GameObject cannon in playerMovement.cannons)
         {
-            Vector3 cannonPos = new Vector3(cannonPoints[cannonIndex].transform.position.x, 2.5f, cannonPoints[0].transform.position.z);
+            Vector3 cannonPos = new Vector3(cannonPoints[cannonIndex].transform.position.x, 2.2f, cannonPoints[0].transform.position.z);
             if(cannonIndex == 0)
             {
-                cannonY = 45; 
+                cannonY = 65; 
             }
             else if(cannonIndex == 1)
             {
-                cannonY = 135; 
+                cannonY = 115; 
             }
             GameObject p_cannon = Instantiate(cannon, cannonPos, Quaternion.Euler(0, cannonY, 0));
             cannons.Add(p_cannon);

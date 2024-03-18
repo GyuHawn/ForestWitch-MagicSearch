@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 242862861633134706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.09, y: 0, z: 0}
+  m_LocalPosition: {x: -1.389, y: 0, z: 0}
   m_LocalScale: {x: 0.14285713, y: 0.14285713, z: 0.14285713}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,7 +133,7 @@ Transform:
   m_GameObject: {fileID: 1063623248134188101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.16, y: 0, z: 0}
+  m_LocalPosition: {x: 1.403, y: 0, z: 0}
   m_LocalScale: {x: 0.14285713, y: 0.14285713, z: 0.14285713}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 2618040359506706015}
   - component: {fileID: 7694081767793932297}
   - component: {fileID: 6332688373284938441}
+  - component: {fileID: 6329814352109097309}
   m_Layer: 12
   m_Name: FireMonster
   m_TagString: Monster
@@ -501,7 +502,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0.37, y: -0.95, z: 25.68}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4940190085000857309}
@@ -546,7 +547,7 @@ MonoBehaviour:
   maxHealth: 0
   currentHealth: 0
   b_AttackPrefab: {fileID: 753377332303072254, guid: 2ee60fedafb427842b92ac7d9eb126c2, type: 3}
-  b_AttackSpd: 10
+  b_AttackSpd: 5
   b_BulletNum: 0
   c_AttackPrefab: {fileID: 6650751342583130970, guid: c2349ba60cfbb28448cb85cc345a04b0, type: 3}
   c_AttackSpd: 0
@@ -554,16 +555,37 @@ MonoBehaviour:
   c_AttackAngles1: 
   c_AttackAngles2: []
   j_AttackPrefab: {fileID: 753377332303072254, guid: 2ee60fedafb427842b92ac7d9eb126c2, type: 3}
-  j_AttackSpd: 20
-  j_AttackNum: 10
-  j_BulletNum: 10
+  j_AttackSpd: 10
+  j_AttackNum: 5
+  j_BulletNum: 5
   r_AttackPrefab: {fileID: 4843811793590643846, guid: af039303cdbf08c4ba52eebda491733e, type: 3}
   r_AttackPos:
   - {fileID: 5188514399799381207}
   - {fileID: 1063623248134188101}
   - {fileID: 242862861633134706}
-  r_AttackSpd: 5
+  r_AttackSpd: 3
   r_AttackNum: 3
+--- !u!95 &6329814352109097309
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6568113874001399780}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67e4a4975fc40344c897fc40aaeee6b9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6907497150530272045
 GameObject:
   m_ObjectHideFlags: 0

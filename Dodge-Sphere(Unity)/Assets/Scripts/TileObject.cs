@@ -62,7 +62,7 @@ public class TileObject : MonoBehaviour
 
     IEnumerator CurrentTileNum(float num)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
 
         playerMovement.currentTile = num;
     }

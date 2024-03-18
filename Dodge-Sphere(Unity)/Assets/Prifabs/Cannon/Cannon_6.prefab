@@ -133,7 +133,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.595227, y: 2.6103017, z: -14.351597}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.07, y: 0.07, z: 0.08}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3886723410725232959}
@@ -160,6 +160,7 @@ MonoBehaviour:
   loadBullet: {fileID: 3597382863776481350}
   shotPos: {fileID: 6977167440072202040}
   reloadDelay: 1
+  shotBullet: {fileID: 0}
   shotBulletPrefab: {fileID: 7594548682318510379, guid: c852468e8ca5cff46b29213630492175, type: 3}
   currentBulletText: {fileID: 5176798701586835382}
 --- !u!1 &6228854332262255891
