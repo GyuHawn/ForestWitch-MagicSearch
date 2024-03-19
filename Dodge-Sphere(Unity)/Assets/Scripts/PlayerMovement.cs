@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,13 +32,18 @@ public class PlayerMovement : MonoBehaviour
     public bool tile; // 타일맵인지
     public float currentTile; // 0 - 빈 타일, 1 - 휴식 타일, 2 - 아이템 타일, 3 - 이벤트 타일, 4 - 상점 타일, 5 - 몬스터 타일
     public bool game; // 게임맵인지
-    public float tileMoveSpd = 5f; // 이동 속도
-    public float moveDistance = 2.3f; // 이동 거리
+    public float tileMoveSpd; // 이동 속도
+    public float moveDistance; // 이동 거리
 
     private Vector3 previousPosition; // 이전 플레이어 위치
     private float timeSinceLastMovement; // 마지막으로 움직인 시간
     public Vector3 finalPlayerPos; // 마지막 타일 위치
 
+    // UI 텍스트
+    public TMP_Text healthText;
+    public TMP_Text SpeedText;
+
+    private Animator anim;
     private Rigidbody rigid;
     private Collider collider;
 
@@ -48,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
 
@@ -58,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         currentHealth = maxHealth;
 
         moveNum = 1;
+        tileMoveSpd = 3f;
+        moveDistance = 2.3f;
         currentTile = 0;
         tileCheck.GetComponent<Collider>().enabled = false;
         tile = true;
@@ -66,7 +75,33 @@ public class PlayerMovement : MonoBehaviour
 
 
     void Update()
-    {      
+    {
+        // UI 텍스트
+        healthText.text = currentHealth + " / " + maxHealth.ToString();
+        SpeedText.text = moveSpd.ToString();
+
+        // 이동 애니메이션
+        if (tile)
+        {
+            anim.SetBool("Game", false);
+            anim.SetBool("GameRun", false);
+            anim.SetBool("Tile", true);
+        }
+        else if (game)
+        {
+            anim.SetBool("Tile", false);
+            anim.SetBool("Game", true);
+
+            if (moveVec != Vector3.zero)
+            {
+                anim.SetBool("GameRun", true);
+            }
+            else
+            {
+                anim.SetBool("GameRun", false);
+            }
+        }
+
         if (currentHealth <= 0)
         {
             Die();
@@ -76,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
             {
+                anim.SetBool("TileRun", true); // 이동 애니메이션 시작
                 monsterMap.monsterNum = 1;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -199,7 +235,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator SaveFinalPosition() // 마지막 위치 저장
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("TileRun", false); // 도착시 이동 애니메이션 종료
         finalPlayerPos = transform.position;    
     }
 

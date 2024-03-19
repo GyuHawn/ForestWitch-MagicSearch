@@ -54,7 +54,7 @@ public class FireMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetTrigger("Spawn");
 
-        maxHealth = 10;
+        maxHealth = 1;
         currentHealth = maxHealth;
 
         b_AttackSpd = 10f;
@@ -89,9 +89,11 @@ public class FireMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
+
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();
         playerMovement.moveNum = 1;
+        playerMovement.currentTile = 0;
 
         monsterMap.fireMoved = false;
         p_AttackSpawn.spawned = false;
