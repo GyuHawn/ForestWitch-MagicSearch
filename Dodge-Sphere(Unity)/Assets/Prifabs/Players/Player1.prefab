@@ -2554,9 +2554,6 @@ MonoBehaviour:
   currentHealth: 0
   moveSpd: 3
   rotateSpd: 5
-  cannons:
-  - {fileID: 5322167627264292165, guid: cee6919c565266f4cac0397f5e20ed46, type: 3}
-  - {fileID: 4553500751724677747, guid: 575683acea6fb0b48a2a2fad2718ad8d, type: 3}
   bulletNum: 0
   moveNum: 0
   moveBtn:
@@ -2570,6 +2567,8 @@ MonoBehaviour:
   tileMoveSpd: 5
   moveDistance: 2.3
   finalPlayerPos: {x: 0, y: 0, z: 0}
+  healthText: {fileID: 0}
+  SpeedText: {fileID: 0}
 --- !u!95 &3954229591785455820
 Animator:
   serializedVersion: 5
@@ -2580,7 +2579,7 @@ Animator:
   m_GameObject: {fileID: 3067775927576373700}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a0f1b92a35189a949ac21f68aed632e9, type: 3}
-  m_Controller: {fileID: 9100000, guid: 4e6d17c3e68cfa04c80046311afc9d40, type: 2}
+  m_Controller: {fileID: 9100000, guid: d78c4dfd8f57ddc47a4a4d9d910b8db3, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

@@ -15,15 +15,17 @@ public class TileObject : MonoBehaviour
 
     void Start()
     {
-        if(player == null)
-        {
-            player = GameObject.Find("Player");
-        }
+        
     }
 
     
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+
         if (player != null)
         {
             if (gameObject.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))

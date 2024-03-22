@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonsterMap : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private GameSetting gameSetting;
 
     public GameObject player;
     public bool fireMoved;
@@ -22,15 +23,11 @@ public class MonsterMap : MonoBehaviour
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
     }
 
     void Start()
-    {
-        if(player == null)
-        {
-            player = GameObject.Find("Player");
-        }
-
+    {     
         fireMoved = false;
         monsterNum = 1;
     }
@@ -38,8 +35,13 @@ public class MonsterMap : MonoBehaviour
     
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+
         // 전투 맵 이동 준비
-        if(playerMovement.currentTile == 5.1f) // 불몬스터
+        if (playerMovement.currentTile == 5.1f) // 불몬스터
         {
             fireMoved = true;
         }
@@ -69,7 +71,7 @@ public class MonsterMap : MonoBehaviour
     {
         int cannonIndex = 0;
         int cannonY = 0;
-        foreach (GameObject cannon in playerMovement.cannons)
+        foreach (GameObject cannon in gameSetting.cannons)
         {
             Vector3 cannonPos = new Vector3(cannonPoints[cannonIndex].transform.position.x, 2.2f, cannonPoints[0].transform.position.z);
             if(cannonIndex == 0)

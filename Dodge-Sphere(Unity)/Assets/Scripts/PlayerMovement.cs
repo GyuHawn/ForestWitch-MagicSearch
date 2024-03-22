@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
     private float vAxis;
     private Vector3 moveVec;
 
-    public GameObject[] cannons; // 대포 리스트
-
     // 공격 관련
     public int bulletNum;
 

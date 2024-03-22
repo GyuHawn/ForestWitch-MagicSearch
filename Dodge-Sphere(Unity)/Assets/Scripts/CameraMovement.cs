@@ -20,17 +20,18 @@ public class CameraMovement : MonoBehaviour
     }
 
     void Start()
-    {
-        if(player == null)
-        {
-            player = GameObject.Find("Player");
-        }
+    {    
         fix = true;
     }
  
     void Update()
     {
-        if(playerMovement.currentTile < 5 && playerMovement.tile) // 타일맵 - 카메라 이동
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+
+        if (playerMovement.currentTile < 5 && playerMovement.tile) // 타일맵 - 카메라 이동
         {
             offset = new Vector3(0, 8, -1.5f);
             transform.position = player.transform.position + offset;
