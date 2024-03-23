@@ -22,6 +22,9 @@ public class PlayerMovement : MonoBehaviour
     // 공격 관련
     public int bulletNum;
 
+    // 기타
+    public int money;
+
     // 타일맵 관련
     public int moveNum; // 플레이어 이동 유무(일단 int사용, 확인후 bool변경)
     public GameObject[] moveBtn; // 플레이어 이동버튼
@@ -39,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
 
     // UI 텍스트
     public TMP_Text healthText;
-    public TMP_Text SpeedText;
+    public TMP_Text spdText;
+    public TMP_Text moneyText;
 
     private Animator anim;
     private Rigidbody rigid;
@@ -76,7 +80,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // UI 텍스트
         healthText.text = currentHealth + " / " + maxHealth.ToString();
-        SpeedText.text = moveSpd.ToString();
+        spdText.text = moveSpd.ToString();
+        moneyText.text = "$ " + money.ToString();
 
         // 이동 애니메이션
         if (tile)
@@ -108,8 +113,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentTile < 5 && !game)
         {
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
-            {
-                anim.SetBool("TileRun", true); // 이동 애니메이션 시작
+            {             
                 monsterMap.monsterNum = 1;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -251,6 +255,7 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(int direction) // 이동거리
     {
+        anim.SetBool("TileRun", true); // 이동 애니메이션 시작
         moveNum = 0;
         switch (direction)
         {

@@ -31,7 +31,7 @@ public class GameStartScript : MonoBehaviour
 
     }
 
-
+    
 
     void Update()
     {
@@ -39,19 +39,21 @@ public class GameStartScript : MonoBehaviour
 
         if (playerNum != 0 && player == null)
         {
-            player = Instantiate(playerPrefabs[playerNum - 1], playerPos.transform.position, Quaternion.identity, playerPos.transform);
+            Vector3 select = new Vector3(playerPos.transform.position.x, playerPos.transform.position.y + 1, playerPos.transform.position.z);
+            player = Instantiate(playerPrefabs[playerNum - 1], select, Quaternion.identity, playerPos.transform);
             playerWindow.SetActive(false);
             cannonWindow.SetActive(true);
         }
 
-        if(cannonNum1 != 0 && cannon1 == null)
+
+        if (cannonNum1 != 0 && cannon1 == null)
         {
-            cannon1 = Instantiate(cannonPrefabs[cannonNum1 - 1], cannon1Pos.transform.position, Quaternion.identity, cannon1Pos.transform);
+            cannon1 = Instantiate(cannonPrefabs[cannonNum1 - 1], CannonSelectPos(cannon1Pos, cannonNum1), Quaternion.identity, cannon1Pos.transform);
         }
 
         if (cannonNum2 != 0 && cannon2 == null)
         {
-            cannon2 = Instantiate(cannonPrefabs[cannonNum2 - 1], cannon2Pos.transform.position, Quaternion.identity, cannon2Pos.transform);
+            cannon2 = Instantiate(cannonPrefabs[cannonNum2 - 1], CannonSelectPos(cannon2Pos, cannonNum2), Quaternion.identity, cannon2Pos.transform);
         }
 
         if(playerNum != 0 && cannonNum1 != 0 && cannonNum2 != 0)
@@ -63,6 +65,40 @@ public class GameStartScript : MonoBehaviour
             startButton.SetActive(false);
         }
     }
+
+    Vector3 CannonSelectPos(GameObject cannon, int num)
+    {
+        Vector3 selectPos = Vector3.zero; // 초기화된 벡터 생성
+
+        switch (num)
+        {
+            case 1:
+                selectPos = new Vector3(cannon.transform.position.x, cannon.transform.position.y + 2, cannon.transform.position.z);
+                break;
+            case 2:
+                selectPos = new Vector3(cannon.transform.position.x, cannon.transform.position.y + 2, cannon.transform.position.z);
+                break;
+            case 3:
+                selectPos = new Vector3(cannon.transform.position.x - 1, cannon.transform.position.y + 2, cannon.transform.position.z);
+                break;
+            case 4:
+                selectPos = new Vector3(cannon.transform.position.x - 1.5f, cannon.transform.position.y + 3, cannon.transform.position.z);
+                break;
+            case 5:
+                selectPos = new Vector3(cannon.transform.position.x - 2.5f, cannon.transform.position.y + 2, cannon.transform.position.z);
+                break;
+            case 6:
+                selectPos = new Vector3(cannon.transform.position.x - 1.5f, cannon.transform.position.y + 1, cannon.transform.position.z);
+                break;
+            case 7:
+                selectPos = new Vector3(cannon.transform.position.x - 1.5f, cannon.transform.position.y + 1, cannon.transform.position.z);
+                break;
+        }
+
+        return selectPos; // 선택된 위치 반환
+    }
+
+
 
     public void OpenSelectWindow()
     {

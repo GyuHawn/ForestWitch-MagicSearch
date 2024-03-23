@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class FloorMovement : MonoBehaviour
 {
+    public GameObject player;
     public GameObject pFloorCheck; // 플레이어 주변 바닥 체크
     public GameObject[] floors; // 전체 바닥
     public float moveSpd; // 바닥의 이동 속도
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+        }
+        if(pFloorCheck == null)
+        {
+            pFloorCheck = GameObject.Find("Check");
+        }
         moveSpd = 3f;
         FloorUpMove();
     }
