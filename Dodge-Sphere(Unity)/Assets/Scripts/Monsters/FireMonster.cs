@@ -8,10 +8,12 @@ public class FireMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
+    private GetItem getItem;
 
     // 기본 스탯
     public int maxHealth;
     public int currentHealth;
+    public int money;
 
     // 기본 패턴
     public GameObject b_AttackPrefab; // 총알 프리팹
@@ -47,6 +49,7 @@ public class FireMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
+        getItem = GameObject.Find("Manager").GetComponent<GetItem>();
     }
 
     void Start()
@@ -56,6 +59,7 @@ public class FireMonster : MonoBehaviour
 
         maxHealth = 1;
         currentHealth = maxHealth;
+        money = 100;
 
         b_AttackSpd = 10f;
         b_BulletNums = new int[] { 30, 29, 30, 29, 30 };
@@ -71,7 +75,7 @@ public class FireMonster : MonoBehaviour
 
         r_AttackSpd = 8f;
         r_AttackNum = 3;
-
+        
         //InvokeRepeating("StartRollAttack", 1f, 10f); // 패턴 확인용
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
     }
@@ -89,6 +93,8 @@ public class FireMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
+        getItem.getMoney = money;
+        getItem.GetMoney();
 
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();
