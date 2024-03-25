@@ -8,7 +8,7 @@ public class FireMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private GetItem getItem;
+    private GetMoney getMoney;
 
     // ±‚∫ª Ω∫≈»
     public int maxHealth;
@@ -49,7 +49,7 @@ public class FireMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getItem = GameObject.Find("Manager").GetComponent<GetItem>();
+        getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
     }
 
     void Start()
@@ -58,6 +58,7 @@ public class FireMonster : MonoBehaviour
         anim.SetTrigger("Spawn");
 
         maxHealth = 1;
+        //maxHealth = 10;
         currentHealth = maxHealth;
         money = 100;
 
@@ -93,8 +94,8 @@ public class FireMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
-        getItem.getMoney = money;
-        getItem.GetMoney();
+        getMoney.getMoney = money;
+        getMoney.PickUpMoney();
 
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();

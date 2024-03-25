@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 targetPosition; // 이동 위치
     public GameObject tileCheck; // 타일체크 범위
     public bool tile; // 타일맵인지
-    public float currentTile; // 0 - 빈 타일, 1 - 휴식 타일, 2 - 아이템 타일, 3 - 이벤트 타일, 4 - 상점 타일, 5 - 몬스터 타일
+    public float currentTile; // -1 - 빈 타일, 1 - 휴식 타일, 2 - 아이템 타일, 3 - 이벤트 타일, 4 - 상점 타일, 5 - 몬스터 타일
     public bool game; // 게임맵인지
     public float tileMoveSpd; // 이동 속도
     public float moveDistance; // 이동 거리

@@ -17,6 +17,7 @@ TagManager:
   - M_Fire
   - Cannon
   - CannonBullet
+  - Empy
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - P_Attack
   - Cannon
   - CannonBullet
-  - 
+  - Empy
   - 
   - 
   - 

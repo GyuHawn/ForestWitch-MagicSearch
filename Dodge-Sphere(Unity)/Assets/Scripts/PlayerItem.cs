@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerItem : MonoBehaviour
 {
-    private PlayerMovement playerMovement;
-
     public GameObject[] ItemPos; // »πµÊ æ∆¿Ã≈€ «•Ω√ ¿ßƒ°
     public List<GameObject> ltemList = new List<GameObject>(); // »πµÊ æ∆¿Ã≈€
 
@@ -88,12 +86,6 @@ public class PlayerItem : MonoBehaviour
     public GameObject swordPrifab;
     public bool sword;
     private bool onSword;
-
-
-    private void Awake()
-    {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
 
     void Update()
     {

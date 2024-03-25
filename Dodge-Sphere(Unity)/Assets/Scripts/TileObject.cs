@@ -30,6 +30,10 @@ public class TileObject : MonoBehaviour
         {
             if (gameObject.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
             {
+                if (gameObject.CompareTag("Empy"))
+                {
+                    StartCoroutine(EmpyTile());
+                }
                 // 타일 관련
                 if (gameObject.CompareTag("Rest"))
                 {
@@ -67,6 +71,14 @@ public class TileObject : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
 
         playerMovement.currentTile = num;
+    }
+
+    IEnumerator EmpyTile()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        playerMovement.moveNum = 1;
+        Destroy(gameObject);
     }
 
     IEnumerator PlayerTileReset()

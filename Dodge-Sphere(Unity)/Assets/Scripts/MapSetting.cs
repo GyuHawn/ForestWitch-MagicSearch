@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,9 +10,11 @@ public class MapSetting : MonoBehaviour
     public int tileNum; // 타일 선택
 
     public GameObject[] randomFloorPos; // 랜덤 타일 위치
+    public GameObject[] empyFloorPos; // 고정 빈 타일 위치
     public GameObject[] restFloorPos; // 고정 휴식 타일 위치
     public GameObject bossFloorPos; // 보스 타일 위치
 
+    public GameObject empyFloorPrefab;
     public GameObject restFloorPrefab; // 휴식 타일 프리팹
     public GameObject itemFloorPrefab; // 아이템 타일 프리팹
     public GameObject eventFloorPrefab; // 이벤트 타일 프리팹
@@ -37,6 +40,13 @@ public class MapSetting : MonoBehaviour
         // 보스 타일 설치
         Instantiate(bossFloorPrefab[0], bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
 
+        // 고정 빈 타일 설치
+        foreach (GameObject position in empyFloorPos)
+        {
+            Vector3 pos = new Vector3(position.transform.position.x, 1.2f, position.transform.position.z);
+            Instantiate(empyFloorPrefab, pos, Quaternion.identity, position.transform);
+        }
+
         // 고정 휴식 타일 설치
         foreach (GameObject position in restFloorPos)
         {
@@ -45,6 +55,13 @@ public class MapSetting : MonoBehaviour
 
         // 사용된 위치를 저장하는 리스트
         List<int> usedIndexes = new List<int>();
+
+        // 빈 타일 설치
+        for (int i = 0; i < empyFloorNum; i++)
+        {
+            int randomIndex = GetUniqueRandomIndex(usedIndexes);
+            Instantiate(empyFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+        }
 
         // 아이템 타일 설치
         for (int i = 0; i < itemFloorNum; i++)
@@ -107,7 +124,7 @@ public class MapSetting : MonoBehaviour
         switch (num) 
         {
             case 0: // 총 50개
-                // empyFloorNum = 15;
+                empyFloorNum = 15;
                 restFloorNum = 5;
                 itemFloorNum = 5;
                 eventFloorNum = 8;
@@ -115,7 +132,7 @@ public class MapSetting : MonoBehaviour
                 monsterFloorNum = 14;
                 break;
             case 1:
-                // empyFloorNum = 20;
+                empyFloorNum = 20;
                 restFloorNum = 4;
                 itemFloorNum = 5;
                 eventFloorNum = 6;
@@ -123,7 +140,7 @@ public class MapSetting : MonoBehaviour
                 monsterFloorNum = 12;
                 break;
             case 2:
-                 // empyFloorNum = 10;
+                empyFloorNum = 10;
                 restFloorNum = 6;
                 itemFloorNum = 5;
                 eventFloorNum = 9;
@@ -131,7 +148,7 @@ public class MapSetting : MonoBehaviour
                 monsterFloorNum = 17;
                 break;
             case 3:
-                // empyFloorNum = 12;
+                empyFloorNum = 12;
                 restFloorNum = 4;
                 itemFloorNum = 4;
                 eventFloorNum = 15;
@@ -139,7 +156,7 @@ public class MapSetting : MonoBehaviour
                 monsterFloorNum = 12;
                 break;
             case 4:
-                // empyFloorNum = 12;
+                empyFloorNum = 12;
                 restFloorNum = 7;
                 itemFloorNum = 5;
                 eventFloorNum = 10;
