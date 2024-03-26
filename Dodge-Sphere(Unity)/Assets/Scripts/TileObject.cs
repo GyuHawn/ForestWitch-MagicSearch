@@ -5,12 +5,14 @@ using UnityEngine;
 public class TileObject : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private GetItem getItem;
 
     public GameObject player;
 
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        getItem = GameObject.Find("Manager").GetComponent<GetItem>();
     }
 
     void Start()
@@ -42,8 +44,7 @@ public class TileObject : MonoBehaviour
                 }
                 else if (gameObject.CompareTag("Item"))
                 {
-                    StartCoroutine(CurrentTileNum(2));
-                    StartCoroutine(PlayerTileReset());
+                    StartCoroutine(ItemTile());
                 }
                 else if (gameObject.CompareTag("Event"))
                 {
@@ -78,6 +79,15 @@ public class TileObject : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
 
         playerMovement.moveNum = 1;
+        Destroy(gameObject);
+    }
+
+    IEnumerator ItemTile()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        playerMovement.moveNum = 2;
+        getItem.onItem = true;
         Destroy(gameObject);
     }
 

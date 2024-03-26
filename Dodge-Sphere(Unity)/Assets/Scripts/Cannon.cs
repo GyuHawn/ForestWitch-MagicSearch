@@ -18,7 +18,12 @@ public class Cannon : MonoBehaviour
     public GameObject shotBullet; // 발사 준비된 총알 
     public GameObject shotBulletPrefab; // 발사할 총알 프리팹
     public TMP_Text currentBulletText; // 현재 총알 상태 텍스트
-    float bulletSpeed; // 총알의 속도
+    public float bulletSpd; // 총알의 속도
+
+    // 아이템 관련
+    public bool book;
+    
+     
 
     private void Awake()
     {
@@ -28,11 +33,39 @@ public class Cannon : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
+        
         ready = false;
+    }
+
+    void ItemSetting()
+    {
+        // 화살 아이템 획득시 속도업
+        if (!playerMovement.arrow) 
+        {
+            bulletSpd = 30f;
+        }
+        else
+        {
+            bulletSpd = 40f;
+        }
+
+        // 책 아이템 획득시 최대 총알수 1감소
+        if (playerMovement.bow && !book) 
+        {
+            book = true;
+
+            if (maxBullet > 1)
+            {
+                maxBullet--;
+            }
+        }
     }
 
     void Update()
     {
+        // 아이템 관련
+        ItemSetting();
+
         currentBulletText.text = currentBullet + " / " + maxBullet;
 
         if (currentBullet < maxBullet)
@@ -131,8 +164,7 @@ public class Cannon : MonoBehaviour
             direction.Normalize();
 
             // 총알에 가해질 힘을 설정
-            bulletSpeed = 30f; // 총알의 속도
-            Vector3 force = direction * bulletSpeed;
+            Vector3 force = direction * bulletSpd;
 
             // 총알에 힘을 가하여 발사
             Rigidbody bulletRb = shotBullet.GetComponent<Rigidbody>();

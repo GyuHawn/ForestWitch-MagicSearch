@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth;
     public float moveSpd;
     public float rotateSpd;
+    public int defence;
+    public bool itemShield; // 방패 아이템 획득시 보호막 사용
 
     private float hAxis;
     private float vAxis;
@@ -49,6 +51,20 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rigid;
     private Collider collider;
 
+    // 아이템 획득 여부
+    public bool arrow;
+    public bool bag;
+    public bool book; // 상점 미추가
+    public bool bow;
+    public bool dagger;
+    public bool fish; // 상점 미추가
+    public bool necklace;
+    public bool pick;
+    public bool ring;
+    public bool shield;
+    public bool sword;
+
+
     private void Awake()
     {
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
@@ -65,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         maxHealth = 10;
         currentHealth = maxHealth;
+        defence = 0;
 
         moveNum = 1;
         tileMoveSpd = 3f;
@@ -78,6 +95,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // 현재 체력이 최대 체력보다 많을수 없도록
+        if (currentHealth > maxHealth) 
+        {
+            currentHealth = maxHealth;
+        }
+
         // UI 텍스트
         healthText.text = currentHealth + " / " + maxHealth.ToString();
         spdText.text = moveSpd.ToString();
@@ -233,6 +256,21 @@ public class PlayerMovement : MonoBehaviour
     {
         tile = false;
         game = true;
+
+        if (necklace) // 목걸이 아이템 획득 중 게임맵 이동시 체력 회복
+        {
+            currentHealth += 3;
+        }
+
+        if (ring) // 반지 아이템 획득 중 게임맵 이동시 체력 회복
+        {
+            currentHealth += 2;
+        }
+
+        if (shield) // 방패 아이템 획득중 게임맵 이동시 방어막 사용
+        {
+            itemShield = true;
+        }
     }
 
     IEnumerator SaveFinalPosition() // 마지막 위치 저장
@@ -306,9 +344,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            currentHealth -= bullet.damage;
-            Destroy(collision.gameObject);
+            if (itemShield)
+            {
+                itemShield = false;
+            }
+            else
+            {
+                Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+                currentHealth -= (bullet.damage - defence);
+                Destroy(collision.gameObject);
+            }
         }
 
         if (collision.gameObject.CompareTag("P_Attack"))
