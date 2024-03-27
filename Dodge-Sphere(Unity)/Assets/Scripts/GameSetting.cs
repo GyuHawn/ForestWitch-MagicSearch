@@ -7,7 +7,7 @@ public class GameSetting : MonoBehaviour
     public GameObject[] players;
     public GameObject player;
     public int playerNum;
-    public GameObject[] cannonPrifabs;
+    public GameObject[] cannonPrefabs;
     public List<GameObject> cannons; // 대포 리스트
 
     void Start()
@@ -15,8 +15,8 @@ public class GameSetting : MonoBehaviour
         playerNum = PlayerPrefs.GetInt("Player");
         int cannonNum1 = PlayerPrefs.GetInt("Cannon1");
         int cannonNum2 = PlayerPrefs.GetInt("Cannon2");
-        cannons.Add(cannonPrifabs[cannonNum1 - 1]);
-        cannons.Add(cannonPrifabs[cannonNum2 - 1]);
+        cannons.Add(cannonPrefabs[cannonNum1 - 1]);
+        cannons.Add(cannonPrefabs[cannonNum2 - 1]);
     }
 
     void Update()

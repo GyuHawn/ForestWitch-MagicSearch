@@ -6,88 +6,88 @@ public class PlayerItem : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private GameSetting gameSetting;
-    private Portions portions;
+    private PortionSlot portions;
 
     public GameObject[] ItemPos; // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã À§Ä¡
     public List<GameObject> ltemList = new List<GameObject>(); // È¹µæ ¾ÆÀÌÅÛ
 
-    public GameObject arrowPrifab; // ¾ÆÀÌÅÛ ÇÁ¸®ÅÛ
+    public GameObject arrowPrefab; // ¾ÆÀÌÅÛ ÇÁ¸®ÅÛ
     public bool arrow; // ¾ÆÀÌÅÛ È¹µæ ¿©ºÎ
     private bool onArrow; // ±â´É Áßº¹½ÇÇà ¹æÁö
 
-    public GameObject bagPrifab;
+    public GameObject bagPrefab;
     public bool bag;
     private bool onBag;
 
-    public GameObject bonePrifab;
+    public GameObject bonePrefab;
     public bool bone;
     private bool onBone;
 
-    public GameObject bookPrifab;
+    public GameObject bookPrefab;
     public bool book;
     private bool onBook;
 
-    public GameObject bowPrifab;
+    public GameObject bowPrefab;
     public bool bow;
     private bool onBow;
 
-    public GameObject crownPrifab;
+    public GameObject crownPrefab;
     public bool crown;
     private bool onCrown;
 
-    public GameObject daggerPrifab;
+    public GameObject daggerPrefab;
     public bool dagger;
     private bool onDagger;
 
-    public GameObject fishPrifab;
+    public GameObject fishPrefab;
     public bool fish;
     private bool onFish;
 
-    public GameObject goldPrifab;
+    public GameObject goldPrefab;
     public bool gold;
     private bool onGold;
 
-    public GameObject growPrifab;
+    public GameObject growPrefab;
     public bool grow;
     private bool onGrow;
 
-    public GameObject hoodPrifab;
+    public GameObject hoodPrefab;
     public bool hood;
     private bool onHood;
 
-    public GameObject jewelPrifab;
+    public GameObject jewelPrefab;
     public bool jewel;
     private bool onJewel;
 
-    public GameObject coinPrifab;
+    public GameObject coinPrefab;
     public bool coin;
     private bool onCoin;
 
-    public GameObject mushroomPrifab;
+    public GameObject mushroomPrefab;
     public bool mushroom;
     private bool onMushroom;
 
-    public GameObject necklacePrifab;
+    public GameObject necklacePrefab;
     public bool necklace;
     private bool onNecklace;
 
-    public GameObject pickPrifab;
+    public GameObject pickPrefab;
     public bool pick;
     private bool onPick;
 
-    public GameObject ringPrifab;
+    public GameObject ringPrefab;
     public bool ring;
     private bool onRing;
 
-    public GameObject shieldPrifab;
+    public GameObject shieldPrefab;
     public bool shield;
     private bool onShield;
 
-    public GameObject skullPrifab;
+    public GameObject skullPrefab;
     public bool skull;
     private bool onSkull;
 
-    public GameObject swordPrifab;
+    public GameObject swordPrefab;
     public bool sword;
     private bool onSword;
 
@@ -95,7 +95,7 @@ public class PlayerItem : MonoBehaviour
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
-        portions = GameObject.Find("Manager").GetComponent<Portions>();
+        portions = GameObject.Find("Manager").GetComponent<PortionSlot>();
     }
 
     void Update()
@@ -206,7 +206,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject arrowObject = Instantiate(arrowPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject arrowObject = Instantiate(arrowPrefab, Vector3.zero, Quaternion.identity);
         arrowObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(arrowObject);
 
@@ -218,7 +218,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject bagObject = Instantiate(bagPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject bagObject = Instantiate(bagPrefab, Vector3.zero, Quaternion.identity);
         bagObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(bagObject);
 
@@ -230,7 +230,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject boneObject = Instantiate(bonePrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject boneObject = Instantiate(bonePrefab, Vector3.zero, Quaternion.identity);
         boneObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(boneObject);
 
@@ -243,7 +243,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject bookObject = Instantiate(bookPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject bookObject = Instantiate(bookPrefab, Vector3.zero, Quaternion.identity);
         bookObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(bookObject);
 
@@ -254,7 +254,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject bowObject = Instantiate(bowPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject bowObject = Instantiate(bowPrefab, Vector3.zero, Quaternion.identity);
         bowObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(bowObject);
 
@@ -266,7 +266,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject crownObject = Instantiate(crownPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject crownObject = Instantiate(crownPrefab, Vector3.zero, Quaternion.identity);
         crownObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(crownObject);
 
@@ -281,7 +281,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject daggerObject = Instantiate(daggerPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject daggerObject = Instantiate(daggerPrefab, Vector3.zero, Quaternion.identity);
         daggerObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(daggerObject);
 
@@ -293,7 +293,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject fishObject = Instantiate(fishPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject fishObject = Instantiate(fishPrefab, Vector3.zero, Quaternion.identity);
         fishObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(fishObject);
 
@@ -304,7 +304,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject goldObject = Instantiate(goldPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject goldObject = Instantiate(goldPrefab, Vector3.zero, Quaternion.identity);
         goldObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(goldObject);
 
@@ -316,7 +316,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject growObject = Instantiate(growPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject growObject = Instantiate(growPrefab, Vector3.zero, Quaternion.identity);
         growObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(growObject);
 
@@ -328,7 +328,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject hoodObject = Instantiate(hoodPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject hoodObject = Instantiate(hoodPrefab, Vector3.zero, Quaternion.identity);
         hoodObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(hoodObject);
 
@@ -340,7 +340,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject jeweldObject = Instantiate(jewelPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject jeweldObject = Instantiate(jewelPrefab, Vector3.zero, Quaternion.identity);
         jeweldObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(jeweldObject);
 
@@ -352,7 +352,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject coinObject = Instantiate(coinPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject coinObject = Instantiate(coinPrefab, Vector3.zero, Quaternion.identity);
         coinObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(coinObject);
 
@@ -364,7 +364,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject mushroomObject = Instantiate(mushroomPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject mushroomObject = Instantiate(mushroomPrefab, Vector3.zero, Quaternion.identity);
         mushroomObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(mushroomObject);
 
@@ -376,7 +376,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject necklaceObject = Instantiate(necklacePrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject necklaceObject = Instantiate(necklacePrefab, Vector3.zero, Quaternion.identity);
         necklaceObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(necklaceObject);
 
@@ -388,7 +388,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject pickObject = Instantiate(pickPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject pickObject = Instantiate(pickPrefab, Vector3.zero, Quaternion.identity);
         pickObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(pickObject);
 
@@ -400,7 +400,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject ringObject = Instantiate(ringPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject ringObject = Instantiate(ringPrefab, Vector3.zero, Quaternion.identity);
         ringObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(ringObject);
 
@@ -412,7 +412,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject shieldObject = Instantiate(shieldPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject shieldObject = Instantiate(shieldPrefab, Vector3.zero, Quaternion.identity);
         shieldObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(shieldObject);
 
@@ -424,7 +424,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject skullObject = Instantiate(skullPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject skullObject = Instantiate(skullPrefab, Vector3.zero, Quaternion.identity);
         skullObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(skullObject);
 
@@ -437,7 +437,7 @@ public class PlayerItem : MonoBehaviour
     {
         // È¹µæ ¾ÆÀÌÅÛ Ç¥½Ã
         int index = ltemList.Count;
-        GameObject swordObject = Instantiate(swordPrifab, new Vector3(0, 0, 0), Quaternion.identity);
+        GameObject swordObject = Instantiate(swordPrefab, Vector3.zero, Quaternion.identity);
         swordObject.transform.SetParent(ItemPos[index].transform, false);
         ltemList.Add(swordObject);
 

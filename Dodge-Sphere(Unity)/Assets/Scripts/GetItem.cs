@@ -37,7 +37,7 @@ public class GetItem : MonoBehaviour
 
         int index = Random.Range(0, items.Count);
         GameObject selectedItem = items[index];
-        item = Instantiate(selectedItem, new Vector3(0, 0, 0), Quaternion.identity);
+        item = Instantiate(selectedItem, Vector3.zero, Quaternion.identity);
         item.name = selectedItem.name;
         item.transform.SetParent(getPos.transform, false);
 

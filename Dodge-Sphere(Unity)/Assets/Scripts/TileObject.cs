@@ -6,6 +6,7 @@ public class TileObject : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private GetItem getItem;
+    private Rest rest;
 
     public GameObject player;
 
@@ -13,13 +14,13 @@ public class TileObject : MonoBehaviour
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
+        rest = GameObject.Find("Manager").GetComponent<Rest>();
     }
 
     void Start()
     {
         
     }
-
     
     void Update()
     {
@@ -37,12 +38,7 @@ public class TileObject : MonoBehaviour
                     StartCoroutine(EmpyTile());
                 }
                 // 타일 관련
-                if (gameObject.CompareTag("Rest"))
-                {
-                    StartCoroutine(CurrentTileNum(1));
-                    StartCoroutine(PlayerTileReset());
-                }
-                else if (gameObject.CompareTag("Item"))
+                if (gameObject.CompareTag("Item"))
                 {
                     StartCoroutine(ItemTile());
                 }
@@ -55,6 +51,10 @@ public class TileObject : MonoBehaviour
                 {
                     StartCoroutine(CurrentTileNum(4));
                     StartCoroutine(PlayerTileReset());
+                }
+                else if (gameObject.CompareTag("Rest"))
+                {
+                    StartCoroutine(RestTile());
                 }
 
                 // 몬스터 관련
@@ -79,6 +79,15 @@ public class TileObject : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
 
         playerMovement.moveNum = 1;
+        Destroy(gameObject);
+    }
+
+    IEnumerator RestTile()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        //playerMovement.moveNum = 6;
+        rest.restUI.SetActive(true);
         Destroy(gameObject);
     }
 
