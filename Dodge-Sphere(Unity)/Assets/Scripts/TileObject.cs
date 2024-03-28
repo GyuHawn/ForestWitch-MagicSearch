@@ -7,6 +7,7 @@ public class TileObject : MonoBehaviour
     private PlayerMovement playerMovement;
     private GetItem getItem;
     private Rest rest;
+    private EventScript eventScript;
 
     public GameObject player;
 
@@ -14,7 +15,7 @@ public class TileObject : MonoBehaviour
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
-        rest = GameObject.Find("Manager").GetComponent<Rest>();
+        eventScript = GameObject.Find("Manager").GetComponent<EventScript>();
     }
 
     void Start()
@@ -44,8 +45,7 @@ public class TileObject : MonoBehaviour
                 }
                 else if (gameObject.CompareTag("Event"))
                 {
-                    StartCoroutine(CurrentTileNum(3));
-                    StartCoroutine(PlayerTileReset());
+                    StartCoroutine(EventTile());
                 }
                 else if (gameObject.CompareTag("Shop"))
                 {
@@ -97,6 +97,15 @@ public class TileObject : MonoBehaviour
 
         playerMovement.moveNum = 2;
         getItem.onItem = true;
+        Destroy(gameObject);
+    }
+
+    IEnumerator EventTile()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        playerMovement.moveNum = 3;
+        eventScript.onEvent = true;
         Destroy(gameObject);
     }
 

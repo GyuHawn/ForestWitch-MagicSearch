@@ -14,7 +14,7 @@ public class GetItem : MonoBehaviour
     public List<GameObject> items = new List<GameObject>(); // 아이템
     public GameObject getItemUI; // 아이템 획득 UI
     public GameObject getPos; // 아이템 표시 위치
-
+    
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
