@@ -7,6 +7,7 @@ public class PlayerItem : MonoBehaviour
     private PlayerMovement playerMovement;
     private GameSetting gameSetting;
     private PortionSlot portions;
+    private ShopScript shopScript;
 
     public GameObject[] ItemPos; // 획득 아이템 표시 위치
     public List<GameObject> ltemList = new List<GameObject>(); // 획득 아이템
@@ -96,6 +97,7 @@ public class PlayerItem : MonoBehaviour
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
         portions = GameObject.Find("Manager").GetComponent<PortionSlot>();
+        shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
     }
 
     void Update()
@@ -248,6 +250,7 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(bookObject);
 
         // 아이템 기능
+        shopScript.reroll = true;
     }
 
     void Bow() // 대포의 최대 총알 수가 1감소 합니다.

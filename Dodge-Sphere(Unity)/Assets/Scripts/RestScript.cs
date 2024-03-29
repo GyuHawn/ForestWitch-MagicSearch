@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Rest : MonoBehaviour
+public class RestScript : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private PortionSlot portionSlot;

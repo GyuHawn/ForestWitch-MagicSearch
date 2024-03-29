@@ -56,12 +56,12 @@ public class GetItem : MonoBehaviour
         Destroy(item);
     }
 
-    void OnItem(string item)
+    public void OnItem(string item)
     {
         switch (item)
         {
             case "Arrow":
-                {                   
+                {
                     playerItem.arrow = true;
                     break;
                 }

@@ -6,8 +6,9 @@ public class TileObject : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private GetItem getItem;
-    private Rest rest;
+    private RestScript restScript;
     private EventScript eventScript;
+    private ShopScript shopScript;
 
     public GameObject player;
 
@@ -16,6 +17,7 @@ public class TileObject : MonoBehaviour
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
         eventScript = GameObject.Find("Manager").GetComponent<EventScript>();
+        shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
     }
 
     void Start()
@@ -49,8 +51,7 @@ public class TileObject : MonoBehaviour
                 }
                 else if (gameObject.CompareTag("Shop"))
                 {
-                    StartCoroutine(CurrentTileNum(4));
-                    StartCoroutine(PlayerTileReset());
+                    StartCoroutine(ShopTile());
                 }
                 else if (gameObject.CompareTag("Rest"))
                 {
@@ -87,7 +88,7 @@ public class TileObject : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
 
         //playerMovement.moveNum = 6;
-        rest.restUI.SetActive(true);
+        restScript.restUI.SetActive(true);
         Destroy(gameObject);
     }
 
@@ -106,6 +107,17 @@ public class TileObject : MonoBehaviour
 
         playerMovement.moveNum = 3;
         eventScript.onEvent = true;
+        Destroy(gameObject);
+    }
+
+    IEnumerator ShopTile()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        playerMovement.moveNum = 4;
+        shopScript.shopUI.SetActive(true);
+        shopScript.rerollNum = 1;
+        shopScript.ItemSetting();
         Destroy(gameObject);
     }
 
