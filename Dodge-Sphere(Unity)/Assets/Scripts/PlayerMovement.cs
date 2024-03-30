@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
         if (currentTile < 5 && !game)
         {
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
-            {             
+            {           
                 monsterMap.monsterNum = 1;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

@@ -9,6 +9,7 @@ public class TileObject : MonoBehaviour
     private RestScript restScript;
     private EventScript eventScript;
     private ShopScript shopScript;
+    private MonsterMap monsterMap;
 
     public GameObject player;
 
@@ -18,6 +19,7 @@ public class TileObject : MonoBehaviour
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
         eventScript = GameObject.Find("Manager").GetComponent<EventScript>();
         shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
+        monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
     }
 
     void Start()
@@ -59,9 +61,19 @@ public class TileObject : MonoBehaviour
                 }
 
                 // 몬스터 관련
-                if (gameObject.CompareTag("M_Fire")) // 불 형태 몬스터
-                {
+                if (gameObject.CompareTag("M_Fire")) // 불 몬스터
+                {                   
                     StartCoroutine(CurrentTileNum(5.1f));
+                    StartCoroutine(PlayerTileReset());
+                }
+                else if (gameObject.CompareTag("M_Cactus")) // 선인장 몬스터
+                {
+                    StartCoroutine(CurrentTileNum(5.2f));
+                    StartCoroutine(PlayerTileReset());
+                }
+                else if (gameObject.CompareTag("M_Mush")) // 버섯 몬스터
+                {
+                    StartCoroutine(CurrentTileNum(5.3f));
                     StartCoroutine(PlayerTileReset());
                 }
             }

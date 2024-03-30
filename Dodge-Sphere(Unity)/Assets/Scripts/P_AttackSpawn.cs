@@ -33,7 +33,7 @@ public class P_AttackSpawn : MonoBehaviour
 
     void Update()
     {
-        if (monsterMap.fireMoved)
+        if (monsterMap.fireMoved || monsterMap.cactusMoved)
         {
             spawnPoint = f_SpawnPoint;
             boxSize = f_BoxSize;

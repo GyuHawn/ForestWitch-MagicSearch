@@ -57,8 +57,7 @@ public class FireMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetTrigger("Spawn");
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        maxHealth = 10;
         currentHealth = maxHealth;
         money = 100;
 
@@ -119,13 +118,13 @@ public class FireMonster : MonoBehaviour
         switch (randomPattern)
         {
             case 0:
-                StartBaseAttacks();
+                StartBaseAttack();
                 break;
             case 1:
-                StartCryAttacks();
+                StartCryAttack();
                 break;
             case 2:
-                StartJumpAttacks();
+                StartJumpAttack();
                 break;
             case 3:
                 StartRollAttack();
@@ -133,7 +132,7 @@ public class FireMonster : MonoBehaviour
         }
     }
 
-    private void StartBaseAttacks()
+    private void StartBaseAttack()
     {
         anim.SetTrigger("Base");
         StartCoroutine(BaseAttacks());
@@ -144,13 +143,13 @@ public class FireMonster : MonoBehaviour
         for (int i = 0; i < 5; i++)
         {
             b_BulletNum = b_BulletNums[b_CurrentNumIndex]; // 다음 총알 개수 가져오기
-            StartCoroutine(Basebullet());
+            StartCoroutine(BaseBullet());
             b_CurrentNumIndex = (b_CurrentNumIndex + 1) % b_BulletNums.Length; // 다음 총알 인덱스 설정
             yield return new WaitForSeconds(1f);
         }
     }
 
-    IEnumerator Basebullet() // 탄환을 몬스터 주위 원형으로 발사
+    IEnumerator BaseBullet() // 탄환을 몬스터 주위 원형으로 발사
     {
         for (int i = 0; i < b_BulletNum; i++)
         {
@@ -167,7 +166,7 @@ public class FireMonster : MonoBehaviour
         }
     }
 
-    private void StartCryAttacks()
+    private void StartCryAttack()
     {
         anim.SetTrigger("Cry");
         StartCoroutine(CryAttacks());
@@ -205,7 +204,7 @@ public class FireMonster : MonoBehaviour
         }
     }
 
-    public void StartJumpAttacks()
+    public void StartJumpAttack()
     {     
         StartCoroutine(JumpAttack());
     }

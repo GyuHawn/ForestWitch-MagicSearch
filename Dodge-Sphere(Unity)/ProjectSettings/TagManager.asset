@@ -18,6 +18,8 @@ TagManager:
   - Cannon
   - CannonBullet
   - Empy
+  - M_Mush
+  - M_Cactus
   layers:
   - Default
   - TransparentFX
@@ -39,8 +41,8 @@ TagManager:
   - Cannon
   - CannonBullet
   - Empy
-  - 
-  - 
+  - M_Mush
+  - M_Cactus
   - 
   - 
   - 
