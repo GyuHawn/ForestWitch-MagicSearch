@@ -57,9 +57,10 @@ public class FireMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetTrigger("Spawn");
 
+        //maxHealth = 1;
         maxHealth = 10;
         currentHealth = maxHealth;
-        money = 100;
+        money = 300;
 
         b_AttackSpd = 10f;
         b_BulletNums = new int[] { 30, 29, 30, 29, 30 };
@@ -159,8 +160,8 @@ public class FireMonster : MonoBehaviour
             GameObject bullet = Instantiate(b_AttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
             bullet.name = "BaseFireAttack"; // 총알 이름 변경         
             bullet.GetComponent<Rigidbody>().velocity = direction * b_AttackSpd; // 탄환 방향 설정
-            
-            Destroy(bullet, 2.5f); // 4초 후 총알 제거
+
+            Destroy(bullet, 2.5f);
 
             yield return new WaitForSeconds(0.05f);
         }
@@ -199,7 +200,7 @@ public class FireMonster : MonoBehaviour
                 bullet.name = "CryFireAttack"; // 총알 이름 변경         
                 bullet.GetComponent<Rigidbody>().velocity = direction * c_AttackSpd; // 탄환 방향 설정
 
-                Destroy(bullet, 2.5f); // 4초 후 총알 제거
+                Destroy(bullet, 2.5f);
             }
         }
     }
@@ -237,7 +238,7 @@ public class FireMonster : MonoBehaviour
             bullet.name = "JumpFireAttack"; // 총알 이름 변경         
             bullet.GetComponent<Rigidbody>().velocity = direction * j_AttackSpd; // 탄환 방향 설정
 
-            Destroy(bullet, 2.5f); // 4초 후 총알 제거
+            Destroy(bullet, 2.5f);
 
             yield return new WaitForSeconds(0.1f);
         }

@@ -36,7 +36,7 @@ public class CameraMovement : MonoBehaviour
             offset = new Vector3(0, 8, -1.5f);
             transform.position = player.transform.position + offset;
         }
-        else if ((monsterMap.fireMoved || monsterMap.cactusMoved) && fix) // 몬스터맵 - 카메라 고정
+        else if ((monsterMap.fireMoved || monsterMap.cactusMoved || monsterMap.mushMoved) && fix) // 몬스터맵1 - 카메라 고정
         {
             fix = false;
             StartCoroutine(MonsterMapCamera());

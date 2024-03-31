@@ -7,6 +7,8 @@ using UnityEngine.UIElements;
 
 public class MapSetting : MonoBehaviour
 {
+    public int stage; // 현재 스테이지
+
     public int tileNum; // 타일 선택
 
     public GameObject[] randomFloorPos; // 랜덤 타일 위치
@@ -19,8 +21,12 @@ public class MapSetting : MonoBehaviour
     public GameObject itemFloorPrefab; // 아이템 타일 프리팹
     public GameObject eventFloorPrefab; // 이벤트 타일 프리팹
     public GameObject shopFloorPrefab; // 상점 타일 프리팹
-    public GameObject[] bossFloorPrefab; // 보스 타일 프리팹
-    public GameObject[] monsterFloorPrefab; // 몬스터 타일 프리팹
+    public GameObject boss1FloorPrefab; // 1스테이지 보스 타일 프리팹
+    public GameObject boss2FloorPrefab; // 2스테이지 보스 타일 프리팹
+    public GameObject boss3FloorPrefab; // 2스테이지 보스 타일 프리팹
+    public GameObject[] monster1FloorPrefab; // 1스테이지 몬스터 타일 프리팹
+    public GameObject[] monster2FloorPrefab; // 2스테이지 몬스터 타일 프리팹
+    public GameObject[] monster3FloorPrefab; // 3스테이지 몬스터 타일 프리팹
 
     public int empyFloorNum; // 빈 타일 개수
     public int restFloorNum; // 휴식 타일 개수
@@ -31,14 +37,16 @@ public class MapSetting : MonoBehaviour
 
     void Start()
     {
+        StageMapSetting();
+    }
+     
+    public void StageMapSetting()
+    {
         // tileNum을 0부터 4까지 랜덤으로 선택
         tileNum = Random.Range(0, 5);
 
         // 선택된 tileNum에 따라 각 타일 종류의 개수를 설정
         SelectTile(tileNum);
-
-        // 보스 타일 설치
-        Instantiate(bossFloorPrefab[0], bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
 
         // 고정 빈 타일 설치
         foreach (GameObject position in empyFloorPos)
@@ -93,11 +101,39 @@ public class MapSetting : MonoBehaviour
             Instantiate(shopFloorPrefab, spawnPosition, Quaternion.Euler(90, 180, 0), randomFloorPos[randomIndex].transform);
         }
 
-        // 몬스터 타일 설치
-        for (int i = 0; i < monsterFloorNum; i++)
+        // 보스 & 몬스터 타일 설치
+        if (stage == 0)
         {
-            int randomIndex = GetUniqueRandomIndex(usedIndexes);
-            Instantiate(monsterFloorPrefab[0], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            Instantiate(boss1FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
+
+            for (int i = 0; i < monsterFloorNum; i++)
+            {
+                int randomIndex = GetUniqueRandomIndex(usedIndexes);
+                int randomMonster = Random.Range(0, monster1FloorPrefab.Length);
+                Instantiate(monster1FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            }
+        }
+        else if (stage == 1)
+        {
+            Instantiate(boss2FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
+
+            for (int i = 0; i < monsterFloorNum; i++)
+            {
+                int randomIndex = GetUniqueRandomIndex(usedIndexes);
+                int randomMonster = Random.Range(0, monster2FloorPrefab.Length);
+                Instantiate(monster2FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            }
+        }
+        else if (stage == 2)
+        {
+            Instantiate(boss3FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
+
+            for (int i = 0; i < monsterFloorNum; i++)
+            {
+                int randomIndex = GetUniqueRandomIndex(usedIndexes);
+                int randomMonster = Random.Range(0, monster3FloorPrefab.Length);
+                Instantiate(monster3FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            }
         }
     }
 

@@ -32,8 +32,7 @@ public class CactusMonster : MonoBehaviour
 
     // ÆÝÄ¡ ÆÐÅÏ
     public GameObject p_BaseAttackPrefab; // ÃÑ¾Ë ÇÁ¸®ÆÕ
-    public float p_AttackSpd; // ÃÑ¾Ë ¼Óµµ
-    
+    public float p_AttackSpd; // ÃÑ¾Ë ¼Óµµ  
     public int p_BulletNum; // ÃÑ¾Ë ¼ö
 
     // ¹ÚÄ¡±â ÆÐÅÏ
@@ -57,10 +56,10 @@ public class CactusMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        //maxHealth = 1;
+        maxHealth = 10;
         currentHealth = maxHealth;
-        money = 100;
+        money = 200;
 
         b_AttackSpd = 10f;
         b_BulletNums = new int[] { 30, 29, 30, 29, 30 };

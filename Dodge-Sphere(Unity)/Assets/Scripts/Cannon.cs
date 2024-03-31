@@ -23,8 +23,6 @@ public class Cannon : MonoBehaviour
     // 아이템 관련
     public bool book;
     
-     
-
     private void Awake()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
@@ -146,30 +144,29 @@ public class Cannon : MonoBehaviour
 
     void AttackMonster()
     {
-        GameObject monster = GameObject.FindGameObjectWithTag("Monster");
+        // 모든 몬스터를 찾습니다.
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
 
-        if (monster != null && shotBullet != null)
+        if (monsters.Length > 0 && shotBullet != null)
         {
-            // 총알의 현재 위치를 기준으로 y 값이 고정된 벡터 생성
-            Vector3 shotBulletPosition = shotBullet.transform.position;
-            Vector3 fixedYVector = new Vector3(0f, 0.5f, 0f); // 여기서 y 값을 원하는 값으로 변경
+            foreach (var monster in monsters)
+            {
+                Vector3 shotBulletPosition = shotBullet.transform.position;
+                Vector3 fixedYVector = new Vector3(0f, 0.5f, 0f);
 
-            // 몬스터 방향으로 향하는 벡터 계산
-            Vector3 monsterDirection = (monster.transform.position - shotBulletPosition).normalized;
+                Vector3 monsterDirection = (monster.transform.position - shotBulletPosition).normalized;
 
-            // y 값이 고정된 벡터와 몬스터 방향 벡터를 합하여 최종 방향 벡터 계산
-            Vector3 direction = monsterDirection + fixedYVector;
+                Vector3 direction = monsterDirection + fixedYVector;
 
-            // 최종 방향 벡터 정규화
-            direction.Normalize();
+                direction.Normalize();
 
-            // 총알에 가해질 힘을 설정
-            Vector3 force = direction * bulletSpd;
+                Vector3 force = direction * bulletSpd;
 
-            // 총알에 힘을 가하여 발사
-            Rigidbody bulletRb = shotBullet.GetComponent<Rigidbody>();
-            bulletRb.velocity = force;
+                Rigidbody bulletRb = shotBullet.GetComponent<Rigidbody>();
+                bulletRb.velocity = force;
+            }
         }
     }
+
 
 }

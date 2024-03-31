@@ -6,7 +6,7 @@ public class MonsterMap : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private GameSetting gameSetting;
-
+    
     public GameObject player;
     public bool fireMoved; // 불 몬스터 전투
     public bool cactusMoved; // 선인장 몬스터 전투
@@ -15,9 +15,12 @@ public class MonsterMap : MonoBehaviour
 
     public GameObject monster; // 현재 몬스터
 
-    // 불 & 선인장 몬스터
-    public GameObject playerNomalMapSpawnPos; // 몬스터 맵 플레이어 스폰 포인트 
+    public GameObject playerMapSpawnPos; // 몬스터 맵 플레이어 스폰 포인트 
+    // 불 & 선인장 몬스터 (한 마리)
     public GameObject nomalMonsterSpawnPos; // 몬스터 스폰 포인트
+
+    // 버섯 몬스터 (두 마리)
+    public GameObject[] TwinsMonsterSpawnPos; // 몬스터 스폰 포인트
 
     public GameObject fireMonsterPrefab; // 불 몬스터 프리팹
     public GameObject cactusMonsterPrefab; // 선인장 몬스터 프리팹
@@ -89,7 +92,7 @@ public class MonsterMap : MonoBehaviour
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
-        player.transform.position = playerNomalMapSpawnPos.transform.position;
+        player.transform.position = playerMapSpawnPos.transform.position;
 
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos.transform.position.x, 0f, nomalMonsterSpawnPos.transform.position.z);
         monster = Instantiate(fireMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
@@ -100,9 +103,9 @@ public class MonsterMap : MonoBehaviour
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
-        player.transform.position = playerNomalMapSpawnPos.transform.position;
+        player.transform.position = playerMapSpawnPos.transform.position;
 
-        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos.transform.position.x, 0f, nomalMonsterSpawnPos.transform.position.z);
+        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos.transform.position.x, 1f, nomalMonsterSpawnPos.transform.position.z);
         monster = Instantiate(cactusMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "CactusMonster";
     }
@@ -111,11 +114,23 @@ public class MonsterMap : MonoBehaviour
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
-        player.transform.position = playerNomalMapSpawnPos.transform.position;
+        player.transform.position = playerMapSpawnPos.transform.position;
 
-        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos.transform.position.x, 0f, nomalMonsterSpawnPos.transform.position.z);
-        monster = Instantiate(fireMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
-        monster.name = "FireMonster";
+        for(int i = 0;  i < mushMonsterPrefab.Length; i++)
+        {
+            if(i == 0)
+            {
+                Vector3 monsterPos = new Vector3(TwinsMonsterSpawnPos[i].transform.position.x, 1f, TwinsMonsterSpawnPos[i].transform.position.z);
+                monster = Instantiate(mushMonsterPrefab[i], monsterPos, Quaternion.Euler(0, 150, 0));
+                monster.name = "AngryMonster";
+            }
+            else if(i == 1)
+            {
+                Vector3 monsterPos = new Vector3(TwinsMonsterSpawnPos[i].transform.position.x, 1f, TwinsMonsterSpawnPos[i].transform.position.z);
+                monster = Instantiate(mushMonsterPrefab[i], monsterPos, Quaternion.Euler(0, 210, 0));
+                monster.name = "SmileMonster";
+            }
+        }
     }
 
 

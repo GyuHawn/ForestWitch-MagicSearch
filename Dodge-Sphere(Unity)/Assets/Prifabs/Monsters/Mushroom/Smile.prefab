@@ -293,8 +293,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8188101276448861166}
   - component: {fileID: 653448319199408414}
+  - component: {fileID: 5298632604916091564}
+  - component: {fileID: 3916871291255751438}
   m_Layer: 12
-  m_Name: MushroomSmile
+  m_Name: Smile
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +329,7 @@ Animator:
   m_GameObject: {fileID: 2543039257901074347}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c0a0375e97cb4250b0cc67ccda1cd64b, type: 3}
-  m_Controller: {fileID: 9100000, guid: 541b89bf3d364f31986cf3ca81475cc2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 020683beeec440dbad4cb5ded3893786, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -338,6 +340,53 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5298632604916091564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543039257901074347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d780a8ca1cc4b1b41a0b138343dd68ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  money: 0
+  baseAttackPrefab: {fileID: 8546513216988034696, guid: 0a12caaaa7fe90b47ae2d047a483abc4, type: 3}
+  baseMinAngle: -170
+  baseMaxAngle: -120
+  b_AttackSpd: 0
+  b_BulletNum: 0
+  s_AttackSpd: 0
+  s_BulletNum: 0
+  u_AttackSpd: 20
+  u_AttackNum: 10
+  u_BulletNum: 10
+  smlie: 1
+--- !u!65 &3916871291255751438
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2543039257901074347}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &4539267305690303738
 GameObject:
   m_ObjectHideFlags: 0

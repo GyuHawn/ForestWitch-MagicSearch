@@ -431,8 +431,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4024450875936722751}
   - component: {fileID: 4637034278795648513}
+  - component: {fileID: 9130808748633598077}
+  - component: {fileID: 2632756248743213534}
   m_Layer: 12
-  m_Name: MushroomAngry
+  m_Name: Angry
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -476,6 +478,52 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9130808748633598077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200659435829944505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d780a8ca1cc4b1b41a0b138343dd68ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 0
+  currentHealth: 0
+  money: 0
+  baseAttackPrefab: {fileID: 8546513216988034696, guid: 0a12caaaa7fe90b47ae2d047a483abc4, type: 3}
+  baseMinAngle: 120
+  baseMaxAngle: 170
+  b_AttackSpd: 0
+  b_BulletNum: 0
+  s_AttackSpd: 0
+  s_BulletNum: 0
+  u_AttackSpd: 20
+  u_AttackNum: 10
+  u_BulletNum: 10
+--- !u!65 &2632756248743213534
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7200659435829944505}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7326051385358559162
 GameObject:
   m_ObjectHideFlags: 0
