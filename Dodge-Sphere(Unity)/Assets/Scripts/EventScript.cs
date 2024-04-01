@@ -120,7 +120,7 @@ public class EventScript : MonoBehaviour
     {
         playerMovement.currentHealth -= 2;
 
-        if (Random.Range(0, 100) < 70)
+        if (Random.Range(0, 100) < 50)
         {
             playerMovement.money += 100;
         }

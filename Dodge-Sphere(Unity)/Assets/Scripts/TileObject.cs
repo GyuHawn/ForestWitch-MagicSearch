@@ -20,6 +20,7 @@ public class TileObject : MonoBehaviour
         eventScript = GameObject.Find("Manager").GetComponent<EventScript>();
         shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
+        restScript = GameObject.Find("Manager").GetComponent<RestScript>();
     }
 
     void Start()
@@ -99,7 +100,7 @@ public class TileObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
-        //playerMovement.moveNum = 6;
+       // playerMovement.moveNum = 6;
         restScript.restUI.SetActive(true);
         Destroy(gameObject);
     }

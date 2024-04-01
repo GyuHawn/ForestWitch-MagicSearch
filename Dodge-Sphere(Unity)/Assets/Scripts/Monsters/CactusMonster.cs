@@ -56,8 +56,8 @@ public class CactusMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        //maxHealth = 1;
-        maxHealth = 10;
+        maxHealth = 1;
+        //maxHealth = 10;
         currentHealth = maxHealth;
         money = 200;
 
@@ -97,7 +97,7 @@ public class CactusMonster : MonoBehaviour
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
 
-        monsterMap.fireMoved = false;
+        monsterMap.cactusMoved = false;
         p_AttackSpawn.spawned = false;
 
         cameraMovement.fix = true;

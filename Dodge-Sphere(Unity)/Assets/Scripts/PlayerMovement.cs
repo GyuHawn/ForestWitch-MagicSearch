@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     // 기타
     public int money;
-
+     
     // 타일맵 관련
     public int moveNum; // 플레이어 이동 유무(일단 int사용, 확인후 bool변경)
     public GameObject[] moveBtn; // 플레이어 이동버튼
@@ -38,8 +38,6 @@ public class PlayerMovement : MonoBehaviour
     public float tileMoveSpd; // 이동 속도
     public float moveDistance; // 이동 거리
 
-    private Vector3 previousPosition; // 이전 플레이어 위치
-    private float timeSinceLastMovement; // 마지막으로 움직인 시간
     public Vector3 finalPlayerPos; // 마지막 타일 위치
 
     // UI 텍스트
@@ -204,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (game)
+        else if (game && transform.position.x > 100)
         {
             tileCheck.GetComponent<Collider>().enabled = false;
 
@@ -219,31 +217,7 @@ public class PlayerMovement : MonoBehaviour
             Move();
             Rotate();
         }
-/*        else // 몬스터 싸움 종료후
-        {
-            tileCheck.GetComponent<Collider>().enabled = true;
-
-            foreach (GameObject move in moveBtn)
-            {
-                move.SetActive(true);
-                move.GetComponent<Collider>().enabled = true;
-            }
-        }*/
     }
-
-    /*void OnCollider() // 플레이어 충돌 켜기
-    {
-        collider.enabled = true;
-    }
-    IEnumerator delayOnCollider(float delay) // 일정시간 후 플레이어 충돌 켜기
-    {
-        yield return new WaitForSeconds(delay);
-        collider.enabled = true;
-    }
-    void OffCollider() // 플레이어 충돌 끄기
-    {
-        collider.enabled = false;
-    }*/
 
     public void OnTile() // 타일 맵으로 이동
     {
@@ -271,6 +245,13 @@ public class PlayerMovement : MonoBehaviour
         {
             itemShield = true;
         }
+    }
+
+    public void PostionReset()
+    {
+        finalPlayerPos = new Vector3(0, 1, 0);
+        targetPosition = new Vector3(0, 1, 0);
+        transform.position = finalPlayerPos;
     }
 
     IEnumerator SaveFinalPosition() // 마지막 위치 저장
@@ -347,8 +328,9 @@ public class PlayerMovement : MonoBehaviour
             if (itemShield)
             {
                 itemShield = false;
+                Destroy(collision.gameObject);
             }
-            else
+            else if (!itemShield)
             {
                 Bullet bullet = collision.gameObject.GetComponent<Bullet>();
                 currentHealth -= (bullet.damage - defence);

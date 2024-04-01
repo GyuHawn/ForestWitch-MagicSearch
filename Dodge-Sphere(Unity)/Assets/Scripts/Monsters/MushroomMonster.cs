@@ -55,8 +55,8 @@ public class MushRoomMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        //maxHealth = 1;
-        maxHealth = 10;
+        maxHealth = 1;
+        //maxHealth = 10;
         currentHealth = maxHealth;
         money = 150;
         
@@ -105,7 +105,7 @@ public class MushRoomMonster : MonoBehaviour
             playerMovement.moveNum = 1;
             playerMovement.currentTile = 0;
 
-            monsterMap.fireMoved = false;
+            monsterMap.mushMoved = false;
             p_AttackSpawn.spawned = false;
 
             cameraMovement.fix = true;

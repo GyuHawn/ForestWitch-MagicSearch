@@ -9,7 +9,8 @@ public class FireMonster : MonoBehaviour
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
-
+    private MapSetting mapSetting;
+    
     // 기본 스탯
     public int maxHealth;
     public int currentHealth;
@@ -50,6 +51,7 @@ public class FireMonster : MonoBehaviour
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
     }
 
     void Start()
@@ -57,8 +59,8 @@ public class FireMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetTrigger("Spawn");
 
-        //maxHealth = 1;
-        maxHealth = 10;
+        maxHealth = 1;
+        //maxHealth = 10;
         currentHealth = maxHealth;
         money = 300;
 
@@ -98,9 +100,9 @@ public class FireMonster : MonoBehaviour
         getMoney.PickUpMoney();
 
         playerMovement.OnTile();
-        playerMovement.MoveFinalPosition();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
+        playerMovement.PostionReset(); // 플레이어 위치 초기화
 
         monsterMap.fireMoved = false;
         p_AttackSpawn.spawned = false;
@@ -108,6 +110,9 @@ public class FireMonster : MonoBehaviour
         cameraMovement.fix = true;
 
         monsterMap.DeleteCannon();
+
+        mapSetting.MapReset(); // 보스 클리어시 맵 초기화
+        mapSetting.StageMapSetting(); // 맵 셋팅
 
         Destroy(gameObject);
     }
