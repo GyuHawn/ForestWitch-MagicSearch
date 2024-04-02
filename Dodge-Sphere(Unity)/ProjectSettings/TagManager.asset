@@ -20,6 +20,9 @@ TagManager:
   - Empy
   - M_Mush
   - M_Cactus
+  - FakeBullet
+  - M_Chest
+  - M_Beholder
   layers:
   - Default
   - TransparentFX
@@ -43,9 +46,9 @@ TagManager:
   - Empy
   - M_Mush
   - M_Cactus
-  - 
-  - 
-  - 
+  - FakeBullet
+  - M_Chest
+  - M_Beholder
   - 
   - 
   - 

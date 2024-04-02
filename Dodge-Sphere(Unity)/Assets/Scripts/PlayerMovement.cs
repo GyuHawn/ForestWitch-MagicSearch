@@ -338,6 +338,11 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.CompareTag("FakeBullet"))
+        {
+            Destroy(collision.gameObject);
+        }
+
         if (collision.gameObject.CompareTag("P_Attack"))
         {
             bulletNum++;

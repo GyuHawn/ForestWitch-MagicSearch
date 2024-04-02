@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Progress;
@@ -47,6 +48,7 @@ public class MapSetting : MonoBehaviour
 
     void Start()
     {
+        stage = 2; // 마무리시 1로 변경 필요
         StageMapSetting();
     }
      
@@ -118,7 +120,7 @@ public class MapSetting : MonoBehaviour
        }
 
         // 보스 & 몬스터 타일 설치
-        if (stage == 0)
+        if (stage == 1)
         {
             Instantiate(boss1FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
 
@@ -130,7 +132,7 @@ public class MapSetting : MonoBehaviour
                 monsterTiles.Add(monster);
             }
         }
-        else if (stage == 1)
+        else if (stage == 2)
         {
             Instantiate(boss2FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
 
@@ -142,7 +144,7 @@ public class MapSetting : MonoBehaviour
                 monsterTiles.Add(monster);
             }
         }
-        else if (stage == 2)
+        else if (stage == 3)
         {
             Instantiate(boss3FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
 

@@ -111,6 +111,7 @@ public class FireMonster : MonoBehaviour
 
         monsterMap.DeleteCannon();
 
+        mapSetting.stage = 2; // 1스테이지 보스 클리어스 2스테이지로 변경
         mapSetting.MapReset(); // 보스 클리어시 맵 초기화
         mapSetting.StageMapSetting(); // 맵 셋팅
 

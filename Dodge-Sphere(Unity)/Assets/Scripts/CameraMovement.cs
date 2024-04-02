@@ -39,16 +39,28 @@ public class CameraMovement : MonoBehaviour
         else if ((monsterMap.fireMoved || monsterMap.cactusMoved || monsterMap.mushMoved) && fix) // 몬스터맵1 - 카메라 고정
         {
             fix = false;
-            StartCoroutine(MonsterMapCamera());
+            StartCoroutine(Stage1MonsterCamera());
         }
-        
+        else if ((monsterMap.chsetMoved) && fix) // 몬스터맵1 - 카메라 고정
+        {
+            fix = false;
+            StartCoroutine(Stage2MonsterCamera());
+        }
+
     }
 
-    IEnumerator MonsterMapCamera()
+    IEnumerator Stage1MonsterCamera()
     {
         yield return new WaitForSeconds(2);
 
         offset = new Vector3(0, 21f, -0.5f);
+        transform.position = player.transform.position + offset;
+    }
+    IEnumerator Stage2MonsterCamera()
+    {
+        yield return new WaitForSeconds(2);
+
+        offset = new Vector3(0, 25f, -0.5f);
         transform.position = player.transform.position + offset;
     }
 }

@@ -77,6 +77,11 @@ public class TileObject : MonoBehaviour
                     StartCoroutine(CurrentTileNum(5.3f));
                     StartCoroutine(PlayerTileReset());
                 }
+                else if (gameObject.CompareTag("M_Chest")) // ¹ö¼¸ ¸ó½ºÅÍ
+                {
+                    StartCoroutine(CurrentTileNum(5.4f));
+                    StartCoroutine(PlayerTileReset());
+                }
             }
         }
     }
