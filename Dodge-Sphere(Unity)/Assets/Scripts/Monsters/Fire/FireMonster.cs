@@ -68,7 +68,6 @@ public class FireMonster : MonoBehaviour
         b_BulletNums = new int[] { 30, 29, 30, 29, 30 };
 
         c_AttackSpd = 10f;
-        c_AttackNum = 4;
         c_AttackAngles1 = new int[] { 135, 180, 225 };
         c_AttackAngles2 = new float[] { 157.5f, 202.5f };
 

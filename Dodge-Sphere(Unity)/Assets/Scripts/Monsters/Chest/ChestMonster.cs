@@ -25,17 +25,20 @@ public class ChestMonster : MonoBehaviour
     public int b_AttackNum; // 발사 수
     public int b_AttackAngle; // 발사 각도
 
-
     // 박치기 패턴
     public float bu_AttackSpd; // 총알 속도
     public int bu_AttackNum; // 발사 수
-    public int[] bu_AttackAngles1; // 발사 각도
-    public float[] bu_AttackAngles2; // 발사 각도
+    public int bu_BulletNum; // 총알 수
+    public Vector3 bu_AttackAngles; // 발사 각도
 
     // 먹기 패턴
     public float e_AttackSpd = 20f; // 총알 속도
     public int e_AttackNum = 10; // 발사 수
     public int e_BulletNum = 10; // 총알 수
+    public int e_EatingNum;
+    public bool e_Eating; // 먹기 패턴 중
+    public GameObject[] e_EatingPos; // 패턴 생성 위치
+    public GameObject e_EatingPrefab;
 
     private Animator anim;
 
@@ -61,17 +64,14 @@ public class ChestMonster : MonoBehaviour
         b_AttackSpd = 10f;
         b_AttackNum = 50;
 
-        bu_AttackSpd = 10f;
+        bu_AttackSpd = 15f;
         bu_AttackNum = 4;
-        bu_AttackAngles1 = new int[] { 135, 180, 225 };
-        bu_AttackAngles2 = new float[] { 157.5f, 202.5f };
+        bu_BulletNum = 10;
 
         e_AttackSpd = 10f;
-        e_AttackNum = 10;
         e_BulletNum = 6;
 
-        InvokeRepeating("StartBiteAttack", 1f, 10f); // 패턴 확인용
-        //InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
     }
 
     void Update()
@@ -86,6 +86,9 @@ public class ChestMonster : MonoBehaviour
     {
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
+
+        GameObject monster = GameObject.Find("EatingMonster");
+        Destroy(monster);
 
         getMoney.getMoney = money;
         getMoney.PickUpMoney();
@@ -110,19 +113,36 @@ public class ChestMonster : MonoBehaviour
 
     void StartPattern() // 랜덤 패턴 선택
     {
-        int randomPattern = Random.Range(0, 4); // 0 ~ 3 랜덤
-
-        switch (randomPattern)
+        int randomPattern = Random.Range(0, 3);
+        if (!e_Eating)
         {
-            case 0:
-                StartBiteAttack();
-                break;
-            case 1:
-                StartCryAttack();
-                break;
-            case 2:
-                StartJumpAttack();
-                break;
+            switch (randomPattern)
+            {
+                case 0:
+                    StartBiteAttack();
+                    break;
+                case 1:
+                    StartButtAttack();
+                    break;
+                case 2:
+                    StartEatingAttack();
+                    break;
+            }
+        }
+        else
+        {
+            switch (randomPattern)
+            {
+                case 0:
+                    StartBiteAttack();
+                    break;
+                case 1:
+                    StartButtAttack();
+                    break;
+                case 2:
+                    StartCoroutine(EatingAttack());
+                    break;
+            }
         }
     }
 
@@ -156,83 +176,72 @@ public class ChestMonster : MonoBehaviour
         }
     }
 
-    private void StartCryAttack()
-    {
-        anim.SetTrigger("Cry");
-        StartCoroutine(CryAttacks());
+    private void StartButtAttack()
+    {       
+        StartCoroutine(ButtAttacks());
     }
 
-    IEnumerator CryAttacks() // 탄환을 몬스터 주위 원형으로 발사
+    IEnumerator ButtAttacks()
     {
-        for (int i = 0; i < 4; i++) // 총 2번 발사
+        for (int i = 0; i < bu_AttackNum; i++)
         {
-            for (int j = 0; j < 3; j++)
+            anim.SetTrigger("Butt");
+
+            for (int j = 0; j < bu_BulletNum; j++)
             {
-                float angle = bu_AttackAngles1[j]; // 탄환의 각도 계산                                             
-                Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward; // 각도에 따른 방향 계산
-                Vector3 bulletPos = new Vector3(transform.position.x, 2.55f, transform.position.z); // 총알 위치 설정
-                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
-                bullet.name = "CryFireAttack"; // 총알 이름 변경         
-                bullet.GetComponent<Rigidbody>().velocity = direction * bu_AttackSpd; // 탄환 방향 설정
-
-                Destroy(bullet, 2.5f); // 4초 후 총알 제거
-            }
-
-            yield return new WaitForSeconds(0.75f); // 1초 대기
-
-            for (int k = 0; k < 2; k++)
-            {
-                float angle = bu_AttackAngles2[k]; // 탄환의 각도 계산                                             
-                Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward; // 각도에 따른 방향 계산
-                Vector3 bulletPos = new Vector3(transform.position.x, 2.55f, transform.position.z); // 총알 위치 설정
-                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
-                bullet.name = "CryFireAttack"; // 총알 이름 변경         
-                bullet.GetComponent<Rigidbody>().velocity = direction * bu_AttackSpd; // 탄환 방향 설정
-
+                GameObject player = GameObject.Find("Player");
+                Vector3 playerPosition = player.transform.position;
+                // 플레이어 주변 랜덤한 위치 설정
+                Vector3 randomPosition = playerPosition + new Vector3(Random.Range(-10.0f, 10.0f), 2, Random.Range(-10.0f, 10.0f));
+                GameObject bullet = Instantiate(baseAttackPrefab, gameObject.transform.position, Quaternion.identity); // 총알 생성
+                bullet.name = "ButtFireAttack";
+                Vector3 direction = (randomPosition - transform.position).normalized;
+                bullet.GetComponent<Rigidbody>().velocity = direction * bu_AttackSpd;
                 Destroy(bullet, 2.5f);
+                yield return new WaitForSeconds(0.15f);
             }
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
-    public void StartJumpAttack()
+
+    public void StartEatingAttack()
     {
-        StartCoroutine(JumpAttack());
+        e_Eating = true;
+        StartCoroutine(EatingAttack());
+        EatingMonster();
     }
 
-    IEnumerator JumpAttack()
+    IEnumerator EatingAttack()
     {
-        anim.SetTrigger("Jump");
-        for (int j = 0; j < e_AttackNum; j++)
+        for (int j = 0; j < bu_BulletNum; j++)
         {
-            float angle = Random.Range(135, 225);
-            StartCoroutine(Jumpbullet(angle));
-        }
-
-        yield return new WaitForSeconds(3);
-        anim.SetTrigger("Jump");
-        for (int j = 0; j < e_AttackNum; j++)
-        {
-            float angle = Random.Range(135, 225);
-            StartCoroutine(Jumpbullet(angle));
-        }
-    }
-
-    IEnumerator Jumpbullet(float angle) // 탄환을 몬스터 주위 원형으로 발사
-    {
-        for (int j = 0; j < e_BulletNum; j++)
-        {
-            Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward; // 각도에 따른 방향 계산
-            Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z); // 총알 위치 설정
-            GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
-            bullet.name = "JumpFireAttack"; // 총알 이름 변경         
-            bullet.GetComponent<Rigidbody>().velocity = direction * e_AttackSpd; // 탄환 방향 설정
-
+            GameObject player = GameObject.Find("Player");
+            Vector3 playerPosition = player.transform.position;
+            GameObject bullet = Instantiate(baseAttackPrefab, gameObject.transform.position, Quaternion.identity); // 총알 생성
+            bullet.name = "ButtFireAttack";
+            Vector3 direction = (playerPosition - transform.position).normalized;
+            bullet.GetComponent<Rigidbody>().velocity = direction * bu_AttackSpd;
             Destroy(bullet, 2.5f);
-
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
+    void EatingMonster()
+    {
+        e_EatingNum = Random.Range(0, 2);
+
+        if (e_EatingNum == 0)
+        {
+            GameObject e_Moneter = Instantiate(e_EatingPrefab, e_EatingPos[e_EatingNum].transform.position, Quaternion.Euler(0, 90, 0)); // 패턴 생성
+            e_Moneter.name = "EatingMonster";
+        }
+        if (e_EatingNum == 1)
+        {
+            GameObject e_Moneter = Instantiate(e_EatingPrefab, e_EatingPos[e_EatingNum].transform.position, Quaternion.Euler(0, -90, 0)); // 패턴 생성
+            e_Moneter.name = "EatingMonster";
+        }
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
