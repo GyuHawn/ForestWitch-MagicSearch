@@ -13,6 +13,7 @@ public class MonsterMap : MonoBehaviour
     public bool cactusMoved; // 선인장 몬스터 전투
     public bool mushMoved; // 버섯 몬스터 전투
     public bool chsetMoved; // 버섯 몬스터 전투
+    public bool beholderMoved; // 주시자 몬스터 전투
     public int monsterNum; // 몬스터 수
 
     public GameObject monster; // 현재 몬스터
@@ -29,6 +30,7 @@ public class MonsterMap : MonoBehaviour
     public GameObject cactusMonsterPrefab; // 선인장 몬스터 프리팹
     public GameObject[] mushMonsterPrefab; // 버섯 몬스터 프리팹
     public GameObject chestMonsterPrefab; // 상자 몬스터 프리팹
+    public GameObject beholderMonsterPrefab; // 주시자 몬스터 프리팹
 
     // 대포
     public GameObject[] cannonPoints; // 대포 설치 위치 / 스테이지[1, 1, 2, 2]
@@ -47,6 +49,8 @@ public class MonsterMap : MonoBehaviour
         fireMoved = false;
         cactusMoved = false;
         mushMoved = false;
+        chsetMoved = false;
+        beholderMoved = false;
         monsterNum = 1;
     }
   
@@ -74,6 +78,10 @@ public class MonsterMap : MonoBehaviour
         {
             chsetMoved = true;
         }
+        else if (playerMovement.currentTile == 5.5f) // 상자 몬스터
+        {
+            beholderMoved = true;
+        }
 
         // 맵 이동 & 몬스터 소환
         if (fireMoved && monsterNum > 0) // 불 몬스터
@@ -98,6 +106,12 @@ public class MonsterMap : MonoBehaviour
         {
             playerMovement.OnGame();
             StartCoroutine(MoveChestMonsterMap());
+            InstallationCannons();
+        }
+        else if (beholderMoved && monsterNum > 0) // 상자 몬스터
+        {
+            playerMovement.OnGame();
+            StartCoroutine(MoveBeholderMonsterMap());
             InstallationCannons();
         }
     }
@@ -160,6 +174,17 @@ public class MonsterMap : MonoBehaviour
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, 1f, nomalMonsterSpawnPos[1].transform.position.z);
         monster = Instantiate(chestMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "ChestMonster";
+    }
+    IEnumerator MoveBeholderMonsterMap()
+    {
+        monsterNum--;
+        yield return new WaitForSeconds(2f);
+
+        player.transform.position = playerMapSpawnPos[1].transform.position;
+
+        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, 1.5f, nomalMonsterSpawnPos[1].transform.position.z);
+        monster = Instantiate(beholderMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
+        monster.name = "BeholderMonster";
     }
 
     void InstallationCannons()

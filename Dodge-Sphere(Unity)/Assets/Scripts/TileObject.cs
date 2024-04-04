@@ -82,6 +82,11 @@ public class TileObject : MonoBehaviour
                     StartCoroutine(CurrentTileNum(5.4f));
                     StartCoroutine(PlayerTileReset());
                 }
+                else if (gameObject.CompareTag("M_Beholder")) // ¹ö¼¸ ¸ó½ºÅÍ
+                {
+                    StartCoroutine(CurrentTileNum(5.5f));
+                    StartCoroutine(PlayerTileReset());
+                }
             }
         }
     }

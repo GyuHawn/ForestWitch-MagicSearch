@@ -26,6 +26,8 @@ public class GameStartScript : MonoBehaviour
     public GameObject cannon1;
     public GameObject cannon2;
 
+    public GameObject startSelect;
+
     void Start()
     {
 
@@ -102,6 +104,25 @@ public class GameStartScript : MonoBehaviour
 
     public void OpenSelectWindow()
     {
+        StartCoroutine(StartScale());
+    }
+
+
+    IEnumerator StartScale()
+    {
+        float time = 0;
+        Vector3 originalScale = startSelect.transform.localScale;
+        Vector3 targetScale = new Vector3(originalScale.x, 0, originalScale.z);
+
+        while (time < 1)
+        {
+            startSelect.transform.localScale = Vector3.Lerp(originalScale, targetScale, time);
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        startSelect.transform.localScale = targetScale;
+
         selectWindow.SetActive(true);
     }
 

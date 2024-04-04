@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     // 기타
     public int money;
+    public bool faint; // 기절여부
      
     // 타일맵 관련
     public int moveNum; // 플레이어 이동 유무(일단 int사용, 확인후 bool변경)
@@ -202,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (game && transform.position.x > 100)
+        else if (game && transform.position.x > 100 && !faint)
         {
             tileCheck.GetComponent<Collider>().enabled = false;
 
@@ -321,6 +322,14 @@ public class PlayerMovement : MonoBehaviour
         Destroy(gameObject);
     }
 
+    IEnumerator PlayerFaint(float time) // 기절 시 일정시간뒤 기절해제
+    {
+        faint = true;
+
+        yield return new WaitForSeconds(time);
+        faint = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Bullet"))
@@ -341,6 +350,12 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("FakeBullet"))
         {
             Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("FaintBullet"))
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(PlayerFaint(1f));
         }
 
         if (collision.gameObject.CompareTag("P_Attack"))

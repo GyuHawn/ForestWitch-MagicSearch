@@ -23,6 +23,7 @@ TagManager:
   - FakeBullet
   - M_Chest
   - M_Beholder
+  - FaintBullet
   layers:
   - Default
   - TransparentFX
@@ -49,7 +50,7 @@ TagManager:
   - FakeBullet
   - M_Chest
   - M_Beholder
-  - 
+  - FaintBullet
   - 
   - 
   - 
