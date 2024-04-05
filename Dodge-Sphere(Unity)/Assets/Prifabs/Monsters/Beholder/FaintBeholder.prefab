@@ -4961,6 +4961,7 @@ GameObject:
   - component: {fileID: -4531937810691887962}
   - component: {fileID: 935359427610970434}
   - component: {fileID: 2393508987547300098}
+  - component: {fileID: 6188596898930752223}
   m_Layer: 25
   m_Name: FaintBeholder
   m_TagString: FaintBullet
@@ -9859,6 +9860,19 @@ MonoBehaviour:
   damage: 0
   dagger: 0
   sword: 0
+--- !u!114 &6188596898930752223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3367651039751112429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4655c24407704a4da37b7bd622d7a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!1 &3372277459831056524
 GameObject:
   m_ObjectHideFlags: 0

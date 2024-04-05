@@ -34,8 +34,7 @@ public class BeholderMonster : MonoBehaviour
     // 레이저 패턴
     public float bu_AttackSpd; // 총알 속도
     public int bu_AttackNum; // 발사 수
-    public int bu_BulletNum; // 총알 수
-    public Vector3 bu_AttackAngles; // 발사 각도
+    public float bu_AttackAngles; // 발사 각도
 
 
     private Animator anim;
@@ -64,18 +63,14 @@ public class BeholderMonster : MonoBehaviour
 
         bu_AttackSpd = 15f;
         bu_AttackNum = 4;
-        bu_BulletNum = 10;
 
         a_AttackSpd = 30f;
         a_AttackNum = 5;
 
-        f_AttackSpd = 20f;
-        f_AttackNum = 3;
-
-        //InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
-        InvokeRepeating("StartFaintAttack", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartFaintAttack", 3f, 8f); // 랜덤 패턴 실행
     }
-
+   
     void Update()
     {
         if (currentHealth <= 0)
@@ -122,7 +117,7 @@ public class BeholderMonster : MonoBehaviour
                 StartAimingAttack();
                 break;
             case 2:
-                StartEatingAttack();
+                StartLaserAttack();
                 break;
         }
     }
@@ -161,60 +156,98 @@ public class BeholderMonster : MonoBehaviour
         for (int i = 0; i < a_AttackNum; i++)
         {
             anim.SetTrigger("Aiming");
+            yield return new WaitForSeconds(0.5f);
             GameObject player = GameObject.Find("Player");
-            Vector3 playerPosition = player.transform.position;                                            
-            GameObject bullet = Instantiate(baseAttackPrefab, gameObject.transform.position, Quaternion.identity); // 총알 생성
+            Vector3 playerPosition = player.transform.position;
+
+            Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
+            GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
             bullet.name = "AimingAttack"; // 총알 이름 변경
+
             Vector3 direction = (playerPosition - transform.position).normalized;
             bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd; // 탄환 방향 설정
 
             Destroy(bullet, 2f);
-
-            yield return new WaitForSeconds(1f);
         }
     }
 
-    private void StartFaintAttack()
+    private void StartFaintAttack() // 기절 패턴
     {
-        StartCoroutine(FaintAttacks());
+        Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
+        GameObject bullet = Instantiate(faintAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
+        bullet.name = "AimingAttack"; // 총알 이름 변경
     }
 
-    IEnumerator FaintAttacks()
+    public void StartLaserAttack()
     {
-        for (int i = 0; i < f_AttackNum; i++)
+        StartCoroutine(LaserAttack());
+    }
+
+    IEnumerator LaserAttack()
+    {
+        anim.SetBool("Laser", true);
+        int num = Random.Range(0, 2);
+        bool start = true;
+
+        if (num == 0)
         {
-            GameObject player = GameObject.Find("Player");
-            Vector3 playerPosition = player.transform.position;
-            GameObject bullet = Instantiate(faintAttackPrefab, gameObject.transform.position, Quaternion.identity); // 총알 생성
-            bullet.name = "AimingAttack"; // 총알 이름 변경
-            Vector3 direction = (playerPosition - transform.position).normalized;
-            bullet.GetComponent<Rigidbody>().velocity = direction * f_AttackSpd; // 탄환 방향 설정
+            bu_AttackAngles = 130f; // 총알 시작 각도
 
-            Destroy(bullet, 3f);
+            while (start)
+            {
+                if (bu_AttackAngles >= 220) // 부동소수점 비교를 위해 변경
+                {
+                    start = false;
+                }
 
-            yield return new WaitForSeconds(2f);
+                Vector3 direction = Quaternion.Euler(0, bu_AttackAngles, 0) * Vector3.forward;
+                Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
+                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
+                bullet.name = "LaserAttack";
+                bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd;
+
+                transform.rotation = Quaternion.Euler(0, bu_AttackAngles, 0); // 자신의 회전값 수정
+
+                Destroy(bullet, 2f);
+
+                bu_AttackAngles += 2; // 각도 업데이트
+
+                yield return new WaitForSeconds(0.1f);
+            }
         }
-    }
-
-    public void StartEatingAttack()
-    {
-        StartCoroutine(EatingAttack());
-    }
-
-    IEnumerator EatingAttack()
-    {
-        for (int j = 0; j < bu_BulletNum; j++)
+        else if (num == 1)
         {
-            GameObject player = GameObject.Find("Player");
-            Vector3 playerPosition = player.transform.position;
-            GameObject bullet = Instantiate(baseAttackPrefab, gameObject.transform.position, Quaternion.identity); // 총알 생성
-            bullet.name = "ButtFireAttack";
-            Vector3 direction = (playerPosition - transform.position).normalized;
-            bullet.GetComponent<Rigidbody>().velocity = direction * bu_AttackSpd;
-            Destroy(bullet, 2.5f);
-            yield return new WaitForSeconds(0.2f);
+            bu_AttackAngles = 220f; // 총알 시작 각도
+
+            while (start)
+            {
+                if (bu_AttackAngles <= 130) // 부동소수점 비교를 위해 변경
+                {
+                    start = false;
+                }
+
+                Vector3 direction = Quaternion.Euler(0, bu_AttackAngles, 0) * Vector3.forward;
+                Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
+                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
+                bullet.name = "LaserAttack";
+                bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd;
+
+                transform.rotation = Quaternion.Euler(0, bu_AttackAngles, 0); // 자신의 회전값 수정
+
+                Destroy(bullet, 2f);
+
+                bu_AttackAngles -= 2; // 각도 업데이트
+
+                yield return new WaitForSeconds(0.1f);
+            }
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        transform.rotation = Quaternion.Euler(0, 180, 0); // 표준 자신의 회전값 적용
+        anim.SetBool("Laser", false);
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {

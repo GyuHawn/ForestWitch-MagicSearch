@@ -182,7 +182,7 @@ public class MonsterMap : MonoBehaviour
 
         player.transform.position = playerMapSpawnPos[1].transform.position;
 
-        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, 1.5f, nomalMonsterSpawnPos[1].transform.position.z);
+        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, -1.5f, nomalMonsterSpawnPos[1].transform.position.z);
         monster = Instantiate(beholderMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "BeholderMonster";
     }
