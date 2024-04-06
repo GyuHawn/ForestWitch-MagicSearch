@@ -19,6 +19,7 @@ public class UIScript : MonoBehaviour
 
     public void OnEx()
     {
+        Debug.Log("s");
         ex.SetActive(!ex.activeSelf);
     }
 }

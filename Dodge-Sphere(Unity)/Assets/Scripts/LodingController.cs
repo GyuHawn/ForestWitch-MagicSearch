@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class LodingController : MonoBehaviour
 {
+    public Sprite[] lodingBarColors;
+    public GameObject lodingBarImage;
+
     [SerializeField]
     Image lodingBar;
 
@@ -18,7 +21,16 @@ public class LodingController : MonoBehaviour
 
     void Start()
     {
+        ChangeLodingBarColor();
         StartCoroutine(LoadSceneProcess());
+    }
+
+    void ChangeLodingBarColor()
+    {
+        int num = Random.Range(0, lodingBarColors.Length);
+        Image bar = lodingBarImage.GetComponent<Image>();
+
+        bar.sprite = lodingBarColors[num];
     }
 
     IEnumerator LoadSceneProcess()
