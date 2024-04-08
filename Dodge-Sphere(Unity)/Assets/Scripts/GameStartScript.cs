@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameStartScript : MonoBehaviour
 {
+    private StoryScript storyScript;
+
     public GameObject selectWindow;
     public GameObject playerWindow;
     public GameObject cannonWindow;
@@ -28,9 +30,9 @@ public class GameStartScript : MonoBehaviour
 
     public GameObject startSelect;
 
-    void Start()
+    void Awake()
     {
-
+        storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
     }
 
     
@@ -123,7 +125,19 @@ public class GameStartScript : MonoBehaviour
 
         startSelect.transform.localScale = targetScale;
 
-        selectWindow.SetActive(true);
+        SelectCharacter();
+    }
+
+    void SelectCharacter()
+    {
+        if (storyScript.onStory)
+        {
+            storyScript.StartStory();
+        }
+        else
+        {
+            selectWindow.SetActive(true);
+        }
     }
 
     public void Player1()

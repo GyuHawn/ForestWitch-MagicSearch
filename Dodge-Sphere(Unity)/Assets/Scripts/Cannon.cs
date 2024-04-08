@@ -168,5 +168,11 @@ public class Cannon : MonoBehaviour
         }
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("BreakBullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

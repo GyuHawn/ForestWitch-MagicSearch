@@ -24,6 +24,8 @@ TagManager:
   - M_Chest
   - M_Beholder
   - FaintBullet
+  - M_Clown
+  - BreakBullet
   layers:
   - Default
   - TransparentFX
@@ -51,8 +53,8 @@ TagManager:
   - M_Chest
   - M_Beholder
   - FaintBullet
-  - 
-  - 
+  - M_Clown
+  - BreakBullet
   - 
   - 
   - 

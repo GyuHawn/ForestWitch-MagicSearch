@@ -351,6 +351,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("BreakBullet"))
+        {
+            Destroy(collision.gameObject);
+        }
 
         if (collision.gameObject.CompareTag("FaintBullet"))
         {
