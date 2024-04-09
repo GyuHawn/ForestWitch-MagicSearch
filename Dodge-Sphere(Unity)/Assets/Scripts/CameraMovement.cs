@@ -41,7 +41,7 @@ public class CameraMovement : MonoBehaviour
             fix = false;
             StartCoroutine(Stage1MonsterCamera());
         }
-        else if ((monsterMap.chsetMoved || monsterMap.beholderMoved) && fix) // 몬스터맵1 - 카메라 고정
+        else if ((monsterMap.chsetMoved || monsterMap.beholderMoved || monsterMap.clownMoved) && fix) // 몬스터맵1 - 카메라 고정
         {
             fix = false;
             StartCoroutine(Stage2MonsterCamera());

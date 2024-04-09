@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
 
-        moveSpd = 5;
+        moveSpd = 6;
         rotateSpd = 3f;
 
         maxHealth = 10;

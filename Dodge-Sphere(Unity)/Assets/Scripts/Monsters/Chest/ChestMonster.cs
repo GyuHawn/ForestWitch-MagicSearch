@@ -35,10 +35,10 @@ public class ChestMonster : MonoBehaviour
     public float e_AttackSpd = 20f; // 총알 속도
     public int e_AttackNum = 10; // 발사 수
     public int e_BulletNum = 10; // 총알 수
-    public int e_EatingNum;
-    public bool e_Eating; // 먹기 패턴 중
-    public GameObject[] e_EatingPos; // 패턴 생성 위치
-    public GameObject e_EatingPrefab;
+    public int EatingNum;
+    public bool Eating; // 먹기 패턴 중
+    public GameObject[] EatingPos; // 패턴 생성 위치
+    public GameObject EatingPrefab;
 
     private Animator anim;
 
@@ -114,7 +114,7 @@ public class ChestMonster : MonoBehaviour
     void StartPattern() // 랜덤 패턴 선택
     {
         int randomPattern = Random.Range(0, 3);
-        if (!e_Eating)
+        if (!Eating)
         {
             switch (randomPattern)
             {
@@ -207,7 +207,7 @@ public class ChestMonster : MonoBehaviour
 
     public void StartEatingAttack()
     {
-        e_Eating = true;
+        Eating = true;
         StartCoroutine(EatingAttack());
         EatingMonster();
     }
@@ -229,16 +229,16 @@ public class ChestMonster : MonoBehaviour
 
     void EatingMonster()
     {
-        e_EatingNum = Random.Range(0, 2);
+        EatingNum = Random.Range(0, 2);
 
-        if (e_EatingNum == 0)
+        if (EatingNum == 0)
         {
-            GameObject e_Moneter = Instantiate(e_EatingPrefab, e_EatingPos[e_EatingNum].transform.position, Quaternion.Euler(0, 90, 0)); // 패턴 생성
+            GameObject e_Moneter = Instantiate(EatingPrefab, EatingPos[EatingNum].transform.position, Quaternion.Euler(0, 90, 0)); // 패턴 생성
             e_Moneter.name = "EatingMonster";
         }
-        if (e_EatingNum == 1)
+        if (EatingNum == 1)
         {
-            GameObject e_Moneter = Instantiate(e_EatingPrefab, e_EatingPos[e_EatingNum].transform.position, Quaternion.Euler(0, -90, 0)); // 패턴 생성
+            GameObject e_Moneter = Instantiate(EatingPrefab, EatingPos[EatingNum].transform.position, Quaternion.Euler(0, -90, 0)); // 패턴 생성
             e_Moneter.name = "EatingMonster";
         }
     }

@@ -393,12 +393,10 @@ MonoBehaviour:
   e_AttackSpd: 20
   e_AttackNum: 10
   e_BulletNum: 10
-  e_EatingNum: 0
-  e_Eating: 0
-  e_EatingPos:
-  - {fileID: 988899388230403664}
-  - {fileID: 1730972561206805129}
-  e_EatingPrefab: {fileID: 8039542041357813298, guid: 888eb849b0d43f940907541078a7b2af, type: 3}
+  EatingNum: 0
+  Eating: 0
+  EatingPos: []
+  EatingPrefab: {fileID: 8039542041357813298, guid: 888eb849b0d43f940907541078a7b2af, type: 3}
 --- !u!1 &2387615623656090409
 GameObject:
   m_ObjectHideFlags: 0

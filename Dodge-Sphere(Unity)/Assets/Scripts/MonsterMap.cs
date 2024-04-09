@@ -12,7 +12,8 @@ public class MonsterMap : MonoBehaviour
     public bool fireMoved; // 불 몬스터 전투
     public bool cactusMoved; // 선인장 몬스터 전투
     public bool mushMoved; // 버섯 몬스터 전투
-    public bool chsetMoved; // 버섯 몬스터 전투
+    public bool clownMoved; // 광대 몬스터 전투
+    public bool chsetMoved; // 상자 몬스터 전투
     public bool beholderMoved; // 주시자 몬스터 전투
     public int monsterNum; // 몬스터 수
 
@@ -29,6 +30,7 @@ public class MonsterMap : MonoBehaviour
     public GameObject fireMonsterPrefab; // 불 몬스터 프리팹
     public GameObject cactusMonsterPrefab; // 선인장 몬스터 프리팹
     public GameObject[] mushMonsterPrefab; // 버섯 몬스터 프리팹
+    public GameObject clownMonsterPrefab; // 광대 몬스터 프리팹
     public GameObject chestMonsterPrefab; // 상자 몬스터 프리팹
     public GameObject beholderMonsterPrefab; // 주시자 몬스터 프리팹
 
@@ -49,6 +51,7 @@ public class MonsterMap : MonoBehaviour
         fireMoved = false;
         cactusMoved = false;
         mushMoved = false;
+        clownMoved = false;
         chsetMoved = false;
         beholderMoved = false;
         monsterNum = 1;
@@ -74,11 +77,15 @@ public class MonsterMap : MonoBehaviour
         {
             mushMoved = true;
         }
+        else if (playerMovement.currentTile == 5.6f) // 광대 몬스터
+        {
+            clownMoved = true;
+        }
         else if (playerMovement.currentTile == 5.4f) // 상자 몬스터
         {
             chsetMoved = true;
         }
-        else if (playerMovement.currentTile == 5.5f) // 상자 몬스터
+        else if (playerMovement.currentTile == 5.5f) // 주시자 몬스터
         {
             beholderMoved = true;
         }
@@ -102,13 +109,19 @@ public class MonsterMap : MonoBehaviour
             StartCoroutine(MoveMushMonsterMap());
             InstallationCannons();
         }
+        else if (clownMoved && monsterNum > 0) // 광대 몬스터
+        {
+            playerMovement.OnGame();
+            StartCoroutine(MoveClownMonsterMap());
+            InstallationCannons();
+        }
         else if (chsetMoved && monsterNum > 0) // 상자 몬스터
         {
             playerMovement.OnGame();
             StartCoroutine(MoveChestMonsterMap());
             InstallationCannons();
         }
-        else if (beholderMoved && monsterNum > 0) // 상자 몬스터
+        else if (beholderMoved && monsterNum > 0) // 주시자 몬스터
         {
             playerMovement.OnGame();
             StartCoroutine(MoveBeholderMonsterMap());
@@ -164,6 +177,17 @@ public class MonsterMap : MonoBehaviour
     }
 
     // 2스테이지 몬스터
+    IEnumerator MoveClownMonsterMap()
+    {
+        monsterNum--;
+        yield return new WaitForSeconds(2f);
+
+        player.transform.position = playerMapSpawnPos[1].transform.position;
+
+        Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, 1f, nomalMonsterSpawnPos[1].transform.position.z);
+        monster = Instantiate(clownMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
+        monster.name = "ClownMonster";
+    }
     IEnumerator MoveChestMonsterMap()
     {
         monsterNum--;
@@ -202,7 +226,7 @@ public class MonsterMap : MonoBehaviour
 
         foreach (GameObject cannon in gameSetting.cannons)
         {
-            Vector3 cannonPos = new Vector3(cannonPoints[cannonIndex].transform.position.x, 2.2f, cannonPoints[cannonIndex].transform.position.z);
+            Vector3 cannonPos = new Vector3(cannonPoints[cannonIndex].transform.position.x, 2f, cannonPoints[cannonIndex].transform.position.z);
             if(cannonIndex == 0)
             {
                 cannonY = 65; 

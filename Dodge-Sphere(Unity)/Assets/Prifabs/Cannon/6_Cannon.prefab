@@ -181,6 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6787855115029465345}
   - component: {fileID: 1614060226920251739}
+  - component: {fileID: 3985987832512957445}
   m_Layer: 17
   m_Name: 6_Cannon
   m_TagString: Cannon
@@ -228,6 +229,29 @@ MonoBehaviour:
   shotBullet: {fileID: 0}
   shotBulletPrefab: {fileID: 1096239059303656745, guid: 0b856475a1c6a4d4193e4de43a51695a, type: 3}
   currentBulletText: {fileID: 9178108190268205724}
+  bulletSpd: 0
+  book: 0
+--- !u!65 &3985987832512957445
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3291239126179644249}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 40, y: 40, z: 40}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7430114030318865788
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 8597404658193099112}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.63}
+  m_LocalPosition: {x: 0, y: 0, z: 0.01}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -439,7 +463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.3
+      value: -13.7
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.z

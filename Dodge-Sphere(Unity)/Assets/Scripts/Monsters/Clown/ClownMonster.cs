@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements.Experimental;
 
 public class ClownMonster : MonoBehaviour
 {
@@ -25,24 +26,30 @@ public class ClownMonster : MonoBehaviour
     public int p_AttackNum; // 공격 수
 
     // 발사 패턴
-    public float a_AttackSpd; // 총알 속도
-    public int a_AttackNum; // 발사 수
+    public float s_AttackSpd; // 총알 속도
+    public int s_AttackNum; // 발사 수
 
     // 댄스 패턴
-    public float bu_AttackSpd; // 총알 속도
-    public int bu_AttackNum; // 발사 수
-    public float bu_AttackAngles; // 발사 각도
+    public GameObject[] dancePos;
+    public float d_AttackSpd; // 총알 속도
+    public int d_AttackNum; // 공격 수
+    public int d_BulletNum; // 공격 수
+    public float d_AttackAngles; // 발사 각도
 
     // 파괴 패턴
-    public GameObject faintAttackPrefab; // 기절 특수 총알
-    public float f_AttackSpd; // 총알 속도
-    public int f_AttackNum; // 발사 수
+    public GameObject breakAttackPrefab; // 기절 특수 총알
+    public float b_AttackSpd; // 총알 속도
+    public int b_AttackNum; // 발사 수
 
     // 소환 패턴
-    public int e_EatingNum;
-    public bool e_Eating; // 먹기 패턴 중
-    public GameObject[] e_EatingPos; // 패턴 생성 위치
-    public GameObject[] e_EatingPrefabs;
+    public List<GameObject> summonMonsters = new List<GameObject>();
+    public GameObject defenceEffect;
+    public int summonNum;
+    public bool isSummon; // 먹기 패턴 중
+    public GameObject[] summonPos; // 패턴 생성 위치
+    public GameObject[] summonPrefabs;
+
+    public List<GameObject> playerCannons = new List<GameObject>();
 
     private Animator anim;
 
@@ -68,15 +75,31 @@ public class ClownMonster : MonoBehaviour
         p_AttackSpd = 10f;
         p_AttackNum = 10;
 
-        bu_AttackSpd = 15f;
-        bu_AttackNum = 4;
+        s_AttackSpd = 20f;
+        s_AttackNum = 5;
 
-        a_AttackSpd = 30f;
-        a_AttackNum = 5;
+        d_AttackSpd = 12f;
+        d_AttackNum = 15;
+        d_BulletNum = 10;
 
-       // InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
-        //InvokeRepeating("StartFaintAttack", 3f, 8f); // 랜덤 패턴 실행
-        InvokeRepeating("StartPushAttack", 1f, 20f); // 랜덤 패턴 실행
+        FindCannons();
+
+        // InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        //InvokeRepeating("StartBreakAttack", 3f, 15f); // 특수 패턴 1실행
+        InvokeRepeating("SummonMonster", 1f, 30f); // 특수 패턴 2실행
+        //InvokeRepeating("StartDanceAttack", 1f, 20f);
+    }
+
+    public void FindCannons() // 모든 대포 찾기
+    {
+        GameObject[] Cannons = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject cannon in Cannons)
+        {
+            if (cannon.name == "PlayerCannon")
+            {
+                playerCannons.Add(cannon);
+            }
+        }
     }
 
     void Update()
@@ -122,10 +145,13 @@ public class ClownMonster : MonoBehaviour
                 StartPushAttack();
                 break;
             case 1:
-                StartAimingAttack();
+                StartShotAttack();
                 break;
             case 2:
-                StartLaserAttack();
+                StartDanceAttack();
+                break;
+            case 3:
+                SummonMonster();
                 break;
         }
     }
@@ -172,121 +198,117 @@ public class ClownMonster : MonoBehaviour
         }
     }
 
-    private void StartAimingAttack()
+    private void StartShotAttack()
     {
-        StartCoroutine(AimingAttacks());
+        StartCoroutine(ShotAttacks());
     }
 
-    IEnumerator AimingAttacks()
+    IEnumerator ShotAttacks()
     {
-        for (int i = 0; i < a_AttackNum; i++)
+        for (int i = 0; i < s_AttackNum; i++)
         {
-            anim.SetTrigger("Aiming");
+            anim.SetTrigger("Shot");
             yield return new WaitForSeconds(0.5f);
+
             GameObject player = GameObject.Find("Player");
             Vector3 playerPosition = player.transform.position;
 
-            Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
-            GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
-            bullet.name = "AimingAttack"; // 총알 이름 변경
+            // 플레이어로와 5만큼 거리의 랜덤 위치에 총알 생성
+            Vector3 randomDirection = Random.insideUnitSphere.normalized * 5; 
+            randomDirection.y = 0; // 높이 그대로
+            Vector3 bulletPos = playerPosition + randomDirection;
+            GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
+            bullet.name = "ShotAttack";
 
-            Vector3 direction = (playerPosition - transform.position).normalized;
-            bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd; // 탄환 방향 설정
+            // 총알을 1초 후 플레이어 방향으로 발사
+            yield return new WaitForSeconds(1f); 
+            Vector3 direction = (playerPosition - bullet.transform.position).normalized;
+            bullet.GetComponent<Rigidbody>().velocity = direction * s_AttackSpd;
 
-            Destroy(bullet, 2f);
+            Destroy(bullet, 5f); // 5초 후 총알 삭제
         }
     }
 
-    private void StartFaintAttack() // 기절 패턴
+    private void StartBreakAttack() // 기절 패턴
     {
-        Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
-        GameObject bullet = Instantiate(faintAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
-        bullet.name = "AimingAttack"; // 총알 이름 변경
+        if(playerCannons.Count > 1) 
+        {
+            Vector3 bulletPos = new Vector3(transform.position.x, 3f, transform.position.z);
+            GameObject bullet = Instantiate(breakAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
+            bullet.name = "BreakAttack"; // 총알 이름 변경
+        }
+        else if(playerCannons.Count <= 1)
+        {
+            CancelInvoke("StartBreakAttack");
+        }
     }
 
-    public void StartLaserAttack()
+    public void StartDanceAttack()
     {
-        StartCoroutine(LaserAttack());
+        StartCoroutine(DanceAttack());
     }
 
-    IEnumerator LaserAttack()
+    IEnumerator DanceAttack()
     {
-        anim.SetBool("Laser", true);
+        anim.SetBool("Dance", true);
         int num = Random.Range(0, 2);
-        bool start = true;
 
-        if (num == 0)
+        for (int i = 0; i < d_AttackNum; i++)
         {
-            bu_AttackAngles = 130f; // 총알 시작 각도
-
-            while (start)
+            if (num == 0)
             {
-                if (bu_AttackAngles >= 220) // 부동소수점 비교를 위해 변경
+                for (int j = 0; j < d_BulletNum; j++)
                 {
-                    start = false;
+                    float angle = 130 + j * (90f / d_BulletNum); // 수정된 부분
+                    Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+                    Vector3 bulletPos = new Vector3(dancePos[0].transform.position.x, 2f, dancePos[0].transform.position.z);
+                    GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
+                    bullet.name = "DanceAttack";
+                    bullet.GetComponent<Rigidbody>().velocity = direction * d_AttackSpd;
+
+                    Destroy(bullet, 2.5f);
                 }
-
-                Vector3 direction = Quaternion.Euler(0, bu_AttackAngles, 0) * Vector3.forward;
-                Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
-                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
-                bullet.name = "LaserAttack";
-                bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd;
-
-                transform.rotation = Quaternion.Euler(0, bu_AttackAngles, 0); // 자신의 회전값 수정
-
-                Destroy(bullet, 2f);
-
-                bu_AttackAngles += 2; // 각도 업데이트
-
-                yield return new WaitForSeconds(0.1f);
+                num = 1;
             }
-        }
-        else if (num == 1)
-        {
-            bu_AttackAngles = 220f; // 총알 시작 각도
-
-            while (start)
+            else if (num == 1)
             {
-                if (bu_AttackAngles <= 130) // 부동소수점 비교를 위해 변경
+                for (int j = 0; j < d_BulletNum; j++)
                 {
-                    start = false;
+                    float angle = 135 + j * (90f / d_BulletNum);
+                    Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+                    Vector3 bulletPos = new Vector3(dancePos[1].transform.position.x, 2f, dancePos[1].transform.position.z);
+                    GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
+                    bullet.name = "DanceAttack";
+                    bullet.GetComponent<Rigidbody>().velocity = direction * d_AttackSpd;
+
+                    Destroy(bullet, 2.5f);
                 }
-
-                Vector3 direction = Quaternion.Euler(0, bu_AttackAngles, 0) * Vector3.forward;
-                Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
-                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
-                bullet.name = "LaserAttack";
-                bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd;
-
-                transform.rotation = Quaternion.Euler(0, bu_AttackAngles, 0); // 자신의 회전값 수정
-
-                Destroy(bullet, 2f);
-
-                bu_AttackAngles -= 2; // 각도 업데이트
-
-                yield return new WaitForSeconds(0.1f);
+                num = 0;
             }
+            yield return new WaitForSeconds(0.3f);
         }
-
-        yield return new WaitForSeconds(0.5f);
-
-        transform.rotation = Quaternion.Euler(0, 180, 0); // 표준 자신의 회전값 적용
-        anim.SetBool("Laser", false);
+        anim.SetBool("Dance", false);
     }
 
-    void EatingMonster()
-    {
-        e_EatingNum = Random.Range(0, 2);
 
-        if (e_EatingNum == 0)
+    void SummonMonster()
+    {
+        if (!isSummon)
         {
-            GameObject e_Moneter = Instantiate(e_EatingPrefabs[e_EatingNum], e_EatingPos[e_EatingNum].transform.position, Quaternion.Euler(0, 90, 0)); // 패턴 생성
-            e_Moneter.name = "EatingMonster";
-        }
-        if (e_EatingNum == 1)
-        {
-            GameObject e_Moneter = Instantiate(e_EatingPrefabs[e_EatingNum], e_EatingPos[e_EatingNum].transform.position, Quaternion.Euler(0, -90, 0)); // 패턴 생성
-            e_Moneter.name = "EatingMonster";
+            defenceEffect.SetActive(true);
+            isSummon = true;
+
+            summonNum = Random.Range(0, 2);
+
+            // 첫 번째 몬스터 소환
+            GameObject firstMonster = Instantiate(summonPrefabs[summonNum], summonPos[0].transform.position, Quaternion.Euler(0, 90, 0));
+            summonMonsters.Add(firstMonster);
+            firstMonster.name = "SummonMonster";
+
+            // 0이면 1, 1이면 0을 사용
+            GameObject secondMonster = Instantiate(summonPrefabs[1 - summonNum], summonPos[1].transform.position, Quaternion.Euler(0, -90, 0));
+            summonMonsters.Add(secondMonster);
+            secondMonster.name = "SummonMonster";
         }
     }
 
@@ -294,14 +316,20 @@ public class ClownMonster : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("CannonBullet"))
         {
-            Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
-            if (bulletComponent != null)
+            if (!isSummon)
             {
-                currentHealth -= bulletComponent.damage;
-                anim.SetTrigger("Hit");
+                Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
+                if (bulletComponent != null)
+                {
+                    currentHealth -= bulletComponent.damage;
+                    anim.SetTrigger("Hit");
+                }
+                Destroy(collision.gameObject);
             }
-            Debug.Log(currentHealth);
-            Destroy(collision.gameObject);
+            else
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 

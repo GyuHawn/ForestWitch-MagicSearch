@@ -9802,6 +9802,7 @@ GameObject:
   - component: {fileID: 2549009136024871258}
   - component: {fileID: 5724184088055102096}
   - component: {fileID: 8239227396823601115}
+  - component: {fileID: -3316481000230175667}
   m_Layer: 27
   m_Name: BreakBullet
   m_TagString: BreakBullet
@@ -14685,6 +14686,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!114 &-3316481000230175667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6647078301133122623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3b2bd78316db134088bb3da5a630bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7953949954250106245
 GameObject:
   m_ObjectHideFlags: 0

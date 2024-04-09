@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 208570964598884047}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.63}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5323247393153836634}
   - component: {fileID: 1444494227974271656}
+  - component: {fileID: 2017622758323746333}
   m_Layer: 17
   m_Name: 3_Cannon
   m_TagString: Cannon
@@ -163,6 +164,29 @@ MonoBehaviour:
   shotBullet: {fileID: 0}
   shotBulletPrefab: {fileID: 5314163837468977649, guid: aa6559e4f412fd4439f59e567c1f3951, type: 3}
   currentBulletText: {fileID: 6290302117472353359}
+  bulletSpd: 0
+  book: 0
+--- !u!65 &2017622758323746333
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322167627264292165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 40, y: 40, z: 40}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6639159152914659018
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +429,10 @@ PrefabInstance:
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2944786138269262947, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.01
+      objectReference: {fileID: 0}
     - target: {fileID: 2990815218076169686, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_Layer
       value: 17
@@ -439,7 +467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -12.5
+      value: -11.9
       objectReference: {fileID: 0}
     - target: {fileID: 3907679614406300944, guid: 13c990b8270c70b4c9f196019286028c, type: 3}
       propertyPath: m_LocalPosition.z

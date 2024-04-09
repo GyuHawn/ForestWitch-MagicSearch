@@ -34,10 +34,8 @@ public class MapSetting : MonoBehaviour
     public GameObject shopFloorPrefab; // 상점 타일 프리팹
     public GameObject boss1FloorPrefab; // 1스테이지 보스 타일 프리팹
     public GameObject boss2FloorPrefab; // 2스테이지 보스 타일 프리팹
-    public GameObject boss3FloorPrefab; // 2스테이지 보스 타일 프리팹
     public GameObject[] monster1FloorPrefab; // 1스테이지 몬스터 타일 프리팹
     public GameObject[] monster2FloorPrefab; // 2스테이지 몬스터 타일 프리팹
-    public GameObject[] monster3FloorPrefab; // 3스테이지 몬스터 타일 프리팹
 
     public int empyFloorNum; // 빈 타일 개수
     public int restFloorNum; // 휴식 타일 개수
@@ -48,7 +46,7 @@ public class MapSetting : MonoBehaviour
 
     void Start()
     {
-        stage = 1;
+        stage = 2;
         StageMapSetting();
     }
      
@@ -141,18 +139,6 @@ public class MapSetting : MonoBehaviour
                 int randomIndex = GetUniqueRandomIndex(usedIndexes);
                 int randomMonster = Random.Range(0, monster2FloorPrefab.Length);
                 GameObject monster = Instantiate(monster2FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
-                monsterTiles.Add(monster);
-            }
-        }
-        else if (stage == 3)
-        {
-            Instantiate(boss3FloorPrefab, bossFloorPos.transform.position, Quaternion.Euler(0, 180, 0), bossFloorPos.transform);
-
-            for (int i = 0; i < monsterFloorNum; i++)
-            {
-                int randomIndex = GetUniqueRandomIndex(usedIndexes);
-                int randomMonster = Random.Range(0, monster3FloorPrefab.Length);
-                GameObject monster = Instantiate(monster3FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
                 monsterTiles.Add(monster);
             }
         }

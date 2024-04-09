@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 5398214913295013995}
   - component: {fileID: 8055382581249168192}
   - component: {fileID: -7450013323798605274}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: ClownBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4922,7 +4922,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6620150984048275217}
   - component: {fileID: 1556227941369126804}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5017,7 +5017,7 @@ GameObject:
   - component: {fileID: 2890265779952025693}
   - component: {fileID: 5733520350042594139}
   - component: {fileID: 5394851843885903045}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Corona
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9860,7 +9860,7 @@ GameObject:
   - component: {fileID: 9059701924761713507}
   - component: {fileID: 1803746953162322837}
   - component: {fileID: 4488622322835287473}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SunSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9964,7 +9964,7 @@ GameObject:
   - component: {fileID: 6449634953562055456}
   - component: {fileID: 1258178714885706474}
   - component: {fileID: 5785799030484315098}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Loops
   m_TagString: Untagged
   m_Icon: {fileID: 0}

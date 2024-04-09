@@ -45,7 +45,7 @@ public class P_AttackSpawn : MonoBehaviour
             boxSize = Stage1BoxSize;
             spawned = true;
         }
-        else if (monsterMap.chsetMoved || monsterMap.beholderMoved)
+        else if (monsterMap.chsetMoved || monsterMap.beholderMoved || monsterMap.clownMoved)
         {
             spawnPoint = Stage2SpawnPoint;
             boxSize = Stage2BoxSize;

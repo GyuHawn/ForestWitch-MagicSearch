@@ -64,7 +64,7 @@ public class EatingChest : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             ChestMonster monster = GameObject.Find("ChestMonster").GetComponent<ChestMonster>();
-            monster.e_Eating = false;
+            monster.Eating = false;
             Destroy(gameObject);
         }
 
