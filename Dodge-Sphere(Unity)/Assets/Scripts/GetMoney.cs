@@ -11,19 +11,18 @@ public class GetMoney : MonoBehaviour
     public GameObject getMoneyUI;
     public TMP_Text getMoneyText;
     public int getMoney;
-    private void Awake()
-    {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
 
-    void Start()
-    {
-        
-    }
+    public GameObject player;
 
-    
+
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         getMoneyText.text = getMoney.ToString();
     }
 

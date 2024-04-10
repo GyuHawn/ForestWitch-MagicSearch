@@ -14,18 +14,21 @@ public class EventScript : MonoBehaviour
 
     public bool onEvent; // 이벤트 실행 여부
 
+    public GameObject player;
+
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
     }
 
-    void Start()
-    {
-    }
-    
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         if (onEvent)
         {
             onEvent = false;
@@ -50,6 +53,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
     public void LakeEvent2()
     {
@@ -60,6 +64,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
 
     // 집 이벤트
@@ -76,6 +81,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
     public void HouseEvent2()
     {
@@ -90,6 +96,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
 
     // 동굴 이벤트
@@ -99,6 +106,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
     public void CaveEvent2()
     {
@@ -113,6 +121,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
 
     // 상자 이벤트
@@ -131,6 +140,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
     public void ItemEvent2()
     {
@@ -141,6 +151,7 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
 
     // 돌아가기
@@ -149,5 +160,6 @@ public class EventScript : MonoBehaviour
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isEvent = false;
     }
 }

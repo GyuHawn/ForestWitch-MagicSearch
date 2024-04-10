@@ -34,9 +34,7 @@ public class GameStartScript : MonoBehaviour
     {
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
     }
-
-    
-
+   
     void Update()
     {
         Select();

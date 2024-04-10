@@ -41,7 +41,6 @@ public class MonsterMap : MonoBehaviour
 
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
     }
@@ -56,12 +55,13 @@ public class MonsterMap : MonoBehaviour
         beholderMoved = false;
         monsterNum = 1;
     }
-  
+
     void Update()
     {
         if (player == null)
         {
             player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
         }
 
         // 전투 맵 이동 준비

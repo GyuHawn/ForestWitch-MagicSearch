@@ -11,12 +11,12 @@ public class Portion : MonoBehaviour
     public int functionNum;
     public Button function;
 
+    public GameObject player;
+
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         portionSlot = GameObject.Find("Manager").GetComponent<PortionSlot>();
     }
-
     void Start()
     {
         if (functionNum == 1)
@@ -33,11 +33,15 @@ public class Portion : MonoBehaviour
         }
     }
 
-    
     void Update()
     {
-        
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
     }
+
 
     public void SpeedPortion()
     {

@@ -21,17 +21,10 @@ public class Cannon : MonoBehaviour
     public float bulletSpd; // 총알의 속도
 
     // 아이템 관련
-    public bool book;
-    
-    private void Awake()
-    {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
+    public bool book;   
 
     void Start()
     {
-        player = GameObject.Find("Player");
-        
         ready = false;
     }
 
@@ -61,6 +54,12 @@ public class Cannon : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         // 아이템 관련
         ItemSetting();
 

@@ -2554,7 +2554,11 @@ MonoBehaviour:
   currentHealth: 0
   moveSpd: 3
   rotateSpd: 5
+  defence: 0
+  itemShield: 0
   bulletNum: 0
+  money: 0
+  faint: 0
   moveNum: 0
   moveBtn:
   - {fileID: 7625983164137650143}
@@ -2568,7 +2572,23 @@ MonoBehaviour:
   moveDistance: 2.3
   finalPlayerPos: {x: 0, y: 0, z: 0}
   healthText: {fileID: 0}
-  SpeedText: {fileID: 0}
+  spdText: {fileID: 0}
+  moneyText: {fileID: 0}
+  isShop: 0
+  isEvent: 0
+  isItem: 0
+  isRest: 0
+  arrow: 0
+  bag: 0
+  book: 0
+  bow: 0
+  dagger: 0
+  fish: 0
+  necklace: 0
+  pick: 0
+  ring: 0
+  shield: 0
+  sword: 0
 --- !u!95 &3954229591785455820
 Animator:
   serializedVersion: 5

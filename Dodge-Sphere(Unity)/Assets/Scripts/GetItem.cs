@@ -15,14 +15,21 @@ public class GetItem : MonoBehaviour
     public GameObject getItemUI; // 아이템 획득 UI
     public GameObject getPos; // 아이템 표시 위치
     
+    public GameObject player;
+
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         playerItem = GameObject.Find("Manager").GetComponent<PlayerItem>();
     }
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         if (onItem)
         {
             onItem = false;
@@ -52,6 +59,7 @@ public class GetItem : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        playerMovement.isItem = false;
         getItemUI.SetActive(false);
         Destroy(item);
     }

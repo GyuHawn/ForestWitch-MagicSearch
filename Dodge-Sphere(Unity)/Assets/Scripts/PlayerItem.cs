@@ -92,9 +92,10 @@ public class PlayerItem : MonoBehaviour
     public bool sword;
     private bool onSword;
 
+    public GameObject player;
+
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
         portions = GameObject.Find("Manager").GetComponent<PortionSlot>();
         shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
@@ -102,6 +103,12 @@ public class PlayerItem : MonoBehaviour
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         if (arrow && !onArrow)
         {
             onArrow = true;

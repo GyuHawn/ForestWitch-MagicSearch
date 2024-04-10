@@ -1627,6 +1627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c20bf602a150c48990a17d8947f8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hpBarScript: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   money: 0

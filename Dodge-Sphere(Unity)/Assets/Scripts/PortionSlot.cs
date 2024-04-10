@@ -12,18 +12,16 @@ public class PortionSlot : MonoBehaviour
     public GameObject[] portionPos;
     public int currentPortionNum;
 
-    private void Awake()
-    {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
-
-    void Start()
-    {
-        
-    }
+    public GameObject player;
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         if (currentPortionNum == 1)
         {
             Image image = portionPos[0].GetComponent<Image>();

@@ -10,20 +10,21 @@ public class RestScript : MonoBehaviour
 
     public GameObject restUI;
 
+    public GameObject player;
+
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         portionSlot = GameObject.Find("Manager").GetComponent<PortionSlot>();
-    }
-
-    void Start()
-    {
-        
     }
 
     void Update()
     {
-        
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
     }
 
     public void SelectRest1()
@@ -36,6 +37,7 @@ public class RestScript : MonoBehaviour
         }
         restUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isRest = false;
     }
     public void SelectRest2()
     {
@@ -47,6 +49,7 @@ public class RestScript : MonoBehaviour
         }
         restUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isRest = false;
     }
 
     public void SelectRest3()
@@ -54,5 +57,6 @@ public class RestScript : MonoBehaviour
         playerMovement.currentHealth += 6;
         restUI.SetActive(false);
         playerMovement.moveNum = 1;
+        playerMovement.isRest = false;
     }
 }

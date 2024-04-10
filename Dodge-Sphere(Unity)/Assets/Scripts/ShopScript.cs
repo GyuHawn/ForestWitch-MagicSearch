@@ -18,19 +18,21 @@ public class ShopScript : MonoBehaviour
     public GameObject itemReroll;
     public int rerollNum;
 
+    public GameObject player;
+
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
-    }
-
-    void Start()
-    {
-        
     }
 
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
         if (reroll && rerollNum == 1)
         {
             itemReroll.SetActive(true);
@@ -39,24 +41,36 @@ public class ShopScript : MonoBehaviour
         {
             itemReroll.SetActive(false);
         }
+
+        // 플레이어 소지 금액보다 비쌀경우 금액을 빨간색으로 변경
+        for (int i = 0; i < itemAmount.Count; i++)
+        {
+            if (itemAmount[i] > playerMovement.money)
+            {
+                amountText[i].color = Color.red;
+            }
+            else
+            {
+                amountText[i].color = Color.white;
+            }
+        }
     }
 
     public void ItemSetting()
     {
-        List<int> selectedItems = new List<int>(); // 선택된 번호 저장 리스트
+        List<int> selectedItems = new List<int>();
 
         for (int i = 0; i < shopSolts.Length; i++)
         {
             int itemNum;
             do
             {
-                itemNum = Random.Range(0, getItem.items.Count); // 아이템 번호 랜덤 선택
+                itemNum = Random.Range(0, getItem.items.Count); 
             }
-            while (selectedItems.Contains(itemNum)); // 선택된 번호 리스트에 있을시 다시 선택
+            while (selectedItems.Contains(itemNum));
 
-            selectedItems.Add(itemNum); // 선택된 번호를 리스트에 추가
+            selectedItems.Add(itemNum); 
 
-            // 아이템 인스턴스화 및 설정
             GameObject item = Instantiate(getItem.items[itemNum], Vector3.zero, Quaternion.identity);
             item.transform.SetParent(shopSolts[i].transform, false);
             item.name = getItem.items[itemNum].name;
@@ -149,6 +163,7 @@ public class ShopScript : MonoBehaviour
     public void Exit()
     {
         ResetSetting();
+        playerMovement.isShop = false;
         playerMovement.moveNum = 1;
         shopUI.SetActive(false);
     }

@@ -10,6 +10,7 @@ public class BeholderMonster : MonoBehaviour
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
     private MapSetting mapSetting;
+    private HpBarScript hpBarScript;
 
     // 기본 스탯
     public int maxHealth;
@@ -36,7 +37,6 @@ public class BeholderMonster : MonoBehaviour
     public int bu_AttackNum; // 발사 수
     public float bu_AttackAngles; // 발사 각도
 
-
     private Animator anim;
 
     private void Awake()
@@ -47,14 +47,14 @@ public class BeholderMonster : MonoBehaviour
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
+        hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        maxHealth = 4;
         currentHealth = maxHealth;
         money = 300;
 
@@ -69,6 +69,8 @@ public class BeholderMonster : MonoBehaviour
 
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartFaintAttack", 3f, 8f); // 랜덤 패턴 실행
+
+        hpBarScript.MoveToYStart(10, 1);
     }
    
     void Update()
@@ -83,6 +85,9 @@ public class BeholderMonster : MonoBehaviour
     {
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
+
+        hpBarScript.MoveToYStart(150f, 1f);
+        hpBarScript.ResetHealthBar();
 
         getMoney.getMoney = money;
         getMoney.PickUpMoney();
@@ -256,10 +261,10 @@ public class BeholderMonster : MonoBehaviour
             Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
             if (bulletComponent != null)
             {
-                currentHealth -= bulletComponent.damage;
+                currentHealth -= bulletComponent.damage; // 여기서 체력을 감소시킵니다.
+                hpBarScript.UpdateHP(currentHealth, maxHealth); // 이미 감소된 체력을 기반으로 UI를 업데이트합니다.
                 anim.SetTrigger("Hit");
             }
-            Debug.Log(currentHealth);
             Destroy(collision.gameObject);
         }
     }

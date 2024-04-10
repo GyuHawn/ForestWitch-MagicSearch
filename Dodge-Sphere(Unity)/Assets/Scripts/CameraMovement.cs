@@ -15,7 +15,6 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
     }
 
@@ -23,12 +22,13 @@ public class CameraMovement : MonoBehaviour
     {    
         fix = true;
     }
- 
+
     void Update()
     {
         if (player == null)
         {
             player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
         }
 
         if (playerMovement.currentTile < 5 && playerMovement.tile) // 타일맵 - 카메라 이동

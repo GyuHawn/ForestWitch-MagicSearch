@@ -50,19 +50,24 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rigid;
     private Collider collider;
 
+    // 특수 맵 진행중
+    public bool isShop;
+    public bool isEvent;
+    public bool isItem;
+    public bool isRest;
+
     // 아이템 획득 여부
     public bool arrow;
     public bool bag;
-    public bool book; // 상점 미추가
+    public bool book;
     public bool bow;
     public bool dagger;
-    public bool fish; // 상점 미추가
+    public bool fish;
     public bool necklace;
     public bool pick;
     public bool ring;
     public bool shield;
     public bool sword;
-
 
     private void Awake()
     {
@@ -94,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // 현재 체력이 최대 체력보다 많을수 없도록
+        // 현재 체력이 최대 체력보다 많을 수 없도록
         if (currentHealth > maxHealth) 
         {
             currentHealth = maxHealth;
@@ -132,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
             Die();
         }
 
-        if (currentTile < 5 && !game)
+        if ((currentTile < 5 && !game) && (!isShop || !isRest || !isItem || !isEvent))
         {
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
             {           
@@ -203,7 +208,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        else if (game && transform.position.x > 100 && !faint)
+        else if (game && transform.position.x > 100)
         {
             tileCheck.GetComponent<Collider>().enabled = false;
 
@@ -213,10 +218,13 @@ public class PlayerMovement : MonoBehaviour
                 move.GetComponent<Collider>().enabled = false;
             }
 
-            // 키보드 움직임 기능
-            GetInput();
-            Move();
-            Rotate();
+            if (!faint) // 기절시 이동불가
+            {
+                // 키보드 이동 기능
+                GetInput();
+                Move();
+                Rotate();
+            }
         }
     }
 

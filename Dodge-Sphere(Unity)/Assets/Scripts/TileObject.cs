@@ -15,7 +15,6 @@ public class TileObject : MonoBehaviour
 
     private void Awake()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
         eventScript = GameObject.Find("Manager").GetComponent<EventScript>();
         shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
@@ -23,16 +22,12 @@ public class TileObject : MonoBehaviour
         restScript = GameObject.Find("Manager").GetComponent<RestScript>();
     }
 
-    void Start()
-    {
-        
-    }
-    
     void Update()
     {
         if (player == null)
         {
             player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
         }
 
         if (player != null)
@@ -115,7 +110,8 @@ public class TileObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
-       // playerMovement.moveNum = 6;
+        playerMovement.isRest = true;
+        playerMovement.moveNum = 6;
         restScript.restUI.SetActive(true);
         Destroy(gameObject);
     }
@@ -124,6 +120,7 @@ public class TileObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
+        playerMovement.isItem = true;
         playerMovement.moveNum = 2;
         getItem.onItem = true;
         Destroy(gameObject);
@@ -133,6 +130,7 @@ public class TileObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
+        playerMovement.isEvent = true;
         playerMovement.moveNum = 3;
         eventScript.onEvent = true;
         Destroy(gameObject);
@@ -142,6 +140,7 @@ public class TileObject : MonoBehaviour
     {
         yield return new WaitForSeconds(2.5f);
 
+        playerMovement.isShop = true;
         playerMovement.moveNum = 4;
         shopScript.shopUI.SetActive(true);
         shopScript.rerollNum = 1;

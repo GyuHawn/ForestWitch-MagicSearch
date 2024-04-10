@@ -12,27 +12,26 @@ public class Bullet : MonoBehaviour
     public bool dagger;
     public bool sword;
 
-    private void Awake()
-    {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-    }
-
-    void Start()
-    {
-        if (playerMovement.pick)
-        {
-            int num = Random.Range(0, 1);
-            Debug.Log(num);
-            if(num == 0)
-            {
-                damage = damage * 2; 
-            }
-        }
-    }
-
-
+    public GameObject player;
+    
     void Update()
     {
+        if (player == null)
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+
+            if (playerMovement.pick)
+            {
+                int num = Random.Range(0, 1);
+                Debug.Log(num);
+                if (num == 0)
+                {
+                    damage = damage * 2;
+                }
+            }
+        }
+
         ItemSetting();
     }
 

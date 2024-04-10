@@ -84,10 +84,9 @@ public class ClownMonster : MonoBehaviour
 
         FindCannons();
 
-        // InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
-        //InvokeRepeating("StartBreakAttack", 3f, 15f); // 특수 패턴 1실행
+        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartBreakAttack", 3f, 15f); // 특수 패턴 1실행
         InvokeRepeating("SummonMonster", 1f, 30f); // 특수 패턴 2실행
-        //InvokeRepeating("StartDanceAttack", 1f, 20f);
     }
 
     public void FindCannons() // 모든 대포 찾기
