@@ -22,7 +22,6 @@ public class HpBarScript : MonoBehaviour
         healthBarFill.fillAmount = fillAmount;
     }
 
-    // fillAmount 초기화
     public void ResetHealthBar() 
     {
         healthBarFill.fillAmount = 1.0f;
@@ -36,16 +35,18 @@ public class HpBarScript : MonoBehaviour
 
     IEnumerator MoveToY(float targetY, float time)
     {
+        RectTransform rectTransform = GetComponent<RectTransform>();
         float elapsedTime = 0;
-        float startY = transform.position.y;
+        float startY = rectTransform.anchoredPosition.y;
         while (elapsedTime < time)
         {
             float newY = Mathf.Lerp(startY, targetY, elapsedTime / time);
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+            rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, newY);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        transform.position = new Vector3(transform.position.x, targetY, transform.position.z); // 최종 위치 확정
+        rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, targetY);
     }
+
 
 }

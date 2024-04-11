@@ -13,7 +13,7 @@ public class MonsterMap : MonoBehaviour
     public bool cactusMoved; // 선인장 몬스터 전투
     public bool mushMoved; // 버섯 몬스터 전투
     public bool clownMoved; // 광대 몬스터 전투
-    public bool chsetMoved; // 상자 몬스터 전투
+    public bool chestMoved; // 상자 몬스터 전투
     public bool beholderMoved; // 주시자 몬스터 전투
     public int monsterNum; // 몬스터 수
 
@@ -51,7 +51,7 @@ public class MonsterMap : MonoBehaviour
         cactusMoved = false;
         mushMoved = false;
         clownMoved = false;
-        chsetMoved = false;
+        chestMoved = false;
         beholderMoved = false;
         monsterNum = 1;
     }
@@ -83,7 +83,7 @@ public class MonsterMap : MonoBehaviour
         }
         else if (playerMovement.currentTile == 5.4f) // 상자 몬스터
         {
-            chsetMoved = true;
+            chestMoved = true;
         }
         else if (playerMovement.currentTile == 5.5f) // 주시자 몬스터
         {
@@ -115,7 +115,7 @@ public class MonsterMap : MonoBehaviour
             StartCoroutine(MoveClownMonsterMap());
             InstallationCannons();
         }
-        else if (chsetMoved && monsterNum > 0) // 상자 몬스터
+        else if (chestMoved && monsterNum > 0) // 상자 몬스터
         {
             playerMovement.OnGame();
             StartCoroutine(MoveChestMonsterMap());

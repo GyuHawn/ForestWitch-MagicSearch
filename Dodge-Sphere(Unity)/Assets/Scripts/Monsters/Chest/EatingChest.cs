@@ -12,7 +12,7 @@ public class EatingChest : MonoBehaviour
     {
         if (!findBullet)
         {
-            if (!IsInvoking("FindBullet")) // FindBullet 코루틴이 이미 시작되지 않았다면
+            if (!IsInvoking("FindBullet"))
             {
                 StartCoroutine(FindBullet());
             }
@@ -21,30 +21,29 @@ public class EatingChest : MonoBehaviour
         {
             if (playerBullet == null)
             {
-                // playerBullet이 파괴되었거나 더 이상 존재하지 않는 경우
-                findBullet = false; // findBullet을 false로 설정하여 새로운 playerBullet을 찾을 수 있도록 함
+                findBullet = false;
             }
             else
             {
-                EatingBullet(); // findBullet이 true이고 playerBullet이 존재할 때 계속해서 EatingBullet을 호출
+                EatingBullet();
             }
         }
     }
 
     IEnumerator FindBullet()
     {
-        findBullet = false; // 코루틴이 시작될 때 findBullet을 초기화
+        findBullet = false;
         while (true)
         {
             playerBullet = GameObject.FindWithTag("P_Attack");
             if (playerBullet != null)
             {
-                findBullet = true; // 플레이어의 공격을 찾았다면 findBullet을 true로 설정
-                yield break; // 코루틴 종료
+                findBullet = true; 
+                yield break;
             }
             else
             {
-                yield return new WaitForSeconds(2); // 플레이어의 공격을 찾지 못했다면 2초 후 다시 시도
+                yield return new WaitForSeconds(2);
             }
         }
     }

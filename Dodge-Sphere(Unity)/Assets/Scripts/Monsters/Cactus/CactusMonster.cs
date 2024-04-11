@@ -10,6 +10,7 @@ public class CactusMonster : MonoBehaviour
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
+    private HpBarScript hpBarScript;
 
     // ±âº» ½ºÅÈ
     public int maxHealth;
@@ -50,6 +51,7 @@ public class CactusMonster : MonoBehaviour
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
     }
 
     void Start()
@@ -74,6 +76,8 @@ public class CactusMonster : MonoBehaviour
         bu_AttackNum = 3;
                 
         InvokeRepeating("StartPattern", 1f, 7f); // ·£´ý ÆÐÅÏ ½ÇÇà
+
+        hpBarScript.MoveToYStart(10, 0.5f);
     }
 
     void Update()
@@ -88,6 +92,9 @@ public class CactusMonster : MonoBehaviour
     {
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1f);
+
+        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.ResetHealthBar();
 
         getMoney.getMoney = money;
         getMoney.PickUpMoney();
@@ -246,6 +253,7 @@ public class CactusMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
             Debug.Log(currentHealth);

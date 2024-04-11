@@ -27,6 +27,7 @@ TagManager:
   - M_Clown
   - BreakBullet
   - SummonClown
+  - EattingChest
   layers:
   - Default
   - TransparentFX
@@ -57,7 +58,7 @@ TagManager:
   - M_Clown
   - BreakBullet
   - SummonClown
-  - 
+  - EattingChest
   - 
   - 
   m_SortingLayers:

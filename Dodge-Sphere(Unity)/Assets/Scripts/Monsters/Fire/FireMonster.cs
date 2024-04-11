@@ -10,7 +10,8 @@ public class FireMonster : MonoBehaviour
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
     private MapSetting mapSetting;
-    
+    private HpBarScript hpBarScript;
+
     // 기본 스탯
     public int maxHealth;
     public int currentHealth;
@@ -52,6 +53,7 @@ public class FireMonster : MonoBehaviour
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
+        hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
     }
 
     void Start()
@@ -80,6 +82,8 @@ public class FireMonster : MonoBehaviour
         
         //InvokeRepeating("StartRollAttack", 1f, 10f); // 패턴 확인용
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+
+        hpBarScript.MoveToYStart(10, 0.5f);
     }
 
     void Update()
@@ -94,6 +98,9 @@ public class FireMonster : MonoBehaviour
     {
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
+
+        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.ResetHealthBar();
 
         getMoney.getMoney = money;
         getMoney.PickUpMoney();
@@ -295,6 +302,7 @@ public class FireMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
             Debug.Log(currentHealth);
@@ -302,4 +310,4 @@ public class FireMonster : MonoBehaviour
         }
     }
 
-}
+} 

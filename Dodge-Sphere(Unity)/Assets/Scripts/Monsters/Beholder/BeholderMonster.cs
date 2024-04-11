@@ -70,7 +70,7 @@ public class BeholderMonster : MonoBehaviour
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartFaintAttack", 3f, 8f); // 랜덤 패턴 실행
 
-        hpBarScript.MoveToYStart(10, 1);
+        hpBarScript.MoveToYStart(10, 0.5f);
     }
    
     void Update()
@@ -86,18 +86,18 @@ public class BeholderMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
-        hpBarScript.MoveToYStart(150f, 1f);
+        hpBarScript.MoveToYStart(150, 0.5f);
         hpBarScript.ResetHealthBar();
 
         getMoney.getMoney = money;
         getMoney.PickUpMoney();
 
         playerMovement.OnTile();
+        playerMovement.MoveFinalPosition();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
-        playerMovement.PostionReset(); // 플레이어 위치 초기화
 
-        monsterMap.fireMoved = false;
+        monsterMap.beholderMoved = false;
         p_AttackSpawn.spawned = false;
 
         cameraMovement.fix = true;
@@ -261,8 +261,8 @@ public class BeholderMonster : MonoBehaviour
             Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
             if (bulletComponent != null)
             {
-                currentHealth -= bulletComponent.damage; // 여기서 체력을 감소시킵니다.
-                hpBarScript.UpdateHP(currentHealth, maxHealth); // 이미 감소된 체력을 기반으로 UI를 업데이트합니다.
+                currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth); 
                 anim.SetTrigger("Hit");
             }
             Destroy(collision.gameObject);

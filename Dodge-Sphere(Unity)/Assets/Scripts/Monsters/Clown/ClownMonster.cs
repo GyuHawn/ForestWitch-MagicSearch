@@ -11,6 +11,7 @@ public class ClownMonster : MonoBehaviour
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
     private MapSetting mapSetting;
+    private HpBarScript hpBarScript;
 
     // 기본 스탯
     public int maxHealth;
@@ -61,6 +62,7 @@ public class ClownMonster : MonoBehaviour
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
+        hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
     }
 
     void Start()
@@ -87,6 +89,8 @@ public class ClownMonster : MonoBehaviour
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartBreakAttack", 3f, 15f); // 특수 패턴 1실행
         InvokeRepeating("SummonMonster", 1f, 30f); // 특수 패턴 2실행
+
+        hpBarScript.MoveToYStart(10, 0.5f);
     }
 
     public void FindCannons() // 모든 대포 찾기
@@ -114,15 +118,18 @@ public class ClownMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
+        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.ResetHealthBar();
+
         getMoney.getMoney = money;
         getMoney.PickUpMoney();
 
         playerMovement.OnTile();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
-        playerMovement.PostionReset(); // 플레이어 위치 초기화
+       // playerMovement.PostionReset(); // 플레이어 위치 초기화 (현재 2스테이지가 마지막)
 
-        monsterMap.fireMoved = false;
+        monsterMap.clownMoved = false;
         p_AttackSpawn.spawned = false;
 
         cameraMovement.fix = true;
@@ -321,6 +328,7 @@ public class ClownMonster : MonoBehaviour
                 if (bulletComponent != null)
                 {
                     currentHealth -= bulletComponent.damage;
+                    hpBarScript.UpdateHP(currentHealth, maxHealth);
                     anim.SetTrigger("Hit");
                 }
                 Destroy(collision.gameObject);

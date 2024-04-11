@@ -11,6 +11,7 @@ public class ChestMonster : MonoBehaviour
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
     private MapSetting mapSetting;
+    private HpBarScript hpBarScript;
 
     // 기본 스탯
     public int maxHealth;
@@ -50,6 +51,7 @@ public class ChestMonster : MonoBehaviour
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
+        hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
     }
 
     void Start()
@@ -72,6 +74,8 @@ public class ChestMonster : MonoBehaviour
         e_BulletNum = 6;
 
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+
+        hpBarScript.MoveToYStart(10, 0.5f);
     }
 
     void Update()
@@ -87,6 +91,9 @@ public class ChestMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
+        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.ResetHealthBar();
+
         GameObject monster = GameObject.Find("EatingMonster");
         Destroy(monster);
 
@@ -94,11 +101,11 @@ public class ChestMonster : MonoBehaviour
         getMoney.PickUpMoney();
 
         playerMovement.OnTile();
+        playerMovement.MoveFinalPosition();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
-        playerMovement.PostionReset(); // 플레이어 위치 초기화
 
-        monsterMap.fireMoved = false;
+        monsterMap.chestMoved = false;
         p_AttackSpawn.spawned = false;
 
         cameraMovement.fix = true;
@@ -251,6 +258,7 @@ public class ChestMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
             Debug.Log(currentHealth);

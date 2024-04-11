@@ -10,6 +10,7 @@ public class MushRoomMonster : MonoBehaviour
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
     private GetMoney getMoney;
+    private HpBarScript hpBarScript;
 
     public GameObject monster;
 
@@ -49,6 +50,7 @@ public class MushRoomMonster : MonoBehaviour
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
     }
 
     void Start()
@@ -71,6 +73,8 @@ public class MushRoomMonster : MonoBehaviour
         u_BulletNum = 3;
 
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+
+        hpBarScript.MoveToYStart(10, 0.5f);
     }
 
     void Update()
@@ -94,8 +98,11 @@ public class MushRoomMonster : MonoBehaviour
     {       
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1f);
-               
-        if(monster == null)
+
+        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.ResetHealthBar();
+
+        if (monster == null)
         {
             getMoney.getMoney = money;
             getMoney.PickUpMoney();
@@ -241,6 +248,7 @@ public class MushRoomMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
             Debug.Log(currentHealth);

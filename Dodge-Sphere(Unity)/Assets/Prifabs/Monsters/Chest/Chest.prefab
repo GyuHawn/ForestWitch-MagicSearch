@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 988899388230403664}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 4.5825005, y: 0, z: 2.86}
+  m_LocalPosition: {x: 4.32, y: 0, z: 2.25}
   m_LocalScale: {x: 0.75000006, y: 0.75, z: 0.75000006}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -151,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 1730972561206805129}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -4.584999, y: 0, z: 2.86}
+  m_LocalPosition: {x: -4.25, y: 0, z: 2.22}
   m_LocalScale: {x: 0.75000006, y: 0.75, z: 0.75000006}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -395,7 +395,9 @@ MonoBehaviour:
   e_BulletNum: 10
   EatingNum: 0
   Eating: 0
-  EatingPos: []
+  EatingPos:
+  - {fileID: 988899388230403664}
+  - {fileID: 1730972561206805129}
   EatingPrefab: {fileID: 8039542041357813298, guid: 888eb849b0d43f940907541078a7b2af, type: 3}
 --- !u!1 &2387615623656090409
 GameObject:
