@@ -7,6 +7,7 @@ public class RestScript : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private PortionSlot portionSlot;
+    private ClearInfor clearInfor;
 
     public GameObject restUI;
 
@@ -15,6 +16,7 @@ public class RestScript : MonoBehaviour
     private void Awake()
     {
         portionSlot = GameObject.Find("Manager").GetComponent<PortionSlot>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Update()
@@ -29,6 +31,8 @@ public class RestScript : MonoBehaviour
 
     public void SelectRest1()
     {
+        clearInfor.useRest++;
+
         playerMovement.currentHealth += 2;
 
         if (Random.Range(0, 100) < 50)
@@ -41,6 +45,8 @@ public class RestScript : MonoBehaviour
     }
     public void SelectRest2()
     {
+        clearInfor.useRest++;
+
         playerMovement.currentHealth += 4;
 
         if (Random.Range(0, 100) < 30)
@@ -54,6 +60,8 @@ public class RestScript : MonoBehaviour
 
     public void SelectRest3()
     {
+        clearInfor.useRest++;
+
         playerMovement.currentHealth += 6;
         restUI.SetActive(false);
         playerMovement.moveNum = 1;

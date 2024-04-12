@@ -308,6 +308,7 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(fishObject);
 
         // 아이템 기능
+        playerMovement.fish = true;
     }
 
     void Gold() // 1000코인을 획득합니다.
@@ -379,7 +380,7 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(mushroomObject);
 
         // 아이템 기능
-        playerMovement.moveSpd += 2; // 이동속도 2증가
+        playerMovement.moveSpd ++; // 이동속도 2증가
     }
 
     public void Necklace() // 전투 시작 시 체력을 3회복 합니다.

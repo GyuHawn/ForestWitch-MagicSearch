@@ -8,6 +8,7 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     private MonsterMap monsterMap;
+    private ClearInfor clearInfor;
 
     // 전투관련 플레이어 스탯
     public int maxHealth;
@@ -72,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     private void Start()
@@ -80,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
 
-        moveSpd = 6;
+        moveSpd = 5;
         rotateSpd = 3f;
 
         maxHealth = 10;
@@ -327,6 +329,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
+        clearInfor.result = true;
         Destroy(gameObject);
     }
 
@@ -374,6 +377,34 @@ public class PlayerMovement : MonoBehaviour
         {
             bulletNum++;
             Destroy(collision.gameObject);
+        }
+
+        if (collider.gameObject.CompareTag("BossRest1"))
+        {
+            moveBtn[0].SetActive(false);
+            moveBtn[0].GetComponent<Collider>().enabled = false;
+            moveBtn[1].SetActive(false);
+            moveBtn[1].GetComponent<Collider>().enabled = false;
+            moveBtn[1].SetActive(true);
+            moveBtn[1].GetComponent<Collider>().enabled = true;
+        }
+        else if (collider.gameObject.CompareTag("BossRest2"))
+        {
+            moveBtn[0].SetActive(false);
+            moveBtn[0].GetComponent<Collider>().enabled = false;
+            moveBtn[1].SetActive(true);
+            moveBtn[1].GetComponent<Collider>().enabled = true;
+            moveBtn[2].SetActive(false);
+            moveBtn[2].GetComponent<Collider>().enabled = false;
+        }
+        else if (collider.gameObject.CompareTag("BossRest3"))
+        {
+            moveBtn[0].SetActive(true);
+            moveBtn[0].GetComponent<Collider>().enabled = true;
+            moveBtn[1].SetActive(false);
+            moveBtn[1].GetComponent<Collider>().enabled = false;
+            moveBtn[2].SetActive(false);
+            moveBtn[2].GetComponent<Collider>().enabled = false;
         }
     }
 }

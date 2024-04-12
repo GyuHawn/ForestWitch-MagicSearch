@@ -8,9 +8,10 @@ public class FireMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private GetMoney getMoney;
+    private MonsterGetMoney monsterGetMoney;
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
+    private ClearInfor clearInfor;
 
     // 기본 스탯
     public int maxHealth;
@@ -51,9 +52,10 @@ public class FireMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Start()
@@ -61,8 +63,7 @@ public class FireMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetTrigger("Spawn");
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        maxHealth = 20;
         currentHealth = maxHealth;
         money = 300;
 
@@ -102,8 +103,8 @@ public class FireMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.5f);
         hpBarScript.ResetHealthBar();
 
-        getMoney.getMoney = money;
-        getMoney.PickUpMoney();
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
 
         playerMovement.OnTile();
         playerMovement.moveNum = 1;
@@ -117,7 +118,9 @@ public class FireMonster : MonoBehaviour
 
         monsterMap.DeleteCannon();
 
-        mapSetting.stage = 2; // 1스테이지 보스 클리어스 2스테이지로 변경
+        clearInfor.killedBoss++;
+
+        mapSetting.stage++; // 스테이지 보스 클리어시 스테이지로 1증가
         mapSetting.MapReset(); // 보스 클리어시 맵 초기화
         mapSetting.StageMapSetting(); // 맵 셋팅
 

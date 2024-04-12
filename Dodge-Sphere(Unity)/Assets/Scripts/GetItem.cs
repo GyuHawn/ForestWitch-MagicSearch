@@ -7,6 +7,7 @@ public class GetItem : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private PlayerItem playerItem;
+    private ClearInfor clearInfor;
 
     public bool onItem; // È¹µæ °¡´É ¿©ºÎ
 
@@ -20,6 +21,7 @@ public class GetItem : MonoBehaviour
     private void Awake()
     {
         playerItem = GameObject.Find("Manager").GetComponent<PlayerItem>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Update()
@@ -50,6 +52,7 @@ public class GetItem : MonoBehaviour
 
         items.RemoveAt(index);
 
+        clearInfor.getItem++;
         OnItem(selectedItem.name);
 
         StartCoroutine(ResetSetting());

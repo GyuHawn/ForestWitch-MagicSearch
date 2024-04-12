@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class ShopScript : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private GetItem getItem;
+    private ClearInfor clearInfor;
 
     public GameObject shopUI;
     public GameObject[] shopSolts; // 판매 아이템 슬롯 
@@ -23,6 +25,7 @@ public class ShopScript : MonoBehaviour
     private void Awake()
     {
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Update()
@@ -45,13 +48,16 @@ public class ShopScript : MonoBehaviour
         // 플레이어 소지 금액보다 비쌀경우 금액을 빨간색으로 변경
         for (int i = 0; i < itemAmount.Count; i++)
         {
-            if (itemAmount[i] > playerMovement.money)
+            if (!playerMovement.fish)
             {
-                amountText[i].color = Color.red;
-            }
-            else
-            {
-                amountText[i].color = Color.white;
+                if (itemAmount[i] > playerMovement.money)
+                {
+                    amountText[i].color = Color.red;
+                }
+                else
+                {
+                    amountText[i].color = Color.white;
+                }
             }
         }
     }
@@ -95,43 +101,169 @@ public class ShopScript : MonoBehaviour
         }
 
     }
-
+    
     public void BuySolt1()
     {
-        shopSolts[0].SetActive(false);
-        playerMovement.money -= itemAmount[0];
-        getItem.OnItem(shopItems[0].name);
+        
+        if (playerMovement.fish) // 생선 아이템 보유시 1회 상점 무료 이용
+        {
+            playerMovement.fish = false;
+
+            clearInfor.useShop++;
+
+            shopSolts[0].SetActive(false);
+            getItem.OnItem(shopItems[0].name);
+
+            clearInfor.getItem++;
+        }
+        else
+        {
+            if ((playerMovement.money - itemAmount[0]) >= 0)
+            {
+                clearInfor.useShop++;
+
+                shopSolts[0].SetActive(false);
+                playerMovement.money -= itemAmount[0];
+                getItem.OnItem(shopItems[0].name);
+
+                clearInfor.getItem++;
+            }
+        }
     }
     public void BuySolt2()
-    {
-        shopSolts[1].SetActive(false);
-        playerMovement.money -= itemAmount[1];
-        getItem.OnItem(shopItems[1].name);
+    {       
+        if (playerMovement.fish)
+        {
+            playerMovement.fish = false;
 
+            clearInfor.useShop++;
+
+            shopSolts[1].SetActive(false);
+            getItem.OnItem(shopItems[1].name);
+
+            clearInfor.getItem++;
+        }
+        else
+        {
+            if ((playerMovement.money - itemAmount[1]) >= 0)
+            {
+                clearInfor.useShop++;
+
+                shopSolts[1].SetActive(false);
+                playerMovement.money -= itemAmount[1];
+                getItem.OnItem(shopItems[1].name);
+
+                clearInfor.getItem++;
+            }
+        }
     }
     public void BuySolt3()
     {
-        shopSolts[2].SetActive(false);
-        playerMovement.money -= itemAmount[2];
-        getItem.OnItem(shopItems[2].name);
+        if (playerMovement.fish)
+        {
+            playerMovement.fish = false;
+
+            clearInfor.useShop++;
+
+            shopSolts[2].SetActive(false);
+            getItem.OnItem(shopItems[2].name);
+
+            clearInfor.getItem++;
+        }
+        else
+        {
+            if ((playerMovement.money - itemAmount[2]) >= 0)
+            {
+                clearInfor.useShop++;
+
+                shopSolts[2].SetActive(false);
+                playerMovement.money -= itemAmount[2];
+                getItem.OnItem(shopItems[2].name);
+
+                clearInfor.getItem++;
+            }
+        }
     }
     public void BuySolt4()
     {
-        shopSolts[3].SetActive(false);
-        playerMovement.money -= itemAmount[3];
-        getItem.OnItem(shopItems[3].name);
+        if (playerMovement.fish)
+        {
+            playerMovement.fish = false;
+
+            clearInfor.useShop++;
+
+            shopSolts[3].SetActive(false);
+            getItem.OnItem(shopItems[3].name);
+
+            clearInfor.getItem++;
+        }
+        else
+        {
+            if ((playerMovement.money - itemAmount[3]) >= 0)
+            {
+                clearInfor.useShop++;
+
+                shopSolts[3].SetActive(false);
+                playerMovement.money -= itemAmount[3];
+                getItem.OnItem(shopItems[3].name);
+
+                clearInfor.getItem++;
+            }
+        }
     }
     public void BuySolt5()
     {
-        shopSolts[4].SetActive(false);
-        playerMovement.money -= itemAmount[4];
-        getItem.OnItem(shopItems[4].name);
+        if (playerMovement.fish)
+        {
+            playerMovement.fish = false;
+
+            clearInfor.useShop++;
+
+            shopSolts[4].SetActive(false);
+            getItem.OnItem(shopItems[4].name);
+
+            clearInfor.getItem++;
+        }
+        else
+        {
+            if ((playerMovement.money - itemAmount[4]) >= 0)
+            {
+                clearInfor.useShop++;
+
+                shopSolts[4].SetActive(false);
+                playerMovement.money -= itemAmount[4];
+                getItem.OnItem(shopItems[4].name);
+                clearInfor.getItem++;
+            }
+
+        }
     }
     public void BuySolt6()
     {
-        shopSolts[5].SetActive(false);
-        playerMovement.money -= itemAmount[5];
-        getItem.OnItem(shopItems[5].name);
+        if (playerMovement.fish)
+        {
+            playerMovement.fish = false;
+
+            clearInfor.useShop++;
+
+            shopSolts[5].SetActive(false);
+            getItem.OnItem(shopItems[5].name);
+
+            clearInfor.getItem++;
+        }
+        else
+        {
+            if ((playerMovement.money - itemAmount[5]) >= 0)
+            {
+                clearInfor.useShop++;
+
+                shopSolts[5].SetActive(false);
+                playerMovement.money -= itemAmount[5];
+                getItem.OnItem(shopItems[5].name);
+
+                clearInfor.getItem++;
+            }
+        }
     }
 
 
@@ -164,7 +296,8 @@ public class ShopScript : MonoBehaviour
     {
         ResetSetting();
         playerMovement.isShop = false;
-        playerMovement.moveNum = 1;
+        playerMovement.moveNum = 1;      
+
         shopUI.SetActive(false);
     }
 }

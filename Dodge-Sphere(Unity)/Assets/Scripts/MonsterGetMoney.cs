@@ -4,9 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 
-public class GetMoney : MonoBehaviour
+public class MonsterGetMoney : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private ClearInfor clearInfor;
 
     public GameObject getMoneyUI;
     public TMP_Text getMoneyText;
@@ -14,6 +15,10 @@ public class GetMoney : MonoBehaviour
 
     public GameObject player;
 
+    private void Awake()
+    {
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+    }
 
     void Update()
     {
@@ -35,6 +40,8 @@ public class GetMoney : MonoBehaviour
     {
         getMoneyUI.SetActive(true);
         playerMovement.money += getMoney;
+
+        clearInfor.getMoney += getMoney;
 
         yield return new WaitForSeconds(2f);
         getMoneyUI.SetActive(false);

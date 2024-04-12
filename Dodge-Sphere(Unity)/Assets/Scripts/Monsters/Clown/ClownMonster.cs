@@ -9,9 +9,10 @@ public class ClownMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private GetMoney getMoney;
+    private MonsterGetMoney monsterGetMoney;
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
+    private ClearInfor clearInfor;
 
     // 기본 스탯
     public int maxHealth;
@@ -60,17 +61,17 @@ public class ClownMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        maxHealth = 40;
         currentHealth = maxHealth;
         money = 300;
 
@@ -121,8 +122,8 @@ public class ClownMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.5f);
         hpBarScript.ResetHealthBar();
 
-        getMoney.getMoney = money;
-        getMoney.PickUpMoney();
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
 
         playerMovement.OnTile();
         playerMovement.moveNum = 1;
@@ -136,8 +137,13 @@ public class ClownMonster : MonoBehaviour
 
         monsterMap.DeleteCannon();
 
+        clearInfor.killedBoss++;
+
+        mapSetting.stage++; // 스테이지 보스 클리어시 스테이지로 1증가
         mapSetting.MapReset(); // 보스 클리어시 맵 초기화
         mapSetting.StageMapSetting(); // 맵 셋팅
+
+        clearInfor.result = true;
 
         Destroy(gameObject);
     }

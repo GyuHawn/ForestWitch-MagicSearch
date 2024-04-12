@@ -7,6 +7,7 @@ public class Portion : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public PortionSlot portionSlot;
+    private ClearInfor clearInfor;
 
     public int functionNum;
     public Button function;
@@ -16,6 +17,7 @@ public class Portion : MonoBehaviour
     private void Awake()
     {
         portionSlot = GameObject.Find("Manager").GetComponent<PortionSlot>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
     void Start()
     {
@@ -53,6 +55,8 @@ public class Portion : MonoBehaviour
 
     IEnumerator SpeedUP()
     {
+        clearInfor.usePotion++;
+
         playerMovement.moveSpd++;
         yield return new WaitForSeconds(2f);
         playerMovement.moveSpd--;
@@ -62,12 +66,14 @@ public class Portion : MonoBehaviour
 
     public void GamblePortion()
     {
+        clearInfor.usePotion++;
+
         portionSlot.currentPortionNum--;
         int num = Random.Range(0, 2);
 
         if(num == 0)
         {
-            playerMovement.money += 300;
+            playerMovement.currentHealth++;
         }
         else if(num == 1) 
         {
@@ -79,6 +85,8 @@ public class Portion : MonoBehaviour
 
     public void HealthPortion()
     {
+        clearInfor.usePotion++;
+
         portionSlot.currentPortionNum--;
         playerMovement.currentHealth += 2;
         Destroy(gameObject);

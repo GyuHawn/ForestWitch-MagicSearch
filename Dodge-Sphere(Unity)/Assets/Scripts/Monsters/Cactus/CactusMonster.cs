@@ -9,8 +9,9 @@ public class CactusMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private GetMoney getMoney;
+    private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
+    private ClearInfor clearInfor;
 
     // ±‚∫ª Ω∫≈»
     public int maxHealth;
@@ -50,16 +51,16 @@ public class CactusMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        maxHealth = 15;
         currentHealth = maxHealth;
         money = 200;
 
@@ -96,8 +97,8 @@ public class CactusMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.5f);
         hpBarScript.ResetHealthBar();
 
-        getMoney.getMoney = money;
-        getMoney.PickUpMoney();
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
 
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();
@@ -110,6 +111,8 @@ public class CactusMonster : MonoBehaviour
         cameraMovement.fix = true;
 
         monsterMap.DeleteCannon();
+
+        clearInfor.killedMonster++;
 
         Destroy(gameObject);
     }

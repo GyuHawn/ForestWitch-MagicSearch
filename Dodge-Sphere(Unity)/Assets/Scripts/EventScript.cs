@@ -7,6 +7,7 @@ public class EventScript : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private GetItem getItem;
+    private ClearInfor clearInfor;
 
     public int eventNum;
     public GameObject eventUI;
@@ -19,6 +20,7 @@ public class EventScript : MonoBehaviour
     private void Awake()
     {
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Update()
@@ -28,7 +30,7 @@ public class EventScript : MonoBehaviour
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
-
+        
         if (onEvent)
         {
             onEvent = false;
@@ -49,6 +51,8 @@ public class EventScript : MonoBehaviour
     // 호수 이벤트
     public void LakeEvent1()
     {
+        clearInfor.useEvent++;
+
         playerMovement.currentHealth += 2;
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
@@ -57,9 +61,12 @@ public class EventScript : MonoBehaviour
     }
     public void LakeEvent2()
     {
+        clearInfor.useEvent++;
+
         if (Random.Range(0, 100) < 30)
         {
             playerMovement.money += 300;
+            clearInfor.getMoney += 300;
         }
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
@@ -70,6 +77,8 @@ public class EventScript : MonoBehaviour
     // 집 이벤트
     public void HouseEvent1()
     {
+        clearInfor.useEvent++;
+
         if (Random.Range(0, 100) < 50)
         {
             playerMovement.currentHealth += 2;
@@ -85,6 +94,8 @@ public class EventScript : MonoBehaviour
     }
     public void HouseEvent2()
     {
+        clearInfor.useEvent++;
+
         if (Random.Range(0, 100) < 50)
         {
             playerMovement.currentHealth += 4;
@@ -102,6 +113,8 @@ public class EventScript : MonoBehaviour
     // 동굴 이벤트
     public void CaveEvent1()
     {
+        clearInfor.useEvent++;
+
         playerMovement.currentHealth += 3;
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
@@ -110,9 +123,12 @@ public class EventScript : MonoBehaviour
     }
     public void CaveEvent2()
     {
+        clearInfor.useEvent++;
+
         if (Random.Range(0, 100) < 50)
         {
             playerMovement.money += 300;
+            clearInfor.getMoney += 300;
         }
         else
         {
@@ -127,11 +143,14 @@ public class EventScript : MonoBehaviour
     // 상자 이벤트
     public void ItemEvent1()
     {
+        clearInfor.useEvent++;
+
         playerMovement.currentHealth -= 2;
 
         if (Random.Range(0, 100) < 50)
         {
             playerMovement.money += 100;
+            clearInfor.getMoney += 100;
         }
         else
         {
@@ -144,6 +163,8 @@ public class EventScript : MonoBehaviour
     }
     public void ItemEvent2()
     {
+        clearInfor.useEvent++;
+
         if (Random.Range(0, 100) < 30)
         {
             getItem.SelectItem();
@@ -157,6 +178,8 @@ public class EventScript : MonoBehaviour
     // 돌아가기
     public void PassEvent()
     {
+        clearInfor.useEvent++;
+
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;

@@ -27,10 +27,10 @@ public class LodingController : MonoBehaviour
 
     void ChangeLodingBarColor()
     {
-        int num = Random.Range(0, lodingBarColors.Length);
+        int index = Random.Range(0, lodingBarColors.Length);
         Image bar = lodingBarImage.GetComponent<Image>();
 
-        bar.sprite = lodingBarColors[num];
+        bar.sprite = lodingBarColors[index];
     }
 
     IEnumerator LoadSceneProcess()

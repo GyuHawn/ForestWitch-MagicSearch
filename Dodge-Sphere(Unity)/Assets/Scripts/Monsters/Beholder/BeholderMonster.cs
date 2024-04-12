@@ -8,9 +8,10 @@ public class BeholderMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private GetMoney getMoney;
+    private MonsterGetMoney monsterGetMoney;
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
+    private ClearInfor clearInfor;
 
     // 기본 스탯
     public int maxHealth;
@@ -45,16 +46,17 @@ public class BeholderMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 4;
+        maxHealth = 25;
         currentHealth = maxHealth;
         money = 300;
 
@@ -89,8 +91,8 @@ public class BeholderMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.5f);
         hpBarScript.ResetHealthBar();
 
-        getMoney.getMoney = money;
-        getMoney.PickUpMoney();
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
 
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();
@@ -104,8 +106,7 @@ public class BeholderMonster : MonoBehaviour
 
         monsterMap.DeleteCannon();
 
-        mapSetting.MapReset(); // 보스 클리어시 맵 초기화
-        mapSetting.StageMapSetting(); // 맵 셋팅
+        clearInfor.killedMonster++;
 
         Destroy(gameObject);
     }

@@ -9,8 +9,9 @@ public class MushRoomMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private GetMoney getMoney;
+    private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
+    private ClearInfor clearInfor;
 
     public GameObject monster;
 
@@ -49,16 +50,16 @@ public class MushRoomMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getMoney = GameObject.Find("Manager").GetComponent<GetMoney>();
+        monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
     }
 
     void Start()
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 1;
-        //maxHealth = 10;
+        maxHealth = 7;
         currentHealth = maxHealth;
         money = 150;
         
@@ -104,8 +105,8 @@ public class MushRoomMonster : MonoBehaviour
 
         if (monster == null)
         {
-            getMoney.getMoney = money;
-            getMoney.PickUpMoney();
+            monsterGetMoney.getMoney = money;
+            monsterGetMoney.PickUpMoney();
 
             playerMovement.OnTile();
             playerMovement.MoveFinalPosition();
@@ -118,6 +119,8 @@ public class MushRoomMonster : MonoBehaviour
             cameraMovement.fix = true;
 
             monsterMap.DeleteCannon();
+
+            clearInfor.killedMonster++;
         }
         Destroy(gameObject);
     }

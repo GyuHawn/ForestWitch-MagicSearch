@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 540438022}
   - component: {fileID: 540438021}
+  - component: {fileID: 540438023}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -175,6 +176,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540438023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540438020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57096f82621905049883f96e71001be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lodingtexts: []
+  text: {fileID: 1265006022}
 --- !u!1 &1260510298
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC232\uC73C\uB85C \uB4E4\uC5B4\uAC00\uB294 \uC911.."
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 741d9d569bd508c4287c73903747f0a7, type: 2}
   m_sharedMaterial: {fileID: 4245587142471427576, guid: 741d9d569bd508c4287c73903747f0a7, type: 2}

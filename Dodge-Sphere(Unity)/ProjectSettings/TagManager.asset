@@ -28,6 +28,9 @@ TagManager:
   - BreakBullet
   - SummonClown
   - EattingChest
+  - BossRest1
+  - BossRest2
+  - BossRest3
   layers:
   - Default
   - TransparentFX
