@@ -24,7 +24,6 @@ public class Bullet : MonoBehaviour
             if (playerMovement.pick)
             {
                 int num = Random.Range(0, 1);
-                Debug.Log(num);
                 if (num == 0)
                 {
                     damage = damage * 2;

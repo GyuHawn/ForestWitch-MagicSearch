@@ -106,6 +106,7 @@ public class FireMonster : MonoBehaviour
         monsterGetMoney.getMoney = money;
         monsterGetMoney.PickUpMoney();
 
+        playerMovement.nextStage = true; // 스테이지 변환 중
         playerMovement.OnTile();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
@@ -308,7 +309,6 @@ public class FireMonster : MonoBehaviour
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
-            Debug.Log(currentHealth);
             Destroy(collision.gameObject);
         }
     }

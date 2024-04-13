@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HpBarScript : MonoBehaviour
 {
     public Image healthBarFill;
+    public TMP_Text healthPercent;
+
+    private void Update()
+    {
+        healthPercent.text = (healthBarFill.fillAmount * 100).ToString() + "%";
+    }
 
     // 체력에 비례하여 fillAmount 업데이트 
     public void UpdateHP(int currentHp, int maxHp)

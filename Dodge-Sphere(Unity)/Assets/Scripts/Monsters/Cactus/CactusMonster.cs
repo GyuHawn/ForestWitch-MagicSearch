@@ -259,7 +259,6 @@ public class CactusMonster : MonoBehaviour
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
-            Debug.Log(currentHealth);
             Destroy(collision.gameObject);
         }
     }

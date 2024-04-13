@@ -42,7 +42,6 @@ public class EventScript : MonoBehaviour
     void StartEvent()
     {
         eventNum = Random.Range(0, events.Length);
-        Debug.Log(eventNum);
 
         eventUI.SetActive(true);
         events[eventNum].SetActive(true);

@@ -55,7 +55,7 @@ public class MapSetting : MonoBehaviour
         // tileNum을 0부터 4까지 랜덤으로 선택
         tileNum = Random.Range(0, 5);
 
-        // 선택된 tileNum에 따라 각 타일 종류의 개수를 설정
+        // 선택된 tileNum에 따라 각 타일 종류의 개수 설정
         SelectTile(tileNum);
       
         // 고정 빈 타일 설치

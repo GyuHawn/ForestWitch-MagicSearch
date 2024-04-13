@@ -42,6 +42,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 finalPlayerPos; // 마지막 타일 위치
 
+    public GameObject bossRest1;
+    public GameObject bossRest2;
+    public GameObject bossRest3;
+
     // UI 텍스트
     public TMP_Text healthText;
     public TMP_Text spdText;
@@ -56,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
     public bool isEvent;
     public bool isItem;
     public bool isRest;
+
+    // 스테이지 넘어감
+    public GameObject nextStageUI;
+    public bool nextStage;
 
     // 아이템 획득 여부
     public bool arrow;
@@ -98,9 +106,14 @@ public class PlayerMovement : MonoBehaviour
         game = false;
     }
 
-
     void Update()
     {
+        if (nextStage)
+        {
+            nextStage = false;
+            StartCoroutine(OnNextStage());
+        }
+
         // 현재 체력이 최대 체력보다 많을 수 없도록
         if (currentHealth > maxHealth) 
         {
@@ -139,10 +152,10 @@ public class PlayerMovement : MonoBehaviour
             Die();
         }
 
-        if ((currentTile < 5 && !game) && (!isShop || !isRest || !isItem || !isEvent))
+        if ((currentTile < 5 && !game) && (!isShop || !isRest || !isItem || !isEvent || !nextStage))
         {
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
-            {           
+            {
                 monsterMap.monsterNum = 1;
 
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -166,49 +179,8 @@ public class PlayerMovement : MonoBehaviour
             transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * tileMoveSpd);
             transform.position = new Vector3(transform.position.x, newY, transform.position.z); // y값 복원
 
-            // 타일이 없는곳으로는 이동불가
-            if (transform.position.x <= -4f)
-            {
-                moveBtn[0].SetActive(false);
-                moveBtn[0].GetComponent<Collider>().enabled = false;
-            }
-            else
-            {
-                moveBtn[0].SetActive(true);
-                moveBtn[0].GetComponent<Collider>().enabled = true;
-            }
-
-            if (transform.position.x >= 4f)
-            {
-                moveBtn[2].SetActive(false);
-                moveBtn[2].GetComponent<Collider>().enabled = false;
-            }
-            else
-            {
-                moveBtn[2].SetActive(true);
-                moveBtn[2].GetComponent<Collider>().enabled = true;
-            }
-
-            // 이동시 1초뒤 타일체크
-            if (moveNum > 0)
-            {
-                tileCheck.GetComponent<Collider>().enabled = false;
-
-                foreach (GameObject move in moveBtn)
-                {
-                    move.SetActive(true);
-                    move.GetComponent<Collider>().enabled = true;
-                }
-            }
-            else
-            {
-                StartCoroutine(TileCheck());
-                foreach (GameObject move in moveBtn)
-                {
-                    move.SetActive(false);
-                    move.GetComponent<Collider>().enabled = false;
-                }
-            }
+            // 이동시 1초뒤 타일체크 후 특정 위치에서 이동제한
+            TileCheckAndMoveLimited();
         }
         else if (game && transform.position.x > 100)
         {
@@ -228,6 +200,112 @@ public class PlayerMovement : MonoBehaviour
                 Rotate();
             }
         }
+    }
+    
+    void TileCheckAndMoveLimited() // 이동시 1초뒤 타일체크 후 특정 위치에서 이동제한
+    {
+        if (moveNum > 0 && transform.position.z <= 27) // 보스맵 휴식 타일전
+        {
+            tileCheck.GetComponent<Collider>().enabled = false;
+
+            foreach (GameObject move in moveBtn)
+            {
+                move.SetActive(true);
+                move.GetComponent<Collider>().enabled = true;
+            }
+
+            // 타일이 없는곳으로는 이동불가
+            if (transform.position.x <= -4f)
+            {
+                moveBtn[0].SetActive(false);
+                moveBtn[0].GetComponent<Collider>().enabled = false;
+
+                if (transform.position.z >= 25)
+                {
+                    moveBtn[1].SetActive(false);
+                    moveBtn[1].GetComponent<Collider>().enabled = false;
+                }
+            }
+            else if (transform.position.x >= 4f)
+            {
+                moveBtn[2].SetActive(false);
+                moveBtn[2].GetComponent<Collider>().enabled = false;
+
+                if (transform.position.z >= 25)
+                {
+                    moveBtn[1].SetActive(false);
+                    moveBtn[1].GetComponent<Collider>().enabled = false;
+                }
+            }
+            else if (transform.position.x <= -2f && transform.position.z >= 25)
+            {
+                moveBtn[0].SetActive(false);
+                moveBtn[0].GetComponent<Collider>().enabled = false;
+            }
+            else if (transform.position.x >= 2f && transform.position.z >= 25)
+            {
+                moveBtn[2].SetActive(false);
+                moveBtn[2].GetComponent<Collider>().enabled = false;
+            }
+            else
+            {
+                foreach (GameObject move in moveBtn)
+                {
+                    move.SetActive(true);
+                    move.GetComponent<Collider>().enabled = true;
+                }
+            }
+        }
+        else if (transform.position.z >= 27) // 보스맵 휴식 타일
+        {
+            tileCheck.GetComponent<Collider>().enabled = false;
+
+            if (gameObject.GetComponent<Collider>().bounds.Intersects(bossRest1.GetComponent<Collider>().bounds))
+            {
+                moveBtn[0].SetActive(false);
+                moveBtn[0].GetComponent<Collider>().enabled = false;
+                moveBtn[1].SetActive(false);
+                moveBtn[1].GetComponent<Collider>().enabled = false;
+                moveBtn[2].SetActive(true);
+                moveBtn[2].GetComponent<Collider>().enabled = true;
+            }
+            else if (gameObject.GetComponent<Collider>().bounds.Intersects(bossRest2.GetComponent<Collider>().bounds))
+            {
+                moveBtn[0].SetActive(false);
+                moveBtn[0].GetComponent<Collider>().enabled = false;
+                moveBtn[1].SetActive(true);
+                moveBtn[1].GetComponent<Collider>().enabled = true;
+                moveBtn[2].SetActive(false);
+                moveBtn[2].GetComponent<Collider>().enabled = false;
+            }
+            else if (gameObject.GetComponent<Collider>().bounds.Intersects(bossRest3.GetComponent<Collider>().bounds))
+            {
+                moveBtn[0].SetActive(true);
+                moveBtn[0].GetComponent<Collider>().enabled = true;
+                moveBtn[1].SetActive(false);
+                moveBtn[1].GetComponent<Collider>().enabled = false;
+                moveBtn[2].SetActive(false);
+                moveBtn[2].GetComponent<Collider>().enabled = false;
+            }
+        }
+        if (moveNum <= 0)
+        {
+            StartCoroutine(TileCheck());
+            foreach (GameObject move in moveBtn)
+            {
+                move.SetActive(false);
+                move.GetComponent<Collider>().enabled = false;
+            }
+        }
+    }
+
+    IEnumerator OnNextStage() // 스테이지가 넘어갈때 잠시 UI사용
+    {
+        yield return new WaitForSeconds(1f);
+        nextStageUI.SetActive(true);
+
+        yield return new WaitForSeconds(2f);
+        nextStageUI.SetActive(false);
     }
 
     public void OnTile() // 타일 맵으로 이동
@@ -377,34 +455,6 @@ public class PlayerMovement : MonoBehaviour
         {
             bulletNum++;
             Destroy(collision.gameObject);
-        }
-
-        if (collider.gameObject.CompareTag("BossRest1"))
-        {
-            moveBtn[0].SetActive(false);
-            moveBtn[0].GetComponent<Collider>().enabled = false;
-            moveBtn[1].SetActive(false);
-            moveBtn[1].GetComponent<Collider>().enabled = false;
-            moveBtn[1].SetActive(true);
-            moveBtn[1].GetComponent<Collider>().enabled = true;
-        }
-        else if (collider.gameObject.CompareTag("BossRest2"))
-        {
-            moveBtn[0].SetActive(false);
-            moveBtn[0].GetComponent<Collider>().enabled = false;
-            moveBtn[1].SetActive(true);
-            moveBtn[1].GetComponent<Collider>().enabled = true;
-            moveBtn[2].SetActive(false);
-            moveBtn[2].GetComponent<Collider>().enabled = false;
-        }
-        else if (collider.gameObject.CompareTag("BossRest3"))
-        {
-            moveBtn[0].SetActive(true);
-            moveBtn[0].GetComponent<Collider>().enabled = true;
-            moveBtn[1].SetActive(false);
-            moveBtn[1].GetComponent<Collider>().enabled = false;
-            moveBtn[2].SetActive(false);
-            moveBtn[2].GetComponent<Collider>().enabled = false;
         }
     }
 }
