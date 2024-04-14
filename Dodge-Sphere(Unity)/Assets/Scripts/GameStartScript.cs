@@ -295,6 +295,6 @@ public class GameStartScript : MonoBehaviour
 
     public void GameStart()
     {
-        LodingController.LoadNextScene("Game");
+        LoadingController.LoadNextScene("Game");
     }
 }

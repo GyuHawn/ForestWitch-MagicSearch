@@ -12,6 +12,7 @@ public class FireMonster : MonoBehaviour
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private MapConvert mapConvert;
 
     // 기본 스탯
     public int maxHealth;
@@ -56,6 +57,7 @@ public class FireMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        mapConvert = GameObject.Find("Manager").GetComponent<MapConvert>(); 
     }
 
     void Start()
@@ -105,6 +107,8 @@ public class FireMonster : MonoBehaviour
 
         monsterGetMoney.getMoney = money;
         monsterGetMoney.PickUpMoney();
+
+        mapConvert.LoadingImage(mapConvert.stageLoading, 2f); // 보스 클리어시 스테이지 전환 이미지 출력
 
         playerMovement.nextStage = true; // 스테이지 변환 중
         playerMovement.OnTile();

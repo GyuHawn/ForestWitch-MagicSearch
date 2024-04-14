@@ -115,6 +115,6 @@ public class ClearInfor : MonoBehaviour
 
     public void GameClear()
     {
-        LodingController.LoadNextScene("MainMenu");
+        LoadingController.LoadNextScene("MainMenu");
     }
 }
