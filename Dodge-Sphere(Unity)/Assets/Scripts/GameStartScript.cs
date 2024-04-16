@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameStartScript : MonoBehaviour
 {
     private StoryScript storyScript;
+    private AudioManager audioManager;
 
     public GameObject selectWindow;
     public GameObject playerWindow;
@@ -15,16 +16,12 @@ public class GameStartScript : MonoBehaviour
     public int cannonNum1;
     public int cannonNum2;
 
-    public GameObject[] playerPrefabs;
-    public GameObject[] cannonPrefabs;
-
     public GameObject playerPos;
     public GameObject cannon1Pos;
     public GameObject cannon2Pos;
 
     public GameObject[] selectCannons;
 
-    public GameObject player;
     public GameObject cannon1;
     public GameObject cannon2;
 
@@ -33,29 +30,17 @@ public class GameStartScript : MonoBehaviour
     void Awake()
     {
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
    
     void Update()
     {
         Select();
 
-        if (playerNum != 0 && player == null)
+        if (playerNum != 0)
         {
-            Vector3 select = new Vector3(playerPos.transform.position.x, playerPos.transform.position.y + 1, playerPos.transform.position.z);
-            player = Instantiate(playerPrefabs[playerNum - 1], select, Quaternion.identity, playerPos.transform);
             playerWindow.SetActive(false);
             cannonWindow.SetActive(true);
-        }
-
-
-        if (cannonNum1 != 0 && cannon1 == null)
-        {
-            cannon1 = Instantiate(cannonPrefabs[cannonNum1 - 1], CannonSelectPos(cannon1Pos, cannonNum1), Quaternion.identity, cannon1Pos.transform);
-        }
-
-        if (cannonNum2 != 0 && cannon2 == null)
-        {
-            cannon2 = Instantiate(cannonPrefabs[cannonNum2 - 1], CannonSelectPos(cannon2Pos, cannonNum2), Quaternion.identity, cannon2Pos.transform);
         }
 
         if(playerNum != 0 && cannonNum1 != 0 && cannonNum2 != 0)
@@ -68,42 +53,9 @@ public class GameStartScript : MonoBehaviour
         }
     }
 
-    Vector3 CannonSelectPos(GameObject cannon, int num)
-    {
-        Vector3 selectPos = Vector3.zero; // 초기화된 벡터 생성
-
-        switch (num)
-        {
-            case 1:
-                selectPos = new Vector3(cannon.transform.position.x, cannon.transform.position.y + 2, cannon.transform.position.z);
-                break;
-            case 2:
-                selectPos = new Vector3(cannon.transform.position.x, cannon.transform.position.y + 2, cannon.transform.position.z);
-                break;
-            case 3:
-                selectPos = new Vector3(cannon.transform.position.x - 1, cannon.transform.position.y + 2, cannon.transform.position.z);
-                break;
-            case 4:
-                selectPos = new Vector3(cannon.transform.position.x - 1.5f, cannon.transform.position.y + 3, cannon.transform.position.z);
-                break;
-            case 5:
-                selectPos = new Vector3(cannon.transform.position.x - 2.5f, cannon.transform.position.y + 2, cannon.transform.position.z);
-                break;
-            case 6:
-                selectPos = new Vector3(cannon.transform.position.x - 1.5f, cannon.transform.position.y + 1, cannon.transform.position.z);
-                break;
-            case 7:
-                selectPos = new Vector3(cannon.transform.position.x - 1.5f, cannon.transform.position.y + 1, cannon.transform.position.z);
-                break;
-        }
-
-        return selectPos; // 선택된 위치 반환
-    }
-
-
-
     public void OpenSelectWindow()
     {
+        audioManager.ButtonAudio();
         StartCoroutine(StartScale());
     }
 
@@ -279,10 +231,6 @@ public class GameStartScript : MonoBehaviour
         playerNum = 0;
         cannonNum1 = 0;
         cannonNum2 = 0;
-
-        Destroy(player);
-        Destroy(cannon1);
-        Destroy(cannon2);
 
         playerWindow.SetActive(true);
         cannonWindow.SetActive(false);

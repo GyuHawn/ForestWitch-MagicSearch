@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class StoryScript : MonoBehaviour
 {
+    private AudioManager audioManager;
+
     private GameStartScript gameStartScript;
 
     public GameObject story; // 스토리 UI오픈
@@ -17,6 +19,7 @@ public class StoryScript : MonoBehaviour
     void Awake()
     {
         gameStartScript = GameObject.Find("Manager").GetComponent<GameStartScript>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     public void CheckGameStory()
@@ -34,6 +37,8 @@ public class StoryScript : MonoBehaviour
     public void StartStory() // 전체 스토리 UI 활성화
     {
         story.SetActive(true);
+        audioManager.b_MainMenu.Stop();
+        audioManager.StoryAudio();
     }
 
     public void NextStory() // 한 페이지씩 스토리 진행
@@ -49,6 +54,9 @@ public class StoryScript : MonoBehaviour
             }
             else if (page > 3)
             {
+                audioManager.b_Story.Stop();
+                audioManager.MainAudio();
+
                 page = 0;
                 storyImages[page].SetActive(true);
                 story.SetActive(false);
@@ -65,6 +73,9 @@ public class StoryScript : MonoBehaviour
             }
             else if (page > 7)
             {
+                audioManager.b_Story.Stop();
+                audioManager.MainAudio();
+
                 page = 0;
                 storyImages[page].SetActive(true);
                 story.SetActive(false);
@@ -74,8 +85,13 @@ public class StoryScript : MonoBehaviour
 
     public void AllStory()
     {
+        audioManager.ButtonAudio();
+
         onStory = false;
         storyToggle.isOn = false;
+
         story.SetActive(true);
+        audioManager.b_MainMenu.Stop();
+        audioManager.StoryAudio();
     }
 }
