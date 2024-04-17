@@ -8,6 +8,7 @@ public class RestScript : MonoBehaviour
     private PlayerMovement playerMovement;
     private PortionSlot portionSlot;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public GameObject restUI;
 
@@ -17,6 +18,7 @@ public class RestScript : MonoBehaviour
     {
         portionSlot = GameObject.Find("Manager").GetComponent<PortionSlot>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -33,6 +35,8 @@ public class RestScript : MonoBehaviour
     {
         clearInfor.useRest++;
 
+        audioManager.TileMapAudio();
+
         playerMovement.currentHealth += 2;
 
         if (Random.Range(0, 100) < 50)
@@ -46,6 +50,8 @@ public class RestScript : MonoBehaviour
     public void SelectRest2()
     {
         clearInfor.useRest++;
+
+        audioManager.TileMapAudio();
 
         playerMovement.currentHealth += 4;
 
@@ -61,6 +67,8 @@ public class RestScript : MonoBehaviour
     public void SelectRest3()
     {
         clearInfor.useRest++;
+
+        audioManager.TileMapAudio();
 
         playerMovement.currentHealth += 6;
         restUI.SetActive(false);

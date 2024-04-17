@@ -13,21 +13,24 @@ public class Bullet : MonoBehaviour
     public bool sword;
 
     public GameObject player;
-    
-    void Update()
+
+    private void Awake()
     {
         if (player == null)
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
+        }
+    }
 
-            if (playerMovement.pick)
+    void Update()
+    {      
+        if (playerMovement.pick)
+        {
+            int num = Random.Range(0, 1);
+            if (num == 0)
             {
-                int num = Random.Range(0, 1);
-                if (num == 0)
-                {
-                    damage = damage * 2;
-                }
+                damage = damage * 2;
             }
         }
 

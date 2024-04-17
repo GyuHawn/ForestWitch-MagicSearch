@@ -28,21 +28,15 @@ public class AudioManager : MonoBehaviour
     public AudioSource f_GetItem; // 아이템획득
     public AudioSource f_Clear; // 클리어
     public AudioSource f_Die; // 플레이어 사망
-    public AudioSource f_Heal; // 회복
-  
 
+    private AudioSource currentAudioSource; // 현재 재생중인 오디오
 
     // Slider bgmSlider;
-    //public Slider generalSlider;
-
-    private void Awake()
-    {
-
-    }
+    //public Slider generalSlider; 
 
     void Start()
     {
-        StopAudio();
+        SartAudioSetting();
         /*
         // 전체 볼륨 조절
         float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
@@ -72,8 +66,10 @@ public class AudioManager : MonoBehaviour
         }*/
     }
 
-    /*void Update()
+    void Update()
     {
+        Debug.Log("currentAudioSource : " + currentAudioSource);
+        /*
         // 전체 볼륨 조절
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
@@ -109,98 +105,154 @@ public class AudioManager : MonoBehaviour
         }
 
        PlayerPrefs.SetFloat("BGMVolume", bgmSlider.value);
-       PlayerPrefs.SetFloat("GenVolume", generalSlider.value);
-    }*/
-    
+       PlayerPrefs.SetFloat("GenVolume", generalSlider.value);*/
+    }
+
+    // 현재 재생되고 있는 오디오 정지
+    public void StopCurrentAudio()
+    {
+        if (currentAudioSource != null && currentAudioSource.isPlaying)
+        {
+            currentAudioSource.Stop();
+        }
+    }
+
     // BGM 재생
     public void MainAudio()
     {
-        b_MainMenu.Play();
+        // 현재 재생중인 오디오 정지 후 재생
+        StopCurrentAudio(); 
+        currentAudioSource = b_MainMenu;
+        currentAudioSource.Play();
     }
+
     public void StoryAudio()
     {
-        b_Story.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_Story;
+        currentAudioSource.Play();
     }
+
     public void LoadinAudio()
     {
-        b_Loading.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_Loading;
+        currentAudioSource.Play();
     }
-    public void MonsterAudio(int num)
-    {
-        num = UnityEngine.Random.Range(0, b_Monsters.Length);
 
-        b_Monsters[num].Play();
+    public void MonsterAudio()
+    {
+        StopCurrentAudio();
+        int num = UnityEngine.Random.Range(0, b_Monsters.Length);
+        currentAudioSource = b_Monsters[num];
+        currentAudioSource.Play();
     }
+
     public void BossAudio()
     {
-        b_Boss.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_Boss;
+        currentAudioSource.Play();
     }
+
     public void ShopAudio()
     {
-        b_Shop.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_Shop;
+        currentAudioSource.Play();
     }
+
     public void EventAudio()
     {
-        b_Event.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_Event;
+        currentAudioSource.Play();
     }
+
     public void RestAudio()
     {
-        b_Rest.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_Rest;
+        currentAudioSource.Play();
     }
+
     public void TileMapAudio()
     {
-        b_TileMap.Play();
+        StopCurrentAudio();
+        currentAudioSource = b_TileMap;
+        currentAudioSource.Play();
     }
 
     // 기능 오디오 재생
     public void ButtonAudio()
     {
-        f_Button.Play();
+        StopCurrentAudio();
+        currentAudioSource = f_Button;
+        currentAudioSource.Play();
     }
+
     public void ButtonFailAudio()
     {
-        f_ButtonFail.Play();
+        StopCurrentAudio();
+        currentAudioSource = f_ButtonFail;
+        currentAudioSource.Play();
     }
+
     public void SpwanAudio()
     {
-        f_Spwan.Play();
-    } 
+        StopCurrentAudio();
+        currentAudioSource = f_Spwan;
+        currentAudioSource.Play();
+    }
+
     public void PotionAudio()
     {
-        f_Potion.Play();
+        StopCurrentAudio();
+        currentAudioSource = f_Potion;
+        currentAudioSource.Play();
     }
+
     public void WinAudio()
     {
-        f_Win.Play();
-    } 
+        StopCurrentAudio();
+        currentAudioSource = f_Win;
+        currentAudioSource.Play();
+    }
+
     public void GetItemAudio()
     {
-        f_GetItem.Play();
-    } 
+        StopCurrentAudio();
+        currentAudioSource = f_GetItem;
+        currentAudioSource.Play();
+    }
+
     public void ClearAudio()
     {
-        f_Clear.Play();
+        StopCurrentAudio();
+        currentAudioSource = f_Clear;
+        currentAudioSource.Play();
     }
+
     public void DieAudio()
     {
-        f_Die.Play();
-    }
-    public void HealAudio()
-    {
-        f_Heal.Play();
+        StopCurrentAudio();
+        currentAudioSource = f_Die;
+        currentAudioSource.Play();
     }
 
 
-    // 시작시 소리 중복 제거용
-    void StopAudio()
+    // 시작시 소리 셋팅
+    void SartAudioSetting()
     {
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
+            MainAudio();
             b_Story.Stop();
             f_Button.Stop();
         }
         else if (SceneManager.GetActiveScene().name == "Game")
         {
+            TileMapAudio();
             foreach(AudioSource audio in b_Monsters)
             {
                 audio.Stop();
@@ -220,7 +272,6 @@ public class AudioManager : MonoBehaviour
             f_GetItem.Stop();
             f_Clear.Stop();
             f_Die.Stop();
-            f_Heal.Stop();
         }
     }
 }

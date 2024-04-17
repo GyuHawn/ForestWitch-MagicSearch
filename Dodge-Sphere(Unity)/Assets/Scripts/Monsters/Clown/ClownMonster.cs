@@ -89,7 +89,7 @@ public class ClownMonster : MonoBehaviour
 
         InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartBreakAttack", 3f, 15f); // 특수 패턴 1실행
-        InvokeRepeating("SummonMonster", 1f, 30f); // 특수 패턴 2실행
+        InvokeRepeating("SummonMonster", 5f, 30f); // 특수 패턴 2실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -233,11 +233,14 @@ public class ClownMonster : MonoBehaviour
             bullet.name = "ShotAttack";
 
             // 총알을 1초 후 플레이어 방향으로 발사
-            yield return new WaitForSeconds(1f); 
-            Vector3 direction = (playerPosition - bullet.transform.position).normalized;
-            bullet.GetComponent<Rigidbody>().velocity = direction * s_AttackSpd;
+            yield return new WaitForSeconds(1f);
+            if (bullet != null)
+            {
+                Vector3 direction = (playerPosition - bullet.transform.position).normalized;
+                bullet.GetComponent<Rigidbody>().velocity = direction * s_AttackSpd;
 
-            Destroy(bullet, 5f); // 5초 후 총알 삭제
+                Destroy(bullet, 5f); // 5초 후 총알 삭제
+            }
         }
     }
 

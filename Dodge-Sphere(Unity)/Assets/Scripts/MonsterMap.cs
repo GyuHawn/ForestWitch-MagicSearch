@@ -7,7 +7,8 @@ public class MonsterMap : MonoBehaviour
     private PlayerMovement playerMovement;
     private GameSetting gameSetting;
     private MapSetting mapSetting;
-    
+    private AudioManager audioManager;
+
     public GameObject player;
     public bool fireMoved; // 불 몬스터 전투
     public bool cactusMoved; // 선인장 몬스터 전투
@@ -43,6 +44,7 @@ public class MonsterMap : MonoBehaviour
     {
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -135,27 +137,35 @@ public class MonsterMap : MonoBehaviour
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
+        audioManager.BossAudio();
+
         player.transform.position = playerMapSpawnPos[0].transform.position;
 
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[0].transform.position.x, 0f, nomalMonsterSpawnPos[0].transform.position.z);
         monster = Instantiate(fireMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "FireMonster";
+        audioManager.SpwanAudio();
     }
     IEnumerator MoveCactusMonsterMap()
     {
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
+        audioManager.MonsterAudio();
+
         player.transform.position = playerMapSpawnPos[0].transform.position;
 
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[0].transform.position.x, 1f, nomalMonsterSpawnPos[0].transform.position.z);
         monster = Instantiate(cactusMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "CactusMonster";
+        audioManager.SpwanAudio();
     }
     IEnumerator MoveMushMonsterMap()
     {
         monsterNum--;
         yield return new WaitForSeconds(2f);
+
+        audioManager.MonsterAudio();
 
         player.transform.position = playerMapSpawnPos[0].transform.position;
 
@@ -173,6 +183,7 @@ public class MonsterMap : MonoBehaviour
                 monster = Instantiate(mushMonsterPrefab[i], monsterPos, Quaternion.Euler(0, 210, 0));
                 monster.name = "SmileMonster";
             }
+            audioManager.SpwanAudio();
         }
     }
 
@@ -182,33 +193,42 @@ public class MonsterMap : MonoBehaviour
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
+        audioManager.BossAudio();
+
         player.transform.position = playerMapSpawnPos[1].transform.position;
 
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, 1f, nomalMonsterSpawnPos[1].transform.position.z);
         monster = Instantiate(clownMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "ClownMonster";
+        audioManager.SpwanAudio();
     }
     IEnumerator MoveChestMonsterMap()
     {
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
+        audioManager.MonsterAudio();
+
         player.transform.position = playerMapSpawnPos[1].transform.position;
 
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, 1f, nomalMonsterSpawnPos[1].transform.position.z);
         monster = Instantiate(chestMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "ChestMonster";
+        audioManager.SpwanAudio();
     }
     IEnumerator MoveBeholderMonsterMap()
     {
         monsterNum--;
         yield return new WaitForSeconds(2f);
 
+        audioManager.MonsterAudio();
+
         player.transform.position = playerMapSpawnPos[1].transform.position;
 
         Vector3 monsterPos = new Vector3(nomalMonsterSpawnPos[1].transform.position.x, -1.5f, nomalMonsterSpawnPos[1].transform.position.z);
         monster = Instantiate(beholderMonsterPrefab, monsterPos, Quaternion.Euler(0, 180, 0));
         monster.name = "BeholderMonster";
+        audioManager.SpwanAudio();
     }
 
     void InstallationCannons()

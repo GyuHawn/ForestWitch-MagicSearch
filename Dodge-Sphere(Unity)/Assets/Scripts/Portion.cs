@@ -8,6 +8,7 @@ public class Portion : MonoBehaviour
     public PlayerMovement playerMovement;
     public PortionSlot portionSlot;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public int functionNum;
     public Button function;
@@ -18,7 +19,9 @@ public class Portion : MonoBehaviour
     {
         portionSlot = GameObject.Find("Manager").GetComponent<PortionSlot>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
+
     void Start()
     {
         if (functionNum == 1)
@@ -47,6 +50,7 @@ public class Portion : MonoBehaviour
 
     public void SpeedPortion()
     {
+        audioManager.PotionAudio();
         portionSlot.currentPortionNum--;
         Image image = GetComponent<Image>();
         image.enabled = false;
@@ -66,6 +70,8 @@ public class Portion : MonoBehaviour
 
     public void GamblePortion()
     {
+        audioManager.PotionAudio();
+
         clearInfor.usePotion++;
 
         portionSlot.currentPortionNum--;
@@ -85,6 +91,8 @@ public class Portion : MonoBehaviour
 
     public void HealthPortion()
     {
+        audioManager.PotionAudio();
+
         clearInfor.usePotion++;
 
         portionSlot.currentPortionNum--;

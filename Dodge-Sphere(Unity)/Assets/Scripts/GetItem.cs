@@ -8,6 +8,7 @@ public class GetItem : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerItem playerItem;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public bool onItem; // È¹µæ °¡´É ¿©ºÎ
 
@@ -22,6 +23,7 @@ public class GetItem : MonoBehaviour
     {
         playerItem = GameObject.Find("Manager").GetComponent<PlayerItem>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -43,6 +45,8 @@ public class GetItem : MonoBehaviour
     public void SelectItem()
     {
         getItemUI.SetActive(true);
+
+        audioManager.GetItemAudio();
 
         int index = Random.Range(0, items.Count);
         GameObject selectedItem = items[index];

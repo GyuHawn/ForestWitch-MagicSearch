@@ -8,6 +8,7 @@ public class MonsterGetMoney : MonoBehaviour
 {
     private PlayerMovement playerMovement;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public GameObject getMoneyUI;
     public TMP_Text getMoneyText;
@@ -18,6 +19,7 @@ public class MonsterGetMoney : MonoBehaviour
     private void Awake()
     {
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -38,6 +40,8 @@ public class MonsterGetMoney : MonoBehaviour
 
     IEnumerator StartGetMoney()
     {
+        audioManager.WinAudio();
+
         getMoneyUI.SetActive(true);
         playerMovement.money += getMoney;
 

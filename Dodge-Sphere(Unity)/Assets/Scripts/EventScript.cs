@@ -8,6 +8,7 @@ public class EventScript : MonoBehaviour
     private PlayerMovement playerMovement;
     private GetItem getItem;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public int eventNum;
     public GameObject eventUI;
@@ -21,6 +22,7 @@ public class EventScript : MonoBehaviour
     {
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -42,7 +44,7 @@ public class EventScript : MonoBehaviour
     void StartEvent()
     {
         eventNum = Random.Range(0, events.Length);
-
+  
         eventUI.SetActive(true);
         events[eventNum].SetActive(true);
     }
@@ -51,6 +53,8 @@ public class EventScript : MonoBehaviour
     public void LakeEvent1()
     {
         clearInfor.useEvent++;
+
+        audioManager.TileMapAudio();
 
         playerMovement.currentHealth += 2;
         events[eventNum].SetActive(false);
@@ -61,6 +65,8 @@ public class EventScript : MonoBehaviour
     public void LakeEvent2()
     {
         clearInfor.useEvent++;
+
+        audioManager.TileMapAudio();
 
         if (Random.Range(0, 100) < 30)
         {
@@ -78,6 +84,8 @@ public class EventScript : MonoBehaviour
     {
         clearInfor.useEvent++;
 
+        audioManager.TileMapAudio();
+
         if (Random.Range(0, 100) < 50)
         {
             playerMovement.currentHealth += 2;
@@ -94,6 +102,8 @@ public class EventScript : MonoBehaviour
     public void HouseEvent2()
     {
         clearInfor.useEvent++;
+
+        audioManager.TileMapAudio();
 
         if (Random.Range(0, 100) < 50)
         {
@@ -114,6 +124,8 @@ public class EventScript : MonoBehaviour
     {
         clearInfor.useEvent++;
 
+        audioManager.TileMapAudio();
+
         playerMovement.currentHealth += 3;
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
@@ -123,6 +135,8 @@ public class EventScript : MonoBehaviour
     public void CaveEvent2()
     {
         clearInfor.useEvent++;
+
+        audioManager.TileMapAudio();
 
         if (Random.Range(0, 100) < 50)
         {
@@ -144,6 +158,8 @@ public class EventScript : MonoBehaviour
     {
         clearInfor.useEvent++;
 
+        audioManager.TileMapAudio();
+
         playerMovement.currentHealth -= 2;
 
         if (Random.Range(0, 100) < 50)
@@ -164,6 +180,8 @@ public class EventScript : MonoBehaviour
     {
         clearInfor.useEvent++;
 
+        audioManager.TileMapAudio();
+
         if (Random.Range(0, 100) < 30)
         {
             getItem.SelectItem();
@@ -178,6 +196,8 @@ public class EventScript : MonoBehaviour
     public void PassEvent()
     {
         clearInfor.useEvent++;
+
+        audioManager.TileMapAudio();
 
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);

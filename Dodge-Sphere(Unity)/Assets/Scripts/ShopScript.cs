@@ -9,6 +9,7 @@ public class ShopScript : MonoBehaviour
     private PlayerMovement playerMovement;
     private GetItem getItem;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public GameObject shopUI;
     public GameObject[] shopSolts; // 판매 아이템 슬롯 
@@ -26,6 +27,7 @@ public class ShopScript : MonoBehaviour
     {
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -295,8 +297,11 @@ public class ShopScript : MonoBehaviour
     public void Exit()
     {
         ResetSetting();
+
         playerMovement.isShop = false;
-        playerMovement.moveNum = 1;      
+        playerMovement.moveNum = 1;
+
+        audioManager.TileMapAudio();
 
         shopUI.SetActive(false);
     }

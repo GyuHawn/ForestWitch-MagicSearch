@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private MonsterMap monsterMap;
     private ClearInfor clearInfor;
+    private AudioManager audioManager; 
 
     // 전투관련 플레이어 스탯
     public int maxHealth;
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Start()
@@ -407,6 +409,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
+        audioManager.DieAudio();
+
         clearInfor.result = true;
         Destroy(gameObject);
     }

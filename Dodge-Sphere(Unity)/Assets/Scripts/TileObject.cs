@@ -11,6 +11,7 @@ public class TileObject : MonoBehaviour
     private ShopScript shopScript;
     private MonsterMap monsterMap;
     private MapConvert mapConvert;
+    private AudioManager audioManager;
 
     public GameObject player;
 
@@ -24,6 +25,7 @@ public class TileObject : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         restScript = GameObject.Find("Manager").GetComponent<RestScript>();
         mapConvert = GameObject.Find("Manager").GetComponent<MapConvert>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Update()
@@ -121,6 +123,8 @@ public class TileObject : MonoBehaviour
         mapConvert.LoadingImage(mapConvert.restLoading, 3f);
         yield return new WaitForSeconds(2.5f);
 
+        audioManager.RestAudio();
+
         playerMovement.isRest = true;
         playerMovement.moveNum = 6;
         restScript.restUI.SetActive(true);
@@ -141,7 +145,9 @@ public class TileObject : MonoBehaviour
     IEnumerator EventTile()
     {
         mapConvert.LoadingImage(mapConvert.eventLoading, 3f);
-        yield return new WaitForSeconds(2.5f); 
+        yield return new WaitForSeconds(2.5f);
+
+        audioManager.EventAudio();
 
         playerMovement.isEvent = true;
         playerMovement.moveNum = 3;
@@ -153,6 +159,8 @@ public class TileObject : MonoBehaviour
     {
         mapConvert.LoadingImage(mapConvert.shopLoading, 3f);
         yield return new WaitForSeconds(2.5f);
+
+        audioManager.ShopAudio();
 
         playerMovement.isShop = true;
         playerMovement.moveNum = 4;
