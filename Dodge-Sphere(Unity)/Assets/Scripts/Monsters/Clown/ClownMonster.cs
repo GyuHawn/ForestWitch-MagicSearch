@@ -125,9 +125,11 @@ public class ClownMonster : MonoBehaviour
         monsterGetMoney.getMoney = money;
         monsterGetMoney.PickUpMoney();
 
-        playerMovement.OnTile();
+        clearInfor.clear = true; // 2스테이지 클리어시 게임 클리어
+
+       /* playerMovement.OnTile();
         playerMovement.moveNum = 1;
-        playerMovement.currentTile = 0;
+        playerMovement.currentTile = 0;*/
        // playerMovement.PostionReset(); // 플레이어 위치 초기화 (현재 2스테이지가 마지막)
 
         monsterMap.clownMoved = false;

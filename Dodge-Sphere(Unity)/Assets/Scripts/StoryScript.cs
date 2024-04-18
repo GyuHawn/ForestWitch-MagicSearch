@@ -7,8 +7,9 @@ using UnityEngine.UI;
 public class StoryScript : MonoBehaviour
 {
     private AudioManager audioManager;
-
+    private ClearInfor clearInfor;
     private GameStartScript gameStartScript;
+
 
     public GameObject story; // ½ºÅä¸® UI¿ÀÇÂ
 
@@ -19,8 +20,15 @@ public class StoryScript : MonoBehaviour
 
     void Awake()
     {
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         gameStartScript = GameObject.Find("Manager").GetComponent<GameStartScript>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
+
+    private void Start()
+    {
+        onStory = false;
+        PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
     }
 
     public void CheckGameStory()
@@ -69,7 +77,7 @@ public class StoryScript : MonoBehaviour
                 }
 
             }
-            else
+            else 
             {
                 if (page <= 7)
                 {
@@ -89,15 +97,21 @@ public class StoryScript : MonoBehaviour
         }
         else if(SceneManager.GetActiveScene().name == "Game")
         {
-            if (page <= 2)
+            if (clearInfor.clear && clearInfor.onStory)
             {
-                page++;
-                storyImages[page].SetActive(true);
-            }
-            if (page > 2)
-            {
-                audioManager.b_Story.Stop();
-                story.SetActive(false);
+                if (page <= 3)
+                {
+                    page++;
+                    if (page < 4)
+                    {
+                        storyImages[page].SetActive(true);
+                    }
+                }
+                if (page >= 4)
+                {
+                    story.SetActive(false);
+                    audioManager.TileMapAudio();
+                }
             }
         }
     }

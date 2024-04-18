@@ -412,7 +412,14 @@ public class PlayerMovement : MonoBehaviour
         audioManager.DieAudio();
 
         clearInfor.result = true;
-        Destroy(gameObject);
+
+        // 플레이어 삭제시 많은 오류 발생으로 인한 위치이동 (제거 하지 않아도 문제 없음)
+        transform.position = Vector3.zero;
+        currentHealth += 1; // 다이 함수 중복방지 
+
+        // 남아있는 몬스터 삭제
+        GameObject monster = GameObject.FindWithTag("Monster");
+        Destroy(monster);
     }
 
     IEnumerator PlayerFaint(float time) // 기절 시 일정시간뒤 기절해제
