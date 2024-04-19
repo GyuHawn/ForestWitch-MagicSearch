@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStartScript : MonoBehaviour
 {
@@ -8,8 +9,6 @@ public class GameStartScript : MonoBehaviour
     private AudioManager audioManager;
 
     public GameObject selectWindow;
-    public GameObject playerWindow;
-    public GameObject cannonWindow;
     public GameObject startButton;
 
     public int playerNum;
@@ -20,7 +19,11 @@ public class GameStartScript : MonoBehaviour
     public GameObject cannon1Pos;
     public GameObject cannon2Pos;
 
+    public GameObject[] selectPlayers;
     public GameObject[] selectCannons;
+
+    public Sprite[] showCannons; 
+    public Image[] showCannonPos; 
 
     public GameObject cannon1;
     public GameObject cannon2;
@@ -32,18 +35,29 @@ public class GameStartScript : MonoBehaviour
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
-   
+
     void Update()
     {
         Select();
 
-        if (playerNum != 0)
+        if(cannonNum1 != 0)
         {
-            playerWindow.SetActive(false);
-            cannonWindow.SetActive(true);
+            showCannonPos[0].enabled = true;
+        }
+        else
+        {
+            showCannonPos[0].enabled = false;
+        }
+        if (cannonNum2 != 0)
+        {
+            showCannonPos[1].enabled = true;
+        }
+        else
+        {
+            showCannonPos[1].enabled = false;
         }
 
-        if(playerNum != 0 && cannonNum1 != 0 && cannonNum2 != 0)
+        if (playerNum != 0 && cannonNum1 != 0 && cannonNum2 != 0)
         {
             startButton.SetActive(true);
         }
@@ -92,13 +106,19 @@ public class GameStartScript : MonoBehaviour
 
     public void Player1()
     {
-        playerNum = 1;
-        PlayerPrefs.SetInt("Player", 1);
+        if (playerNum == 0)
+        {
+            playerNum = 1;
+            PlayerPrefs.SetInt("Player", 1);
+        }
     }
     public void Player2()
     {
-        playerNum = 2;
-        PlayerPrefs.SetInt("Player", 2);
+        if (playerNum == 0)
+        {
+            playerNum = 2;
+            PlayerPrefs.SetInt("Player", 2);
+        }
     }
 
     public void Cannon1()
@@ -109,11 +129,13 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 1;
                 PlayerPrefs.SetInt("Cannon1", 1);
+                showCannonPos[0].sprite = showCannons[0];
             }
             else
             {
                 cannonNum2 = 1;
                 PlayerPrefs.SetInt("Cannon2", 1);
+                showCannonPos[1].sprite = showCannons[0];
             }
         }
     }
@@ -125,11 +147,13 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 2;
                 PlayerPrefs.SetInt("Cannon1", 2);
+                showCannonPos[0].sprite = showCannons[1];
             }
             else
             {
                 cannonNum2 = 2;
                 PlayerPrefs.SetInt("Cannon2", 2);
+                showCannonPos[1].sprite = showCannons[1];
             }
         }
     }
@@ -141,11 +165,13 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 3;
                 PlayerPrefs.SetInt("Cannon1", 3);
+                showCannonPos[0].sprite = showCannons[2];
             }
             else
             {
                 cannonNum2 = 3;
                 PlayerPrefs.SetInt("Cannon2", 3);
+                showCannonPos[1].sprite = showCannons[2];
             }
         }
     }
@@ -157,11 +183,13 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 4;
                 PlayerPrefs.SetInt("Cannon1", 4);
+                showCannonPos[0].sprite = showCannons[3];
             }
             else
             {
                 cannonNum2 = 4;
                 PlayerPrefs.SetInt("Cannon2", 4);
+                showCannonPos[1].sprite = showCannons[3];
             }
         }
     }
@@ -173,11 +201,13 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 5;
                 PlayerPrefs.SetInt("Cannon1", 5);
+                showCannonPos[0].sprite = showCannons[4];
             }
             else
             {
                 cannonNum2 = 5;
                 PlayerPrefs.SetInt("Cannon2", 5);
+                showCannonPos[1].sprite = showCannons[4];
             }
         }
     }
@@ -189,11 +219,13 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 6;
                 PlayerPrefs.SetInt("Cannon1", 6);
+                showCannonPos[0].sprite = showCannons[5];
             }
             else
             {
                 cannonNum2 = 6;
                 PlayerPrefs.SetInt("Cannon2", 6);
+                showCannonPos[1].sprite = showCannons[5];
             }
         }
     }
@@ -205,16 +237,23 @@ public class GameStartScript : MonoBehaviour
             {
                 cannonNum1 = 7;
                 PlayerPrefs.SetInt("Cannon1", 7);
+                showCannonPos[0].sprite = showCannons[6];
             }
             else
             {
                 cannonNum2 = 7;
                 PlayerPrefs.SetInt("Cannon2", 7);
+                showCannonPos[1].sprite = showCannons[6];
             }
         }
     }
     public void Select()
     {
+        if(playerNum != 0)
+        {
+            selectPlayers[playerNum - 1].SetActive(true);
+        }
+
         if(cannonNum1 != 0)
         {
             selectCannons[cannonNum1 - 1].SetActive(true);
@@ -232,13 +271,18 @@ public class GameStartScript : MonoBehaviour
         cannonNum1 = 0;
         cannonNum2 = 0;
 
-        playerWindow.SetActive(true);
-        cannonWindow.SetActive(false);
-
-        foreach(GameObject select in selectCannons)
+        foreach (GameObject select in selectPlayers)
         {
             select.SetActive(false);
         }
+
+        foreach (GameObject select in selectCannons)
+        {
+            select.SetActive(false);
+        }
+
+        showCannonPos[0].sprite = null;
+        showCannonPos[1].sprite = null;
     }
 
     public void GameStart()

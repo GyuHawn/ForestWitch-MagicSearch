@@ -74,7 +74,7 @@ public class ChestMonster : MonoBehaviour
         e_AttackSpd = 10f;
         e_BulletNum = 6;
 
-        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -92,7 +92,7 @@ public class ChestMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
-        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
         GameObject monster = GameObject.Find("EatingMonster");

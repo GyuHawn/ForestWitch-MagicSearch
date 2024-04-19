@@ -40,7 +40,7 @@ public class MonsterGetMoney : MonoBehaviour
 
     IEnumerator StartGetMoney()
     {
-        audioManager.WinAudio();
+        StartCoroutine(WinAudio());
 
         getMoneyUI.SetActive(true);
         playerMovement.money += getMoney;
@@ -50,4 +50,14 @@ public class MonsterGetMoney : MonoBehaviour
         yield return new WaitForSeconds(2f);
         getMoneyUI.SetActive(false);
     }
+
+    IEnumerator WinAudio()
+    {
+        audioManager.WinAudio();
+
+        yield return new WaitForSeconds(1f);
+
+        audioManager.TileMapAudio();
+    }
 }
+

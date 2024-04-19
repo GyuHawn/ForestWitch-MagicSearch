@@ -76,7 +76,7 @@ public class CactusMonster : MonoBehaviour
         bu_AttackSpd = 8f;
         bu_AttackNum = 3;
                 
-        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -94,7 +94,7 @@ public class CactusMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1f);
 
-        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
         monsterGetMoney.getMoney = money;

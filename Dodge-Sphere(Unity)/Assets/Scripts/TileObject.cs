@@ -65,37 +65,37 @@ public class TileObject : MonoBehaviour
                 // 몬스터 관련
                 if (gameObject.CompareTag("M_Fire")) // 불 몬스터
                 {
-                    mapConvert.LoadingImage(mapConvert.bossLoading, 3f);
+                    mapConvert.ConvertLoading(mapConvert.bossLoading, 3f, 2);
                     StartCoroutine(CurrentTileNum(5.1f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Cactus")) // 선인장 몬스터
                 {
-                    mapConvert.LoadingImage(mapConvert.monsterLoading, 3f);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
                     StartCoroutine(CurrentTileNum(5.2f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Mush")) // 버섯 몬스터
                 {
-                    mapConvert.LoadingImage(mapConvert.monsterLoading, 3f);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
                     StartCoroutine(CurrentTileNum(5.3f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Chest")) // 상자 몬스터
                 {
-                    mapConvert.LoadingImage(mapConvert.monsterLoading, 3f);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
                     StartCoroutine(CurrentTileNum(5.4f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Beholder")) // 주시자 몬스터
                 {
-                    mapConvert.LoadingImage(mapConvert.monsterLoading, 3f);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
                     StartCoroutine(CurrentTileNum(5.5f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Clown")) // 광대 몬스터
                 {
-                    mapConvert.LoadingImage(mapConvert.bossLoading, 3f);
+                    mapConvert.ConvertLoading(mapConvert.bossLoading, 3f, 2);
                     StartCoroutine(CurrentTileNum(5.6f));
                     StartCoroutine(PlayerTileReset());
                 }
@@ -120,10 +120,10 @@ public class TileObject : MonoBehaviour
 
     IEnumerator RestTile()
     {
-        mapConvert.LoadingImage(mapConvert.restLoading, 3f);
+        mapConvert.ConvertLoading(mapConvert.restLoading, 3f, 2);
         yield return new WaitForSeconds(2.5f);
 
-        audioManager.RestAudio();
+        //audioManager.RestAudio();
 
         playerMovement.isRest = true;
         playerMovement.moveNum = 6;
@@ -133,7 +133,7 @@ public class TileObject : MonoBehaviour
 
     IEnumerator ItemTile()
     {
-        mapConvert.LoadingImage(mapConvert.itemLoading, 3f);
+        mapConvert.ConvertLoading(mapConvert.itemLoading, 3f, 5);
         yield return new WaitForSeconds(2.5f);
 
         playerMovement.isItem = true;
@@ -144,10 +144,10 @@ public class TileObject : MonoBehaviour
 
     IEnumerator EventTile()
     {
-        mapConvert.LoadingImage(mapConvert.eventLoading, 3f);
+        mapConvert.ConvertLoading(mapConvert.eventLoading, 3f, 4);
         yield return new WaitForSeconds(2.5f);
 
-        audioManager.EventAudio();
+        //audioManager.EventAudio();
 
         playerMovement.isEvent = true;
         playerMovement.moveNum = 3;
@@ -157,10 +157,10 @@ public class TileObject : MonoBehaviour
 
     IEnumerator ShopTile()
     {
-        mapConvert.LoadingImage(mapConvert.shopLoading, 3f);
+        mapConvert.ConvertLoading(mapConvert.shopLoading, 3f, 3);
         yield return new WaitForSeconds(2.5f);
 
-        audioManager.ShopAudio();
+       // audioManager.ShopAudio();
 
         playerMovement.isShop = true;
         playerMovement.moveNum = 4;

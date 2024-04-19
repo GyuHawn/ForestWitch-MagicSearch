@@ -22,12 +22,12 @@ public class AudioManager : MonoBehaviour
     // Function
     public AudioSource f_Button; // 버튼 (o) 
     public AudioSource f_ButtonFail; // 버튼 (x)
-    public AudioSource f_Spwan; // 몬스터 소환
     public AudioSource f_Potion; // 물약
     public AudioSource f_Win; // 승리
     public AudioSource f_GetItem; // 아이템획득
     public AudioSource f_Clear; // 클리어
     public AudioSource f_Die; // 플레이어 사망
+    public AudioSource f_Convert; // 전환
 
     private AudioSource currentAudioSource; // 현재 재생중인 오디오
 
@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         SartAudioSetting();
+        TileMapAudio();
         /*
         // 전체 볼륨 조절
         float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
@@ -190,18 +191,11 @@ public class AudioManager : MonoBehaviour
         currentAudioSource = f_Button;
         currentAudioSource.Play();
     }
-
+     
     public void ButtonFailAudio()
     {
         StopCurrentAudio();
         currentAudioSource = f_ButtonFail;
-        currentAudioSource.Play();
-    }
-
-    public void SpwanAudio()
-    {
-        StopCurrentAudio();
-        currentAudioSource = f_Spwan;
         currentAudioSource.Play();
     }
 
@@ -239,6 +233,12 @@ public class AudioManager : MonoBehaviour
         currentAudioSource = f_Die;
         currentAudioSource.Play();
     }
+    public void ConvertAudio()
+    {
+        StopCurrentAudio();
+        currentAudioSource = f_Convert;
+        currentAudioSource.Play();
+    }
 
 
     // 시작시 소리 셋팅
@@ -252,8 +252,9 @@ public class AudioManager : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Game")
         {
-            TileMapAudio();
-            foreach(AudioSource audio in b_Monsters)
+            b_TileMap.Stop();
+            b_Story.Stop();
+            foreach (AudioSource audio in b_Monsters)
             {
                 audio.Stop();
             }
@@ -263,15 +264,14 @@ public class AudioManager : MonoBehaviour
             b_Rest.Stop();
             b_TileMap.Stop();
 
-
             f_Button.Stop();
             f_ButtonFail.Stop();
-            f_Spwan.Stop();
             f_Potion.Stop();
             f_Win.Stop();
             f_GetItem.Stop();
             f_Clear.Stop();
             f_Die.Stop();
+            f_Convert.Stop();
         }
     }
 }

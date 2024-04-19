@@ -11,7 +11,7 @@ public class HpBarScript : MonoBehaviour
 
     private void Update()
     {
-        healthPercent.text = (healthBarFill.fillAmount * 100).ToString() + "%";
+        healthPercent.text = ((int)(healthBarFill.fillAmount * 100)).ToString() + "%";
     }
 
     // 체력에 비례하여 fillAmount 업데이트 

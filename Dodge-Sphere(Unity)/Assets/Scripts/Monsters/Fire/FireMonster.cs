@@ -84,7 +84,7 @@ public class FireMonster : MonoBehaviour
         r_AttackNum = 3;
         
         //InvokeRepeating("StartRollAttack", 1f, 10f); // 패턴 확인용
-        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -102,13 +102,13 @@ public class FireMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
-        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
         monsterGetMoney.getMoney = money;
         monsterGetMoney.PickUpMoney();
 
-        mapConvert.LoadingImage(mapConvert.stageLoading, 2f); // 보스 클리어시 스테이지 전환 이미지 출력
+        mapConvert.ConvertLoading(mapConvert.stageLoading, 2f, 5); // 보스 클리어시 스테이지 전환 이미지 출력
 
         playerMovement.nextStage = true; // 스테이지 변환 중
         playerMovement.OnTile();

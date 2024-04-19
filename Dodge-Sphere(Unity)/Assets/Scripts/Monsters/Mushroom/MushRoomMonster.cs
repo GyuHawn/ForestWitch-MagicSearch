@@ -73,7 +73,7 @@ public class MushRoomMonster : MonoBehaviour
         u_AttackNum = 5;
         u_BulletNum = 3;
 
-        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -100,13 +100,17 @@ public class MushRoomMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1f);
 
-        hpBarScript.MoveToYStart(150, 0.5f);
-        hpBarScript.ResetHealthBar();
-
-        if (monster == null)
+        if (monster != null)
+        {
+            hpBarScript.ResetHealthBar();
+        }
+        else
         {
             monsterGetMoney.getMoney = money;
             monsterGetMoney.PickUpMoney();
+
+            hpBarScript.MoveToYStart(150, 0.1f);
+            hpBarScript.ResetHealthBar();
 
             playerMovement.OnTile();
             playerMovement.MoveFinalPosition();
@@ -255,7 +259,7 @@ public class MushRoomMonster : MonoBehaviour
                 anim.SetTrigger("Hit");
             }
             Destroy(collision.gameObject);
-        }
+        } 
     }
 
 }

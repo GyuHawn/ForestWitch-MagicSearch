@@ -87,9 +87,9 @@ public class ClownMonster : MonoBehaviour
 
         FindCannons();
 
-        InvokeRepeating("StartPattern", 1f, 7f); // 랜덤 패턴 실행
-        InvokeRepeating("StartBreakAttack", 3f, 15f); // 특수 패턴 1실행
-        InvokeRepeating("SummonMonster", 5f, 30f); // 특수 패턴 2실행
+        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartBreakAttack", 6f, 15f); // 특수 패턴 1실행
+        InvokeRepeating("SummonMonster", 8f, 30f); // 특수 패턴 2실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -119,7 +119,7 @@ public class ClownMonster : MonoBehaviour
         anim.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
 
-        hpBarScript.MoveToYStart(150, 0.5f);
+        hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
         monsterGetMoney.getMoney = money;

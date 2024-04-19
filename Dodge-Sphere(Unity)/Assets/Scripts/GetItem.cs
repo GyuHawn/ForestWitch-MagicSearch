@@ -42,11 +42,20 @@ public class GetItem : MonoBehaviour
         }
     }
 
+    IEnumerator GetItemAudio() // 아이템 획득 오디오 사용후 다시 BGM시작
+    {
+        audioManager.GetItemAudio();
+
+        yield return new WaitForSeconds(1f);
+
+        audioManager.TileMapAudio();
+    }
+
     public void SelectItem()
     {
         getItemUI.SetActive(true);
 
-        audioManager.GetItemAudio();
+        StartCoroutine(GetItemAudio());
 
         int index = Random.Range(0, items.Count);
         GameObject selectedItem = items[index];

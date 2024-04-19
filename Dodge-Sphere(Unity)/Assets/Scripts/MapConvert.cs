@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MapConvert : MonoBehaviour
 {
+    private AudioManager audioManager;
+
     public GameObject stageLoading;
     public GameObject monsterLoading;
     public GameObject bossLoading;
@@ -12,17 +14,53 @@ public class MapConvert : MonoBehaviour
     public GameObject shopLoading;
     public GameObject restLoading;
 
-    public void LoadingImage(GameObject loading, float time)
+    private float time = 0f;
+
+    private void Awake()
     {
-        StartCoroutine(Loading(loading, time));
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-    IEnumerator Loading(GameObject loading, float time)
+    void ConvertMap(int num)
+    {
+        switch (num)
+        {
+            case 0:
+                audioManager.MonsterAudio();
+                break;
+            case 1:
+                audioManager.BossAudio();
+                break;
+            case 2:
+                audioManager.RestAudio();
+                break;
+            case 3:
+                audioManager.ShopAudio();
+                break;
+            case 4:
+                audioManager.EventAudio();
+                break;
+            case 5:
+                break;
+        }
+    }
+
+    public void ConvertLoading(GameObject loading, float time, int num)
+    {
+        float currentTime = Time.time;
+        if (currentTime < this.time + 3f) {return;}
+        this.time = currentTime;
+
+        StartCoroutine(Loading(loading, time, num));
+    }
+
+    IEnumerator Loading(GameObject loading, float time, int num)
     {
         loading.SetActive(true);
-
+        audioManager.ConvertAudio();
         yield return new WaitForSeconds(time);
 
         loading.SetActive(false);
+        ConvertMap(num);
     }
 }
