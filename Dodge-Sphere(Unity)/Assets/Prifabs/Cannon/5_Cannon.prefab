@@ -327,7 +327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready: 0
-  maxBullet: 4
+  maxBullet: 3
   currentBullet: 0
   loadBullet: {fileID: 1007577766436517659}
   shotPos: {fileID: 9221333179325126158}

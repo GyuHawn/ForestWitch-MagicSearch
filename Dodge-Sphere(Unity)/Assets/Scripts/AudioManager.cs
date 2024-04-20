@@ -37,7 +37,10 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         SartAudioSetting();
-        TileMapAudio();
+        if (SceneManager.GetActiveScene().name == "Game")
+        {
+            TileMapAudio();
+        }
         /*
         // 전체 볼륨 조절
         float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);

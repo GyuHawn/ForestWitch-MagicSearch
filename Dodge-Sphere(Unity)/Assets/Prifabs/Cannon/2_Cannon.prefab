@@ -227,7 +227,7 @@ MonoBehaviour:
   shotPos: {fileID: 8811139930932684234}
   reloadDelay: 1
   shotBullet: {fileID: 0}
-  shotBulletPrefab: {fileID: 9019681578275587116, guid: c2d72420ff7f63945b098fc742f6b43b, type: 3}
+  shotBulletPrefab: {fileID: 1096239059303656745, guid: 0b856475a1c6a4d4193e4de43a51695a, type: 3}
   currentBulletText: {fileID: 778290153564614796}
   bulletSpd: 0
   book: 0

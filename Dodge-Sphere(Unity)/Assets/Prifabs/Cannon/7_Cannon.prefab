@@ -155,14 +155,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81a6adf48a0b0a4e9f6602dc6dfd80f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ready: 0
-  maxBullet: 10
+  ready: 1
+  maxBullet: 5
   currentBullet: 0
   loadBullet: {fileID: 3597382863776481350}
   shotPos: {fileID: 6977167440072202040}
   reloadDelay: 1
   shotBullet: {fileID: 0}
-  shotBulletPrefab: {fileID: 271633862617382463, guid: d565452f81e2b0247917331bf195adc9, type: 3}
+  shotBulletPrefab: {fileID: 5314163837468977649, guid: aa6559e4f412fd4439f59e567c1f3951, type: 3}
   currentBulletText: {fileID: 5176798701586835382}
   bulletSpd: 0
   book: 0

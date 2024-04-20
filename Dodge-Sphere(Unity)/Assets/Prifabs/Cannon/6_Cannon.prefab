@@ -221,13 +221,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ready: 0
-  maxBullet: 7
+  maxBullet: 4
   currentBullet: 0
   loadBullet: {fileID: 8597404658193099112}
   shotPos: {fileID: 7430114030318865788}
   reloadDelay: 1
   shotBullet: {fileID: 0}
-  shotBulletPrefab: {fileID: 1096239059303656745, guid: 0b856475a1c6a4d4193e4de43a51695a, type: 3}
+  shotBulletPrefab: {fileID: 2477517216801799326, guid: d6b577b3375ed9f48abdef868dc8374a, type: 3}
   currentBulletText: {fileID: 9178108190268205724}
   bulletSpd: 0
   book: 0

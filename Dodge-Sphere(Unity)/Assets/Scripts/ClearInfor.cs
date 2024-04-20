@@ -48,7 +48,7 @@ public class ClearInfor : MonoBehaviour
     public TMP_Text usePotionText;
 
     // ÃÑÇÕ
-    public float totalScore;
+    public int totalScore;
     public TMP_Text totalScoreText;
 
     public GameObject resultUI; // °á°úÃ¢ 
@@ -139,6 +139,8 @@ public class ClearInfor : MonoBehaviour
 
         // ÃÑÇÕ Ç¥½Ã
         totalScoreText.text = totalScore.ToString();
+
+        PlayerPrefs.SetInt("GameExp", totalScore);
 
         result = false;
     }
