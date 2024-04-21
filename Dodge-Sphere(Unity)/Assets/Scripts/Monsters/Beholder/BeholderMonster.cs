@@ -12,6 +12,7 @@ public class BeholderMonster : MonoBehaviour
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     // 기본 스탯
     public int maxHealth;
@@ -50,6 +51,7 @@ public class BeholderMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -69,7 +71,8 @@ public class BeholderMonster : MonoBehaviour
         a_AttackSpd = 30f;
         a_AttackNum = 5;
 
-        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
+        //InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartLaserAttack", 3f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartFaintAttack", 6f, 8f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
@@ -194,6 +197,8 @@ public class BeholderMonster : MonoBehaviour
         anim.SetBool("Laser", true);
         int num = Random.Range(0, 2);
         bool start = true;
+
+        audioManager.LazerAudio();
 
         if (num == 0)
         {

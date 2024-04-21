@@ -28,6 +28,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource f_Clear; // 클리어
     public AudioSource f_Die; // 플레이어 사망
     public AudioSource f_Convert; // 전환
+    public AudioSource f_cannon; // 대포 발사
+
+    // Monster
+    public AudioSource M_Lazer; 
 
     private AudioSource currentAudioSource; // 현재 재생중인 오디오
 
@@ -242,6 +246,27 @@ public class AudioManager : MonoBehaviour
         currentAudioSource = f_Convert;
         currentAudioSource.Play();
     }
+    public void CannonAudio()
+    {
+        f_cannon.Play();
+    }
+
+    // 몬스터
+    // 선인장
+
+    // 버섯
+
+    // 불
+
+    // 상자
+
+    // 주시자
+    public void LazerAudio()
+    {
+        M_Lazer.Play();
+    }
+
+    // 광대
 
 
     // 시작시 소리 셋팅
@@ -275,6 +300,9 @@ public class AudioManager : MonoBehaviour
             f_Clear.Stop();
             f_Die.Stop();
             f_Convert.Stop();
+
+            f_cannon.Stop();
+            M_Lazer.Stop();
         }
     }
 }

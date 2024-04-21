@@ -9,7 +9,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private MonsterMap monsterMap;
     private ClearInfor clearInfor;
-    private AudioManager audioManager; 
+    private AudioManager audioManager;
+
+    // 캐릭터 확인
+    public int playerNum; // 1 = 검정, 2 = 파랑
 
     // 전투관련 플레이어 스탯
     public int maxHealth;
@@ -92,10 +95,20 @@ public class PlayerMovement : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
 
-        moveSpd = 5;
+        playerNum = PlayerPrefs.GetInt("Player");
+        if (playerNum == 1)
+        {
+            maxHealth = 10;
+            moveSpd = 5;
+        }
+        else if(playerNum == 2)
+        {
+            maxHealth = 8;
+            moveSpd = 6;
+        }
+       
         rotateSpd = 3f;
-
-        maxHealth = 10;
+     
         currentHealth = maxHealth;
         defence = 0;
 

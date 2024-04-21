@@ -6,6 +6,8 @@ using TMPro;
 public class Cannon : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private AudioManager audioManager;
+
     private GameObject player; // 플레이어
 
     public bool ready; // 장전 여부
@@ -21,7 +23,12 @@ public class Cannon : MonoBehaviour
     public float bulletSpd; // 총알의 속도
 
     // 아이템 관련
-    public bool book;   
+    public bool book;
+
+    private void Awake()
+    {
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+    }
 
     void Start()
     {
@@ -138,6 +145,7 @@ public class Cannon : MonoBehaviour
     {
         ready = false;
         currentBullet = 0;
+        audioManager.CannonAudio();
         shotBullet = Instantiate(shotBulletPrefab, shotPos.transform.position, Quaternion.identity);
     }
 
@@ -148,6 +156,7 @@ public class Cannon : MonoBehaviour
 
         if (monsters.Length > 0 && shotBullet != null)
         {
+            
             foreach (var monster in monsters)
             {
                 Vector3 shotBulletPosition = shotBullet.transform.position;

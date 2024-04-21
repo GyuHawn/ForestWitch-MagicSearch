@@ -61,7 +61,7 @@ public class ClearInfor : MonoBehaviour
     {
         timeManager = GameObject.Find("Manager").GetComponent<TimeManager>();
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
-        playerMovement = GameObject.Find("Manager").GetComponent<PlayerMovement>();
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
