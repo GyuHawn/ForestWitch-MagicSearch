@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
+using UnityEditor;
+
 
 public class ChestMonster : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class ChestMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 20;
+        maxHealth = 10;
         currentHealth = maxHealth;
         money = 300;
 

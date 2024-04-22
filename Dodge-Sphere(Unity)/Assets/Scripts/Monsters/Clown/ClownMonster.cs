@@ -71,7 +71,7 @@ public class ClownMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 40;
+        maxHealth = 30;
         currentHealth = maxHealth;
         money = 300;
 

@@ -58,7 +58,7 @@ public class BeholderMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 25;
+        maxHealth = 15;
         currentHealth = maxHealth;
         money = 300;
 
@@ -73,7 +73,7 @@ public class BeholderMonster : MonoBehaviour
 
         //InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartLaserAttack", 3f, 7f); // 랜덤 패턴 실행
-        InvokeRepeating("StartFaintAttack", 6f, 8f); // 랜덤 패턴 실행
+        InvokeRepeating("StartFaintAttack", 6f, 10f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }

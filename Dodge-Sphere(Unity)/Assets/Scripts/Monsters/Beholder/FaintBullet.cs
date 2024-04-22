@@ -10,7 +10,7 @@ public class FaintBullet : MonoBehaviour
     {
         player = GameObject.Find("Player");
 
-        speed = 5f;
+        speed = 4f;
 
         Destroy(gameObject, 8f);  // 5초 후 삭제
     }

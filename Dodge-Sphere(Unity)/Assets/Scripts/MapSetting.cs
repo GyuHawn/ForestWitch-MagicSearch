@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEditor;
 using UnityEngine.UIElements;
-using static UnityEditor.Progress;
 
 public class MapSetting : MonoBehaviour
 {
@@ -46,7 +45,7 @@ public class MapSetting : MonoBehaviour
 
     void Start()
     {
-        stage = 2;
+        stage = 1;
         StageMapSetting();
     }
      

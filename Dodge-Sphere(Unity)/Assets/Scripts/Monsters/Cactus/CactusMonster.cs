@@ -60,7 +60,7 @@ public class CactusMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 15;
+        maxHealth = 10;
         currentHealth = maxHealth;
         money = 200;
 

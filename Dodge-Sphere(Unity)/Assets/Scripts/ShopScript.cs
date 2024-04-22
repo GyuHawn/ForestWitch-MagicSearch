@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using TMPro;
-using UnityEditorInternal.Profiling.Memory.Experimental;
+
 
 public class ShopScript : MonoBehaviour
 {
