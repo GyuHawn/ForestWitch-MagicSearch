@@ -289,4 +289,9 @@ public class GameStartScript : MonoBehaviour
     {
         LoadingController.LoadNextScene("Game");
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

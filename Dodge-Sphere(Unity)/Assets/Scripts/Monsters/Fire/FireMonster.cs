@@ -13,6 +13,7 @@ public class FireMonster : MonoBehaviour
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
     private MapConvert mapConvert;
+    private AudioManager audioManager;
 
     // 기본 스탯
     public int maxHealth;
@@ -57,7 +58,8 @@ public class FireMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
-        mapConvert = GameObject.Find("Manager").GetComponent<MapConvert>(); 
+        mapConvert = GameObject.Find("Manager").GetComponent<MapConvert>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -161,6 +163,7 @@ public class FireMonster : MonoBehaviour
 
     IEnumerator BaseAttacks()
     {
+        audioManager.F_BaseAudio();
         for (int i = 0; i < 5; i++)
         {
             b_BulletNum = b_BulletNums[b_CurrentNumIndex]; // 다음 총알 개수 가져오기
@@ -197,6 +200,7 @@ public class FireMonster : MonoBehaviour
     {
         for (int i = 0; i < 4; i++) // 총 2번 발사
         {
+            audioManager.F_CryAudio();
             for (int j = 0; j < 3; j++)
             {
                 float angle = c_AttackAngles1[j]; // 탄환의 각도 계산                                             
@@ -232,6 +236,7 @@ public class FireMonster : MonoBehaviour
 
     IEnumerator JumpAttack()
     {
+        audioManager.F_JumpAudio();
         anim.SetTrigger("Jump");
         for (int j = 0; j < j_AttackNum; j++)
         {
@@ -240,6 +245,7 @@ public class FireMonster : MonoBehaviour
         }
 
         yield return new WaitForSeconds(3);
+        audioManager.F_JumpAudio();
         anim.SetTrigger("Jump");
         for (int j = 0; j < j_AttackNum; j++)
         {
@@ -271,8 +277,9 @@ public class FireMonster : MonoBehaviour
 
     IEnumerator RollAttack()
     {
-        for(int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++)
         {
+            audioManager.F_RollAudio();
             anim.SetTrigger("Roll");
 
             Vector3 direction = Quaternion.Euler(0, 180, 0) * Vector3.forward; // 각도에 따른 방향 계산

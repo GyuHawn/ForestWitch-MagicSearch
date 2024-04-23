@@ -12,6 +12,7 @@ public class CactusMonster : MonoBehaviour
     private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     // 기본 스탯
     public int maxHealth;
@@ -54,6 +55,7 @@ public class CactusMonster : MonoBehaviour
         monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -148,6 +150,7 @@ public class CactusMonster : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
+            audioManager.C_BounceAudio();
             b_BulletNum = b_BulletNums[b_CurrentNumIndex]; // 다음 총알 개수 가져오기
             BounceBullet();
             b_CurrentNumIndex = (b_CurrentNumIndex + 1) % b_BulletNums.Length; // 다음 총알 인덱스 설정
@@ -185,6 +188,7 @@ public class CactusMonster : MonoBehaviour
         bool pos = true;
         for (int i = 0; i < 4; i++)
         {
+            audioManager.C_WaveAudio();
             for (int j = 0; j < w_AttackNum; j++)
             {
                 num = pos ? 1 : 0;
@@ -214,6 +218,8 @@ public class CactusMonster : MonoBehaviour
         {
             anim.SetTrigger("Punch");
             yield return new WaitForSeconds(0.1f);
+            audioManager.C_PunchAudio();
+
             Vector3 direction = Quaternion.Euler(0, 180, 0) * Vector3.forward; // 앞 방향 
             Vector3 bulletPos = new Vector3(transform.position.x, 2.5f, transform.position.z); // 총알 위치 설정
             GameObject bullet = Instantiate(p_BaseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
@@ -233,6 +239,7 @@ public class CactusMonster : MonoBehaviour
     {
         anim.SetTrigger("Butt");
         yield return new WaitForSeconds(0.4f);
+        audioManager.C_ButtAudio();
 
         int bu_AttackAngle = Random.Range(160, 200);
         Vector3 direction = Quaternion.Euler(0, bu_AttackAngle, 0) * Vector3.forward; // 각도에 따른 방향 계산

@@ -141,6 +141,8 @@ public class BeholderMonster : MonoBehaviour
         anim.SetBool("Multi", true);
         for (int j = 0; j < m_BulletNum; j++)
         {
+            audioManager.Be_MultiAudio();
+
             float m_AttackAngle = Random.Range(135, 226); // 탄환의 각도 계산                                             
             Vector3 direction = Quaternion.Euler(0, m_AttackAngle, 0) * Vector3.forward; // 각도에 따른 방향 계산
             Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z); // 총알 위치 설정
@@ -164,6 +166,8 @@ public class BeholderMonster : MonoBehaviour
     {
         for (int i = 0; i < a_AttackNum; i++)
         {
+            audioManager.Be_MultiAudio();
+
             anim.SetTrigger("Aiming");
             yield return new WaitForSeconds(0.5f);
             GameObject player = GameObject.Find("Player");
@@ -198,7 +202,7 @@ public class BeholderMonster : MonoBehaviour
         int num = Random.Range(0, 2);
         bool start = true;
 
-        audioManager.LazerAudio();
+        audioManager.Be_LazerAudio();
 
         if (num == 0)
         {

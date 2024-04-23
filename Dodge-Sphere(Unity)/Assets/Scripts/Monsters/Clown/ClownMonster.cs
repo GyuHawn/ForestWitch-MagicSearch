@@ -13,6 +13,7 @@ public class ClownMonster : MonoBehaviour
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     // 기본 스탯
     public int maxHealth;
@@ -65,8 +66,9 @@ public class ClownMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
-
+    
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -182,6 +184,7 @@ public class ClownMonster : MonoBehaviour
 
         for (int i = 0; i < p_AttackNum; i++)
         {
+            audioManager.Cl_PushAudio();
             anim.SetTrigger("Push");
             if (pushNum == 0)
             {
@@ -221,6 +224,7 @@ public class ClownMonster : MonoBehaviour
     {
         for (int i = 0; i < s_AttackNum; i++)
         {
+            audioManager.Cl_ShotAudio();
             anim.SetTrigger("Shot");
             yield return new WaitForSeconds(0.5f);
 
@@ -276,6 +280,7 @@ public class ClownMonster : MonoBehaviour
             {
                 for (int j = 0; j < d_BulletNum; j++)
                 {
+                    audioManager.Cl_DanceAudio();
                     float angle = 130 + j * (90f / d_BulletNum); // 수정된 부분
                     Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
                     Vector3 bulletPos = new Vector3(dancePos[0].transform.position.x, 2f, dancePos[0].transform.position.z);
@@ -291,6 +296,7 @@ public class ClownMonster : MonoBehaviour
             {
                 for (int j = 0; j < d_BulletNum; j++)
                 {
+                    audioManager.Cl_DanceAudio();
                     float angle = 135 + j * (90f / d_BulletNum);
                     Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
                     Vector3 bulletPos = new Vector3(dancePos[1].transform.position.x, 2f, dancePos[1].transform.position.z);

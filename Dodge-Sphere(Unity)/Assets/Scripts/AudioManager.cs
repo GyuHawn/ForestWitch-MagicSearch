@@ -20,19 +20,51 @@ public class AudioManager : MonoBehaviour
     public AudioSource b_TileMap; // 타일맵
 
     // Function
-    public AudioSource f_Button; // 버튼 (o) 
-    public AudioSource f_ButtonFail; // 버튼 (x)
-    public AudioSource f_Potion; // 물약
-    public AudioSource f_Win; // 승리
-    public AudioSource f_GetItem; // 아이템획득
-    public AudioSource f_Clear; // 클리어
-    public AudioSource f_Die; // 플레이어 사망
-    public AudioSource f_Convert; // 전환
-    public AudioSource f_cannon; // 대포 발사
+    public AudioSource fn_Button; // 버튼 (o) 
+    public AudioSource fn_ButtonFail; // 버튼 (x)
+    public AudioSource fn_Potion; // 물약
+    public AudioSource fn_Win; // 승리
+    public AudioSource fn_GetItem; // 아이템획득
+    public AudioSource fn_Clear; // 클리어
+    public AudioSource fn_Die; // 플레이어 사망
+    public AudioSource fn_Convert; // 전환
+    public AudioSource fn_cannon; // 대포 발사
 
-    // Monster
-    public AudioSource M_Lazer; 
+    // Monster 
+    // 불
+    public AudioSource f_Base;
+    public AudioSource f_Cry;
+    public AudioSource f_Jump;
+    public AudioSource f_Roll;
 
+    // 선인장
+    public AudioSource c_Bounce;
+    public AudioSource c_Wave;
+    public AudioSource c_Punch;
+    public AudioSource c_Butt;
+
+    // 버섯
+    public AudioSource m_Butt;
+    public AudioSource m_Spin;
+    public AudioSource m_Uper;
+
+    // 광대
+    public AudioSource cl_Push;
+    public AudioSource cl_Shot;
+    public AudioSource cl_Dance;
+
+    // 상자
+    public AudioSource ch_Bite;
+    public AudioSource ch_Butt;
+    public AudioSource ch_Eating;
+
+    // 주시자
+    public AudioSource be_Laser; 
+    public AudioSource be_Multi;
+    public AudioSource be_Aiming;
+
+
+    
     private AudioSource currentAudioSource; // 현재 재생중인 오디오
 
     // Slider bgmSlider;
@@ -195,79 +227,154 @@ public class AudioManager : MonoBehaviour
     public void ButtonAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_Button;
+        currentAudioSource = fn_Button;
         currentAudioSource.Play();
     }
      
     public void ButtonFailAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_ButtonFail;
+        currentAudioSource = fn_ButtonFail;
         currentAudioSource.Play();
     }
 
     public void PotionAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_Potion;
+        currentAudioSource = fn_Potion;
         currentAudioSource.Play();
     }
 
     public void WinAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_Win;
+        currentAudioSource = fn_Win;
         currentAudioSource.Play();
     }
 
     public void GetItemAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_GetItem;
+        currentAudioSource = fn_GetItem;
         currentAudioSource.Play();
     }
 
     public void ClearAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_Clear;
+        currentAudioSource = fn_Clear;
         currentAudioSource.Play();
     }
 
     public void DieAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_Die;
+        currentAudioSource = fn_Die;
         currentAudioSource.Play();
     }
     public void ConvertAudio()
     {
         StopCurrentAudio();
-        currentAudioSource = f_Convert;
+        currentAudioSource = fn_Convert;
         currentAudioSource.Play();
     }
     public void CannonAudio()
     {
-        f_cannon.Play();
+        fn_cannon.Play();
     }
 
     // 몬스터
     // 선인장
+    public void C_BounceAudio()
+    {
+        c_Bounce.Play();
+    }
+    public void C_WaveAudio()
+    {
+        c_Wave.Play();
+    }
+    public void C_PunchAudio()
+    {
+        c_Punch.Play();
+    }
+    public void C_ButtAudio()
+    {
+        c_Butt.Play();
+    }
 
     // 버섯
+    public void M_ButtAudio()
+    {
+        m_Butt.Play();
+    }
+    public void M_SpinAudio()
+    {
+        m_Spin.Play();
+    }
+    public void M_UperAudio()
+    {
+        m_Uper.Play();
+    }
 
     // 불
+    public void F_BaseAudio()
+    {
+        f_Base.Play();
+    }
+    public void F_CryAudio()
+    {
+        f_Cry.Play();
+    }
+    public void F_JumpAudio()
+    {
+        f_Jump.Play();
+    }
+    public void F_RollAudio()
+    {
+        f_Roll.Play();
+    }
 
     // 상자
+    public void Ch_BiteAudio()
+    {
+        ch_Bite.Play();
+    }
+    public void Ch_ButtAudio()
+    {
+        ch_Butt.Play();
+    }
+    public void Ch_EatingAudio()
+    {
+        ch_Eating.Play();
+    }
 
     // 주시자
-    public void LazerAudio()
+    public void Be_LazerAudio()
     {
-        M_Lazer.Play();
+        be_Laser.Play();
+    }
+    public void Be_MultiAudio()
+    {
+        be_Multi.Play();
+    }
+    public void Be_AimingAudio()
+    {
+        be_Aiming.Play();
     }
 
     // 광대
-
+    public void Cl_PushAudio()
+    {
+        cl_Push.Play();
+    }
+    public void Cl_ShotAudio()
+    {
+        cl_Shot.Play();
+    }
+    public void Cl_DanceAudio()
+    {
+        cl_Dance.Play();
+    }
 
     // 시작시 소리 셋팅
     void SartAudioSetting()
@@ -276,33 +383,63 @@ public class AudioManager : MonoBehaviour
         {
             MainAudio();
             b_Story.Stop();
-            f_Button.Stop();
+            fn_Button.Stop();
         }
         else if (SceneManager.GetActiveScene().name == "Game")
         {
-            b_TileMap.Stop();
-            b_Story.Stop();
-            foreach (AudioSource audio in b_Monsters)
-            {
-                audio.Stop();
-            }
-            b_Boss.Stop();
-            b_Shop.Stop();
-            b_Event.Stop();
-            b_Rest.Stop();
-            b_TileMap.Stop();
-
-            f_Button.Stop();
-            f_ButtonFail.Stop();
-            f_Potion.Stop();
-            f_Win.Stop();
-            f_GetItem.Stop();
-            f_Clear.Stop();
-            f_Die.Stop();
-            f_Convert.Stop();
-
-            f_cannon.Stop();
-            M_Lazer.Stop();
+            StopBGMAudio(); // BGM
+            StopFunctionAudio(); // 기능
+            StopMonsterAudio(); // 몬스터
         }
+    }
+
+    void StopBGMAudio()
+    {
+        b_TileMap.Stop();
+        b_Story.Stop();
+        foreach (AudioSource audio in b_Monsters)
+        {
+            audio.Stop();
+        }
+        b_Boss.Stop();
+        b_Shop.Stop();
+        b_Event.Stop();
+        b_Rest.Stop();
+        b_TileMap.Stop();
+    }
+    void StopFunctionAudio()
+    {
+        fn_Button.Stop();
+        fn_ButtonFail.Stop();
+        fn_Potion.Stop();
+        fn_Win.Stop();
+        fn_GetItem.Stop();
+        fn_Clear.Stop();
+        fn_Die.Stop();
+        fn_Convert.Stop();
+        fn_cannon.Stop();
+    }
+    void StopMonsterAudio()
+    {
+        f_Base.Stop();
+        f_Cry.Stop();
+        f_Jump.Stop();
+        f_Roll.Stop();
+        c_Bounce.Stop();
+        c_Wave.Stop();
+        c_Punch.Stop();
+        c_Butt.Stop();
+        m_Butt.Stop();
+        m_Spin.Stop();
+        m_Uper.Stop();
+        cl_Dance.Stop();
+        cl_Push.Stop();
+        cl_Shot.Stop();
+        ch_Bite.Stop();
+        ch_Butt.Stop();
+        ch_Eating.Stop();
+        be_Laser.Stop();
+        be_Multi.Stop();
+        be_Aiming.Stop();
     }
 }

@@ -31,6 +31,7 @@ TagManager:
   - BossRest1
   - BossRest2
   - BossRest3
+  - Wall
   layers:
   - Default
   - TransparentFX

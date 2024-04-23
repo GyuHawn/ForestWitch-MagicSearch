@@ -82,6 +82,9 @@ public class PlayerMovement : MonoBehaviour
     public bool shield;
     public bool sword;
 
+    // ¿Ã∆Â∆Æ
+    public GameObject shieldEffect; // ΩØµÂ ¿Ã∆Â∆Æ
+
     private void Awake()
     {
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
@@ -123,6 +126,15 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (itemShield)
+        {
+            shieldEffect.SetActive(true);
+        }
+        else
+        {
+            shieldEffect.SetActive(false);
+        }
+
         if (nextStage)
         {
             nextStage = false;

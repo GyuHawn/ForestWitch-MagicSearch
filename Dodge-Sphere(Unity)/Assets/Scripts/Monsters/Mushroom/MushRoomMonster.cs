@@ -12,6 +12,7 @@ public class MushRoomMonster : MonoBehaviour
     private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     public GameObject monster;
 
@@ -53,6 +54,7 @@ public class MushRoomMonster : MonoBehaviour
         monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -156,6 +158,7 @@ public class MushRoomMonster : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
+            audioManager.M_ButtAudio();
             anim.SetTrigger("Butt");
             int startAngle = Random.Range(baseMinAngle, baseMaxAngle);
             for (int j = 0; j < 3; j++)
@@ -182,6 +185,7 @@ public class MushRoomMonster : MonoBehaviour
 
     IEnumerator SpinAttacks()
     {
+        audioManager.M_SpinAudio();
         for (int i = 0; i < 5; i++)
         {
             s_BulletNum = s_BulletNums[b_CurrentNumIndex]; // 다음 총알 개수 가져오기
@@ -215,6 +219,7 @@ public class MushRoomMonster : MonoBehaviour
 
     IEnumerator UperAttack()
     {
+        audioManager.M_UperAudio();
         anim.SetTrigger("Uper");
         for (int j = 0; j < u_AttackNum; j++)
         {

@@ -14,6 +14,7 @@ public class ChestMonster : MonoBehaviour
     private MapSetting monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private AudioManager audioManager;
 
     // 기본 스탯
     public int maxHealth;
@@ -54,7 +55,8 @@ public class ChestMonster : MonoBehaviour
         getMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         monsterGetMoney = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
-        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>(); 
+        clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()
@@ -75,7 +77,7 @@ public class ChestMonster : MonoBehaviour
         e_AttackSpd = 10f;
         e_BulletNum = 6;
 
-        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 3f, 9f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -162,6 +164,8 @@ public class ChestMonster : MonoBehaviour
 
     IEnumerator BiteAttacks()
     {
+        audioManager.Ch_BiteAudio();
+
         yield return new WaitForSeconds(0.3f);
 
         int num = 0;
@@ -193,6 +197,7 @@ public class ChestMonster : MonoBehaviour
     {
         for (int i = 0; i < bu_AttackNum; i++)
         {
+            audioManager.Ch_ButtAudio();
             anim.SetTrigger("Butt");
 
             for (int j = 0; j < bu_BulletNum; j++)
@@ -222,6 +227,8 @@ public class ChestMonster : MonoBehaviour
 
     IEnumerator EatingAttack()
     {
+        audioManager.Ch_EatingAudio();
+
         for (int j = 0; j < bu_BulletNum; j++)
         {
             GameObject player = GameObject.Find("Player");
