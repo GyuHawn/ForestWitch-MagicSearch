@@ -107,8 +107,7 @@ public class AudioManager : MonoBehaviour
     }
 
     void Update()
-    {
-        Debug.Log("currentAudioSource : " + currentAudioSource);
+    {      
         /*
         // 전체 볼륨 조절
         if (SceneManager.GetActiveScene().name == "MainMenu")

@@ -68,7 +68,7 @@ public class ChestMonster : MonoBehaviour
         money = 300;
 
         b_AttackSpd = 10f;
-        b_AttackNum = 50;
+        b_AttackNum = 60;
 
         bu_AttackSpd = 15f;
         bu_AttackNum = 4;

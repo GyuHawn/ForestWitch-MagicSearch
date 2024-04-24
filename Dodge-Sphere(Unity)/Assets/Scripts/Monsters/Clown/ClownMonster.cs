@@ -77,14 +77,14 @@ public class ClownMonster : MonoBehaviour
         currentHealth = maxHealth;
         money = 300;
 
-        p_AttackSpd = 10f;
-        p_AttackNum = 10;
+        p_AttackSpd = 8f;
+        p_AttackNum = 8;
 
         s_AttackSpd = 20f;
         s_AttackNum = 5;
 
-        d_AttackSpd = 12f;
-        d_AttackNum = 15;
+        d_AttackSpd = 10f;
+        d_AttackNum = 12;
         d_BulletNum = 10;
 
         FindCannons();
@@ -128,11 +128,12 @@ public class ClownMonster : MonoBehaviour
         monsterGetMoney.PickUpMoney();
 
         clearInfor.clear = true; // 2스테이지 클리어시 게임 클리어
+        clearInfor.clearStateText.text = "정복 완료!!";
 
-       /* playerMovement.OnTile();
-        playerMovement.moveNum = 1;
-        playerMovement.currentTile = 0;*/
-       // playerMovement.PostionReset(); // 플레이어 위치 초기화 (현재 2스테이지가 마지막)
+        /* playerMovement.OnTile();
+         playerMovement.moveNum = 1;
+         playerMovement.currentTile = 0;*/
+        // playerMovement.PostionReset(); // 플레이어 위치 초기화 (현재 2스테이지가 마지막)
 
         monsterMap.clownMoved = false;
         p_AttackSpawn.spawned = false;
@@ -239,7 +240,7 @@ public class ClownMonster : MonoBehaviour
             bullet.name = "ShotAttack";
 
             // 총알을 1초 후 플레이어 방향으로 발사
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.8f);
             if (bullet != null)
             {
                 Vector3 direction = (playerPosition - bullet.transform.position).normalized;

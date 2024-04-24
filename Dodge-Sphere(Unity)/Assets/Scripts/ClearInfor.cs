@@ -53,6 +53,7 @@ public class ClearInfor : MonoBehaviour
 
     public GameObject resultUI; // 결과창 
     public bool result; // 결과창 표시 여부
+    public TMP_Text clearStateText; // 클리어 or 사망에 따른 이름 텍스트
 
     public bool onStory;
     public bool clear; // 클리어 여부
@@ -72,7 +73,7 @@ public class ClearInfor : MonoBehaviour
 
     
     void Update()
-    {
+    {       
         if (onStory && result)
         {
             if (!clear)

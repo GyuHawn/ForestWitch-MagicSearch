@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private MonsterMap monsterMap;
     private ClearInfor clearInfor;
+    private MapSetting mapSetting;
     private AudioManager audioManager;
 
     // 캐릭터 확인
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     // 공격 관련
     public int bulletNum;
+    public TMP_Text bulletNumText;
 
     // 기타
     public int money;
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     {
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -126,6 +129,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        bulletNumText.text = bulletNum.ToString(); // 현재 총알 수 표시
+
         if (itemShield)
         {
             shieldEffect.SetActive(true);
@@ -437,6 +442,7 @@ public class PlayerMovement : MonoBehaviour
         audioManager.DieAudio();
 
         clearInfor.result = true;
+        clearInfor.clearStateText.text = "어둠속으로...";
 
         // 플레이어 삭제시 많은 오류 발생으로 인한 위치이동 (제거 하지 않아도 문제 없음)
         transform.position = Vector3.zero;
@@ -491,6 +497,18 @@ public class PlayerMovement : MonoBehaviour
         {
             bulletNum++;
             Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            if(mapSetting.stage == 1)
+            {
+                transform.position = monsterMap.playerMapSpawnPos[0].transform.position;
+            }
+            else if(mapSetting.stage == 2)
+            {
+                transform.position = monsterMap.playerMapSpawnPos[1].transform.position;
+            }
         }
     }
 }

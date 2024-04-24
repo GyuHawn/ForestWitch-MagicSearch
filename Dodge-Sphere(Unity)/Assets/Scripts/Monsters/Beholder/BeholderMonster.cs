@@ -71,8 +71,7 @@ public class BeholderMonster : MonoBehaviour
         a_AttackSpd = 30f;
         a_AttackNum = 5;
 
-        //InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
-        InvokeRepeating("StartLaserAttack", 3f, 7f); // 랜덤 패턴 실행
+        InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartFaintAttack", 6f, 10f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
@@ -138,10 +137,23 @@ public class BeholderMonster : MonoBehaviour
 
     IEnumerator MultiAttacks()
     {
+        int audio = 0;
         anim.SetBool("Multi", true);
         for (int j = 0; j < m_BulletNum; j++)
         {
-            audioManager.Be_MultiAudio();
+            if (audio >= 1)
+            {
+                audioManager.Be_MultiAudio();
+                audio++;
+                if(audio >= 3)
+                {
+                    audio = 0;
+                }
+            }
+            else if (audio == 0)
+            {
+                audio++;
+            }
 
             float m_AttackAngle = Random.Range(135, 226); // 탄환의 각도 계산                                             
             Vector3 direction = Quaternion.Euler(0, m_AttackAngle, 0) * Vector3.forward; // 각도에 따른 방향 계산
@@ -166,16 +178,18 @@ public class BeholderMonster : MonoBehaviour
     {
         for (int i = 0; i < a_AttackNum; i++)
         {
-            audioManager.Be_MultiAudio();
 
             anim.SetTrigger("Aiming");
             yield return new WaitForSeconds(0.5f);
+
             GameObject player = GameObject.Find("Player");
             Vector3 playerPosition = player.transform.position;
 
             Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
             GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
             bullet.name = "AimingAttack"; // 총알 이름 변경
+
+            audioManager.Be_MultiAudio();
 
             Vector3 direction = (playerPosition - transform.position).normalized;
             bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd; // 탄환 방향 설정
