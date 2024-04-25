@@ -262,6 +262,7 @@ public class CactusMonster : MonoBehaviour
             Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
             if (bulletComponent != null)
             {
+                audioManager.HitMonsterAudio();
                 currentHealth -= bulletComponent.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");

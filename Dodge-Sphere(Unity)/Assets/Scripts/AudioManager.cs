@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource fn_Clear; // 클리어
     public AudioSource fn_Die; // 플레이어 사망
     public AudioSource fn_Convert; // 전환
-    public AudioSource fn_cannon; // 대포 발사
+    public AudioSource fn_Cannon; // 대포 발사
+    public AudioSource fn_HitMonster; // 대포 발사
 
     // Monster 
     // 불
@@ -67,8 +69,12 @@ public class AudioManager : MonoBehaviour
     
     private AudioSource currentAudioSource; // 현재 재생중인 오디오
 
-    // Slider bgmSlider;
-    //public Slider generalSlider; 
+    public Slider b_Slider; // 배경음 볼륨 슬라이드
+    public TMP_Text b_PercentText;
+    public Slider f_Slider; // 효과음 볼륨 슬라이드 
+    public TMP_Text f_PercentText;
+    public Slider m_Slider; // 몬스터 볼륨 슬라이드
+    public TMP_Text m_PercentText;
 
     void Start()
     {
@@ -77,74 +83,143 @@ public class AudioManager : MonoBehaviour
         {
             TileMapAudio();
         }
-        /*
+        
         // 전체 볼륨 조절
         float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-        float genVolume = PlayerPrefs.GetFloat("GenVolume", 1.0f);
+        float fncVolume = PlayerPrefs.GetFloat("FncVolume", 1.0f);
+        float monsterVolume = PlayerPrefs.GetFloat("MonsterVolume", 1.0f);
 
-        bgmSlider.value = bgmVolume;
-        generalSlider.value = genVolume;
+        b_Slider.value = bgmVolume;
+        f_Slider.value = fncVolume;
+        m_Slider.value = monsterVolume;
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            bgmMainMenu.volume = bgmVolume;
+            b_MainMenu.volume = bgmVolume;          
+            b_Story.volume = bgmVolume;
 
-            startAudio.volume = genVolume;
-            buttonAudio.volume = genVolume;
-            bgmMainMenu.Play();
+            fn_Button.volume = fncVolume;
         }
         else if (SceneManager.GetActiveScene().name == "Loading")
         {
-            bgmMainMenu.volume = bgmVolume;
+            b_Loading.volume = bgmVolume;
         }
         else if (SceneManager.GetActiveScene().name == "Game")
         {
-            bgmStage.volume = bgmVolume;
-            bgmBossStage.volume = bgmVolume;
-            bgmSelectMenu.volume = bgmVolume;
-            bgmResultMenu.volume = bgmVolume;
-        }*/
+            foreach (AudioSource audio in b_Monsters)
+            {
+                audio.volume = bgmVolume;
+            }
+            b_Boss.volume = bgmVolume;
+            b_Shop.volume = bgmVolume;
+            b_Event.volume = bgmVolume;
+            b_Rest.volume = bgmVolume;
+            b_Story.volume = bgmVolume;
+            b_TileMap.volume = bgmVolume;
+
+            fn_Potion.volume = fncVolume;
+            fn_Button.volume = fncVolume;
+            fn_ButtonFail.volume = fncVolume; 
+            fn_Win.volume = fncVolume;
+            fn_GetItem.volume = fncVolume;
+            fn_Clear.volume = fncVolume;
+            fn_Die.volume = fncVolume;
+            fn_Convert.volume = fncVolume;
+            fn_Cannon.volume = fncVolume;
+            fn_HitMonster.volume = fncVolume;
+
+            f_Base.volume = monsterVolume;
+            f_Cry.volume = monsterVolume;
+            f_Jump.volume = monsterVolume;
+            f_Roll.volume = monsterVolume;
+            m_Butt.volume = monsterVolume;
+            m_Spin.volume = monsterVolume;
+            m_Uper.volume = monsterVolume;
+            c_Bounce.volume = monsterVolume;
+            c_Wave.volume = monsterVolume;
+            c_Punch.volume = monsterVolume;
+            c_Butt.volume = monsterVolume;
+            cl_Push.volume = monsterVolume;
+            cl_Shot.volume = monsterVolume;
+            cl_Dance.volume = monsterVolume;
+            ch_Bite.volume = monsterVolume;
+            ch_Butt.volume = monsterVolume;
+            ch_Eating.volume = monsterVolume;
+            be_Laser.volume = monsterVolume;
+            be_Multi.volume = monsterVolume;
+            be_Aiming.volume = monsterVolume;
+        }
     }
 
     void Update()
-    {      
-        /*
+    {
+        // 현재 볼륨 퍼센트
+        b_PercentText.text = "[ " + (int)(b_Slider.value * 100) + "% ]";
+        f_PercentText.text = "[ " + (int)(f_Slider.value * 100) + "% ]";
+        m_PercentText.text = "[ " + (int)(m_Slider.value * 100) + "% ]";
+
         // 전체 볼륨 조절
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
-            bgmMainMenu.volume = bgmSlider.value;
+            b_MainMenu.volume = b_Slider.value;
+            b_Story.volume = b_Slider.value;
 
-            startAudio.volume = generalSlider.value;
-            buttonAudio.volume = generalSlider.value;
+            fn_Button.volume = f_Slider.value;
+
         }
         else if (SceneManager.GetActiveScene().name == "Loding")
         {
-            bgmMainMenu.volume = bgmSlider.value;
-        }
-        else if (SceneManager.GetActiveScene().name == "Character")
-        {
-            bgmCharacterMenu.volume = bgmSlider.value;
-
-            startAudio.volume = generalSlider.value;
-            buttonAudio.volume = generalSlider.value;
+            b_Story.volume = b_Slider.value;
         }
         else if (SceneManager.GetActiveScene().name == "Game")
         {
-            bgmStage.volume = bgmSlider.value;
-            bgmBossStage.volume = bgmSlider.value;
-            bgmSelectMenu.volume = bgmSlider.value;
-            bgmResultMenu.volume = bgmSlider.value;
+            foreach (AudioSource audio in b_Monsters)
+            {
+                audio.volume = b_Slider.value;
+            }
+            b_Boss.volume = b_Slider.value;
+            b_Shop.volume = b_Slider.value;
+            b_Event.volume = b_Slider.value;
+            b_Rest.volume = b_Slider.value;
+            b_Story.volume = b_Slider.value;
+            b_TileMap.volume = b_Slider.value;
 
-            attackAudio.volume = generalSlider.value;
-            defenseAudio.volume = generalSlider.value;
-            hitAudio.volume = generalSlider.value;
-            // monsterAttackAudio.volume = generalSlider.value;
-            buttonAudio.volume = generalSlider.value;
+            fn_Potion.volume = f_Slider.value;
+            fn_Button.volume = f_Slider.value;
+            fn_ButtonFail.volume = f_Slider.value;
+            fn_Win.volume = f_Slider.value;
+            fn_GetItem.volume = f_Slider.value;
+            fn_Clear.volume = f_Slider.value;
+            fn_Die.volume = f_Slider.value;
+            fn_Convert.volume = f_Slider.value;
+            fn_Cannon.volume = f_Slider.value;
+            fn_HitMonster.volume = f_Slider.value;
 
+            f_Base.volume = m_Slider.value;
+            f_Cry.volume = m_Slider.value;
+            f_Jump.volume = m_Slider.value;
+            f_Roll.volume = m_Slider.value;
+            m_Butt.volume = m_Slider.value;
+            m_Spin.volume = m_Slider.value;
+            m_Uper.volume = m_Slider.value;
+            c_Bounce.volume = m_Slider.value;
+            c_Wave.volume = m_Slider.value;
+            c_Punch.volume = m_Slider.value;
+            c_Butt.volume = m_Slider.value;
+            cl_Push.volume = m_Slider.value;
+            cl_Shot.volume = m_Slider.value;
+            cl_Dance.volume = m_Slider.value;
+            ch_Bite.volume = m_Slider.value;
+            ch_Butt.volume = m_Slider.value;
+            ch_Eating.volume = m_Slider.value;
+            be_Laser.volume = m_Slider.value;
+            be_Multi.volume = m_Slider.value;
+            be_Aiming.volume = m_Slider.value;
         }
 
-       PlayerPrefs.SetFloat("BGMVolume", bgmSlider.value);
-       PlayerPrefs.SetFloat("GenVolume", generalSlider.value);*/
+       PlayerPrefs.SetFloat("BGMVolume", b_Slider.value);
+       PlayerPrefs.SetFloat("GenVolume", f_Slider.value);
+       PlayerPrefs.SetFloat("MonsterVolume", m_Slider.value);
     }
 
     // 현재 재생되고 있는 오디오 정지
@@ -225,23 +300,17 @@ public class AudioManager : MonoBehaviour
     // 기능 오디오 재생
     public void ButtonAudio()
     {
-        StopCurrentAudio();
-        currentAudioSource = fn_Button;
-        currentAudioSource.Play();
+        fn_Button.Play();
     }
      
     public void ButtonFailAudio()
     {
-        StopCurrentAudio();
-        currentAudioSource = fn_ButtonFail;
-        currentAudioSource.Play();
+        fn_ButtonFail.Play();
     }
 
     public void PotionAudio()
     {
-        StopCurrentAudio();
-        currentAudioSource = fn_Potion;
-        currentAudioSource.Play();
+        fn_Potion.Play();
     }
 
     public void WinAudio()
@@ -253,9 +322,7 @@ public class AudioManager : MonoBehaviour
 
     public void GetItemAudio()
     {
-        StopCurrentAudio();
-        currentAudioSource = fn_GetItem;
-        currentAudioSource.Play();
+        fn_GetItem.Play();
     }
 
     public void ClearAudio()
@@ -279,7 +346,11 @@ public class AudioManager : MonoBehaviour
     }
     public void CannonAudio()
     {
-        fn_cannon.Play();
+        fn_Cannon.Play();
+    }
+    public void HitMonsterAudio()
+    {
+        fn_HitMonster.Play();
     }
 
     // 몬스터
@@ -416,7 +487,8 @@ public class AudioManager : MonoBehaviour
         fn_Clear.Stop();
         fn_Die.Stop();
         fn_Convert.Stop();
-        fn_cannon.Stop();
+        fn_Cannon.Stop();
+        fn_HitMonster.Stop();
     }
     void StopMonsterAudio()
     {

@@ -67,18 +67,24 @@ public class ShopScript : MonoBehaviour
 
     public void ItemSetting()
     {
+        if (shopItems.Count >= 6) // 이미 6개의 아이템이 있다면 더 이상 추가하지 않음
+            return;
+
         List<int> selectedItems = new List<int>();
 
         for (int i = 0; i < shopSolts.Length; i++)
         {
+            if (shopItems.Count >= 6) // 슬롯 설정 중에도 6개 이상 되면 중단
+                break;
+
             int itemNum;
             do
             {
-                itemNum = Random.Range(0, getItem.items.Count); 
+                itemNum = Random.Range(0, getItem.items.Count);
             }
             while (selectedItems.Contains(itemNum));
 
-            selectedItems.Add(itemNum); 
+            selectedItems.Add(itemNum);
 
             GameObject item = Instantiate(getItem.items[itemNum], Vector3.zero, Quaternion.identity);
             item.transform.SetParent(shopSolts[i].transform, false);
@@ -90,6 +96,7 @@ public class ShopScript : MonoBehaviour
 
         selectedItems.Clear();
     }
+
 
     void AmountSetting()
     {
@@ -131,6 +138,11 @@ public class ShopScript : MonoBehaviour
 
                 clearInfor.getItem++;
             }
+            else
+            {
+                Debug.Log("aa");
+                audioManager.ButtonFailAudio(); // 금액 부족 시 오디오 재생
+            }
         }
     }
     public void BuySolt2()
@@ -157,6 +169,10 @@ public class ShopScript : MonoBehaviour
                 getItem.OnItem(shopItems[1].name);
 
                 clearInfor.getItem++;
+            }
+            else
+            {
+                audioManager.ButtonFailAudio();
             }
         }
     }
@@ -185,6 +201,10 @@ public class ShopScript : MonoBehaviour
 
                 clearInfor.getItem++;
             }
+            else
+            {
+                audioManager.ButtonFailAudio();
+            }
         }
     }
     public void BuySolt4()
@@ -212,6 +232,10 @@ public class ShopScript : MonoBehaviour
 
                 clearInfor.getItem++;
             }
+            else
+            {
+                audioManager.ButtonFailAudio();
+            }
         }
     }
     public void BuySolt5()
@@ -238,7 +262,10 @@ public class ShopScript : MonoBehaviour
                 getItem.OnItem(shopItems[4].name);
                 clearInfor.getItem++;
             }
-
+            else
+            {
+                audioManager.ButtonFailAudio();
+            }
         }
     }
     public void BuySolt6()
@@ -266,6 +293,10 @@ public class ShopScript : MonoBehaviour
 
                 clearInfor.getItem++;
             }
+            else
+            {
+                audioManager.ButtonFailAudio();
+            }
         }
     }
 
@@ -283,17 +314,16 @@ public class ShopScript : MonoBehaviour
         {
             Destroy(shopItem);
         }
+        shopItems.Clear(); // 명확히 리스트를 초기화
 
-        for (int i = 0; i < itemAmount.Count; i++)
-        {
-            itemAmount.Clear();
-        }
+        itemAmount.Clear(); // 금액 목록도 초기화
 
-        for (int j = 0 ; j < shopSolts.Length; j++)
+        for (int j = 0; j < shopSolts.Length; j++)
         {
             shopSolts[j].SetActive(true);
         }
     }
+
 
     public void Exit()
     {

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +28,11 @@ public class GameStartScript : MonoBehaviour
     public GameObject cannon2;
 
     public GameObject startSelect;
+
+    public GameObject settingUI;
+    public GameObject resetBtn;
+    public GameObject resetUI;
+    public GameObject copyrightUI;
 
     void Awake()
     {
@@ -288,6 +292,34 @@ public class GameStartScript : MonoBehaviour
     public void GameStart()
     {
         LoadingController.LoadNextScene("Game");
+    }
+
+    public void Setting() // 세팅 UI 온/오프
+    {
+        settingUI.SetActive(!settingUI.activeSelf);
+    }
+
+    public void DataReset() // 데이터 초기화
+    {
+        resetUI.SetActive(true);
+        resetBtn.SetActive(false);
+    }
+    public void Reset_O()
+    {
+        PlayerPrefs.DeleteAll();
+        resetBtn.SetActive(true);
+        resetUI.SetActive(false);
+        settingUI.SetActive(false);
+    }
+    public void Reset_x()
+    {
+        resetBtn.SetActive(true);
+        resetUI.SetActive(false);
+    }
+
+    public void Copyright() // 저작권 표시 UI 온
+    {
+        copyrightUI.SetActive(!copyrightUI.activeSelf);
     }
 
     public void Exit()

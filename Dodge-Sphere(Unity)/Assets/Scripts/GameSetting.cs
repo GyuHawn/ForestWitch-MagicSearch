@@ -10,6 +10,8 @@ public class GameSetting : MonoBehaviour
     public GameObject[] cannonPrefabs;
     public List<GameObject> cannons; // 대포 리스트
 
+    public GameObject settingUI;
+
     void Start()
     {
         playerNum = PlayerPrefs.GetInt("Player");
@@ -29,5 +31,10 @@ public class GameSetting : MonoBehaviour
         {
             Destroy(players[0]);
         }
+    }
+
+    public void Setting()
+    {
+        settingUI.SetActive(!settingUI.activeSelf);
     }
 }
