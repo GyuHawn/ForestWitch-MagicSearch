@@ -35,9 +35,9 @@ public class BeholderMonster : MonoBehaviour
     public int f_AttackNum; // 발사 수
 
     // 레이저 패턴
-    public float bu_AttackSpd; // 총알 속도
-    public int bu_AttackNum; // 발사 수
-    public float bu_AttackAngles; // 발사 각도
+    public float l_AttackSpd; // 총알 속도
+    public int l_AttackNum; // 발사 수
+    public float l_AttackAngles; // 발사 각도
 
     private Animator anim;
 
@@ -58,21 +58,21 @@ public class BeholderMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 15;
+        maxHealth = 20;
         currentHealth = maxHealth;
         money = 300;
 
         m_AttackSpd = 10f;
         m_BulletNum = 100;
 
-        bu_AttackSpd = 15f;
-        bu_AttackNum = 4;
+        l_AttackSpd = 12f;
+        l_AttackNum = 4;
 
         a_AttackSpd = 30f;
         a_AttackNum = 5;
 
         InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
-        InvokeRepeating("StartFaintAttack", 6f, 10f); // 랜덤 패턴 실행
+        InvokeRepeating("StartFaintAttack", 6f, 15f); // 랜덤 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -220,52 +220,52 @@ public class BeholderMonster : MonoBehaviour
 
         if (num == 0)
         {
-            bu_AttackAngles = 130f; // 총알 시작 각도
+            l_AttackAngles = 130f; // 총알 시작 각도
 
             while (start)
             {
-                if (bu_AttackAngles >= 220) // 부동소수점 비교를 위해 변경
+                if (l_AttackAngles >= 220) // 부동소수점 비교를 위해 변경
                 {
                     start = false;
                 }
 
-                Vector3 direction = Quaternion.Euler(0, bu_AttackAngles, 0) * Vector3.forward;
+                Vector3 direction = Quaternion.Euler(0, l_AttackAngles, 0) * Vector3.forward;
                 Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
                 GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
                 bullet.name = "LaserAttack";
                 bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd;
 
-                transform.rotation = Quaternion.Euler(0, bu_AttackAngles, 0); // 자신의 회전값 수정
+                transform.rotation = Quaternion.Euler(0, l_AttackAngles, 0); // 자신의 회전값 수정
 
                 Destroy(bullet, 2f);
 
-                bu_AttackAngles += 2; // 각도 업데이트
+                l_AttackAngles += 2; // 각도 업데이트
 
                 yield return new WaitForSeconds(0.1f);
             }
         }
         else if (num == 1)
         {
-            bu_AttackAngles = 220f; // 총알 시작 각도
+            l_AttackAngles = 220f; // 총알 시작 각도
 
             while (start)
             {
-                if (bu_AttackAngles <= 130) // 부동소수점 비교를 위해 변경
+                if (l_AttackAngles <= 130) // 부동소수점 비교를 위해 변경
                 {
                     start = false;
                 }
 
-                Vector3 direction = Quaternion.Euler(0, bu_AttackAngles, 0) * Vector3.forward;
+                Vector3 direction = Quaternion.Euler(0, l_AttackAngles, 0) * Vector3.forward;
                 Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
                 GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
                 bullet.name = "LaserAttack";
                 bullet.GetComponent<Rigidbody>().velocity = direction * a_AttackSpd;
 
-                transform.rotation = Quaternion.Euler(0, bu_AttackAngles, 0); // 자신의 회전값 수정
+                transform.rotation = Quaternion.Euler(0, l_AttackAngles, 0); // 자신의 회전값 수정
 
                 Destroy(bullet, 2f);
 
-                bu_AttackAngles -= 2; // 각도 업데이트
+                l_AttackAngles -= 2; // 각도 업데이트
 
                 yield return new WaitForSeconds(0.1f);
             }

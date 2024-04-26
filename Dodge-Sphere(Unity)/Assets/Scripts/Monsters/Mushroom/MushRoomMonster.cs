@@ -22,8 +22,6 @@ public class MushRoomMonster : MonoBehaviour
     public int money;
 
     public GameObject baseAttackPrefab; // 총알 프리팹
-    public int baseMinAngle; // 발사 수
-    public int baseMaxAngle; // 발사 수
 
     // 박치기 패턴
     public float b_AttackSpd; // 총알 속도
@@ -61,7 +59,7 @@ public class MushRoomMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 7;
+        maxHealth = 6;
         currentHealth = maxHealth;
         money = 150;
         
@@ -160,21 +158,32 @@ public class MushRoomMonster : MonoBehaviour
         {
             audioManager.M_ButtAudio();
             anim.SetTrigger("Butt");
-            int startAngle = Random.Range(baseMinAngle, baseMaxAngle);
-            for (int j = 0; j < 3; j++)
-            {
-                int angle = startAngle + (10 * j); // 시작 각도에서 10도씩 증가
-                Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-                Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
-                GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
-                bullet.name = "ButtAttack";
-                bullet.GetComponent<Rigidbody>().velocity = direction * b_AttackSpd;
 
-                Destroy(bullet, 2.5f); // 2.5초 후 총알 제거
+            GameObject player = GameObject.Find("Player");
+            if (player != null)
+            {
+                // Player 위치를 시작 방향으로
+                Vector3 targetDirection = (player.transform.position - transform.position).normalized;
+                Quaternion baseRotation = Quaternion.LookRotation(targetDirection);
+
+                // Player 위치에서 -10, 0, +10도로 각도 조정하여 발사
+                for (int j = -1; j <= 1; j++)
+                {
+                    Quaternion rotation = Quaternion.Euler(0, baseRotation.eulerAngles.y + (10 * j), 0);
+                    Vector3 direction = rotation * Vector3.forward;
+                    Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);
+                    GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
+                    bullet.name = "ButtAttack";
+                    bullet.GetComponent<Rigidbody>().velocity = direction * b_AttackSpd;
+
+                    Destroy(bullet, 2.5f); // 2.5초 후 총알 제거
+                }
             }
+
             yield return new WaitForSeconds(2f); // 다음 발사 대기
         }
     }
+
 
 
     private void StartSpinAttack()
@@ -219,20 +228,26 @@ public class MushRoomMonster : MonoBehaviour
 
     IEnumerator UperAttack()
     {
-        audioManager.M_UperAudio();
-        anim.SetTrigger("Uper");
-        for (int j = 0; j < u_AttackNum; j++)
+        for (int i = 0; i < 2; i++)
         {
-            float angle = Random.Range(baseMinAngle, baseMaxAngle);
-            StartCoroutine(Uperbullet(angle));
-        }
+            audioManager.M_UperAudio();
+            anim.SetTrigger("Uper");
 
-        yield return new WaitForSeconds(3);
-        anim.SetTrigger("Uper");
-        for (int j = 0; j < u_AttackNum; j++)
-        {
-            float angle = Random.Range(baseMinAngle, baseMaxAngle);
-            StartCoroutine(Uperbullet(angle));
+            GameObject player = GameObject.Find("Player");  // 플레이어 위치 찾기
+
+            if (player != null)
+            {
+                // 플레이어를 향한 기본 방향 설정
+                Vector3 targetDirection = (player.transform.position - transform.position).normalized;
+                Quaternion baseRotation = Quaternion.LookRotation(targetDirection);
+
+                for (int j = 0; j < u_AttackNum; j++)
+                {
+                    float angle = baseRotation.eulerAngles.y + Random.Range(-30, 31);  // 플레이어 위치를 기준으로 -30에서 +30도 사이의 각도
+                    StartCoroutine(Uperbullet(angle));
+                }
+            }
+            yield return new WaitForSeconds(3);
         }
     }
 
@@ -240,15 +255,15 @@ public class MushRoomMonster : MonoBehaviour
     {
         for (int j = 0; j < u_BulletNum; j++)
         {
-            Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward; // 각도에 따른 방향 계산
-            Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z); // 총알 위치 설정
-            GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
-            bullet.name = "UperFireAttack"; // 총알 이름 변경         
-            bullet.GetComponent<Rigidbody>().velocity = direction * u_AttackSpd; // 탄환 방향 설정
+            Vector3 direction = Quaternion.Euler(0, angle, 0) * Vector3.forward;  // 수정된 각도에 따른 방향 계산
+            Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z);  // 총알 위치 설정
+            GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);  // 총알 생성
+            bullet.name = "UperFireAttack";  // 총알 이름 변경
+            bullet.GetComponent<Rigidbody>().velocity = direction * u_AttackSpd;  // 탄환 방향 설정
 
             Destroy(bullet, 2.5f);
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f);  // 다음 총알 발사까지 대기
         }
     }
 

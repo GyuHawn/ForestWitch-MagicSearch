@@ -45,7 +45,7 @@ public class MapSetting : MonoBehaviour
 
     void Start()
     {
-        stage = 2;
+        stage = 1;
         StageMapSetting();
     }
      

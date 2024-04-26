@@ -13,6 +13,9 @@ public class Portion : MonoBehaviour
     public int functionNum;
     public Button function;
 
+    public GameObject ex;
+    public Button exBtn;
+
     public GameObject player;
 
     private void Awake()
@@ -36,6 +39,7 @@ public class Portion : MonoBehaviour
         {
             function.onClick.AddListener(HealthPortion);
         }
+        exBtn.onClick.AddListener(ExUI);
     }
 
     void Update()
@@ -77,13 +81,13 @@ public class Portion : MonoBehaviour
         portionSlot.currentPortionNum--;
         int num = Random.Range(0, 2);
 
-        if(num == 0)
+        if (num == 0)
         {
-            playerMovement.currentHealth++;
+            playerMovement.maxHealth += 1;
         }
-        else if(num == 1) 
+        else if (num == 1)
         {
-            playerMovement.currentHealth--;
+            playerMovement.money += 300;
         }
 
         Destroy(gameObject);
@@ -98,5 +102,10 @@ public class Portion : MonoBehaviour
         portionSlot.currentPortionNum--;
         playerMovement.currentHealth += 2;
         Destroy(gameObject);
+    }
+
+    public void ExUI()
+    {
+        ex.SetActive(!ex.gameObject.activeSelf);
     }
 }

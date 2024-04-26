@@ -439,7 +439,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Die()
     {
-        audioManager.DieAudio();
+        audioManager.DefeatAudio();
 
         clearInfor.result = true;
         clearInfor.clearStateText.text = "¾îµÒ¼ÓÀ¸·Î...";

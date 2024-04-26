@@ -27,10 +27,10 @@ public class AudioManager : MonoBehaviour
     public AudioSource fn_Win; // 승리
     public AudioSource fn_GetItem; // 아이템획득
     public AudioSource fn_Clear; // 클리어
-    public AudioSource fn_Die; // 플레이어 사망
     public AudioSource fn_Convert; // 전환
     public AudioSource fn_Cannon; // 대포 발사
     public AudioSource fn_HitMonster; // 대포 발사
+    public AudioSource fn_Defeat; // 대포 발사
 
     // Monster 
     // 불
@@ -123,10 +123,10 @@ public class AudioManager : MonoBehaviour
             fn_Win.volume = fncVolume;
             fn_GetItem.volume = fncVolume;
             fn_Clear.volume = fncVolume;
-            fn_Die.volume = fncVolume;
             fn_Convert.volume = fncVolume;
             fn_Cannon.volume = fncVolume;
             fn_HitMonster.volume = fncVolume;
+            fn_Defeat.volume = fncVolume;
 
             f_Base.volume = monsterVolume;
             f_Cry.volume = monsterVolume;
@@ -190,10 +190,10 @@ public class AudioManager : MonoBehaviour
             fn_Win.volume = f_Slider.value;
             fn_GetItem.volume = f_Slider.value;
             fn_Clear.volume = f_Slider.value;
-            fn_Die.volume = f_Slider.value;
             fn_Convert.volume = f_Slider.value;
             fn_Cannon.volume = f_Slider.value;
             fn_HitMonster.volume = f_Slider.value;
+            fn_Defeat.volume = f_Slider.value;
 
             f_Base.volume = m_Slider.value;
             f_Cry.volume = m_Slider.value;
@@ -332,12 +332,6 @@ public class AudioManager : MonoBehaviour
         currentAudioSource.Play();
     }
 
-    public void DieAudio()
-    {
-        StopCurrentAudio();
-        currentAudioSource = fn_Die;
-        currentAudioSource.Play();
-    }
     public void ConvertAudio()
     {
         StopCurrentAudio();
@@ -351,6 +345,10 @@ public class AudioManager : MonoBehaviour
     public void HitMonsterAudio()
     {
         fn_HitMonster.Play();
+    }
+    public void DefeatAudio()
+    {
+        fn_Defeat.Play();
     }
 
     // 몬스터
@@ -485,10 +483,10 @@ public class AudioManager : MonoBehaviour
         fn_Win.Stop();
         fn_GetItem.Stop();
         fn_Clear.Stop();
-        fn_Die.Stop();
         fn_Convert.Stop();
         fn_Cannon.Stop();
         fn_HitMonster.Stop();
+        fn_Defeat.Stop();
     }
     void StopMonsterAudio()
     {

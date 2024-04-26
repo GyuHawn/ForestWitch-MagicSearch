@@ -167,9 +167,6 @@ public class ClownMonster : MonoBehaviour
             case 2:
                 StartDanceAttack();
                 break;
-            case 3:
-                SummonMonster();
-                break;
         }
     }
 

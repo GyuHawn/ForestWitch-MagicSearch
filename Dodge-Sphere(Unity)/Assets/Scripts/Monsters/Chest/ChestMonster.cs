@@ -63,14 +63,14 @@ public class ChestMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 10;
+        maxHealth = 15;
         currentHealth = maxHealth;
         money = 300;
 
         b_AttackSpd = 10f;
         b_AttackNum = 60;
 
-        bu_AttackSpd = 15f;
+        bu_AttackSpd = 10f;
         bu_AttackNum = 4;
         bu_BulletNum = 10;
 
@@ -78,6 +78,7 @@ public class ChestMonster : MonoBehaviour
         e_BulletNum = 6;
 
         InvokeRepeating("StartPattern", 3f, 9f); // 랜덤 패턴 실행
+        InvokeRepeating("StartEating", 8f, 20f); // 특수 패턴 실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -123,9 +124,9 @@ public class ChestMonster : MonoBehaviour
 
     void StartPattern() // 랜덤 패턴 선택
     {
-        int randomPattern = Random.Range(0, 3);
         if (!Eating)
         {
+        int randomPattern = Random.Range(0, 2);
             switch (randomPattern)
             {
                 case 0:
@@ -134,13 +135,11 @@ public class ChestMonster : MonoBehaviour
                 case 1:
                     StartButtAttack();
                     break;
-                case 2:
-                    StartEatingAttack();
-                    break;
             }
         }
         else
         {
+            int randomPattern = Random.Range(0, 3);
             switch (randomPattern)
             {
                 case 0:
@@ -153,6 +152,17 @@ public class ChestMonster : MonoBehaviour
                     StartCoroutine(EatingAttack());
                     break;
             }
+        }
+    }
+    void StartEating() // 특수 패턴 실행
+    {
+        if (!Eating)
+        {
+            StartEatingAttack();
+        }
+        else
+        {
+            
         }
     }
 
@@ -168,25 +178,26 @@ public class ChestMonster : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        int num = 0;
-        bool pos = true;
-
         for (int j = 0; j < b_AttackNum; j++)
         {
-            num = pos ? 1 : 0;
+            float randomValue = Random.value;
+
+            // 확률에 따라 총알 결정
+            int num = randomValue < 0.7 ? 0 : 1;
+
             b_AttackAngle = Random.Range(135, 226); // 탄환의 각도 계산                                             
             Vector3 direction = Quaternion.Euler(0, b_AttackAngle, 0) * Vector3.forward; // 각도에 따른 방향 계산
             Vector3 bulletPos = new Vector3(transform.position.x, 2f, transform.position.z); // 총알 위치 설정
             GameObject bullet = Instantiate(b_AttackPrefab[num], bulletPos, Quaternion.identity); // 총알 생성
             bullet.name = "BiteAttack"; // 총알 이름 변경         
             bullet.GetComponent<Rigidbody>().velocity = direction * b_AttackSpd; // 탄환 방향 설정
-            pos = pos ? false : true;
 
             Destroy(bullet, 5f); // 2.5초 후 총알 제거
 
             yield return new WaitForSeconds(0.1f);
         }
     }
+
 
     private void StartButtAttack()
     {       
