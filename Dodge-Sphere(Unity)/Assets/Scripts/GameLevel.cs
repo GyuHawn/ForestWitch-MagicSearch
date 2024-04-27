@@ -19,7 +19,7 @@ public class GameLevel : MonoBehaviour
     void Start()
     {
         currentExp = PlayerPrefs.GetInt("GameExp");
-        maxExp = PlayerPrefs.GetInt("MaxExp", 100);
+        maxExp = PlayerPrefs.GetInt("MaxExp", 50);
         gameLevel = PlayerPrefs.GetInt("GameLevel", 1);
     }
 
@@ -47,28 +47,53 @@ public class GameLevel : MonoBehaviour
         {
             cannonLocks[0].SetActive(false);
         }
+        else
+        {
+            cannonLocks[0].SetActive(true);
+        }
+
         if (gameLevel >= 3)
         {
             cannonLocks[1].SetActive(false);
             cannonLocks[2].SetActive(false);
         }
+        else
+        {
+            cannonLocks[1].SetActive(true);
+            cannonLocks[2].SetActive(true);
+        }
+
         if (gameLevel >= 5)
         {
             playerLock.SetActive(false);
         }
+        else
+        {
+            playerLock.SetActive(true);
+        }
+
         if (gameLevel >= 6)
         {
             cannonLocks[3].SetActive(false);
         }
+        else
+        {
+            cannonLocks[3].SetActive(true);
+        }
+
         if (gameLevel >= 8)
         {
             cannonLocks[4].SetActive(false);
+        }
+        else
+        {
+            cannonLocks[4].SetActive(true);
         }
     }
 
     void SettingMaxExp()
     {
-        maxExp = gameLevel * maxExp;
+        maxExp = gameLevel * 50;
         PlayerPrefs.SetInt("MaxExp", maxExp);
     }
 }

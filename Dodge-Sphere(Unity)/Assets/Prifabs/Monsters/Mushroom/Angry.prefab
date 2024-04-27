@@ -64,6 +64,37 @@ Transform:
   - {fileID: 6575400877648507219}
   m_Father: {fileID: 26458993078858801}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2068683083385641361
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3873138600006524142}
+  m_Layer: 0
+  m_Name: HitEffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3873138600006524142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068683083385641361}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99964815, z: -0, w: -0.026525656}
+  m_LocalPosition: {x: 0.035001628, y: 0.94, z: 0.60375005}
+  m_LocalScale: {x: 0.24999997, y: 0.25, z: 0.24999997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4024450875936722751}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2981103966925261611
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +486,7 @@ Transform:
   m_Children:
   - {fileID: 6776881295456915703}
   - {fileID: 3977320349593363810}
+  - {fileID: 3873138600006524142}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4637034278795648513
@@ -490,12 +522,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d780a8ca1cc4b1b41a0b138343dd68ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  monster: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   money: 0
   baseAttackPrefab: {fileID: 8546513216988034696, guid: 0a12caaaa7fe90b47ae2d047a483abc4, type: 3}
-  baseMinAngle: 120
-  baseMaxAngle: 170
   b_AttackSpd: 0
   b_BulletNum: 0
   s_AttackSpd: 0
@@ -503,6 +534,9 @@ MonoBehaviour:
   u_AttackSpd: 20
   u_AttackNum: 10
   u_BulletNum: 10
+  smlie: 0
+  hitEffectPos: {fileID: 2068683083385641361}
+  hitEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
 --- !u!65 &2632756248743213534
 BoxCollider:
   m_ObjectHideFlags: 0

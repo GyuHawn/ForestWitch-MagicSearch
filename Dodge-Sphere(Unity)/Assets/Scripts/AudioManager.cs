@@ -19,6 +19,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource b_Event; // 이벤트
     public AudioSource b_Rest; // 휴식
     public AudioSource b_TileMap; // 타일맵
+    public AudioSource b_Defeat; // 패배
 
     // Function
     public AudioSource fn_Button; // 버튼 (o) 
@@ -30,8 +31,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource fn_Convert; // 전환
     public AudioSource fn_Cannon; // 대포 발사
     public AudioSource fn_HitMonster; // 대포 발사
-    public AudioSource fn_Defeat; // 대포 발사
-
+    
     // Monster 
     // 불
     public AudioSource f_Base;
@@ -116,6 +116,7 @@ public class AudioManager : MonoBehaviour
             b_Rest.volume = bgmVolume;
             b_Story.volume = bgmVolume;
             b_TileMap.volume = bgmVolume;
+            b_Defeat.volume = bgmVolume;
 
             fn_Potion.volume = fncVolume;
             fn_Button.volume = fncVolume;
@@ -126,7 +127,6 @@ public class AudioManager : MonoBehaviour
             fn_Convert.volume = fncVolume;
             fn_Cannon.volume = fncVolume;
             fn_HitMonster.volume = fncVolume;
-            fn_Defeat.volume = fncVolume;
 
             f_Base.volume = monsterVolume;
             f_Cry.volume = monsterVolume;
@@ -167,10 +167,6 @@ public class AudioManager : MonoBehaviour
             fn_Button.volume = f_Slider.value;
 
         }
-        else if (SceneManager.GetActiveScene().name == "Loding")
-        {
-            b_Story.volume = b_Slider.value;
-        }
         else if (SceneManager.GetActiveScene().name == "Game")
         {
             foreach (AudioSource audio in b_Monsters)
@@ -183,6 +179,7 @@ public class AudioManager : MonoBehaviour
             b_Rest.volume = b_Slider.value;
             b_Story.volume = b_Slider.value;
             b_TileMap.volume = b_Slider.value;
+            b_Defeat.volume = b_Slider.value;
 
             fn_Potion.volume = f_Slider.value;
             fn_Button.volume = f_Slider.value;
@@ -193,7 +190,6 @@ public class AudioManager : MonoBehaviour
             fn_Convert.volume = f_Slider.value;
             fn_Cannon.volume = f_Slider.value;
             fn_HitMonster.volume = f_Slider.value;
-            fn_Defeat.volume = f_Slider.value;
 
             f_Base.volume = m_Slider.value;
             f_Cry.volume = m_Slider.value;
@@ -253,7 +249,7 @@ public class AudioManager : MonoBehaviour
         currentAudioSource = b_Loading;
         currentAudioSource.Play();
     }
-
+    
     public void MonsterAudio()
     {
         StopCurrentAudio();
@@ -294,6 +290,13 @@ public class AudioManager : MonoBehaviour
     {
         StopCurrentAudio();
         currentAudioSource = b_TileMap;
+        currentAudioSource.Play();
+    }
+    
+    public void DefeatAudio()
+    {
+        StopCurrentAudio();
+        currentAudioSource = b_Defeat;
         currentAudioSource.Play();
     }
 
@@ -346,10 +349,7 @@ public class AudioManager : MonoBehaviour
     {
         fn_HitMonster.Play();
     }
-    public void DefeatAudio()
-    {
-        fn_Defeat.Play();
-    }
+    
 
     // 몬스터
     // 선인장
@@ -474,6 +474,7 @@ public class AudioManager : MonoBehaviour
         b_Event.Stop();
         b_Rest.Stop();
         b_TileMap.Stop();
+        b_Defeat.Stop();
     }
     void StopFunctionAudio()
     {
@@ -485,8 +486,7 @@ public class AudioManager : MonoBehaviour
         fn_Clear.Stop();
         fn_Convert.Stop();
         fn_Cannon.Stop();
-        fn_HitMonster.Stop();
-        fn_Defeat.Stop();
+        fn_HitMonster.Stop();    
     }
     void StopMonsterAudio()
     {

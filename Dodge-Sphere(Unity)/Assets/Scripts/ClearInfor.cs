@@ -78,10 +78,11 @@ public class ClearInfor : MonoBehaviour
         {
             if (!clear)
             {
+                audioManager.DefeatAudio();
                 ClearUI();
             }
             else
-            {
+            {               
                 if (storyScript.page == 0)
                 {
                     storyScript.story.SetActive(true);
@@ -89,6 +90,7 @@ public class ClearInfor : MonoBehaviour
                 }
                 else if (storyScript.page >= 4)
                 {
+                    audioManager.ClearAudio();
                     ClearUI();
                 }
             }
@@ -96,14 +98,21 @@ public class ClearInfor : MonoBehaviour
         }
         else if (!onStory && result) // 결과창 표시 중
         {
-            ClearUI();
+            if (!clear)
+            {
+                audioManager.DefeatAudio();
+                ClearUI();
+            }
+            else
+            {
+                audioManager.ClearAudio();
+                ClearUI();
+            }     
         }
     }
 
     void ClearUI()
-    {
-        audioManager.ClearAudio();
-
+    {      
         resultUI.SetActive(true);
 
         TotalResults();

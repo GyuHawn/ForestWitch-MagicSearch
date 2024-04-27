@@ -44,6 +44,9 @@ public class ChestMonster : MonoBehaviour
     public GameObject[] EatingPos; // 패턴 생성 위치
     public GameObject EatingPrefab;
 
+    public GameObject hitEffectPos; // 이펙트 위치
+    public GameObject hitEffect; // 피격 이펙트
+
     private Animator anim;
 
     private void Awake()
@@ -109,6 +112,7 @@ public class ChestMonster : MonoBehaviour
         playerMovement.MoveFinalPosition();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
+        playerMovement.bulletNum = 0;
 
         monsterMap.chestMoved = false;
         p_AttackSpawn.spawned = false;
@@ -277,6 +281,7 @@ public class ChestMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
@@ -285,4 +290,10 @@ public class ChestMonster : MonoBehaviour
         }
     }
 
+    IEnumerator HitEffect()
+    {
+        GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+    }
 }

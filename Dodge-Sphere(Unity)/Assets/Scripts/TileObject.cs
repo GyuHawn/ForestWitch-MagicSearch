@@ -65,37 +65,37 @@ public class TileObject : MonoBehaviour
                 // 몬스터 관련
                 if (gameObject.CompareTag("M_Fire")) // 불 몬스터
                 {
-                    mapConvert.ConvertLoading(mapConvert.bossLoading, 3f, 2);
+                    mapConvert.ConvertLoading(mapConvert.bossLoading, 3f, 1);
                     StartCoroutine(CurrentTileNum(5.1f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Cactus")) // 선인장 몬스터
                 {
-                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 0);
                     StartCoroutine(CurrentTileNum(5.2f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Mush")) // 버섯 몬스터
                 {
-                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 0);
                     StartCoroutine(CurrentTileNum(5.3f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Chest")) // 상자 몬스터
                 {
-                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 0);
                     StartCoroutine(CurrentTileNum(5.4f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Beholder")) // 주시자 몬스터
                 {
-                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 1);
+                    mapConvert.ConvertLoading(mapConvert.monsterLoading, 3f, 0);
                     StartCoroutine(CurrentTileNum(5.5f));
                     StartCoroutine(PlayerTileReset());
                 }
                 else if (gameObject.CompareTag("M_Clown")) // 광대 몬스터
                 {
-                    mapConvert.ConvertLoading(mapConvert.bossLoading, 3f, 2);
+                    mapConvert.ConvertLoading(mapConvert.bossLoading, 3f, 1);
                     StartCoroutine(CurrentTileNum(5.6f));
                     StartCoroutine(PlayerTileReset());
                 }

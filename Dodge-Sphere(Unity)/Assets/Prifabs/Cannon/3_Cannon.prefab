@@ -165,6 +165,7 @@ MonoBehaviour:
   shotBulletPrefab: {fileID: 271633862617382463, guid: d565452f81e2b0247917331bf195adc9, type: 3}
   currentBulletText: {fileID: 6290302117472353359}
   bulletSpd: 0
+  shotEffect: {fileID: 8680598818964007281, guid: dcd90c4976197424b9958a7c54b6bb8c, type: 3}
   book: 0
 --- !u!65 &2017622758323746333
 BoxCollider:

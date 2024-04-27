@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameStartScript : MonoBehaviour
 {
     private StoryScript storyScript;
+    private GameLevel gameLevel;
     private AudioManager audioManager;
 
     public GameObject selectWindow;
@@ -37,6 +38,7 @@ public class GameStartScript : MonoBehaviour
     void Awake()
     {
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
+        gameLevel = GameObject.Find("Manager").GetComponent<GameLevel>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -94,9 +96,11 @@ public class GameStartScript : MonoBehaviour
         startSelect.transform.localScale = targetScale;
 
         SelectCharacter();
+
+        startSelect.transform.localScale = new Vector3(1, 1, 1);
     }
 
-    void SelectCharacter()
+    void SelectCharacter() // 선택창 오픈
     {
         if (storyScript.onStory)
         {
@@ -106,6 +110,11 @@ public class GameStartScript : MonoBehaviour
         {
             selectWindow.SetActive(true);
         }
+    }
+
+    public void ExitSelect() // 선택창 나가기
+    {
+        selectWindow.SetActive(false);
     }
 
     public void Player1()
@@ -307,6 +316,10 @@ public class GameStartScript : MonoBehaviour
     public void Reset_O()
     {
         PlayerPrefs.DeleteAll();
+        gameLevel.gameLevel = 0;
+        gameLevel.currentExp = 0;
+        gameLevel.maxExp = 100;
+
         resetBtn.SetActive(true);
         resetUI.SetActive(false);
         settingUI.SetActive(false);

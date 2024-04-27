@@ -54,6 +54,9 @@ public class ClownMonster : MonoBehaviour
 
     public List<GameObject> playerCannons = new List<GameObject>();
 
+    public GameObject hitEffectPos; // 이펙트 위치
+    public GameObject hitEffect; // 피격 이펙트
+
     private Animator anim;
 
     private void Awake()
@@ -91,7 +94,7 @@ public class ClownMonster : MonoBehaviour
 
         InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
         InvokeRepeating("StartBreakAttack", 6f, 15f); // 특수 패턴 1실행
-        InvokeRepeating("SummonMonster", 8f, 30f); // 특수 패턴 2실행
+        InvokeRepeating("SummonMonster", 10f, 30f); // 특수 패턴 2실행
 
         hpBarScript.MoveToYStart(10, 0.5f);
     }
@@ -132,7 +135,8 @@ public class ClownMonster : MonoBehaviour
 
         /* playerMovement.OnTile();
          playerMovement.moveNum = 1;
-         playerMovement.currentTile = 0;*/
+         playerMovement.currentTile = 0;
+         playerMovement.bulletNum = 0;*/
         // playerMovement.PostionReset(); // 플레이어 위치 초기화 (현재 2스테이지가 마지막)
 
         monsterMap.clownMoved = false;
@@ -343,6 +347,7 @@ public class ClownMonster : MonoBehaviour
                 if (bulletComponent != null)
                 {
                     audioManager.HitMonsterAudio();
+                    StartCoroutine(HitEffect());
                     currentHealth -= bulletComponent.damage;
                     hpBarScript.UpdateHP(currentHealth, maxHealth);
                     anim.SetTrigger("Hit");
@@ -356,4 +361,10 @@ public class ClownMonster : MonoBehaviour
         }
     }
 
+    IEnumerator HitEffect()
+    {
+        GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+    }
 }

@@ -39,6 +39,9 @@ public class BeholderMonster : MonoBehaviour
     public int l_AttackNum; // 발사 수
     public float l_AttackAngles; // 발사 각도
 
+    public GameObject hitEffectPos; // 이펙트 위치
+    public GameObject hitEffect; // 피격 이펙트
+
     private Animator anim;
 
     private void Awake()
@@ -100,6 +103,7 @@ public class BeholderMonster : MonoBehaviour
         playerMovement.MoveFinalPosition();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
+        playerMovement.bulletNum = 0;
 
         monsterMap.beholderMoved = false;
         p_AttackSpawn.spawned = false;
@@ -286,6 +290,7 @@ public class BeholderMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth); 
                 anim.SetTrigger("Hit");
@@ -294,4 +299,10 @@ public class BeholderMonster : MonoBehaviour
         }
     }
 
+    IEnumerator HitEffect()
+    {
+        GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+    }
 }

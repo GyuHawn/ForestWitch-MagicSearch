@@ -729,6 +729,37 @@ Transform:
   - {fileID: 1424539567218440058}
   m_Father: {fileID: 6215429397105537063}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5083030346409419284
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7481393162659021050}
+  m_Layer: 0
+  m_Name: HitEffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7481393162659021050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5083030346409419284}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99964815, z: -0, w: -0.026525656}
+  m_LocalPosition: {x: 0.040001858, y: 2, z: 0.69}
+  m_LocalScale: {x: 0.2857143, y: 0.28571424, z: 0.2857143}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 289000019445038550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5192954030451892847
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1602,7 @@ Transform:
   m_Children:
   - {fileID: 293090663742646433}
   - {fileID: 1984062970898629583}
+  - {fileID: 7481393162659021050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &631592676295696259
@@ -1627,7 +1659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62c20bf602a150c48990a17d8947f8bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarScript: {fileID: 0}
   maxHealth: 0
   currentHealth: 0
   money: 0
@@ -1639,9 +1670,11 @@ MonoBehaviour:
   faintAttackPrefab: {fileID: 3367651039751112429, guid: 579b8ab60036b084db4fff496253013a, type: 3}
   f_AttackSpd: 0
   f_AttackNum: 0
-  bu_AttackSpd: 0
-  bu_AttackNum: 0
-  bu_AttackAngles: 0
+  l_AttackSpd: 0
+  l_AttackNum: 0
+  l_AttackAngles: 0
+  hitEffectPos: {fileID: 5083030346409419284}
+  hitEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
 --- !u!1 &9097417123635208909
 GameObject:
   m_ObjectHideFlags: 0

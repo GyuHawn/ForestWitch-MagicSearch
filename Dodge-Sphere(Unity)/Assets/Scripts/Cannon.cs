@@ -22,6 +22,8 @@ public class Cannon : MonoBehaviour
     public TMP_Text currentBulletText; // 현재 총알 상태 텍스트
     public float bulletSpd; // 총알의 속도
 
+    public GameObject shotEffect; // 발사 이펙트
+
     // 아이템 관련
     public bool book;
 
@@ -146,9 +148,16 @@ public class Cannon : MonoBehaviour
         ready = false;
         currentBullet = 0;
         audioManager.CannonAudio();
+        StartCoroutine(ShotEffect());
         shotBullet = Instantiate(shotBulletPrefab, shotPos.transform.position, Quaternion.identity);
     }
 
+    IEnumerator ShotEffect()
+    {
+        GameObject effect = Instantiate(shotEffect, shotPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+    }
     void AttackMonster()
     {
         // 모든 몬스터를 찾습니다.

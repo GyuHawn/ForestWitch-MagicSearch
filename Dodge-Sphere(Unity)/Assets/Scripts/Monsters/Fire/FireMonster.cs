@@ -46,6 +46,9 @@ public class FireMonster : MonoBehaviour
     public float r_AttackSpd; // 총알 속도
     public int r_AttackNum; // 발사 수
 
+    public GameObject hitEffectPos; // 이펙트 위치
+    public GameObject hitEffect; // 피격 이펙트
+
     private Animator anim;
 
     private void Awake()
@@ -116,6 +119,7 @@ public class FireMonster : MonoBehaviour
         playerMovement.OnTile();
         playerMovement.moveNum = 1;
         playerMovement.currentTile = 0;
+        playerMovement.bulletNum = 0;
         playerMovement.PostionReset(); // 플레이어 위치 초기화
 
         monsterMap.fireMoved = false;
@@ -317,6 +321,7 @@ public class FireMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
@@ -325,4 +330,10 @@ public class FireMonster : MonoBehaviour
         }
     }
 
+    IEnumerator HitEffect()
+    {
+        GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+    }
 } 

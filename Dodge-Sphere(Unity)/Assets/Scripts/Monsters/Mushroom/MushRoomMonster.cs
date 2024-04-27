@@ -41,6 +41,9 @@ public class MushRoomMonster : MonoBehaviour
 
     public bool smlie; // smlie - true, angry - false (몬스터 확인)
 
+    public GameObject hitEffectPos; // 이펙트 위치
+    public GameObject hitEffect; // 피격 이펙트
+
     private Animator anim;
 
     private void Awake()
@@ -116,6 +119,7 @@ public class MushRoomMonster : MonoBehaviour
             playerMovement.MoveFinalPosition();
             playerMovement.moveNum = 1;
             playerMovement.currentTile = 0;
+            playerMovement.bulletNum = 0;
 
             monsterMap.mushMoved = false;
             p_AttackSpawn.spawned = false;
@@ -275,12 +279,19 @@ public class MushRoomMonster : MonoBehaviour
             if (bulletComponent != null)
             {
                 audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }
             Destroy(collision.gameObject);
-        } 
+        }
     }
 
+    IEnumerator HitEffect()
+    {
+        GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(effect);
+    }
 }

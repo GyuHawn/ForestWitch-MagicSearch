@@ -320,6 +320,7 @@ Transform:
   - {fileID: 8517718118304475969}
   - {fileID: 6038600571677408313}
   - {fileID: 3027025081652619915}
+  - {fileID: 9014043085543021753}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6501740764353151865
@@ -399,6 +400,8 @@ MonoBehaviour:
   - {fileID: 988899388230403664}
   - {fileID: 1730972561206805129}
   EatingPrefab: {fileID: 8039542041357813298, guid: 888eb849b0d43f940907541078a7b2af, type: 3}
+  hitEffectPos: {fileID: 5451975723098782191}
+  hitEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
 --- !u!1 &2387615623656090409
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +799,37 @@ Transform:
   m_Children:
   - {fileID: 1400004193747742630}
   m_Father: {fileID: 3080866953498734161}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5451975723098782191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9014043085543021753}
+  m_Layer: 0
+  m_Name: HitEffectPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9014043085543021753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5451975723098782191}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.99964815, z: -0, w: -0.026525656}
+  m_LocalPosition: {x: 0.035001628, y: 1.31, z: 0.60375005}
+  m_LocalScale: {x: 0.24999997, y: 0.25, z: 0.24999997}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1515299946185565867}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6513486306139913849
 GameObject:
