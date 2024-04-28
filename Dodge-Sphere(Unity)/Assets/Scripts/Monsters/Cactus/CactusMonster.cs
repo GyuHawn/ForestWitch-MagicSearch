@@ -12,6 +12,7 @@ public class CactusMonster : MonoBehaviour
     private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private MapSetting mapSetting;
     private AudioManager audioManager;
 
     // ±‚∫ª Ω∫≈»
@@ -56,6 +57,7 @@ public class CactusMonster : MonoBehaviour
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
+        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -65,7 +67,7 @@ public class CactusMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 10;
+        maxHealth = 10 + (mapSetting.adventLevel * 5);
         currentHealth = maxHealth;
         money = 200;
 

@@ -6,6 +6,7 @@ public class GameStartScript : MonoBehaviour
 {
     private StoryScript storyScript;
     private GameLevel gameLevel;
+    private AdventureLevel adventureLevel;
     private AudioManager audioManager;
 
     public GameObject selectWindow;
@@ -39,6 +40,7 @@ public class GameStartScript : MonoBehaviour
     {
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
         gameLevel = GameObject.Find("Manager").GetComponent<GameLevel>();
+        adventureLevel = GameObject.Find("Manager").GetComponent<AdventureLevel>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -319,6 +321,11 @@ public class GameStartScript : MonoBehaviour
         gameLevel.gameLevel = 0;
         gameLevel.currentExp = 0;
         gameLevel.maxExp = 100;
+
+        adventureLevel.currentLevel = 1;
+        PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
+        adventureLevel.maxLevel = 1;
+        PlayerPrefs.SetInt("MaxAdventLevel", adventureLevel.maxLevel);
 
         resetBtn.SetActive(true);
         resetUI.SetActive(false);

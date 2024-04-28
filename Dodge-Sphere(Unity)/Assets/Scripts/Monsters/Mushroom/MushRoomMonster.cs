@@ -12,6 +12,7 @@ public class MushRoomMonster : MonoBehaviour
     private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private MapSetting mapSetting;
     private AudioManager audioManager;
 
     public GameObject monster;
@@ -53,6 +54,7 @@ public class MushRoomMonster : MonoBehaviour
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
+        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -62,7 +64,7 @@ public class MushRoomMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 6;
+        maxHealth = 6 + (mapSetting.adventLevel * 5);
         currentHealth = maxHealth;
         money = 150;
         

@@ -12,6 +12,9 @@ public class PlayerMovement : MonoBehaviour
     private MapSetting mapSetting;
     private AudioManager audioManager;
 
+    public FixedJoystick fixedJoyStick;
+    public GameObject joyStick;
+
     // 캐릭터 확인
     public int playerNum; // 1 = 검정, 2 = 파랑
 
@@ -186,6 +189,8 @@ public class PlayerMovement : MonoBehaviour
 
         if ((currentTile < 5 && !game) && (!isShop || !isRest || !isItem || !isEvent || !nextStage))
         {
+            joyStick.SetActive(false);
+
             if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
             {
                 monsterMap.monsterNum = 1;
@@ -226,6 +231,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (!faint) // 기절시 이동불가
             {
+                joyStick.SetActive(true);
                 // 키보드 이동 기능
                 GetInput();
                 Move();
@@ -415,10 +421,10 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // 전투중 이동 관련
-    private void GetInput()
+    private void GetInput() // 조이스틱 입력 값 받기
     {
-        hAxis = Input.GetAxisRaw("Horizontal");
-        vAxis = Input.GetAxisRaw("Vertical");
+        hAxis = fixedJoyStick.Horizontal;
+        vAxis = fixedJoyStick.Vertical;
 
         moveVec = new Vector3(hAxis, 0, vAxis);
     }

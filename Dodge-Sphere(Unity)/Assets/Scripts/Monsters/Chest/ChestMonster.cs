@@ -14,6 +14,7 @@ public class ChestMonster : MonoBehaviour
     private MapSetting monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private MapSetting mapSetting;
     private AudioManager audioManager;
 
     // ±‚∫ª Ω∫≈»
@@ -57,6 +58,7 @@ public class ChestMonster : MonoBehaviour
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
         getMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
         monsterGetMoney = GameObject.Find("Manager").GetComponent<MapSetting>();
+        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>(); 
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
@@ -66,7 +68,7 @@ public class ChestMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 15;
+        maxHealth = 15 + (mapSetting.adventLevel * 5);
         currentHealth = maxHealth;
         money = 300;
 

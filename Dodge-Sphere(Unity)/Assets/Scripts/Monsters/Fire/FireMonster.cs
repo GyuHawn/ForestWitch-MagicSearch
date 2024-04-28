@@ -70,7 +70,7 @@ public class FireMonster : MonoBehaviour
         anim = GetComponent<Animator>();
         anim.SetTrigger("Spawn");
 
-        maxHealth = 15;
+        maxHealth = 15 + (mapSetting.adventLevel * 5);
         currentHealth = maxHealth;
         money = 300;
 

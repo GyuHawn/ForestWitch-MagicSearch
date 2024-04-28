@@ -6,10 +6,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
+using System.Diagnostics.Tracing;
 
 public class MapSetting : MonoBehaviour
 {
     public int stage; // 현재 스테이지
+    public int adventLevel; // 모험 레벨;
 
     public GameObject[] tiles; // 셋팅할 타일
     public List<GameObject> empyTiles = new List<GameObject>(); // 생성한 빈 타일 오브젝트
@@ -46,6 +48,7 @@ public class MapSetting : MonoBehaviour
     void Start()
     {
         stage = 1;
+        adventLevel = PlayerPrefs.GetInt("AdventLevel", 1);
         StageMapSetting();
     }
      
