@@ -108,12 +108,12 @@ public class PlayerMovement : MonoBehaviour
         if (playerNum == 1)
         {
             maxHealth = 10;
-            moveSpd = 5;
+            moveSpd = 6;
         }
         else if(playerNum == 2)
         {
             maxHealth = 8;
-            moveSpd = 6;
+            moveSpd = 8;
         }
        
         rotateSpd = 3f;
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // UI ≈ÿΩ∫∆Æ
-        healthText.text = currentHealth + " / " + maxHealth.ToString();
+        healthText.text = currentHealth.ToString() + " / " + maxHealth.ToString();
         spdText.text = moveSpd.ToString();
         moneyText.text = "$ " + money.ToString();
 

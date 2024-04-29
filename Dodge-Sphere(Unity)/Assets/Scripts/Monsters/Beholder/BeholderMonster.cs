@@ -61,7 +61,7 @@ public class BeholderMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 20 + (mapSetting.adventLevel * 5);
+        maxHealth = 15 + (mapSetting.adventLevel * 3);
         currentHealth = maxHealth;
         money = 300;
 

@@ -67,7 +67,7 @@ public class CactusMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 10 + (mapSetting.adventLevel * 5);
+        maxHealth = 7 + (mapSetting.adventLevel * 3);
         currentHealth = maxHealth;
         money = 200;
 

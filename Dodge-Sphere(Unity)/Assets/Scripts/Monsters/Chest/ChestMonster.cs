@@ -68,7 +68,7 @@ public class ChestMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 15 + (mapSetting.adventLevel * 5);
+        maxHealth = 10 + (mapSetting.adventLevel * 3);
         currentHealth = maxHealth;
         money = 300;
 

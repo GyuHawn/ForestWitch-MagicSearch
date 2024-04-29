@@ -53,14 +53,14 @@ public class CameraMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        offset = new Vector3(0, 21f, -0.5f);
+        offset = new Vector3(0, 21f, -0.95f);
         transform.position = player.transform.position + offset;
     }
     IEnumerator Stage2MonsterCamera()
     {
         yield return new WaitForSeconds(2);
 
-        offset = new Vector3(0, 25f, -0.5f);
+        offset = new Vector3(0.4f, 25f, -0.5f);
         transform.position = player.transform.position + offset;
     }
 }

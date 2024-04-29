@@ -76,7 +76,7 @@ public class ClownMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 30 + (mapSetting.adventLevel * 5);
+        maxHealth = 20 + (mapSetting.adventLevel * 3);
         currentHealth = maxHealth;
         money = 300;
 

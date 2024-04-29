@@ -64,7 +64,7 @@ public class MushRoomMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 6 + (mapSetting.adventLevel * 5);
+        maxHealth = 5 + (mapSetting.adventLevel * 3);
         currentHealth = maxHealth;
         money = 150;
         
