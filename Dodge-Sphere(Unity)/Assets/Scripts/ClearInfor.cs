@@ -58,6 +58,8 @@ public class ClearInfor : MonoBehaviour
     public bool onStory;
     public bool clear; // 클리어 여부
 
+    public int gameLevel;
+
     private void Awake()
     {
         timeManager = GameObject.Find("Manager").GetComponent<TimeManager>();
@@ -68,6 +70,7 @@ public class ClearInfor : MonoBehaviour
 
     void Start()
     {
+        gameLevel = PlayerPrefs.GetInt("GameExp");
         onStory = PlayerPrefs.GetInt("Story") == 1 ? true : false;
     }
 
@@ -150,7 +153,7 @@ public class ClearInfor : MonoBehaviour
         // 총합 표시
         totalScoreText.text = totalScore.ToString();
 
-        PlayerPrefs.SetInt("GameExp", totalScore);
+        PlayerPrefs.SetInt("GameExp", gameLevel + totalScore);
 
         result = false;
     }
