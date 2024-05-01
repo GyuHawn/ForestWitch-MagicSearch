@@ -18,6 +18,8 @@ public class PlayerSkill : MonoBehaviour
     public float reLoadTime;
     public float purificatTime;
 
+    public GameObject purificatEffect;
+
     void Start()
     {
         playerNum = PlayerPrefs.GetInt("Player");
@@ -91,6 +93,9 @@ public class PlayerSkill : MonoBehaviour
             // 찾은 총알 제거
             foreach (GameObject bullet in bullets)
             {
+                GameObject effect = Instantiate(purificatEffect, bullet.transform.position, Quaternion.identity);
+                
+                Destroy(effect, 1f);
                 Destroy(bullet);
             }
             

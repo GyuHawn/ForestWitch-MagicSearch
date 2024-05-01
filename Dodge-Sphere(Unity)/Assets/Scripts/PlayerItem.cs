@@ -94,6 +94,8 @@ public class PlayerItem : MonoBehaviour
 
     public GameObject player;
 
+    public GameObject bagUI;
+
     private void Awake()
     {
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
@@ -454,5 +456,19 @@ public class PlayerItem : MonoBehaviour
 
         // 아이템 기능
         playerMovement.sword = true;
+    }
+
+    public void OpenBagUI()
+    {
+        RectTransform rectTransform = bagUI.GetComponent<RectTransform>();
+
+        if (rectTransform.anchoredPosition.y < 100)
+        {
+            rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 200);
+        }
+        else
+        {
+            rectTransform.anchoredPosition = new Vector2(rectTransform.anchoredPosition.x, 0);
+        }
     }
 }
