@@ -158,7 +158,7 @@ public class Cannon : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         Destroy(effect);
     }
-    void AttackMonster()
+    public void AttackMonster()
     {
         // 모든 몬스터를 찾습니다.
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");

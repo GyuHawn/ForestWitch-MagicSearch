@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     public int bulletNum;
     public TMP_Text bulletNumText;
 
+    public GameObject extraAttack; // 투사체 공격 
+
     // 기타
     public int money;
     public bool faint; // 기절여부

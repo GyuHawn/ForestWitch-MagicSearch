@@ -15,7 +15,7 @@ C:/Users/Kim/Desktop/Project/Dodge-Sphere/Dodge-Sphere(Unity)
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-63200
+51682
 Successfully changed project path to: C:/Users/Kim/Desktop/Project/Dodge-Sphere/Dodge-Sphere(Unity)
 C:/Users/Kim/Desktop/Project/Dodge-Sphere/Dodge-Sphere(Unity)
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ C:/Users/Kim/Desktop/Project/Dodge-Sphere/Dodge-Sphere(Unity)
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [11356] Host "[IP] 118.41.96.221 [Port] 0 [Flags] 2 [Guid] 1908049659 [EditorId] 1908049659 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-5MEC467) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [1200] Host "[IP] 118.41.96.229 [Port] 0 [Flags] 2 [Guid] 3768136360 [EditorId] 3768136360 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-5MEC467) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [11356] Host "[IP] 118.41.96.221 [Port] 0 [Flags] 2 [Guid] 1908049659 [EditorId] 1908049659 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-5MEC467) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [1200] Host "[IP] 118.41.96.229 [Port] 0 [Flags] 2 [Guid] 3768136360 [EditorId] 3768136360 [Version] 1048832 [Id] WindowsEditor(7,DESKTOP-5MEC467) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 3 workers.
-Refreshing native plugins compatible for Editor in 35.02 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 25.48 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.14f1 (eff2de9070d8)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/Resources/UnitySubsystems
@@ -72,47 +72,47 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56176
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56284
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.046299 seconds.
-- Loaded All Assemblies, in  0.819 seconds
+Registered in 0.034715 seconds.
+- Loaded All Assemblies, in  0.568 seconds
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 623 ms
+Android Extension - Scanning For ADB Devices 410 ms
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.156 seconds
-Domain Reload Profiling: 1965ms
-	BeginReloadAssembly (240ms)
+- Finished resetting the current domain, in  0.789 seconds
+Domain Reload Profiling: 1350ms
+	BeginReloadAssembly (193ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (62ms)
-	RebuildNativeTypeToScriptingClass (18ms)
-	initialDomainReloadingComplete (161ms)
-	LoadAllAssembliesAndSetupDomain (327ms)
-		LoadAssemblies (234ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (14ms)
+	initialDomainReloadingComplete (114ms)
+	LoadAllAssembliesAndSetupDomain (194ms)
+		LoadAssemblies (187ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (321ms)
-			TypeCache.Refresh (319ms)
-				TypeCache.ScanAssembly (295ms)
+		AnalyzeDomain (190ms)
+			TypeCache.Refresh (188ms)
+				TypeCache.ScanAssembly (170ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (1156ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (789ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1064ms)
+		SetupLoadedEditorAssemblies (724ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (816ms)
-			SetLoadedEditorAssemblies (5ms)
+			InitializePlatformSupportModulesInManaged (547ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (3ms)
-			ProcessInitializeOnLoadAttributes (144ms)
-			ProcessInitializeOnLoadMethodAttributes (95ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (111ms)
+			ProcessInitializeOnLoadMethodAttributes (60ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -120,8 +120,8 @@ Domain Reload Profiling: 1965ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  1.325 seconds
-Refreshing native plugins compatible for Editor in 12.48 ms, found 3 plugins.
+- Loaded All Assemblies, in  1.004 seconds
+Refreshing native plugins compatible for Editor in 9.17 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Package Manager log level set to [2]
@@ -129,47 +129,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.110 seconds
-Domain Reload Profiling: 2421ms
-	BeginReloadAssembly (322ms)
+- Finished resetting the current domain, in  0.803 seconds
+Domain Reload Profiling: 1797ms
+	BeginReloadAssembly (259ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (10ms)
+		DisableScriptedObjects (7ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (31ms)
-	RebuildCommonClasses (65ms)
-	RebuildNativeTypeToScriptingClass (19ms)
-	initialDomainReloadingComplete (94ms)
-	LoadAllAssembliesAndSetupDomain (809ms)
-		LoadAssemblies (702ms)
+		CreateAndSetChildDomain (24ms)
+	RebuildCommonClasses (49ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (70ms)
+	LoadAllAssembliesAndSetupDomain (600ms)
+		LoadAssemblies (551ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (327ms)
-			TypeCache.Refresh (291ms)
-				TypeCache.ScanAssembly (263ms)
-			ScanForSourceGeneratedMonoScriptInfo (24ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (1111ms)
+		AnalyzeDomain (232ms)
+			TypeCache.Refresh (206ms)
+				TypeCache.ScanAssembly (186ms)
+			ScanForSourceGeneratedMonoScriptInfo (18ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (804ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (844ms)
+		SetupLoadedEditorAssemblies (606ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (58ms)
+			InitializePlatformSupportModulesInManaged (42ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (131ms)
-			ProcessInitializeOnLoadAttributes (583ms)
-			ProcessInitializeOnLoadMethodAttributes (35ms)
-			AfterProcessingInitializeOnLoad (32ms)
+			BeforeProcessingInitializeOnLoad (98ms)
+			ProcessInitializeOnLoadAttributes (407ms)
+			ProcessInitializeOnLoadMethodAttributes (26ms)
+			AfterProcessingInitializeOnLoad (27ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (29ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.09 seconds
-Refreshing native plugins compatible for Editor in 13.29 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (21ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 13.58 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3247 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 67 unused Assets / (5.2 MB). Loaded Objects now: 3691.
-Memory consumption went from 167.3 MB to 162.1 MB.
-Total: 7.709200 ms (FindLiveObjects: 0.323000 ms CreateObjectMapping: 0.439200 ms MarkObjects: 3.658400 ms  DeleteObjects: 3.287600 ms)
+Unloading 3250 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 67 unused Assets / (5.2 MB). Loaded Objects now: 3695.
+Memory consumption went from 167.8 MB to 162.6 MB.
+Total: 5.184200 ms (FindLiveObjects: 0.258000 ms CreateObjectMapping: 0.198900 ms MarkObjects: 2.196100 ms  DeleteObjects: 2.530500 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -186,905 +186,38 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 185486.137613 seconds.
-  path: Assets/aa.fbx
-  artifactKey: Guid(640cca42117c70f42ba371d958864fc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/aa.fbx using Guid(640cca42117c70f42ba371d958864fc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45cf94e9ba089277c35e1ef6a35a5f2a') in 0.222678 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 8
-========================================================================
-Received Import Request.
-  Time since last request: 4.601683 seconds.
-  path: Assets/Scenes/Game.unity
-  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Game.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1d2154702e171fef02ed675b38d1a32') in 0.000856 seconds
+  Time since last request: 5006.426568 seconds.
+  path: Assets/Scripts/Ability.cs
+  artifactKey: Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ability.cs using Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c91b28f8166038f6c16dbe4fd89384e5') in 0.002650 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 26.301331 seconds.
-  path: Assets/Materials/New Material.mat
-  artifactKey: Guid(f5c87ab3a1ccf79459b6f9c89fe40ced) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Materials/New Material.mat using Guid(f5c87ab3a1ccf79459b6f9c89fe40ced) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb5e504eda0ab9284e0f46d82f61dcf7') in 0.021808 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 536.352338 seconds.
-  path: Assets/Acorn Bringer Assets
-  artifactKey: Guid(b539aa951b196524990a1a365e57df03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets using Guid(b539aa951b196524990a1a365e57df03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07eb6cbcf4cff5ee9c73a9f6e62c190f') in 0.000962 seconds
+  Time since last request: 171.171701 seconds.
+  path: Assets/Scripts/Ability.cs
+  artifactKey: Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ability.cs using Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e24c1d777918e5c036cbf4ea9f42ec2c') in 0.001352 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 0.529962 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature
-  artifactKey: Guid(db57ce11c82f41f4e9c7c5f5a27d1b2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature using Guid(db57ce11c82f41f4e9c7c5f5a27d1b2e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cef3c6d3cfca67f69eb0231ea383d210') in 0.000714 seconds
+  Time since last request: 40.038922 seconds.
+  path: Assets/Scripts/Ability.cs
+  artifactKey: Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ability.cs using Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc426b965bcec64ee280378aa377027c') in 0.000767 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
 Received Import Request.
-  Time since last request: 1.270878 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs
-  artifactKey: Guid(734d6f70fd138b545bacb0f06eeb14ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs using Guid(734d6f70fd138b545bacb0f06eeb14ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '367ff8eb043f9066e860225e6db7ec85') in 0.000688 seconds
+  Time since last request: 43.463903 seconds.
+  path: Assets/Scripts/Ability.cs
+  artifactKey: Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Ability.cs using Guid(c0dd729b10b564644b648187c908b663) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a35013e1cd47d9da3525edb9fc2530c') in 0.000816 seconds
 Number of updated asset objects reloaded before import = 0
 Number of asset objects unloaded after import = 0
 ========================================================================
-Received Import Request.
-  Time since last request: 0.066575 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Bird1.prefab
-  artifactKey: Guid(22e82e37709fde34fb65a2fd28fbfb05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Bird1.prefab using Guid(22e82e37709fde34fb65a2fd28fbfb05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc192303e071e7b447e21bfc6740c84d') in 0.030690 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 52
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Turtle.prefab
-  artifactKey: Guid(d2d67fda15fa26342932fffde03aeb05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Turtle.prefab using Guid(d2d67fda15fa26342932fffde03aeb05) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afe4efc9b7c20fa19a0d65eabddb1287') in 0.021905 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 76
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_LiliPad.prefab
-  artifactKey: Guid(c9bb692f8b5490743a59d75a7995b81c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_LiliPad.prefab using Guid(c9bb692f8b5490743a59d75a7995b81c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef52068ac7ea8002a47b0bb27184b426') in 0.028365 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Moss.prefab
-  artifactKey: Guid(7ec466256a501e14795a1a854764502d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Moss.prefab using Guid(7ec466256a501e14795a1a854764502d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0936c4b685ac620b0febea5a936420ce') in 0.021269 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Butterfly.prefab
-  artifactKey: Guid(18b8af6b3106d4940a5e534dc18c0344) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Butterfly.prefab using Guid(18b8af6b3106d4940a5e534dc18c0344) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '47363490147fe7a18f246a3a907402f0') in 0.019366 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 32
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_MushroomShelf.prefab
-  artifactKey: Guid(08149d62d2ddb9e4293bf2bad1d446fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_MushroomShelf.prefab using Guid(08149d62d2ddb9e4293bf2bad1d446fc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78b8bf6dbcf9b43aceafb87f7cb6227c') in 0.021930 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Fish.prefab
-  artifactKey: Guid(925bc3fd925fd0c4c80d7e83b67ba239) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Fish.prefab using Guid(925bc3fd925fd0c4c80d7e83b67ba239) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d95542f0320883f13849157fa6abaf0') in 0.018473 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 56
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_MossRocks2.prefab
-  artifactKey: Guid(68e8c0f1e23f3f74781154a91fcce3aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_MossRocks2.prefab using Guid(68e8c0f1e23f3f74781154a91fcce3aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99adcb6352694e0884c5e2b012fa4825') in 0.021491 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_LiliBlossom.prefab
-  artifactKey: Guid(e896a7f6f83380b40972e13f5039022a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_LiliBlossom.prefab using Guid(e896a7f6f83380b40972e13f5039022a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '24772a64366ba950f09157bb62525ec5') in 0.020611 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Feather.prefab
-  artifactKey: Guid(4df1317252ba49e428648a61c57ab69b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Feather.prefab using Guid(4df1317252ba49e428648a61c57ab69b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e25f2187c626551fc97d929b9bf6001') in 0.022184 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Rock1.prefab
-  artifactKey: Guid(e86571f2f1251004b98a744302eca0b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Rock1.prefab using Guid(e86571f2f1251004b98a744302eca0b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a75ecfeffe907cd26809bdc41a4ccd3') in 0.024192 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Rock2.prefab
-  artifactKey: Guid(571fddfa4a0c30543815e196fbf20d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Rock2.prefab using Guid(571fddfa4a0c30543815e196fbf20d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9102c92543f13ec021746a6551525b6c') in 0.021708 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_SmallRocks.prefab
-  artifactKey: Guid(8bf68561aec61914b8418e72b44a57dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_SmallRocks.prefab using Guid(8bf68561aec61914b8418e72b44a57dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7621e532af338420551e53b9ce4f42cb') in 0.023328 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Bird2.prefab
-  artifactKey: Guid(6d8c53370341c254eb80f72f77a48dab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Bird2.prefab using Guid(6d8c53370341c254eb80f72f77a48dab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de1677eb4c493c10c4f448c75254ad80') in 0.021238 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 66
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_CupedLiliPad.prefab
-  artifactKey: Guid(6509fae381cd4c948b676c8e4f384984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_CupedLiliPad.prefab using Guid(6509fae381cd4c948b676c8e4f384984) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a4bb9ca3bcbfd55f39ffa4281c18798') in 0.023077 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Leaf.prefab
-  artifactKey: Guid(8ae7718c33e89b042b204b36902c7745) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Leaf.prefab using Guid(8ae7718c33e89b042b204b36902c7745) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f0ac3077198941f0d5f87f56261c757') in 0.021836 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Mushroom.prefab
-  artifactKey: Guid(c72f3f8a9daab2442b7dd148c087d333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Mushroom.prefab using Guid(c72f3f8a9daab2442b7dd148c087d333) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c80913f6038ee0ff45ac909bdb9e1c1f') in 0.023197 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_MossRocks1.prefab
-  artifactKey: Guid(55ffe20335c698d4fbf469301e953712) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_MossRocks1.prefab using Guid(55ffe20335c698d4fbf469301e953712) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83f918d5852e504ccef3d46ea933e1d9') in 0.022168 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Grass.prefab
-  artifactKey: Guid(065211b13cf2c0b45a7ad739ba6e8cc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Grass.prefab using Guid(065211b13cf2c0b45a7ad739ba6e8cc2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1833161175dc9dd7b37e616908fb273e') in 0.024660 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Squirrel.prefab
-  artifactKey: Guid(4a7d6cee9f1328e468c9f485779e2c20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SCharacter_Squirrel.prefab using Guid(4a7d6cee9f1328e468c9f485779e2c20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eabf51becd95d8d12c47b1781a979b18') in 0.021996 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 92
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Stick.prefab
-  artifactKey: Guid(be267edc7fa1b284ca7ab194ee3d831e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Stick.prefab using Guid(be267edc7fa1b284ca7ab194ee3d831e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '304a36c61147eb67d7cc5b3b142fd996') in 0.031625 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_StickBlack.prefab
-  artifactKey: Guid(f900edf8c5b608246b6a17324ef82ac0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_StickBlack.prefab using Guid(f900edf8c5b608246b6a17324ef82ac0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2467f70612cb5d008fb6b9a780e7ec5') in 0.022190 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Sapling.prefab
-  artifactKey: Guid(6b14d45548d47914088fc51496a20a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Sapling.prefab using Guid(6b14d45548d47914088fc51496a20a8e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4117647a5192527a3caf3dd7a1255c2') in 0.023711 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.724290 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Tree.prefab
-  artifactKey: Guid(fac5acd5ad489214781636c608a0c628) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_Tree.prefab using Guid(fac5acd5ad489214781636c608a0c628) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8d593aea59f3e52a87f029d93582354') in 0.020938 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_WaterSkipper.prefab
-  artifactKey: Guid(02defc480a8cb6149bac21f1e89e943d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Prefabs/SNature_WaterSkipper.prefab using Guid(02defc480a8cb6149bac21f1e89e943d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee4bded58e8a06226c7e3fe4fd180317') in 0.024740 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 9
-========================================================================
-Received Import Request.
-  Time since last request: 3.430019 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes
-  artifactKey: Guid(8e90614639c9eb24bb798faf5c897541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes using Guid(8e90614639c9eb24bb798faf5c897541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d16b2c451f5e47d896bfe2e5e495071') in 0.000692 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.072088 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Bird1.fbx
-  artifactKey: Guid(175febab25a133545bb941cb948a5bf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Bird1.fbx using Guid(175febab25a133545bb941cb948a5bf3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc17c4667efac48e605e0745bda5515c') in 0.033021 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 52
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Rock1.fbx
-  artifactKey: Guid(6bed97e2c18df9e4baac2a95b3d34c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Rock1.fbx using Guid(6bed97e2c18df9e4baac2a95b3d34c83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '895a1b8d1ddf159440b0cfbdeeb0a753') in 0.026818 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_LiliBlossom.fbx
-  artifactKey: Guid(d7f8620520fd6ee48a4b15508478f20d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_LiliBlossom.fbx using Guid(d7f8620520fd6ee48a4b15508478f20d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bc087a58867e048320e145268c14cdc5') in 0.029899 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Sapling.fbx
-  artifactKey: Guid(1d1d0cda0df6701408ad5bd34aeb10bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Sapling.fbx using Guid(1d1d0cda0df6701408ad5bd34aeb10bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99d8ccfbe3d43d1e35c84da416deb35b') in 0.026023 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Rock2.fbx
-  artifactKey: Guid(6b717b9714264374b91094e366e3f0d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Rock2.fbx using Guid(6b717b9714264374b91094e366e3f0d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b78016876bde89a2a645fe6de8aff02') in 0.025832 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Leaf.fbx
-  artifactKey: Guid(0a2b60bf1f57eba4d8ad3bd4ce5d40d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Leaf.fbx using Guid(0a2b60bf1f57eba4d8ad3bd4ce5d40d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c777867ebb1e5442a01a6718e21eab19') in 0.023690 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Squirrel.fbx
-  artifactKey: Guid(265ee6fac4cc17345b23403e90e2ba45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Squirrel.fbx using Guid(265ee6fac4cc17345b23403e90e2ba45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0adc997d72aae81af4e554c42a2d881') in 0.032959 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 93
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Grass.fbx
-  artifactKey: Guid(874441ba3a3a1044f965525a5140ad60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Grass.fbx using Guid(874441ba3a3a1044f965525a5140ad60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd524f19d7fed6c371e386aceae70a718') in 0.022356 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_CupedLiliPad.fbx
-  artifactKey: Guid(08ed5ad3b4dbf5f4490ddd7a94dfb7ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_CupedLiliPad.fbx using Guid(08ed5ad3b4dbf5f4490ddd7a94dfb7ef) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0dbdb95550558c4014eb74702c917cc0') in 0.021581 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_SmallRocks.fbx
-  artifactKey: Guid(978214a9b04de8344a1099ebe113b6b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_SmallRocks.fbx using Guid(978214a9b04de8344a1099ebe113b6b2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c152e92ebcc63a444e61222c1def779e') in 0.021479 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_MushroomShelf.fbx
-  artifactKey: Guid(8ef29a0a52483e345b87390d79ebcb15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_MushroomShelf.fbx using Guid(8ef29a0a52483e345b87390d79ebcb15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4b1818167a4cba5207017071ae74632') in 0.021409 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Stick.fbx
-  artifactKey: Guid(a19a9aa8b8240fe479daf001fa5a33d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Stick.fbx using Guid(a19a9aa8b8240fe479daf001fa5a33d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5283dd8b5b9ae6e5afb6939c86e90f7') in 0.024269 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_MossRocks2.fbx
-  artifactKey: Guid(35fe093040df43e4caeb5940afadbba5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_MossRocks2.fbx using Guid(35fe093040df43e4caeb5940afadbba5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e221b7d0902e8e09856827ae23619abf') in 0.024287 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Bird2.fbx
-  artifactKey: Guid(d3dfb551f587bf148b9902d66279308b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Bird2.fbx using Guid(d3dfb551f587bf148b9902d66279308b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af296abd55696d3f31e07412c83c25a1') in 0.030738 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 67
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Feather.fbx
-  artifactKey: Guid(d152fbd46e97942458c57951d5730dec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Feather.fbx using Guid(d152fbd46e97942458c57951d5730dec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e4e9cf8a4b9a57e0d30d83e3de8f8b8') in 0.024486 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Moss.fbx
-  artifactKey: Guid(ba687a10e97cdc740b06d5e2d00ee983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Moss.fbx using Guid(ba687a10e97cdc740b06d5e2d00ee983) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ea29b178383afbda71a74ed228d2f84') in 0.022560 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Fish.fbx
-  artifactKey: Guid(9c690660684b5494c88ac61e360783d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Fish.fbx using Guid(9c690660684b5494c88ac61e360783d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2df7f828f6d75a191d3d1d0011281af9') in 0.031270 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 56
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_LiliPad.fbx
-  artifactKey: Guid(5c2114581c943b04089fac62f6805630) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_LiliPad.fbx using Guid(5c2114581c943b04089fac62f6805630) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55ee88fab11accb1bc134af9a525988c') in 0.021659 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Butterfly.fbx
-  artifactKey: Guid(3a20fa05dc74f114bb237c4dba333092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Butterfly.fbx using Guid(3a20fa05dc74f114bb237c4dba333092) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9104cc0b12fbfe889a9680d68a4daf3e') in 0.033452 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 32
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_StickBlack.fbx
-  artifactKey: Guid(968afc27d0ba5874e817715920fec877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_StickBlack.fbx using Guid(968afc27d0ba5874e817715920fec877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '540783760b722b2bbe5bb704c720d979') in 0.021668 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_MossRocks1.fbx
-  artifactKey: Guid(e875f5a6ac7c1b24bb9e5195eb81c6d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_MossRocks1.fbx using Guid(e875f5a6ac7c1b24bb9e5195eb81c6d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bfde010b07d33d8fa7305f2173a81344') in 0.022712 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Mushroom.fbx
-  artifactKey: Guid(abe2d5d82aa6b0a44a7170f0f5d9b0f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Mushroom.fbx using Guid(abe2d5d82aa6b0a44a7170f0f5d9b0f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3fbf2f0d6a38ca15d55fba7cfc2e68a') in 0.022420 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Turtle.fbx
-  artifactKey: Guid(b1dd02c4daa7e6248ab9cf52038f20cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SCharacter_Turtle.fbx using Guid(b1dd02c4daa7e6248ab9cf52038f20cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bacfe3132afd753472b00e285e5017a2') in 0.034625 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 78
-========================================================================
-Received Import Request.
-  Time since last request: 18.588586 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Tree.fbx
-  artifactKey: Guid(e17007e913fabaf409c5fa6cc0b3d052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_Tree.fbx using Guid(e17007e913fabaf409c5fa6cc0b3d052) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5b1212ceb5bbcf20c275163d92886ee') in 0.026108 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_WaterSkipper.fbx
-  artifactKey: Guid(550a4ecc8ef3569498cd036079166149) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Acorn Bringer Assets/Simplistic Low Poly Nature/Meshes/SNature_WaterSkipper.fbx using Guid(550a4ecc8ef3569498cd036079166149) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e0324fa86217b4093c00f705553c8767') in 0.025161 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 120.495073 seconds.
-  path: Assets/Open Assets/Bullet/Resources/Textures/New Material.mat
-  artifactKey: Guid(ec0e5b7b1f7ac2c4083916d88d72a741) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Open Assets/Bullet/Resources/Textures/New Material.mat using Guid(ec0e5b7b1f7ac2c4083916d88d72a741) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5cfdbc4394eed024bab3b3725c329563') in 0.018529 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1
-========================================================================
-Received Import Request.
-  Time since last request: 87.421636 seconds.
-  path: Assets/Prifabs/Players/SCharacter_Butterfly.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/SCharacter_Butterfly.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57f3ca615114e6dd3a1064ae221376ac') in 0.022020 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 60
-========================================================================
-Received Import Request.
-  Time since last request: 47.382980 seconds.
-  path: Assets/Prifabs/New Folder
-  artifactKey: Guid(6cbecf961d259f847b12d06bcf19acf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/New Folder using Guid(6cbecf961d259f847b12d06bcf19acf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'deeb7c822bb5ecd1ce5587a704c44487') in 0.000788 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 12.861425 seconds.
-  path: Assets/Prifabs/Model
-  artifactKey: Guid(6cbecf961d259f847b12d06bcf19acf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Model using Guid(6cbecf961d259f847b12d06bcf19acf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73951fdf241bdf5346d4f16dd9cfb546') in 0.001650 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 32.684374 seconds.
-  path: Assets/Prifabs/Players/Ability.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/Ability.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '986f9a500bcf59bde1d8149edca48e7f') in 0.012638 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 60
-========================================================================
-Received Import Request.
-  Time since last request: 260.274334 seconds.
-  path: Assets/Prifabs/Players/Ability.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/Ability.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '94896f65533725b0aafadcae981ed5a4') in 0.015859 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 60
-========================================================================
-Received Import Request.
-  Time since last request: 1.960229 seconds.
-  path: Assets/Prifabs/Players/Ability.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/Ability.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7f1494fcbcc1b5935358df3d531a35a') in 0.015915 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 60
-========================================================================
-Received Import Request.
-  Time since last request: 0.328807 seconds.
-  path: Assets/Prifabs/Players/Ability.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/Ability.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '74ccc35ebcd51b33e0b60b8a5f409daa') in 0.014153 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 60
-========================================================================
-Received Import Request.
-  Time since last request: 0.580411 seconds.
-  path: Assets/Prifabs/Players/Ability.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/Ability.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80d20f34a57198b3832a7ce979afb679') in 0.013759 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 60
-========================================================================
-Received Import Request.
-  Time since last request: 417.327474 seconds.
-  path: Assets/Prifabs/Players/Ability.prefab
-  artifactKey: Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Prifabs/Players/Ability.prefab using Guid(fabcf88d9604aa34d990bc6cc8e733b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9cfab71c8dc8b51e365c70884caa130') in 0.119425 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 61
-========================================================================
-Received Import Request.
-  Time since last request: 389.975410 seconds.
-  path: Assets/Hovl Studio
-  artifactKey: Guid(9d4cec6a326dac648868c999049b4a95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio using Guid(9d4cec6a326dac648868c999049b4a95) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '978214dc55fa053d90656b06402f636d') in 0.001462 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 2.537958 seconds.
-  path: Assets/Hovl Studio/Procedural fire
-  artifactKey: Guid(4919ce069942a7148aa6ff250efedda6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire using Guid(4919ce069942a7148aa6ff250efedda6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62e995e5858b625a53e537fb04231acc') in 0.000650 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 1.352666 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs
-  artifactKey: Guid(6a69c24f54926f14cbc357dd8ae715a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs using Guid(6a69c24f54926f14cbc357dd8ae715a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '032f1ebff8dd212d06f9b363ac012867') in 0.001043 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.063479 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Explosion.prefab
-  artifactKey: Guid(67a684e320da6e7439421a07e3fa265c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Explosion.prefab using Guid(67a684e320da6e7439421a07e3fa265c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd571d11511ee057ad7aff5487c533314') in 0.430542 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 32
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 3.prefab
-  artifactKey: Guid(78e8b38d431ddef4fa2994a3f2d6e2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 3.prefab using Guid(78e8b38d431ddef4fa2994a3f2d6e2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ada8db595f2c1040d67eb51e3135626') in 0.045249 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 22
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro orange.prefab
-  artifactKey: Guid(e55149ba6f4d00741984987e258c3378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro orange.prefab using Guid(e55149ba6f4d00741984987e258c3378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b710eb12842792f0a841d148c7d24e13') in 0.050334 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 28
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro blue.prefab
-  artifactKey: Guid(c590b17884b119046bc6412066500b7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro blue.prefab using Guid(c590b17884b119046bc6412066500b7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0348abb970364ecdf0d6970f9b9f4045') in 0.052493 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 28
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS2.prefab
-  artifactKey: Guid(26255240385821a4185c7163c7a7aec6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS2.prefab using Guid(26255240385821a4185c7163c7a7aec6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77e25a6ea7baf07e906789efbc1aa611') in 0.057679 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 127
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro green.prefab
-  artifactKey: Guid(3d35e81bdc5955041be098ef22e82a3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro green.prefab using Guid(3d35e81bdc5955041be098ef22e82a3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '822f51c92390a16e543424468e3c8ad6') in 0.049462 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 28
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 1.prefab
-  artifactKey: Guid(25093a0593dc83043a7bc17ebba0e95d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 1.prefab using Guid(25093a0593dc83043a7bc17ebba0e95d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '45360bd11e2dcf771fe285c4917bfb63') in 0.045260 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 22
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro yellow.prefab
-  artifactKey: Guid(52d340ed9c2714c4f8aabf1f82df1b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro yellow.prefab using Guid(52d340ed9c2714c4f8aabf1f82df1b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bad4b769314db83fc48ebc1d1baedc89') in 0.056283 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 28
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 0.prefab
-  artifactKey: Guid(08fd1b80cc24cc8439f45fda3c558255) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 0.prefab using Guid(08fd1b80cc24cc8439f45fda3c558255) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f836e6bd7c76a43650e19b12b6bca35') in 0.047883 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 22
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro red.prefab
-  artifactKey: Guid(eca000ab44c908d4dab395f654753038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro red.prefab using Guid(eca000ab44c908d4dab395f654753038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef2d53fbe4b8bb37c5b842b0f6aa8ce1') in 0.050396 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 28
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 2.prefab
-  artifactKey: Guid(529eb4216865eba419c1a4a68d0b0388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 2.prefab using Guid(529eb4216865eba419c1a4a68d0b0388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e44f662d31824ae725f911d608189f4e') in 0.065391 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 22
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS1.prefab
-  artifactKey: Guid(1381b64ff1936ac4e80c3a00687081f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS1.prefab using Guid(1381b64ff1936ac4e80c3a00687081f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f21c3bfc3d300ec6d207522e8a2e2875') in 0.057115 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 43
-========================================================================
-Received Import Request.
-  Time since last request: 3.043676 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Materials/FireSphere1.mat
-  artifactKey: Guid(14fab0de6c54324468738e7b38a88207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Materials/FireSphere1.mat using Guid(14fab0de6c54324468738e7b38a88207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6f7935cdcf077877f3330685e52b1a4') in 0.032913 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 35.251324 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Materials/SparkSphere.mat
-  artifactKey: Guid(20e729147a4dad247abfc2305c3dd963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Materials/SparkSphere.mat using Guid(20e729147a4dad247abfc2305c3dd963) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7aee7335c5d7c7c092e2f78a69cc8ba') in 0.041628 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 11.174810 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Demo scene
-  artifactKey: Guid(bf9298fc06c57994cbbf8b021b1820f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Demo scene using Guid(bf9298fc06c57994cbbf8b021b1820f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6408a86fa33489215845ed09d615ec49') in 0.001006 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.920148 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Materials
-  artifactKey: Guid(c109c1384274de146a494be626c64b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Materials using Guid(c109c1384274de146a494be626c64b64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9a612965223b168ce8b62bbb1cd25d2') in 0.000645 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.069825 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Materials/FireSphere2.mat
-  artifactKey: Guid(2e69c8c236ea65447a07e24d8cbed40b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Materials/FireSphere2.mat using Guid(2e69c8c236ea65447a07e24d8cbed40b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f919e6a8a35f3db6b978423b042fb0f9') in 0.029865 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Materials/Smoke26.mat
-  artifactKey: Guid(1fd724d226066ad4cbc105d4ad53a444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Materials/Smoke26.mat using Guid(1fd724d226066ad4cbc105d4ad53a444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '153e8cf54d75fddf06e8ff16b0e28821') in 0.023228 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Materials/Trail67.mat
-  artifactKey: Guid(3632881d102df0f47864d899fa15a49d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Materials/Trail67.mat using Guid(3632881d102df0f47864d899fa15a49d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '674d54117810b21cedfb870112739648') in 0.024596 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 3.982523 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Textures/FireSphere1.png
-  artifactKey: Guid(31679c4b857f0d140bd9566b86eb8674) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Textures/FireSphere1.png using Guid(31679c4b857f0d140bd9566b86eb8674) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '007b62b3a841ca101c490277a625334d') in 0.066229 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 11.142540 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Shaders
-  artifactKey: Guid(859fb35238c791b46adc1f32f5c5b168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Shaders using Guid(859fb35238c791b46adc1f32f5c5b168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d5d50af98c0bb0457be4ab453991b4c') in 0.000821 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 4.636892 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Textures
-  artifactKey: Guid(d7f7ca595507d95498e7f9c007e64e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Textures using Guid(d7f7ca595507d95498e7f9c007e64e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb54e67d636dec20d725db9426267c3e') in 0.000681 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.084497 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Textures/FireSphere2.png
-  artifactKey: Guid(a52c2b00382a3264cbea32cfc2c36b34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Textures/FireSphere2.png using Guid(a52c2b00382a3264cbea32cfc2c36b34) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '691b14076e59eb587dffa73f10f89634') in 0.053281 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 9.287989 seconds.
-  path: Assets/Hovl Studio/Procedural fire/URP and HDRP
-  artifactKey: Guid(4637db4a3296c7343969113830564f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/URP and HDRP using Guid(4637db4a3296c7343969113830564f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d72e7cf975cd2cde4141a64eea21e1e') in 0.000858 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 0.080089 seconds.
-  path: Assets/Hovl Studio/Procedural fire/URP and HDRP/How to change rendering pipeline.png
-  artifactKey: Guid(e7ccd183c307b23438d784153ab85448) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/URP and HDRP/How to change rendering pipeline.png using Guid(e7ccd183c307b23438d784153ab85448) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1028a94959aaa28615b334250f4d36c2') in 0.093613 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 26.946324 seconds.
-  path: Assets/FireSphere1.mat
-  artifactKey: Guid(14fab0de6c54324468738e7b38a88207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FireSphere1.mat using Guid(14fab0de6c54324468738e7b38a88207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c5da9fa4f7deac7fbc18f70fa99bd863') in 0.034827 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 68.444706 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Explosion.prefab
-  artifactKey: Guid(67a684e320da6e7439421a07e3fa265c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Explosion.prefab using Guid(67a684e320da6e7439421a07e3fa265c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e8ebcb63e6d2b0dfaa96e14a89e9b18e') in 0.058142 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 31
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 3.prefab
-  artifactKey: Guid(78e8b38d431ddef4fa2994a3f2d6e2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 3.prefab using Guid(78e8b38d431ddef4fa2994a3f2d6e2ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c14286eced060b0225a1a81c0ad6249') in 0.035989 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 21
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro orange.prefab
-  artifactKey: Guid(e55149ba6f4d00741984987e258c3378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro orange.prefab using Guid(e55149ba6f4d00741984987e258c3378) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0997003bfb540b2015c5ad557f9a9b81') in 0.040374 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro blue.prefab
-  artifactKey: Guid(c590b17884b119046bc6412066500b7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro blue.prefab using Guid(c590b17884b119046bc6412066500b7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95ed424c129d70faa98c91ca9432c597') in 0.038451 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS2.prefab
-  artifactKey: Guid(26255240385821a4185c7163c7a7aec6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS2.prefab using Guid(26255240385821a4185c7163c7a7aec6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '78f48a9d579dd8017d5b423dd80eef26') in 0.048038 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 126
-========================================================================
-Received Import Request.
-  Time since last request: 0.000034 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro green.prefab
-  artifactKey: Guid(3d35e81bdc5955041be098ef22e82a3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro green.prefab using Guid(3d35e81bdc5955041be098ef22e82a3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '963e5be2d23b19d7c680180e02067473') in 0.040409 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 1.prefab
-  artifactKey: Guid(25093a0593dc83043a7bc17ebba0e95d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 1.prefab using Guid(25093a0593dc83043a7bc17ebba0e95d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c02363367e872c953c4a1bcf6e291ac') in 0.032885 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 21
-========================================================================
-Received Import Request.
-  Time since last request: 0.000170 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro yellow.prefab
-  artifactKey: Guid(52d340ed9c2714c4f8aabf1f82df1b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro yellow.prefab using Guid(52d340ed9c2714c4f8aabf1f82df1b58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0ff1992c6544e0d16d61759b1ed3dc0') in 0.073671 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 0.prefab
-  artifactKey: Guid(08fd1b80cc24cc8439f45fda3c558255) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 0.prefab using Guid(08fd1b80cc24cc8439f45fda3c558255) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6ff4fb34310fc7823673f19c993f4993') in 0.032978 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 21
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro red.prefab
-  artifactKey: Guid(eca000ab44c908d4dab395f654753038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire pro red.prefab using Guid(eca000ab44c908d4dab395f654753038) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0b0a4efe7e3fc5fde8ca3135f655fed6') in 0.038270 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 27
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 2.prefab
-  artifactKey: Guid(529eb4216865eba419c1a4a68d0b0388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/Magic fire 2.prefab using Guid(529eb4216865eba419c1a4a68d0b0388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01309d21c3bfba436b607c7d4e454200') in 0.031207 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 21
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS1.prefab
-  artifactKey: Guid(1381b64ff1936ac4e80c3a00687081f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Hovl Studio/Procedural fire/Prefabs/RotatorPS1.prefab using Guid(1381b64ff1936ac4e80c3a00687081f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b4a579083f3952615b03d54be0be262') in 0.039427 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 42
-========================================================================
-Received Import Request.
-  Time since last request: 132.155585 seconds.
-  path: Assets/Open Assets/Effect1/Magic effects pack/Textures/Smoke26.png
-  artifactKey: Guid(08b3912bdc0a5ed4d9a27125425a97f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Open Assets/Effect1/Magic effects pack/Textures/Smoke26.png using Guid(08b3912bdc0a5ed4d9a27125425a97f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcf1d2e4ab54552b725b16a070fa7705') in 0.052550 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 2
-========================================================================
-Received Import Request.
-  Time since last request: 17.211192 seconds.
-  path: Assets/FireSphere1.mat
-  artifactKey: Guid(14fab0de6c54324468738e7b38a88207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/FireSphere1.mat using Guid(14fab0de6c54324468738e7b38a88207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7eec5c33e1f850d4e9d2336b92df831a') in 0.049969 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 3
-========================================================================
-Received Import Request.
-  Time since last request: 57.895298 seconds.
-  path: Assets/Shaders/Hovl Studio
-  artifactKey: Guid(132c6c4f3a34cb942a4af81bb1ca451e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/Hovl Studio using Guid(132c6c4f3a34cb942a4af81bb1ca451e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db4bb817553004ee89d17a83cde55c2c') in 0.000807 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
-========================================================================
-Received Import Request.
-  Time since last request: 46.480930 seconds.
-  path: Assets/Shaders/Magic fire 3.prefab
-  artifactKey: Guid(1d1ebcbbbf5438648b2cbcd65ef44142) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Shaders/Magic fire 3.prefab using Guid(1d1ebcbbbf5438648b2cbcd65ef44142) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd5febb40de31de4104c8e0bec6c5491') in 0.026810 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 13
-========================================================================
-Received Import Request.
-  Time since last request: 22.041157 seconds.
-  path: Assets/Ability
-  artifactKey: Guid(859fb35238c791b46adc1f32f5c5b168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Ability using Guid(859fb35238c791b46adc1f32f5c5b168) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '063cba0a45e861cfe175f2dcab33521f') in 0.001157 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 0
+Received Prepare
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.656 seconds
+Refreshing native plugins compatible for Editor in 8.51 ms, found 3 plugins.

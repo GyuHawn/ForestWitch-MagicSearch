@@ -21250,6 +21250,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 928399467}
     - target: {fileID: 4856549070907171003, guid: 9e4cee9b2f1b9c8428ce9e595c603675, type: 3}
+      propertyPath: extraAttack
+      value: 
+      objectReference: {fileID: 5315296081324296339, guid: fabcf88d9604aa34d990bc6cc8e733b7, type: 3}
+    - target: {fileID: 4856549070907171003, guid: 9e4cee9b2f1b9c8428ce9e595c603675, type: 3}
       propertyPath: nextStageUI
       value: 
       objectReference: {fileID: 1018099723}
@@ -34436,6 +34440,10 @@ PrefabInstance:
       propertyPath: healthText
       value: 
       objectReference: {fileID: 928399467}
+    - target: {fileID: 1857066847216640781, guid: 187cfb82764f3a149ac9aa9a7d385f73, type: 3}
+      propertyPath: extraAttack
+      value: 
+      objectReference: {fileID: 5315296081324296339, guid: fabcf88d9604aa34d990bc6cc8e733b7, type: 3}
     - target: {fileID: 1857066847216640781, guid: 187cfb82764f3a149ac9aa9a7d385f73, type: 3}
       propertyPath: nextStageUI
       value: 

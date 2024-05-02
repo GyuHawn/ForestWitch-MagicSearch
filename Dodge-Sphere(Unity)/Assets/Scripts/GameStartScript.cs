@@ -318,9 +318,9 @@ public class GameStartScript : MonoBehaviour
     public void Reset_O()
     {
         PlayerPrefs.DeleteAll();
-        gameLevel.gameLevel = 0;
+        gameLevel.gameLevel = 1;
         gameLevel.currentExp = 0;
-        gameLevel.maxExp = 100;
+        gameLevel.maxExp = 50;
 
         adventureLevel.currentLevel = 1;
         PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
