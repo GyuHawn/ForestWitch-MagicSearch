@@ -10539,7 +10539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 400, y: 149.99998}
+  m_AnchoredPosition: {x: 400, y: 150}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &341782542
@@ -16361,7 +16361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 199.99998}
+  m_AnchoredPosition: {x: 0, y: 200}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &559157476
@@ -21252,7 +21252,7 @@ PrefabInstance:
     - target: {fileID: 4856549070907171003, guid: 9e4cee9b2f1b9c8428ce9e595c603675, type: 3}
       propertyPath: extraAttack
       value: 
-      objectReference: {fileID: 5315296081324296339, guid: fabcf88d9604aa34d990bc6cc8e733b7, type: 3}
+      objectReference: {fileID: 4346114176989672348, guid: a50cdc80b8145ae4aa4e4d62f1a79558, type: 3}
     - target: {fileID: 4856549070907171003, guid: 9e4cee9b2f1b9c8428ce9e595c603675, type: 3}
       propertyPath: nextStageUI
       value: 
@@ -34443,7 +34443,7 @@ PrefabInstance:
     - target: {fileID: 1857066847216640781, guid: 187cfb82764f3a149ac9aa9a7d385f73, type: 3}
       propertyPath: extraAttack
       value: 
-      objectReference: {fileID: 5315296081324296339, guid: fabcf88d9604aa34d990bc6cc8e733b7, type: 3}
+      objectReference: {fileID: 4346114176989672348, guid: a50cdc80b8145ae4aa4e4d62f1a79558, type: 3}
     - target: {fileID: 1857066847216640781, guid: 187cfb82764f3a149ac9aa9a7d385f73, type: 3}
       propertyPath: nextStageUI
       value: 
@@ -43704,6 +43704,7 @@ GameObject:
   - component: {fileID: 1666040370}
   - component: {fileID: 1666040371}
   - component: {fileID: 1666040372}
+  - component: {fileID: 1666040373}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -44403,6 +44404,26 @@ MonoBehaviour:
   reLoadTime: 0
   purificatTime: 0
   purificatEffect: {fileID: 4227170663897501347, guid: 9931c1e7197e67e4f98cb448777a5672, type: 3}
+--- !u!114 &1666040373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666040352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dd729b10b564644b648187c908b663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  ability1Num: 0
+  ability2Num: 0
+  ability3Num: 0
+  ability4Num: 0
+  ability5Num: 0
+  ability6Num: 0
+  healing: 1
 --- !u!1001 &1672047367
 PrefabInstance:
   m_ObjectHideFlags: 0

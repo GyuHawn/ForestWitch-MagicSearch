@@ -13,6 +13,7 @@ public class ClownMonster : MonoBehaviour
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private Ability ability;
     private AudioManager audioManager;
 
     // 기본 스탯
@@ -69,9 +70,10 @@ public class ClownMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
-    
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -127,8 +129,7 @@ public class ClownMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
-        monsterGetMoney.getMoney = money;
-        monsterGetMoney.PickUpMoney();
+        GetMoney();
 
         clearInfor.clear = true; // 2스테이지 클리어시 게임 클리어
         clearInfor.clearStateText.text = "정복 완료!!";
@@ -159,6 +160,22 @@ public class ClownMonster : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void GetMoney()
+    {
+        // 능력 3-1이 활성화
+        if (ability.ability3Num == 1)
+        {
+            money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+        }
+        // 능력 3-2가 활성화
+        else if (ability.ability3Num == 2)
+        {
+            money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+        }
+
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
+    }
     void StartPattern() // 랜덤 패턴 선택
     {
         int randomPattern = Random.Range(0, 3);
@@ -236,7 +253,7 @@ public class ClownMonster : MonoBehaviour
             Vector3 playerPosition = player.transform.position;
 
             // 플레이어로와 5만큼 거리의 랜덤 위치에 총알 생성
-            Vector3 randomDirection = Random.insideUnitSphere.normalized * 5; 
+            Vector3 randomDirection = Random.insideUnitSphere.normalized * 5;
             randomDirection.y = 0; // 높이 그대로
             Vector3 bulletPos = playerPosition + randomDirection;
             GameObject bullet = Instantiate(baseAttackPrefab, bulletPos, Quaternion.identity);
@@ -256,13 +273,13 @@ public class ClownMonster : MonoBehaviour
 
     private void StartBreakAttack() // 기절 패턴
     {
-        if(playerCannons.Count > 1) 
+        if (playerCannons.Count > 1)
         {
             Vector3 bulletPos = new Vector3(transform.position.x, 3f, transform.position.z);
             GameObject bullet = Instantiate(breakAttackPrefab, bulletPos, Quaternion.identity); // 총알 생성
             bullet.name = "BreakAttack"; // 총알 이름 변경
         }
-        else if(playerCannons.Count <= 1)
+        else if (playerCannons.Count <= 1)
         {
             CancelInvoke("StartBreakAttack");
         }
@@ -360,13 +377,36 @@ public class ClownMonster : MonoBehaviour
             {
                 Destroy(collision.gameObject);
             }
-        }
-    }
 
-    IEnumerator HitEffect()
-    {
-        GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
-        Destroy(effect);
+            if (collision.gameObject.CompareTag("ExtraAttack"))
+            {
+                {
+                    if (!isSummon)
+                    {
+                        ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
+                        if (attack != null)
+                        {
+                            audioManager.HitMonsterAudio();
+                            StartCoroutine(HitEffect());
+                            currentHealth -= attack.damage;
+                            hpBarScript.UpdateHP(currentHealth, maxHealth);
+                            anim.SetTrigger("Hit");
+                        }
+                        Destroy(collision.gameObject);
+                    }
+                    else
+                    {
+                        Destroy(collision.gameObject);
+                    }
+                }
+            }
+
+            IEnumerator HitEffect()
+            {
+                GameObject effect = Instantiate(hitEffect, hitEffectPos.transform.position, Quaternion.identity);
+                yield return new WaitForSeconds(0.5f);
+                Destroy(effect);
+            }
+        }
     }
 }

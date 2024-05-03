@@ -12,6 +12,7 @@ public class FireMonster : MonoBehaviour
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private Ability ability;
     private MapConvert mapConvert;
     private AudioManager audioManager;
 
@@ -61,6 +62,7 @@ public class FireMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         mapConvert = GameObject.Find("Manager").GetComponent<MapConvert>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
@@ -110,8 +112,7 @@ public class FireMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
-        monsterGetMoney.getMoney = money;
-        monsterGetMoney.PickUpMoney();
+        GetMoney();
 
         mapConvert.ConvertLoading(mapConvert.stageLoading, 2f, 5); // 보스 클리어시 스테이지 전환 이미지 출력
 
@@ -136,6 +137,22 @@ public class FireMonster : MonoBehaviour
         mapSetting.StageMapSetting(); // 맵 셋팅
 
         Destroy(gameObject);
+    }
+    void GetMoney()
+    {
+        // 능력 3-1이 활성화
+        if (ability.ability3Num == 1)
+        {
+            money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+        }
+        // 능력 3-2가 활성화
+        else if (ability.ability3Num == 2)
+        {
+            money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+        }
+
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
     }
 
     void StartPattern() // 랜덤 패턴 선택
@@ -323,6 +340,20 @@ public class FireMonster : MonoBehaviour
                 audioManager.HitMonsterAudio();
                 StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
+                anim.SetTrigger("Hit");
+            }
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("ExtraAttack"))
+        {
+            ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
+            if (attack != null)
+            {
+                audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
+                currentHealth -= attack.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }

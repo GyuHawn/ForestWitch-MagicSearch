@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MushRoomMonster : MonoBehaviour
@@ -13,6 +11,7 @@ public class MushRoomMonster : MonoBehaviour
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
     private MapSetting mapSetting;
+    private Ability ability;
     private AudioManager audioManager;
 
     public GameObject monster;
@@ -57,6 +56,7 @@ public class MushRoomMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -111,8 +111,7 @@ public class MushRoomMonster : MonoBehaviour
         }
         else
         {
-            monsterGetMoney.getMoney = money;
-            monsterGetMoney.PickUpMoney();
+            GetMoney();
 
             hpBarScript.MoveToYStart(150, 0.1f);
             hpBarScript.ResetHealthBar();
@@ -133,6 +132,23 @@ public class MushRoomMonster : MonoBehaviour
             clearInfor.killedMonster++;
         }
         Destroy(gameObject);
+    }
+
+    void GetMoney()
+    {
+        // 능력 3-1이 활성화
+        if (ability.ability3Num == 1)
+        {
+            money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+        }
+        // 능력 3-2가 활성화
+        else if (ability.ability3Num == 2)
+        {
+            money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+        }
+
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
     }
 
     void StartPattern() // 랜덤 패턴 선택
@@ -283,6 +299,20 @@ public class MushRoomMonster : MonoBehaviour
                 audioManager.HitMonsterAudio();
                 StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
+                anim.SetTrigger("Hit");
+            }
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("ExtraAttack"))
+        {
+            ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
+            if (attack != null)
+            {
+                audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
+                currentHealth -= attack.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }

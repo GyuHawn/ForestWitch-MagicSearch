@@ -15,13 +15,19 @@ public class AbilityUI : MonoBehaviour
     public GameObject[] abilitys4;
     public GameObject[] abilitys5;
     public GameObject[] abilitys6;
-    
+
     // 선택한 능력
+    public GameObject[] ability1Check;
     public int ability1Num;
+    public GameObject[] ability2Check;
     public int ability2Num;
+    public GameObject[] ability3Check;
     public int ability3Num;
+    public GameObject[] ability4Check;
     public int ability4Num;
+    public GameObject[] ability5Check;
     public int ability5Num;
+    public GameObject[] ability6Check;
     public int ability6Num;
 
     public GameObject[] locks; // 능력 잠금
@@ -35,13 +41,122 @@ public class AbilityUI : MonoBehaviour
 
     void Start()
     {
-        
+        LoadAbility();
     }
 
+    void LoadAbility() // 시작시 선택한 능력 적용
+    {
+        ability1Num = PlayerPrefs.GetInt("Ability1", 0);
+        ability2Num = PlayerPrefs.GetInt("Ability2", 0);
+        ability3Num = PlayerPrefs.GetInt("Ability3", 0);
+        ability4Num = PlayerPrefs.GetInt("Ability4", 0);
+        ability5Num = PlayerPrefs.GetInt("Ability5", 0);
+        ability6Num = PlayerPrefs.GetInt("Ability6", 0);
+    }
     
     void Update()
     {
         AbilityLock(); // 게임 레벨에 따라 능력오픈
+        CheckAbility(); // 선택한 능력 표시
+    }
+
+    void CheckAbility()
+    {
+        if(ability1Num == 1)
+        {
+            ability1Check[0].SetActive(true);
+            ability1Check[1].SetActive(false);
+        }
+        else if (ability1Num == 2)
+        {
+            ability1Check[0].SetActive(false);
+            ability1Check[1].SetActive(true);
+        }
+        else
+        {
+            ability1Check[0].SetActive(false);
+            ability1Check[1].SetActive(false);
+        }
+
+        if (ability2Num == 1)
+        {
+            ability2Check[0].SetActive(true);
+            ability2Check[1].SetActive(false);
+        }
+        else if (ability2Num == 2)
+        {
+            ability2Check[0].SetActive(false);
+            ability2Check[1].SetActive(true);
+        }
+        else
+        {
+            ability2Check[0].SetActive(false);
+            ability2Check[1].SetActive(false);
+        }
+
+        if (ability3Num == 1)
+        {
+            ability3Check[0].SetActive(true);
+            ability3Check[1].SetActive(false);
+        }
+        else if (ability3Num == 2)
+        {
+            ability3Check[0].SetActive(false);
+            ability3Check[1].SetActive(true);
+        }
+        else
+        {
+            ability3Check[0].SetActive(false);
+            ability3Check[1].SetActive(false);
+        }
+
+        if (ability4Num == 1)
+        {
+            ability4Check[0].SetActive(true);
+            ability4Check[1].SetActive(false);
+        }
+        else if (ability4Num == 2)
+        {
+            ability4Check[0].SetActive(false);
+            ability4Check[1].SetActive(true);
+        }
+        else
+        {
+            ability4Check[0].SetActive(false);
+            ability4Check[1].SetActive(false);
+        }
+
+        if (ability5Num == 1)
+        {
+            ability5Check[0].SetActive(true);
+            ability5Check[1].SetActive(false);
+        }
+        else if (ability5Num == 2)
+        {
+            ability5Check[0].SetActive(false);
+            ability5Check[1].SetActive(true);
+        }
+        else
+        {
+            ability5Check[0].SetActive(false);
+            ability5Check[1].SetActive(false);
+        }
+
+        if (ability6Num == 1)
+        {
+            ability6Check[0].SetActive(true);
+            ability6Check[1].SetActive(false);
+        }
+        else if (ability6Num == 2)
+        {
+            ability6Check[0].SetActive(false);
+            ability6Check[1].SetActive(true);
+        }
+        else
+        {
+            ability6Check[0].SetActive(false);
+            ability6Check[1].SetActive(false);
+        }
     }
 
     void AbilityLock() // 게임 레벨에 따라 능력오픈
@@ -192,50 +307,62 @@ public class AbilityUI : MonoBehaviour
 
     public void Ability1_1()
     {
+        ability1Num = 1;
         PlayerPrefs.SetInt("Ability1", 1);
     }
     public void Ability1_2()
     {
+        ability1Num = 2;
         PlayerPrefs.SetInt("Ability1", 2);
     }
     public void Ability2_1()
     {
+        ability2Num = 1;
         PlayerPrefs.SetInt("Ability2", 1);
     }
     public void Ability2_2()
     {
+        ability2Num = 2;
         PlayerPrefs.SetInt("Ability2", 2);
     }
     public void Ability3_1()
     {
+        ability3Num = 1;
         PlayerPrefs.SetInt("Ability3", 1);
     }
     public void Ability3_2()
     {
+        ability3Num = 2;
         PlayerPrefs.SetInt("Ability3", 2);
     }
     public void Ability4_1()
     {
+        ability4Num = 1;
         PlayerPrefs.SetInt("Ability4", 1);
     }
     public void Ability4_2()
     {
+        ability4Num = 2;
         PlayerPrefs.SetInt("Ability4", 2);
     }
     public void Ability5_1()
     {
+        ability5Num = 1;
         PlayerPrefs.SetInt("Ability5", 1);
     }
     public void Ability5_2()
     {
+        ability5Num = 2;
         PlayerPrefs.SetInt("Ability5", 2);
     }
     public void Ability6_1()
     {
+        ability6Num = 1;
         PlayerPrefs.SetInt("Ability6", 1);
     }
     public void Ability6_2()
     {
+        ability6Num = 2;
         PlayerPrefs.SetInt("Ability6", 2);
     }
 }

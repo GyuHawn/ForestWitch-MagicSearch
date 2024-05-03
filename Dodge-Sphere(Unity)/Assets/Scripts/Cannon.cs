@@ -1,11 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class Cannon : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private Ability ability;
     private AudioManager audioManager;
 
     private GameObject player; // 플레이어
@@ -29,6 +29,7 @@ public class Cannon : MonoBehaviour
 
     private void Awake()
     {
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -95,8 +96,23 @@ public class Cannon : MonoBehaviour
         if (shotBullet != null)
         {
             AttackMonster();
+
+            // 능력 2-2가 활성화
+            if (ability.ability2Num == 2)
+            {
+                ability.CannonExtraAttack();  // 능력 2-2에 따라 총알 획득시 확률적으로 투사체 공격
+            }
+
+            
+            // 능력 4-2가 활성화
+            else if (ability.ability4Num == 2)
+            {
+                ability.PlusExtraAttack();  // 능력 4-2에 따라 공격시 확률적 투사체 공격
+            }
         }
     }
+
+
 
     void LoadBullet() // 총알 넣기
     {
@@ -150,7 +166,25 @@ public class Cannon : MonoBehaviour
         audioManager.CannonAudio();
         StartCoroutine(ShotEffect());
         shotBullet = Instantiate(shotBulletPrefab, shotPos.transform.position, Quaternion.identity);
+
+        // 능력 4-1이 활성화
+        if (ability.ability4Num == 1)
+        {
+            int num = Random.Range(0, 10);
+            if (num < 3)
+            {
+                StartCoroutine(SecondeBullet());// 능력 4-1에 따라 공격시 확률적으로 한번더 공격
+            }
+        }
     }
+
+    IEnumerator SecondeBullet()
+    {
+        yield return new WaitForSeconds(1f);
+
+        currentBullet = maxBullet;
+    }
+
 
     IEnumerator ShotEffect()
     {
@@ -164,8 +198,7 @@ public class Cannon : MonoBehaviour
         GameObject[] monsters = GameObject.FindGameObjectsWithTag("Monster");
 
         if (monsters.Length > 0 && shotBullet != null)
-        {
-            
+        {     
             foreach (var monster in monsters)
             {
                 Vector3 shotBulletPosition = shotBullet.transform.position;
@@ -182,7 +215,7 @@ public class Cannon : MonoBehaviour
                 Rigidbody bulletRb = shotBullet.GetComponent<Rigidbody>();
                 bulletRb.velocity = force;
             }
-        }
+        }     
     }
 
     private void OnCollisionEnter(Collision collision)

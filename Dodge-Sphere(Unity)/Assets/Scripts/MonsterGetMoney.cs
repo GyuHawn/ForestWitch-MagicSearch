@@ -43,6 +43,7 @@ public class MonsterGetMoney : MonoBehaviour
         StartCoroutine(WinAudio());
 
         getMoneyUI.SetActive(true);
+
         playerMovement.money += getMoney;
 
         clearInfor.getMoney += getMoney;

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BeholderMonster : MonoBehaviour
@@ -12,6 +11,7 @@ public class BeholderMonster : MonoBehaviour
     private MapSetting mapSetting;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private Ability ability;
     private AudioManager audioManager;
 
     // 기본 스탯
@@ -54,6 +54,7 @@ public class BeholderMonster : MonoBehaviour
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -96,8 +97,7 @@ public class BeholderMonster : MonoBehaviour
         hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar();
 
-        monsterGetMoney.getMoney = money;
-        monsterGetMoney.PickUpMoney();
+        GetMoney();
 
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();
@@ -115,6 +115,23 @@ public class BeholderMonster : MonoBehaviour
         clearInfor.killedMonster++;
 
         Destroy(gameObject);
+    }
+
+    void GetMoney()
+    {
+        // 능력 3-1이 활성화
+        if (ability.ability3Num == 1)
+        {
+            money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+        }
+        // 능력 3-2가 활성화
+        else if (ability.ability3Num == 2)
+        {
+            money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+        }
+
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
     }
 
     void StartPattern() // 랜덤 패턴 선택
@@ -297,6 +314,20 @@ public class BeholderMonster : MonoBehaviour
             }
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.CompareTag("ExtraAttack"))
+        {
+            ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
+            if (attack != null)
+            {
+                audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
+                currentHealth -= attack.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
+                anim.SetTrigger("Hit");
+            }
+            Destroy(collision.gameObject);
+        } 
     }
 
     IEnumerator HitEffect()

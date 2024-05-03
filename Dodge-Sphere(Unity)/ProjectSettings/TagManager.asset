@@ -32,6 +32,7 @@ TagManager:
   - BossRest2
   - BossRest3
   - Wall
+  - ExtraAttack
   layers:
   - Default
   - TransparentFX
@@ -64,7 +65,7 @@ TagManager:
   - SummonClown
   - EattingChest
   - Wall
-  - 
+  - ExtraAttack
   m_SortingLayers:
   - name: Default
     uniqueID: 0

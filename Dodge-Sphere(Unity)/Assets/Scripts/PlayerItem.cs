@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,7 @@ public class PlayerItem : MonoBehaviour
     private PlayerMovement playerMovement;
     private GameSetting gameSetting;
     private PortionSlot portions;
+    private Ability ability;
     private ShopScript shopScript;
 
     public GameObject[] ItemPos; // 획득 아이템 표시 위치
@@ -101,6 +101,7 @@ public class PlayerItem : MonoBehaviour
         gameSetting = GameObject.Find("Manager").GetComponent<GameSetting>();
         portions = GameObject.Find("Manager").GetComponent<PortionSlot>();
         shopScript = GameObject.Find("Manager").GetComponent<ShopScript>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
     }
 
     void Update()
@@ -313,6 +314,26 @@ public class PlayerItem : MonoBehaviour
         playerMovement.fish = true;
     }
 
+    void GetMoney(int money)
+    {
+        // 능력 3-1이 활성화
+        if (ability.ability3Num == 1)
+        {
+            money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+            playerMovement.money += money;
+        }
+        // 능력 3-2가 활성화
+        else if (ability.ability3Num == 2)
+        {
+            money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+            playerMovement.money += money;
+        }
+        else
+        {
+            playerMovement.money += money;
+        }
+    }
+
     void Gold() // 1000코인을 획득합니다.
     {
         // 획득 아이템 표시
@@ -322,7 +343,7 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(goldObject);
 
         // 아이템 기능
-        playerMovement.money += 1000; // 1000코인 추가
+        GetMoney(1000); // 1000코인 추가
     }
 
     void Grow() // 이동속도가 1증가합니다.
@@ -358,7 +379,7 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(jeweldObject);
 
         // 아이템 기능
-        playerMovement.money += 1500; // 1500코인 추가
+        GetMoney(1500); // 1500코인 추가
     }
 
     public void Coin() // 500코인을 획득합니다.
@@ -370,7 +391,7 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(coinObject);
 
         // 아이템 기능
-        playerMovement.money += 500; // 500코인 추가
+        GetMoney(500); // 500코인 추가
     }
 
     public void Mushroom() // 이동속도가 2증가합니다.

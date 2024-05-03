@@ -1,15 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 using TMPro;
+
 
 public class PlayerMovement : MonoBehaviour
 {
     private MonsterMap monsterMap;
     private ClearInfor clearInfor;
     private MapSetting mapSetting;
+    private Ability ability;
     private AudioManager audioManager;
 
     public FixedJoystick fixedJoyStick;
@@ -97,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -181,6 +181,16 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 anim.SetBool("GameRun", false);
+            }
+        }
+
+        // 능력 5-1이 활성화
+        if (ability.ability5Num == 1) // 능력 5-1에 따라 게임당 1번 체력이 25% 이하로 줄어들면 50%회복
+        {
+            if (currentHealth <= (maxHealth / 4) && ability.healing)
+            {
+                currentHealth += maxHealth / 2;
+                ability.healing = false;
             }
         }
 
@@ -479,8 +489,27 @@ public class PlayerMovement : MonoBehaviour
             else if (!itemShield)
             {
                 Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+
+                // 능력 5-2가 활성화
+                if (ability.ability5Num == 2)
+                {
+                    ability.Avoid(); // 능력 5-2에 따라 피격시 확률적 무시
+                    return;
+                }
+
                 currentHealth -= (bullet.damage - defence);
                 Destroy(collision.gameObject);
+            }
+
+            // 능력 6-1이 활성화
+            if (ability.ability6Num == 1)
+            {
+                ability.HitCannonReload(); // 능력 6-1에 따라 피격시 모든 대포 총알 1증가
+            }
+            // 능력 6-2가 활성화
+            else if (ability.ability6Num == 2)
+            {
+                ability.HitExtraAttack(); // 능력 6-2에 따라 피격시 2개 투사체 발사
             }
         }
 
@@ -503,6 +532,23 @@ public class PlayerMovement : MonoBehaviour
         {
             bulletNum++;
             Destroy(collision.gameObject);
+
+            // 능력 1-1이 활성화
+            if (ability.ability1Num == 1)
+            {
+                ability.GetPlayerMP(); // 능력 1-1에 따라 총알 획득시 확률적 총알 획득
+            }
+            // 능력 1-2가 활성화
+            else if (ability.ability1Num == 2)
+            {
+                ability.GetCannonReload(); // 능력 1-2에 따라 총알 획득시 확률적으로 모든 대포 총알 1 장전
+            }
+
+            // 능력 2-1이 활성화
+            if (ability.ability2Num == 1)
+            {
+                ability.MPExtraAttack(); // 능력 2-1에 따라 총알 획득시 확률적으로 투사체 공격
+            }
         }
 
         if (collision.gameObject.CompareTag("Wall"))

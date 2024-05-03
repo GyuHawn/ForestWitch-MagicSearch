@@ -7,6 +7,7 @@ public class GameStartScript : MonoBehaviour
     private StoryScript storyScript;
     private GameLevel gameLevel;
     private AdventureLevel adventureLevel;
+    private AbilityUI abilityUI;
     private AudioManager audioManager;
 
     public GameObject selectWindow;
@@ -41,6 +42,7 @@ public class GameStartScript : MonoBehaviour
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
         gameLevel = GameObject.Find("Manager").GetComponent<GameLevel>();
         adventureLevel = GameObject.Find("Manager").GetComponent<AdventureLevel>();
+        abilityUI = GameObject.Find("Manager").GetComponent<AbilityUI>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -318,14 +320,35 @@ public class GameStartScript : MonoBehaviour
     public void Reset_O()
     {
         PlayerPrefs.DeleteAll();
-        gameLevel.gameLevel = 1;
+
+        // 게임레벨 초기화
+        //gameLevel.gameLevel = 1;
+        
+        gameLevel.gameLevel = 50;
+        PlayerPrefs.SetInt("GameLevel", 50);
+
         gameLevel.currentExp = 0;
         gameLevel.maxExp = 50;
 
+        // 모험레벨 초기화
         adventureLevel.currentLevel = 1;
         PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
-        adventureLevel.maxLevel = 1;
+        //adventureLevel.maxLevel = 1;
         PlayerPrefs.SetInt("MaxAdventLevel", adventureLevel.maxLevel);
+
+        // 능력 초기화
+        abilityUI.ability1Num = 0;
+        PlayerPrefs.SetInt("Ability1", 0);
+        abilityUI.ability2Num = 0;
+        PlayerPrefs.SetInt("Ability2", 0);
+        abilityUI.ability3Num = 0;
+        PlayerPrefs.SetInt("Ability3", 0);
+        abilityUI.ability4Num = 0;
+        PlayerPrefs.SetInt("Ability4", 0);
+        abilityUI.ability5Num = 0;
+        PlayerPrefs.SetInt("Ability5", 0);
+        abilityUI.ability6Num = 0;
+        PlayerPrefs.SetInt("Ability6", 0);
 
         resetBtn.SetActive(true);
         resetUI.SetActive(false);

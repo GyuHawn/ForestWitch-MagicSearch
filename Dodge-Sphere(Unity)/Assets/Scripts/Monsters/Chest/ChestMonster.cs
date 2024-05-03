@@ -10,10 +10,10 @@ public class ChestMonster : MonoBehaviour
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
     private CameraMovement cameraMovement;
-    private MonsterGetMoney getMoney;
-    private MapSetting monsterGetMoney;
+    private MonsterGetMoney monsterGetMoney;
     private HpBarScript hpBarScript;
     private ClearInfor clearInfor;
+    private Ability ability;
     private MapSetting mapSetting;
     private AudioManager audioManager;
 
@@ -56,11 +56,11 @@ public class ChestMonster : MonoBehaviour
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         p_AttackSpawn = GameObject.Find("Manager").GetComponent<P_AttackSpawn>();
         cameraMovement = GameObject.Find("Main Camera").GetComponent<CameraMovement>();
-        getMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
-        monsterGetMoney = GameObject.Find("Manager").GetComponent<MapSetting>();
-        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>(); 
+        monsterGetMoney = GameObject.Find("Manager").GetComponent<MonsterGetMoney>();
+        mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -107,8 +107,7 @@ public class ChestMonster : MonoBehaviour
         GameObject monster = GameObject.Find("EatingMonster");
         Destroy(monster);
 
-        getMoney.getMoney = money;
-        getMoney.PickUpMoney();
+        GetMoney();
 
         playerMovement.OnTile();
         playerMovement.MoveFinalPosition();
@@ -126,6 +125,23 @@ public class ChestMonster : MonoBehaviour
         clearInfor.killedMonster++;
 
         Destroy(gameObject);
+    }
+
+    void GetMoney()
+    {
+        // 능력 3-1이 활성화
+        if (ability.ability3Num == 1)
+        {
+            money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+        }
+        // 능력 3-2가 활성화
+        else if (ability.ability3Num == 2)
+        {
+            money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+        }
+
+        monsterGetMoney.getMoney = money;
+        monsterGetMoney.PickUpMoney();
     }
 
     void StartPattern() // 랜덤 패턴 선택
@@ -285,6 +301,21 @@ public class ChestMonster : MonoBehaviour
                 audioManager.HitMonsterAudio();
                 StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
+                hpBarScript.UpdateHP(currentHealth, maxHealth);
+                anim.SetTrigger("Hit");
+            }
+            Destroy(collision.gameObject);
+        }
+
+
+        if (collision.gameObject.CompareTag("ExtraAttack"))
+        {
+            ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
+            if (attack != null)
+            {
+                audioManager.HitMonsterAudio();
+                StartCoroutine(HitEffect());
+                currentHealth -= attack.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
                 anim.SetTrigger("Hit");
             }

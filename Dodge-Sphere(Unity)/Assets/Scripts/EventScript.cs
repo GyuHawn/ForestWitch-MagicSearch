@@ -8,6 +8,7 @@ public class EventScript : MonoBehaviour
     private PlayerMovement playerMovement;
     private GetItem getItem;
     private ClearInfor clearInfor;
+    private Ability ability;
     private AudioManager audioManager;
 
     public int eventNum;
@@ -22,6 +23,7 @@ public class EventScript : MonoBehaviour
     {
         getItem = GameObject.Find("Manager").GetComponent<GetItem>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
+        ability = GameObject.Find("Manager").GetComponent<Ability>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -62,17 +64,32 @@ public class EventScript : MonoBehaviour
         playerMovement.moveNum = 1;
         playerMovement.isEvent = false;
     }
+
     public void LakeEvent2()
     {
         clearInfor.useEvent++;
 
         audioManager.TileMapAudio();
 
-        if (Random.Range(0, 100) < 30)
+        if (Random.Range(0, 100) < 50)
         {
-            playerMovement.money += 300;
-            clearInfor.getMoney += 300;
+            int money = 300; // 기본적 300코인을 획득
+
+            // 능력 3-1이 활성화
+            if (ability.ability3Num == 1)
+            {
+                money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+            }
+            // 능력 3-2가 활성화
+            else if (ability.ability3Num == 2)
+            {
+                money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+            }
+
+            playerMovement.money += money;
+            clearInfor.getMoney += money;
         }
+
         events[eventNum].SetActive(false);
         eventUI.SetActive(false);
         playerMovement.moveNum = 1;
@@ -140,8 +157,21 @@ public class EventScript : MonoBehaviour
 
         if (Random.Range(0, 100) < 50)
         {
-            playerMovement.money += 300;
-            clearInfor.getMoney += 300;
+            int money = 300; // 기본적 300코인을 획득
+
+            // 능력 3-1이 활성화
+            if (ability.ability3Num == 1)
+            {
+                money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+            }
+            // 능력 3-2가 활성화
+            else if (ability.ability3Num == 2)
+            {
+                money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+            }
+
+            playerMovement.money += money;
+            clearInfor.getMoney += money;
         }
         else
         {
@@ -164,8 +194,21 @@ public class EventScript : MonoBehaviour
 
         if (Random.Range(0, 100) < 50)
         {
-            playerMovement.money += 100;
-            clearInfor.getMoney += 100;
+            int money = 100; // 기본적 300코인을 획득
+
+            // 능력 3-1이 활성화
+            if (ability.ability3Num == 1)
+            {
+                money = ability.GamblingCoin(money); // 능력 3-1에 따라 코인 획득을 조절
+            }
+            // 능력 3-2가 활성화
+            else if (ability.ability3Num == 2)
+            {
+                money = ability.PlusCoin(money); // 능력 3-2에 따라 코인 획득을 조절
+            }
+
+            playerMovement.money += money;
+            clearInfor.getMoney += money;
         }
         else
         {
