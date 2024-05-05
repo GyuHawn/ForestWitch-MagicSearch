@@ -24,6 +24,8 @@ public class Cannon : MonoBehaviour
 
     public GameObject shotEffect; // 발사 이펙트
 
+    public bool isExtraAttack = true;
+
     // 아이템 관련
     public bool book;
 
@@ -98,18 +100,28 @@ public class Cannon : MonoBehaviour
             AttackMonster();
 
             // 능력 2-2가 활성화
-            if (ability.ability2Num == 2)
+            if (ability.ability2Num == 2 && isExtraAttack)
             {
+                isExtraAttack = false;
                 ability.CannonExtraAttack();  // 능력 2-2에 따라 총알 획득시 확률적으로 투사체 공격
+                StartCoroutine(OnExtreAttack());
             }
 
             
             // 능력 4-2가 활성화
-            else if (ability.ability4Num == 2)
+            else if (ability.ability4Num == 2 && isExtraAttack)
             {
+                isExtraAttack = false;
                 ability.PlusExtraAttack();  // 능력 4-2에 따라 공격시 확률적 투사체 공격
+                StartCoroutine(OnExtreAttack());
             }
         }
+    }
+
+    IEnumerator OnExtreAttack() // 투사체 공격 연속 실행 방지
+    {
+        yield return new WaitForSeconds(0.5f);
+        isExtraAttack = true;
     }
 
 

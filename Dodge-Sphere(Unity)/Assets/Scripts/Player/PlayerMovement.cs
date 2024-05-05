@@ -493,8 +493,12 @@ public class PlayerMovement : MonoBehaviour
                 // 능력 5-2가 활성화
                 if (ability.ability5Num == 2)
                 {
-                    ability.Avoid(); // 능력 5-2에 따라 피격시 확률적 무시
-                    return;
+                    int num = Random.Range(0, 10);
+                    if (num < 4)
+                    {
+                        Destroy(collision.gameObject); // 능력 5-2에 따라 피격시 확률적 무시
+                        return;
+                    }
                 }
 
                 currentHealth -= (bullet.damage - defence);

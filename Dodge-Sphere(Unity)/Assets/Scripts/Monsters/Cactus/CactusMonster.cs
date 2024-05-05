@@ -272,7 +272,10 @@ public class CactusMonster : MonoBehaviour
         bullet.name = "ButtAttack"; // 총알 이름 변경         
         bullet.GetComponent<Rigidbody>().velocity = direction * bu_AttackSpd; // 탄환 방향 설정
         yield return new WaitForSeconds(1.5f);
-        bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if(bullet != null)
+        {
+            bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
 
         yield return new WaitForSeconds(4f);
     }

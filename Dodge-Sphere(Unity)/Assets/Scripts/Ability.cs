@@ -115,17 +115,7 @@ public class Ability : MonoBehaviour
     }
 
     // 게임당 1번 체력이 25% 이하로 줄어들면 50%회복 (능력 5-1)  - PlayerMovement 스크립트에 직접 적용
-
-    public void Avoid() // (40%) 피격시 확률적 무시 (능력 5-2) 
-    {
-        Debug.Log("5_2");
-        int num = Random.Range(0, 10);
-        if (num < 4)
-        {
-            return;
-        }
-
-    }
+    // 피격시 확률적 무시 (능력 5-2)  - PlayerMovement 스크립트에 직접 적용
 
     public void HitCannonReload() // 피격시 모든 대포 총알 1증가 (능력 6-1) 
     {
