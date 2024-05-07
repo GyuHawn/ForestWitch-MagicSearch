@@ -147,7 +147,7 @@ public class ClownMonster : MonoBehaviour
 
         cameraMovement.fix = true;
 
-        monsterMap.DeleteCannon();
+        monsterMap.DeleteObject();
 
         clearInfor.killedBoss++;
 

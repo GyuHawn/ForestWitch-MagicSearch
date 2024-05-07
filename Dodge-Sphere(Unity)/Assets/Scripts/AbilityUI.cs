@@ -393,6 +393,6 @@ public class AbilityUI : MonoBehaviour
         abilityEx.SetActive(true);
         ability6Num = 2;
         PlayerPrefs.SetInt("Ability6", 2);
-        abilityExText.text = "피격 시마다 마력으로 만든 나비를 생성하여 공격 합니다.";
+        abilityExText.text = "피격 시마다 마력으로 만든 나비를 생성하여 2번 공격 합니다.";
     }
 }

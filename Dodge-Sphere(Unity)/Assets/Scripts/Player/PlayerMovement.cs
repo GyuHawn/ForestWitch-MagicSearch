@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-
+using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public TMP_Text bulletNumText;
 
     public GameObject extraAttack; // 투사체 공격 
+    public List<GameObject> extraAttacks = new List<GameObject>();
 
     // 기타
     public int money;

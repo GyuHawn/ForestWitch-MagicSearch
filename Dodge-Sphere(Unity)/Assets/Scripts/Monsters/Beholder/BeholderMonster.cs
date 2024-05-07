@@ -110,7 +110,7 @@ public class BeholderMonster : MonoBehaviour
 
         cameraMovement.fix = true;
 
-        monsterMap.DeleteCannon();
+        monsterMap.DeleteObject();
 
         clearInfor.killedMonster++;
 

@@ -128,7 +128,7 @@ public class FireMonster : MonoBehaviour
 
         cameraMovement.fix = true;
 
-        monsterMap.DeleteCannon();
+        monsterMap.DeleteObject();
 
         clearInfor.killedBoss++;
 
@@ -138,6 +138,7 @@ public class FireMonster : MonoBehaviour
 
         Destroy(gameObject);
     }
+
     void GetMoney()
     {
         // 능력 3-1이 활성화

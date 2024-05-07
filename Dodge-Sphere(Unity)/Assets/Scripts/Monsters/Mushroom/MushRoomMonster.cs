@@ -127,7 +127,7 @@ public class MushRoomMonster : MonoBehaviour
 
             cameraMovement.fix = true;
 
-            monsterMap.DeleteCannon();
+            monsterMap.DeleteObject();
 
             clearInfor.killedMonster++;
         }

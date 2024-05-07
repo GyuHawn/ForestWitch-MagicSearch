@@ -70,6 +70,7 @@ public class Ability : MonoBehaviour
         if (num < 3)
         {
             GameObject attack = Instantiate(playerMovement.extraAttack, player.transform.position, Quaternion.identity);
+            playerMovement.extraAttacks.Add(attack);
         }
     }
 
@@ -80,6 +81,7 @@ public class Ability : MonoBehaviour
         if (num < 5)
         {
             GameObject attack = Instantiate(playerMovement.extraAttack, player.transform.position, Quaternion.identity);
+            playerMovement.extraAttacks.Add(attack);
         }
     }
 
@@ -111,6 +113,7 @@ public class Ability : MonoBehaviour
         if (num < 8)
         {
             GameObject attack = Instantiate(playerMovement.extraAttack, player.transform.position, Quaternion.identity);
+            playerMovement.extraAttacks.Add(attack);
         }
     }
 
@@ -134,6 +137,7 @@ public class Ability : MonoBehaviour
         for (int i = 0; i < 2; i++)
         {
             GameObject attack = Instantiate(playerMovement.extraAttack, player.transform.position, Quaternion.identity);
+            playerMovement.extraAttacks.Add(attack);
         }
     }
 }

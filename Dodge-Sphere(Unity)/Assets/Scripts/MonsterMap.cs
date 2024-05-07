@@ -264,11 +264,16 @@ public class MonsterMap : MonoBehaviour
         }       
     }
 
-    public void DeleteCannon()
+    public void DeleteObject()
     {
         foreach(GameObject cannon in cannons)
         {
             Destroy(cannon);
+        }
+
+        foreach(GameObject extraAttack in playerMovement.extraAttacks)
+        {
+            Destroy(extraAttack);
         }
     }
 }
