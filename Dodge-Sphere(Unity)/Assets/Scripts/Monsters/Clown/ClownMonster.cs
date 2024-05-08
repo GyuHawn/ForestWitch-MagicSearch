@@ -58,6 +58,8 @@ public class ClownMonster : MonoBehaviour
     public GameObject hitEffectPos; // 이펙트 위치
     public GameObject hitEffect; // 피격 이펙트
 
+    public bool die = false;
+
     private Animator anim;
 
     private void Awake()
@@ -115,8 +117,9 @@ public class ClownMonster : MonoBehaviour
 
     void Update()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !die)
         {
+            die = true;
             StartCoroutine(Die());
         }
     }
@@ -151,9 +154,9 @@ public class ClownMonster : MonoBehaviour
 
         clearInfor.killedBoss++;
 
-        mapSetting.stage++; // 스테이지 보스 클리어시 스테이지로 1증가
-        mapSetting.MapReset(); // 보스 클리어시 맵 초기화
-        mapSetting.StageMapSetting(); // 맵 셋팅
+        //mapSetting.stage++; // 스테이지 보스 클리어시 스테이지로 1증가
+       // mapSetting.MapReset(); // 보스 클리어시 맵 초기화
+        //mapSetting.StageMapSetting(); // 맵 셋팅
 
         clearInfor.result = true;
 

@@ -14,12 +14,8 @@ public class MapSetting : MonoBehaviour
     public int adventLevel; // 모험 레벨;
 
     public GameObject[] tiles; // 셋팅할 타일
-    public List<GameObject> empyTiles = new List<GameObject>(); // 생성한 빈 타일 오브젝트
-    public List<GameObject> restTiles = new List<GameObject>(); // 생성한 휴식 타일 오브젝트
-    public List<GameObject> itemTiles = new List<GameObject>(); // 생성한 아이템 타일 오브젝트
-    public List<GameObject> eventTiles = new List<GameObject>(); // 생성한 이벤트 타일 오브젝트
-    public List<GameObject> shopTiles = new List<GameObject>(); // 생성한 상점 타일 오브젝트
-    public List<GameObject> monsterTiles = new List<GameObject>(); // 생성한 몬스터 타일 오브젝트
+
+    public List<GameObject> settingTile = new List<GameObject>(); // 생성한 타일 오브젝트
 
     public int tileNum; // 타일 선택
 
@@ -51,7 +47,7 @@ public class MapSetting : MonoBehaviour
         adventLevel = PlayerPrefs.GetInt("AdventLevel", 1);
         StageMapSetting();
     }
-     
+
     public void StageMapSetting()
     {
         // tileNum을 0부터 4까지 랜덤으로 선택
@@ -59,65 +55,65 @@ public class MapSetting : MonoBehaviour
 
         // 선택된 tileNum에 따라 각 타일 종류의 개수 설정
         SelectTile(tileNum);
-      
+
         // 고정 빈 타일 설치
         foreach (GameObject position in empyFloorPos)
         {
             Vector3 pos = new Vector3(position.transform.position.x, 1.2f, position.transform.position.z);
             GameObject empy = Instantiate(empyFloorPrefab, pos, Quaternion.identity, position.transform);
-            empyTiles.Add(empy);
+            settingTile.Add(empy);
         }
 
         // 고정 휴식 타일 설치
         foreach (GameObject position in restFloorPos)
         {
             GameObject rest = Instantiate(restFloorPrefab, position.transform.position, Quaternion.Euler(0, 220, 0), position.transform);
-            restTiles.Add(rest);
+            settingTile.Add(rest);
         }
-       // 사용된 위치를 저장하는 리스트
-       List<int> usedIndexes = new List<int>();
+        // 사용된 위치를 저장하는 리스트
+        List<int> usedIndexes = new List<int>();
 
-       // 빈 타일 설치
-       for (int i = 0; i < empyFloorNum; i++)
-       {
-           int randomIndex = GetUniqueRandomIndex(usedIndexes);
-           GameObject empy = Instantiate(empyFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
-           empyTiles.Add(empy);
-       }
-
-       // 아이템 타일 설치
-       for (int i = 0; i < itemFloorNum; i++)
-       {
-           int randomIndex = GetUniqueRandomIndex(usedIndexes);
-           GameObject item = Instantiate(itemFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
-           itemTiles.Add(item);
-       }
-
-       // 휴식 타일 설치
-       for (int i = 0; i < restFloorNum; i++)
-       {
-           int randomIndex = GetUniqueRandomIndex(usedIndexes);
-           GameObject rest = Instantiate(restFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 220, 0), randomFloorPos[randomIndex].transform);
-           restTiles.Add(rest);
-       }
-
-       // 이벤트 타일 설치
-       for (int i = 0; i < eventFloorNum; i++)
-       {
-           int randomIndex = GetUniqueRandomIndex(usedIndexes);
-           Vector3 spawnPosition = randomFloorPos[randomIndex].transform.position + new Vector3(0, 0.5f, 0);
-           GameObject events = Instantiate(eventFloorPrefab, spawnPosition, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
-           shopTiles.Add(events);
+        // 빈 타일 설치
+        for (int i = 0; i < empyFloorNum; i++)
+        {
+            int randomIndex = GetUniqueRandomIndex(usedIndexes);
+            GameObject empy = Instantiate(empyFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            settingTile.Add(empy);
         }
 
-       // 상점 타일 설치
-       for (int i = 0; i < shopFloorNum; i++)
-       {
-           int randomIndex = GetUniqueRandomIndex(usedIndexes);
-           Vector3 spawnPosition = randomFloorPos[randomIndex].transform.position + new Vector3(0, 0.5f, 0);
-           GameObject shop = Instantiate(shopFloorPrefab, spawnPosition, Quaternion.Euler(90, 180, 0), randomFloorPos[randomIndex].transform);
-           shopTiles.Add(shop);
-       }
+        // 아이템 타일 설치
+        for (int i = 0; i < itemFloorNum; i++)
+        {
+            int randomIndex = GetUniqueRandomIndex(usedIndexes);
+            GameObject item = Instantiate(itemFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            settingTile.Add(item);
+        }
+
+        // 휴식 타일 설치
+        for (int i = 0; i < restFloorNum; i++)
+        {
+            int randomIndex = GetUniqueRandomIndex(usedIndexes);
+            GameObject rest = Instantiate(restFloorPrefab, randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 220, 0), randomFloorPos[randomIndex].transform);
+            settingTile.Add(rest);
+        }
+
+        // 이벤트 타일 설치
+        for (int i = 0; i < eventFloorNum; i++)
+        {
+            int randomIndex = GetUniqueRandomIndex(usedIndexes);
+            Vector3 spawnPosition = randomFloorPos[randomIndex].transform.position + new Vector3(0, 0.5f, 0);
+            GameObject events = Instantiate(eventFloorPrefab, spawnPosition, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
+            settingTile.Add(events);
+        }
+
+        // 상점 타일 설치
+        for (int i = 0; i < shopFloorNum; i++)
+        {
+            int randomIndex = GetUniqueRandomIndex(usedIndexes);
+            Vector3 spawnPosition = randomFloorPos[randomIndex].transform.position + new Vector3(0, 0.5f, 0);
+            GameObject shop = Instantiate(shopFloorPrefab, spawnPosition, Quaternion.Euler(90, 180, 0), randomFloorPos[randomIndex].transform);
+            settingTile.Add(shop);
+        }
 
         // 보스 & 몬스터 타일 설치
         if (stage == 1)
@@ -129,7 +125,7 @@ public class MapSetting : MonoBehaviour
                 int randomIndex = GetUniqueRandomIndex(usedIndexes);
                 int randomMonster = Random.Range(0, monster1FloorPrefab.Length);
                 GameObject monster = Instantiate(monster1FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
-                monsterTiles.Add(monster);
+                settingTile.Add(monster);
             }
         }
         else if (stage == 2)
@@ -141,36 +137,16 @@ public class MapSetting : MonoBehaviour
                 int randomIndex = GetUniqueRandomIndex(usedIndexes);
                 int randomMonster = Random.Range(0, monster2FloorPrefab.Length);
                 GameObject monster = Instantiate(monster2FloorPrefab[randomMonster], randomFloorPos[randomIndex].transform.position, Quaternion.Euler(0, 180, 0), randomFloorPos[randomIndex].transform);
-                monsterTiles.Add(monster);
+                settingTile.Add(monster);
             }
         }
     }
 
     public void MapReset()
     {
-        foreach (GameObject empy in empyTiles)
+        foreach (GameObject tileObj in settingTile)
         {
-            Destroy(empy);
-        }
-        foreach (GameObject rest in restTiles)
-        {
-            Destroy(rest);
-        }
-        foreach (GameObject item in itemTiles)
-        {
-            Destroy(item);
-        }
-        foreach (GameObject shop in shopTiles)
-        {
-            Destroy(shop);
-        }
-        foreach (GameObject events in eventTiles)
-        {
-            Destroy(events);
-        }
-        foreach (GameObject monster in monsterTiles)
-        {
-            Destroy(monster);
+            Destroy(tileObj);
         }
 
         foreach (GameObject tile in tiles)
@@ -197,7 +173,7 @@ public class MapSetting : MonoBehaviour
 
     void SelectTile(int num) // 타일 선택
     {
-        switch (num) 
+        switch (num)
         {
             case 0: // 총 50개
                 empyFloorNum = 10;

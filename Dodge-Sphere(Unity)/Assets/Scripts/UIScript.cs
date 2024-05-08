@@ -8,6 +8,11 @@ public class UIScript : MonoBehaviour
 
     public void OnEx()
     {
-        ex.SetActive(!ex.activeSelf);
+        ex.SetActive(true);
+    }
+
+    public void OffEx()
+    {
+        ex.SetActive(false);
     }
 }

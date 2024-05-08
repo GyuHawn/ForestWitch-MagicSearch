@@ -322,10 +322,8 @@ public class GameStartScript : MonoBehaviour
         PlayerPrefs.DeleteAll();
 
         // 게임레벨 초기화
-        //gameLevel.gameLevel = 1;
-        
-        gameLevel.gameLevel = 50;
-        PlayerPrefs.SetInt("GameLevel", 50);
+        gameLevel.gameLevel = 1;
+        PlayerPrefs.SetInt("GameLevel", gameLevel.gameLevel);
 
         gameLevel.currentExp = 0;
         gameLevel.maxExp = 50;
@@ -333,7 +331,7 @@ public class GameStartScript : MonoBehaviour
         // 모험레벨 초기화
         adventureLevel.currentLevel = 1;
         PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
-        //adventureLevel.maxLevel = 1;
+        adventureLevel.maxLevel = 1;
         PlayerPrefs.SetInt("MaxAdventLevel", adventureLevel.maxLevel);
 
         // 능력 초기화

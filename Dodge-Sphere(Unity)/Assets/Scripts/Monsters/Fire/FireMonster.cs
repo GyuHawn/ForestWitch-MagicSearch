@@ -50,6 +50,7 @@ public class FireMonster : MonoBehaviour
     public GameObject hitEffectPos; // 이펙트 위치
     public GameObject hitEffect; // 피격 이펙트
 
+    public bool die = false;
     private Animator anim;
 
     private void Awake()
@@ -98,8 +99,9 @@ public class FireMonster : MonoBehaviour
 
     void Update()
     {   
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !die)
         {
+            die = true;
             StartCoroutine(Die());
         }
     }
@@ -128,13 +130,15 @@ public class FireMonster : MonoBehaviour
 
         cameraMovement.fix = true;
 
+        mapSetting.stage++; // 스테이지 보스 클리어시 스테이지로 1증가
+        mapSetting.MapReset(); // 보스 클리어시 맵 초기화
+        mapSetting.StageMapSetting(); // 맵 셋팅
+
         monsterMap.DeleteObject();
 
         clearInfor.killedBoss++;
 
-        mapSetting.stage++; // 스테이지 보스 클리어시 스테이지로 1증가
-        mapSetting.MapReset(); // 보스 클리어시 맵 초기화
-        mapSetting.StageMapSetting(); // 맵 셋팅
+        yield return new WaitForSeconds(1f);
 
         Destroy(gameObject);
     }

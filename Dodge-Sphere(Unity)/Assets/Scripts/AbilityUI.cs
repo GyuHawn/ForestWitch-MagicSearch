@@ -163,55 +163,68 @@ public class AbilityUI : MonoBehaviour
         }
     }
 
-    void AbilityLock() // 게임 레벨에 따라 능력오픈
+    public void AbilityLock() // 게임 레벨에 따라 능력오픈
     {
-        if (gameLevel.gameLevel >= 2)
+        if (!on)
+        {
+
+            if (gameLevel.gameLevel >= 2)
+            {
+                locks[0].SetActive(false);
+            }
+            else
+            {
+                locks[0].SetActive(true);
+            }
+            if (gameLevel.gameLevel >= 3)
+            {
+                locks[1].SetActive(false);
+            }
+            else
+            {
+                locks[1].SetActive(true);
+            }
+            if (gameLevel.gameLevel >= 5)
+            {
+                locks[2].SetActive(false);
+            }
+            else
+            {
+                locks[2].SetActive(true);
+            }
+            if (gameLevel.gameLevel >= 6)
+            {
+                locks[3].SetActive(false);
+            }
+            else
+            {
+                locks[3].SetActive(true);
+            }
+            if (gameLevel.gameLevel >= 8)
+            {
+                locks[4].SetActive(false);
+            }
+            else
+            {
+                locks[4].SetActive(true);
+            }
+            if (gameLevel.gameLevel >= 9)
+            {
+                locks[5].SetActive(false);
+            }
+            else
+            {
+                locks[5].SetActive(true);
+            }
+        }
+        else
         {
             locks[0].SetActive(false);
-        }
-        else
-        {
-            locks[0].SetActive(true);
-        }
-        if (gameLevel.gameLevel >= 3)
-        {
             locks[1].SetActive(false);
-        }
-        else
-        {
-            locks[1].SetActive(true);
-        }
-        if (gameLevel.gameLevel >= 5)
-        {
             locks[2].SetActive(false);
-        }
-        else
-        {
-            locks[2].SetActive(true);
-        }
-        if (gameLevel.gameLevel >= 6)
-        {
             locks[3].SetActive(false);
-        }
-        else
-        {
-            locks[3].SetActive(true);
-        }
-        if (gameLevel.gameLevel >= 8)
-        {
             locks[4].SetActive(false);
-        }
-        else
-        {
-            locks[4].SetActive(true);
-        }
-        if (gameLevel.gameLevel >= 9)
-        {
             locks[5].SetActive(false);
-        }
-        else
-        {
-            locks[5].SetActive(true);
         }
     }
 
