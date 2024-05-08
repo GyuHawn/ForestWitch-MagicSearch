@@ -64,6 +64,13 @@ public class Cannon : MonoBehaviour
         }
     }
 
+    void BulletText()
+    {
+        // 현재 총알을 백분율로 업데이트
+        int percentage = (int)((float)currentBullet / maxBullet * 100);
+        currentBulletText.text = percentage + "%";
+    }
+
     void Update()
     {
         if (player == null)
@@ -75,7 +82,8 @@ public class Cannon : MonoBehaviour
         // 아이템 관련
         ItemSetting();
 
-        currentBulletText.text = currentBullet + " / " + maxBullet;
+        // 총알 개수 표시
+        BulletText();
 
         if (currentBullet < maxBullet)
         {
