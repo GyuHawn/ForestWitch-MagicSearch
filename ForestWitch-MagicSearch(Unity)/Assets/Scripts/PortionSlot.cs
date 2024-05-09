@@ -14,13 +14,18 @@ public class PortionSlot : MonoBehaviour
 
     public GameObject player;
 
-    void Update()
+    void FindPlayer()
     {
-        if (player == null)
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+    }
+
+    void Update()
+    {
+        FindPlayer(); // 플레이어 찾기
 
         if (currentPortionNum == 1)
         {

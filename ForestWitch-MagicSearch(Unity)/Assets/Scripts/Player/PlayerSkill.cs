@@ -7,26 +7,27 @@ public class PlayerSkill : MonoBehaviour
 {
     private PlayerMovement playerMovement;
 
-    public GameObject player;
+    public GameObject player; // 플레이어
 
-    public GameObject skill;
-    public int playerNum;
-    public GameObject[] playerSkills;
-    public Image skillCoolTime;
+    public int playerNum; // 캐릭터 확인
+    public GameObject skillUI; // 스킬 UI
+    public GameObject[] playerSkills; // 캐릭터 스킬
+    public Image skillCoolTime; // 쿨타임 UI
 
-    public float coolTime;
-    public float reLoadTime;
-    public float purificatTime;
+    public float coolTime; // 현재 쿨타임
+    public float purificatTime; // 1번 스킬 쿨타임
+    public float reLoadTime; // 2번 스킬 쿨타임
 
     public GameObject purificatEffect;
 
     void Start()
     {
-        playerNum = PlayerPrefs.GetInt("Player");
+        playerNum = PlayerPrefs.GetInt("Player"); // 캐릭터 확인
 
+        // 캐릭터에 따른 쿨타임 적용
         if (playerNum == 1)
         {
-            purificatTime = 30;
+            purificatTime = 25;
         }
         else if (playerNum == 2)
         {
@@ -36,51 +37,57 @@ public class PlayerSkill : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        FindPlayer(); // 플레이어 찾기
+        UpdateCoolTime(); // 쿨타임 업데이트
+        UpdateSkillUI(); // 맵에 따른 UI 활성화
+    }
+    
+    void FindPlayer()
+    {
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+    }
 
-        if (coolTime > 0)
+    void UpdateCoolTime()  // 쿨타임 업데이트
+    {
+        if (coolTime > 0) // 쿨타임 중 시간 줄이기
         {
-            skillCoolTime.gameObject.SetActive(true);
             coolTime -= Time.deltaTime;
+            skillCoolTime.gameObject.SetActive(true);
 
             // 쿨타임에 따른 fillAmount 업데이트
-            if (playerNum == 1)
-            {
-                skillCoolTime.fillAmount = coolTime / purificatTime;
-            }
-            else if (playerNum == 2)
-            {
-                skillCoolTime.fillAmount = coolTime / reLoadTime;
-            }
+            skillCoolTime.fillAmount = coolTime / (playerNum == 1 ? purificatTime : reLoadTime);
         }
         else
         {
             skillCoolTime.gameObject.SetActive(false);
             skillCoolTime.fillAmount = 0; // 쿨타임이 끝날때 fillAmount를 0으로
         }
+    }
 
+    void UpdateSkillUI() // 맵에 따른 UI 활성화
+    {
         if (playerMovement.game) // 몬스터 맵일때 활성화
         {
-            skill.SetActive(true);
+            skillUI.SetActive(true);
 
             // 플레이어 따라 스킬 활성화
-            if (playerNum == 1)
-            {
-                playerSkills[0].SetActive(true);
-            }
-            else if (playerNum == 2)
-            {
-                playerSkills[1].SetActive(true);
-            }
+            playerSkills[0].SetActive(playerNum == 1);
+            playerSkills[1].SetActive(playerNum == 2);
         }
         else
         {
-            skill.SetActive(false);
+            skillUI.SetActive(false);
         }
+    }
+
+    public void StartCooldown(float time) // 쿨타임 설정
+    {
+        coolTime = time;
+        skillCoolTime.fillAmount = 1;
     }
 
     public void Purification() // 모든 총알 제거
@@ -93,15 +100,13 @@ public class PlayerSkill : MonoBehaviour
             // 찾은 총알 제거
             foreach (GameObject bullet in bullets)
             {
-                GameObject effect = Instantiate(purificatEffect, bullet.transform.position, Quaternion.identity);
-                
+                GameObject effect = Instantiate(purificatEffect, bullet.transform.position, Quaternion.identity);           
                 Destroy(effect, 1f);
                 Destroy(bullet);
             }
             
             // 쿨타임 설정
-            coolTime = purificatTime;
-            skillCoolTime.fillAmount = 1;
+            StartCooldown(purificatTime);
         }
     }
     public void Reload() // 모든 대포 장전
@@ -118,8 +123,7 @@ public class PlayerSkill : MonoBehaviour
                 p_Cannon.currentBullet = p_Cannon.maxBullet;
             }
 
-            coolTime = reLoadTime;
-            skillCoolTime.fillAmount = 1;
+            StartCooldown(reLoadTime);
         }
-    }
+    } 
 }

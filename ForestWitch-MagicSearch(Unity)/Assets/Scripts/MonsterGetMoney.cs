@@ -24,13 +24,18 @@ public class MonsterGetMoney : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        FindPlayer(); // 플레이어 찾기
+
+        getMoneyText.text = getMoney.ToString();
+    }
+
+    void FindPlayer()
+    {
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
-
-        getMoneyText.text = getMoney.ToString();
     }
 
     public void PickUpMoney()

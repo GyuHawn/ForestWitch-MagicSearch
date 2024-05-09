@@ -28,11 +28,7 @@ public class GetItem : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
-        {
-            player = GameObject.Find("Player");
-            playerMovement = player.GetComponent<PlayerMovement>();
-        }
+        FindPlayer(); // 플레이어 찾기
 
         if (onItem)
         {
@@ -40,6 +36,15 @@ public class GetItem : MonoBehaviour
             playerMovement.currentTile = 0;
             SelectItem();
         }
+    }
+    void FindPlayer()
+    {
+        if (player == null) // 플레이어 찾기
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+
     }
 
     IEnumerator GetItemAudio() // 아이템 획득 오디오 사용후 다시 BGM시작

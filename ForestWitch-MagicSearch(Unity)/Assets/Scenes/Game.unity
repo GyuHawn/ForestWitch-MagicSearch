@@ -49207,15 +49207,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  skill: {fileID: 630834717}
   playerNum: 0
+  skillUI: {fileID: 630834717}
   playerSkills:
   - {fileID: 539448565}
   - {fileID: 1065598436}
   skillCoolTime: {fileID: 2088312193}
   coolTime: 0
-  reLoadTime: 0
   purificatTime: 0
+  reLoadTime: 0
   purificatEffect: {fileID: 4227170663897501347, guid: 9931c1e7197e67e4f98cb448777a5672, type: 3}
 --- !u!114 &1666040373
 MonoBehaviour:

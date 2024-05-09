@@ -23,13 +23,18 @@ public class CameraMovement : MonoBehaviour
         fix = true;
     }
 
-    void Update()
+    void FindPlayer()
     {
-        if (player == null)
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+    }
+
+    void Update()
+    {
+        FindPlayer(); // 플레이어 찾기
 
         if (playerMovement.currentTile < 5 && playerMovement.tile) // 타일맵 - 카메라 이동
         {

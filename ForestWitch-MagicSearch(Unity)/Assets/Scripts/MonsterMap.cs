@@ -58,13 +58,18 @@ public class MonsterMap : MonoBehaviour
         monsterNum = 1;
     }
 
-    void Update()
+    void FindPlayer()
     {
-        if (player == null)
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+    }
+
+    void Update()
+    {
+        FindPlayer(); // 플레이어 찾기
 
         // 전투 맵 이동 준비
         if (playerMovement.currentTile == 5.1f) // 불 몬스터

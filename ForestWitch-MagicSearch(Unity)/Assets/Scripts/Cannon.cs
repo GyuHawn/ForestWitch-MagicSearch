@@ -71,13 +71,18 @@ public class Cannon : MonoBehaviour
         currentBulletText.text = percentage + "%";
     }
 
-    void Update()
+    void FindPlayer()
     {
-        if (player == null)
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+    }
+
+    void Update()
+    {
+        FindPlayer(); // 플레이어 찾기
 
         // 아이템 관련
         ItemSetting();

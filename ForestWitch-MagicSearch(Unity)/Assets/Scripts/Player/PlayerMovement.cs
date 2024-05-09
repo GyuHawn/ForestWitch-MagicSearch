@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private ClearInfor clearInfor;
     private MapSetting mapSetting;
     private Ability ability;
-    private AudioManager audioManager;
 
     public FixedJoystick fixedJoyStick;
     public GameObject joyStick;
@@ -18,30 +17,31 @@ public class PlayerMovement : MonoBehaviour
     public int playerNum; // 1 = 검정, 2 = 파랑
 
     // 전투관련 플레이어 스탯
-    public int maxHealth;
-    public int currentHealth;
-    public float moveSpd;
-    public float rotateSpd;
-    public int defence;
+    public int maxHealth; // 최대 체력
+    public int currentHealth; // 현재 체력
+    public float moveSpd; // 이동 속도
+    public float rotateSpd; // 회전 속도
+    public int defence; // 방어력
     public bool itemShield; // 방패 아이템 획득시 보호막 사용
 
+    // 이동관련
     private float hAxis;
     private float vAxis;
     private Vector3 moveVec;
 
     // 공격 관련
-    public int bulletNum;
+    public int bulletNum; // 총알 개수
     public TMP_Text bulletNumText;
 
     public GameObject extraAttack; // 투사체 공격 
     public List<GameObject> extraAttacks = new List<GameObject>();
 
     // 기타
-    public int money;
+    public int money; // 돈
     public bool faint; // 기절여부
      
     // 타일맵 관련
-    public int moveNum; // 플레이어 이동 유무(일단 int사용, 확인후 bool변경)
+    public int moveNum; // 플레이어 이동 (5.1~ : 몬스터)
     public GameObject[] moveBtn; // 플레이어 이동버튼
     private Vector3 targetPosition; // 이동 위치
     public GameObject tileCheck; // 타일체크 범위
@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 finalPlayerPos; // 마지막 타일 위치
 
+    // 보스전 휴식 타일
     public GameObject bossRest1;
     public GameObject bossRest2;
     public GameObject bossRest3;
@@ -61,11 +62,7 @@ public class PlayerMovement : MonoBehaviour
     public TMP_Text healthText;
     public TMP_Text spdText;
     public TMP_Text moneyText;
-
-    private Animator anim;
-    private Rigidbody rigid;
-    private Collider collider;
-
+    
     // 특수 맵 진행중
     public bool isShop;
     public bool isEvent;
@@ -92,78 +89,87 @@ public class PlayerMovement : MonoBehaviour
     // 이펙트
     public GameObject shieldEffect; // 쉴드 이펙트
 
+    private Animator anim;
+
     private void Awake()
     {
         monsterMap = GameObject.Find("Manager").GetComponent<MonsterMap>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         ability = GameObject.Find("Manager").GetComponent<Ability>();
-        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-        rigid = GetComponent<Rigidbody>();
-        collider = GetComponent<Collider>();
 
+        PlayerSetting(); // 플레이어 관련 세팅
+        MapSetting(); // 맵 관련 세팅
+    }
+
+    void PlayerSetting() // 플레이어 관련 세팅
+    {
         playerNum = PlayerPrefs.GetInt("Player");
+
+        // 캐릭터에 따른 스탯
         if (playerNum == 1)
         {
             maxHealth = 10;
             moveSpd = 6;
         }
-        else if(playerNum == 2)
+        else if (playerNum == 2)
         {
             maxHealth = 8;
             moveSpd = 8;
         }
-       
-        rotateSpd = 3f;
-     
-        currentHealth = maxHealth;
-        defence = 0;
+        
+        rotateSpd = 3f; // 회전속도
+        currentHealth = maxHealth; // 체력 설정
+        defence = 0; // 방어력
+        moveNum = 1; // 플레이어 이동관련 
+        tileMoveSpd = 3f; // 타일맵 이동속도
+        moveDistance = 2.3f; // 타일맵 이동거리
+        currentTile = 0; // 현재 타일종류
+    }
 
-        moveNum = 1;
-        tileMoveSpd = 3f;
-        moveDistance = 2.3f;
-        currentTile = 0;
+    void MapSetting() // 맵 관련 세팅
+    {
         tileCheck.GetComponent<Collider>().enabled = false;
         tile = true;
         game = false;
     }
-
+    
+    
     void Update()
+    {
+        UpdateText(); // 텍스트 업데이트
+        StateEffects(); // 아이템 이펙트 관련
+        UpdateAnimations(); // 이동 관련 애니메이션
+        PlayerState(); // 플레이어 상태
+        PlayerMoveManager(); // 플레이어 이동 관련
+        NextStage(); // 스테이지 이동            
+    }
+
+    // 텍스트 업데이트 -------------------------------
+    void UpdateText() 
     {
         bulletNumText.text = bulletNum.ToString(); // 현재 총알 수 표시
 
-        if (itemShield)
-        {
-            shieldEffect.SetActive(true);
-        }
-        else
-        {
-            shieldEffect.SetActive(false);
-        }
-
-        if (nextStage)
-        {
-            nextStage = false;
-            StartCoroutine(OnNextStage());
-        }
-
-        // 현재 체력이 최대 체력보다 많을 수 없도록
-        if (currentHealth > maxHealth) 
-        {
-            currentHealth = maxHealth;
-        }
-
         // UI 텍스트
-        healthText.text = currentHealth.ToString() + " / " + maxHealth.ToString();
-        spdText.text = moveSpd.ToString();
-        moneyText.text = "$ " + money.ToString();
+        healthText.text = currentHealth.ToString() + " / " + maxHealth.ToString(); // 체력
+        spdText.text = moveSpd.ToString(); // 이동속도
+        moneyText.text = "$ " + money.ToString(); // 돈
+    }
 
-        // 이동 애니메이션
+    // 아이템 이펙트 관련 ------------------------------------
+    void StateEffects() 
+    {
+        shieldEffect.SetActive(itemShield); // 상태에 따른 이펙트 관리
+    }
+
+    // 이동 관련 애니메이션 ----------------------------------
+    void UpdateAnimations() // 맵에 따른 애니메이션 관리
+    {
         if (tile)
         {
             anim.SetBool("Game", false);
@@ -174,15 +180,23 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("Tile", false);
             anim.SetBool("Game", true);
+            anim.SetBool("GameRun", moveVec != Vector3.zero);
+        }
+    }
 
-            if (moveVec != Vector3.zero)
-            {
-                anim.SetBool("GameRun", true);
-            }
-            else
-            {
-                anim.SetBool("GameRun", false);
-            }
+    // 플레이어 상태 ----------------------------------------
+    void PlayerState() 
+    {
+        // 현재 체력이 최대 체력보다 많을 수 없도록
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        // 체력이 0이하이면 사망
+        if (currentHealth <= 0)
+        {
+            Die();
         }
 
         // 능력 5-1이 활성화
@@ -194,45 +208,43 @@ public class PlayerMovement : MonoBehaviour
                 ability.healing = false;
             }
         }
+    }
+    public void Die() // 사망시
+    {
+        clearInfor.result = true; // 결과창 활성화
+        clearInfor.clearStateText.text = "어둠속으로..."; //결과창 텍스트
 
-        if (currentHealth <= 0)
+        // 남아있는 몬스터 삭제
+        GameObject monster = GameObject.FindWithTag("Monster");
+        Destroy(monster);
+
+        // 오류 방지용 
+        transform.position = Vector3.zero;
+        currentHealth += 1; // 다이 함수 중복방지 
+    }
+
+    // 플레이어 이동관련 ----------------------------------
+    void PlayerMoveManager() // 플레이어 이동관련
+    {
+        if (game && !faint) // 몬스터맵 일때
         {
-            Die();
-        }
+            joyStick.SetActive(true);
 
-        if ((currentTile < 5 && !game) && (!isShop || !isRest || !isItem || !isEvent || !nextStage))
+            GetInput();
+            Move();
+            Rotate();
+        }
+        else // 타일맵 일때
         {
             joyStick.SetActive(false);
 
-            if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
+            if (currentTile < 5 && !game)
             {
-                monsterMap.monsterNum = 1;
-
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                {
-                    for (int i = 0; i < moveBtn.Length; i++)
-                    {
-                        if (hit.collider.gameObject == moveBtn[i])
-                        {
-                            MovePlayer(i);
-                            break;
-                        }
-                    }
-                }
+                PlayerMove();
             }
-
-            // Lerp를 사용하여 목표 위치로 이동
-            float newY = transform.position.y; // 현재 y값 저장
-            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * tileMoveSpd);
-            transform.position = new Vector3(transform.position.x, newY, transform.position.z); // y값 복원
-
-            // 이동시 1초뒤 타일체크 후 특정 위치에서 이동제한
-            TileCheckAndMoveLimited();
         }
-        else if (game && transform.position.x > 100)
+
+        if (game && transform.position.x > 100) // 몬스터맵 일때 불필요한 오브젝트 비활성화 
         {
             tileCheck.GetComponent<Collider>().enabled = false;
 
@@ -241,31 +253,102 @@ public class PlayerMovement : MonoBehaviour
                 move.SetActive(false);
                 move.GetComponent<Collider>().enabled = false;
             }
-
-            if (!faint) // 기절시 이동불가
-            {
-                joyStick.SetActive(true);
-                // 키보드 이동 기능
-                GetInput();
-                Move();
-                Rotate();
-            }
         }
     }
-    
+    // 전투중 이동관련
+    private void GetInput() // 조이스틱 입력 값 받기
+    {
+        hAxis = fixedJoyStick.Horizontal;
+        vAxis = fixedJoyStick.Vertical;
+
+        moveVec = new Vector3(hAxis, 0, vAxis);
+    }
+
+    private void Move() // 이동
+    {
+        transform.position += moveVec * moveSpd * Time.deltaTime;
+    }
+
+    private void Rotate() // 회전
+    {
+        if (moveVec != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveVec.normalized, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpd);
+        }
+    }
+
+    // 타일맵 이동관련
+    void PlayerMove() // 플레이어 이동
+    {
+        if (Input.GetMouseButtonDown(0)) // 클릭시 해당위치로 이동
+        {
+            monsterMap.monsterNum = 1;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                for (int i = 0; i < moveBtn.Length; i++)
+                {
+                    if (hit.collider.gameObject == moveBtn[i])
+                    {
+                        MovePlayer(i);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Lerp를 사용하여 목표 위치로 이동
+        float newY = transform.position.y; // 현재 y값 저장
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * tileMoveSpd);
+        transform.position = new Vector3(transform.position.x, newY, transform.position.z); // y값 복원
+        TileCheckAndMoveLimited(); // 이동시 1초뒤 타일체크 후 특정 위치에서 이동제한
+    }
+
+    void MovePlayer(int direction) // 이동거리
+    {
+        anim.SetBool("TileRun", true); // 이동 애니메이션 시작
+        moveNum = 0;
+        switch (direction) // 클릭한 버튼에 따라 이동
+        {
+            case 0:
+                targetPosition += new Vector3(-moveDistance, 0f, moveDistance);
+                break;
+            case 1:
+                targetPosition += new Vector3(0f, 0f, moveDistance);
+                break;
+            case 2:
+                targetPosition += new Vector3(moveDistance, 0f, moveDistance);
+                break;
+            default:
+                break;
+        }
+        StartCoroutine(SaveFinalPosition()); // 마지막 위치 저장 
+    }
+    IEnumerator SaveFinalPosition() // 마지막 위치 저장
+    {
+        yield return new WaitForSeconds(1f);
+        anim.SetBool("TileRun", false); // 도착시 이동 애니메이션 종료
+        finalPlayerPos = transform.position; // 도착한 위치 저장
+    }
+
+
     void TileCheckAndMoveLimited() // 이동시 1초뒤 타일체크 후 특정 위치에서 이동제한
     {
         if (moveNum > 0 && transform.position.z <= 27) // 보스맵 휴식 타일전
         {
             tileCheck.GetComponent<Collider>().enabled = false;
 
-            foreach (GameObject move in moveBtn)
+            foreach (GameObject move in moveBtn) // 이동 버튼 활성화
             {
                 move.SetActive(true);
                 move.GetComponent<Collider>().enabled = true;
             }
 
-            // 타일이 없는곳으로는 이동불가
+            // 이동할수 없는 곳으로 이동 불가
             if (transform.position.x <= -4f)
             {
                 moveBtn[0].SetActive(false);
@@ -339,7 +422,8 @@ public class PlayerMovement : MonoBehaviour
                 moveBtn[2].GetComponent<Collider>().enabled = false;
             }
         }
-        if (moveNum <= 0)
+
+        if (moveNum <= 0) // 이동완료 후 이동버튼 비활성화 및 타일체크
         {
             StartCoroutine(TileCheck());
             foreach (GameObject move in moveBtn)
@@ -349,7 +433,21 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    IEnumerator TileCheck() // 타일체크
+    {
+        yield return new WaitForSeconds(1f);
+        tileCheck.GetComponent<Collider>().enabled = true;
+    }
 
+    // 스테이지 이동 ---------------------------------
+    void NextStage() 
+    {
+        if (nextStage)
+        {
+            nextStage = false;
+            StartCoroutine(OnNextStage());
+        }
+    }
     IEnumerator OnNextStage() // 스테이지가 넘어갈때 잠시 UI사용
     {
         yield return new WaitForSeconds(1f);
@@ -359,6 +457,8 @@ public class PlayerMovement : MonoBehaviour
         nextStageUI.SetActive(false);
     }
 
+
+    // 타 스크립트 -----------------------------
     public void OnTile() // 타일 맵으로 이동
     {
         tile = true;
@@ -387,107 +487,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void PostionReset()
+    public void PostionReset() // 위치값 리셋
     {
         finalPlayerPos = new Vector3(0, 1, 0);
         targetPosition = new Vector3(0, 1, 0);
         transform.position = finalPlayerPos;
     }
 
-    IEnumerator SaveFinalPosition() // 마지막 위치 저장
-    {
-        yield return new WaitForSeconds(1f);
-        anim.SetBool("TileRun", false); // 도착시 이동 애니메이션 종료
-        finalPlayerPos = transform.position;    
-    }
-
     public void MoveFinalPosition() // 타 스크립트 코드용
     {
         transform.position = finalPlayerPos;
-    }
+    }    
 
-    IEnumerator TileCheck() // 타일체크
-    {
-        yield return new WaitForSeconds(1f);
-        tileCheck.GetComponent<Collider>().enabled = true;
-    }
-
-    void MovePlayer(int direction) // 이동거리
-    {
-        anim.SetBool("TileRun", true); // 이동 애니메이션 시작
-        moveNum = 0;
-        switch (direction)
-        {
-            case 0:
-                targetPosition += new Vector3(-moveDistance, 0f, moveDistance);
-                break;
-            case 1:
-                targetPosition += new Vector3(0f, 0f, moveDistance);
-                break;
-            case 2:
-                targetPosition += new Vector3(moveDistance, 0f, moveDistance);
-                break;
-            default:
-                break;
-        }
-        StartCoroutine(SaveFinalPosition());
-    }
-
-    // 전투중 이동 관련
-    private void GetInput() // 조이스틱 입력 값 받기
-    {
-        hAxis = fixedJoyStick.Horizontal;
-        vAxis = fixedJoyStick.Vertical;
-
-        moveVec = new Vector3(hAxis, 0, vAxis);
-    }
-
-    private void Move()
-    {
-        transform.position += moveVec * moveSpd * Time.deltaTime;
-    }
-
-    private void Rotate()
-    {
-        if (moveVec != Vector3.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveVec.normalized, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotateSpd);
-        }
-    }
-
-    public void Die()
-    {       
-        clearInfor.result = true;
-        clearInfor.clearStateText.text = "어둠속으로...";
-
-        // 플레이어 삭제시 많은 오류 발생으로 인한 위치이동 (제거 하지 않아도 문제 없음)
-        transform.position = Vector3.zero;
-        currentHealth += 1; // 다이 함수 중복방지 
-
-        // 남아있는 몬스터 삭제
-        GameObject monster = GameObject.FindWithTag("Monster");
-        Destroy(monster);
-    }
-
-    IEnumerator PlayerFaint(float time) // 기절 시 일정시간뒤 기절해제
-    {
-        faint = true;
-
-        yield return new WaitForSeconds(time);
-        faint = false;
-    }
-
+    // 충돌관련 ------------------------------------------------------
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet")) // 몬스터 총알과 충돌시
         {
-            if (itemShield)
+            if (itemShield) // 방패 보유시 1회 피격 무시
             {
                 itemShield = false;
                 Destroy(collision.gameObject);
             }
-            else if (!itemShield)
+            else if (!itemShield) // 피격
             {
                 Bullet bullet = collision.gameObject.GetComponent<Bullet>();
 
@@ -502,7 +524,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
 
-                currentHealth -= (bullet.damage - defence);
+                currentHealth -= (bullet.damage - defence); // 체력감소
                 Destroy(collision.gameObject);
             }
 
@@ -518,24 +540,23 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("FakeBullet"))
-        {
-            Destroy(collision.gameObject);
-        }
-        if (collision.gameObject.CompareTag("BreakBullet"))
+        // 특정 총알 피격시 (체력이 닳지않음)
+        if (collision.gameObject.CompareTag("FakeBullet") || collision.gameObject.CompareTag("BreakBullet"))
         {
             Destroy(collision.gameObject);
         }
 
+        // 기절 총알 피격시 1초 이동불가
         if (collision.gameObject.CompareTag("FaintBullet"))
         {
             Destroy(collision.gameObject);
             StartCoroutine(PlayerFaint(1f));
         }
 
+        // 플레이어 총알 획득시
         if (collision.gameObject.CompareTag("P_Attack"))
         {
-            bulletNum++;
+            bulletNum++; // 총알 증가
             Destroy(collision.gameObject);
 
             // 능력 1-1이 활성화
@@ -556,8 +577,9 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall")) // 몬스터맵 벽 충돌시 처음위치로 이동
         {
+            // 스테이지에 따른 이동위치 설정
             if(mapSetting.stage == 1)
             {
                 transform.position = monsterMap.playerMapSpawnPos[0].transform.position;
@@ -567,6 +589,14 @@ public class PlayerMovement : MonoBehaviour
                 transform.position = monsterMap.playerMapSpawnPos[1].transform.position;
             }
         }
+    }
+
+    IEnumerator PlayerFaint(float time) // 기절 시 일정시간뒤 기절해제
+    {
+        faint = true;
+
+        yield return new WaitForSeconds(time);
+        faint = false;
     }
 }
  

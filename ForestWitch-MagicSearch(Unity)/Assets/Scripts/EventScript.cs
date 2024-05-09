@@ -29,12 +29,8 @@ public class EventScript : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
-        {
-            player = GameObject.Find("Player");
-            playerMovement = player.GetComponent<PlayerMovement>();
-        }
-        
+        FindPlayer(); // 플레이어 찾기
+
         if (onEvent)
         {
             onEvent = false;
@@ -42,6 +38,16 @@ public class EventScript : MonoBehaviour
             StartEvent();
         }
     }
+
+    void FindPlayer()
+    {
+        if (player == null) // 플레이어 찾기
+        {
+            player = GameObject.Find("Player");
+            playerMovement = player.GetComponent<PlayerMovement>();
+        }
+    }
+
 
     void StartEvent()
     {

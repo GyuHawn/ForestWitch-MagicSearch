@@ -14,52 +14,57 @@ public class Bullet : MonoBehaviour
 
     public GameObject player;
 
-    private void Awake()
+    private void Start()
     {
-        if (player == null)
+        FindPlayer(); // 플레이어 찾기
+    }
+
+    void FindPlayer()
+    {
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
-    }
 
-    void Update()
-    {      
-        if (playerMovement.pick)
+        void Update()
         {
-            int num = Random.Range(0, 1);
-            if (num == 0)
+            if (playerMovement.pick)
             {
-                damage = damage * 2;
+                int num = Random.Range(0, 1);
+                if (num == 0)
+                {
+                    damage = damage * 2;
+                }
+            }
+
+            ItemSetting();
+        }
+
+        void ItemSetting()
+        {
+            // 단검 아이템 획득시 데미지 1증가
+            if (playerMovement.dagger && !dagger)
+            {
+                dagger = true;
+
+                damage++;
+            }
+            // 단검 아이템 획득시 데미지 1증가
+            if (playerMovement.sword && !sword)
+            {
+                sword = true;
+
+                damage += 2;
             }
         }
 
-        ItemSetting();
-    }
-
-    void ItemSetting()
-    {
-        // 단검 아이템 획득시 데미지 1증가
-        if (playerMovement.dagger && !dagger)
+        void OnCollisionEnter(Collision collision)
         {
-            dagger = true;
-
-            damage++;
+            /*if (collision.gameObject.CompareTag("Player"))
+            {
+                Destroy(gameObject);
+            }*/
         }
-        // 단검 아이템 획득시 데미지 1증가
-        if (playerMovement.sword && !sword)
-        {
-            sword = true;
-
-            damage += 2;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        /*if (collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }*/
     }
 }

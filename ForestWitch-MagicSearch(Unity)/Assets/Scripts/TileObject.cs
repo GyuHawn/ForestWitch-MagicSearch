@@ -28,13 +28,17 @@ public class TileObject : MonoBehaviour
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
-    void Update()
+    void FindPlayer()
     {
-        if (player == null)
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
+    }
+    void Update()
+    {
+        FindPlayer(); // 플레이어 찾기
 
         if (player != null)
         {
@@ -102,6 +106,7 @@ public class TileObject : MonoBehaviour
             }
         }
     }
+ 
 
     IEnumerator CurrentTileNum(float num)
     {

@@ -44,13 +44,17 @@ public class Portion : MonoBehaviour
 
     void Update()
     {
-        if (player == null)
+        FindPlayer(); // 플레이어 찾기
+    }
+
+    void FindPlayer()
+    {
+        if (player == null) // 플레이어 찾기
         {
             player = GameObject.Find("Player");
             playerMovement = player.GetComponent<PlayerMovement>();
         }
     }
-
 
     public void SpeedPortion()
     {

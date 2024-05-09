@@ -107,14 +107,14 @@ public class MushRoomMonster : MonoBehaviour
 
         if (monster != null)
         {
-            hpBarScript.ResetHealthBar();
+            hpBarScript.ResetHealthBar(currentHealth, maxHealth);
         }
         else
         {
             GetMoney();
 
             hpBarScript.MoveToYStart(150, 0.1f);
-            hpBarScript.ResetHealthBar();
+            hpBarScript.ResetHealthBar(currentHealth, maxHealth);
 
             playerMovement.OnTile();
             playerMovement.MoveFinalPosition();
