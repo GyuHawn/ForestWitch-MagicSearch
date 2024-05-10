@@ -22,12 +22,72 @@ public class Ability : MonoBehaviour
 
     private void Start()
     {
-        ability1Num = PlayerPrefs.GetInt("Ability1");
+        /*ability1Num = PlayerPrefs.GetInt("Ability1");
         ability2Num = PlayerPrefs.GetInt("Ability2");
         ability3Num = PlayerPrefs.GetInt("Ability3");
         ability4Num = PlayerPrefs.GetInt("Ability4");
         ability5Num = PlayerPrefs.GetInt("Ability5");
-        ability6Num = PlayerPrefs.GetInt("Ability6");
+        ability6Num = PlayerPrefs.GetInt("Ability6");*/
+        GPGSBinder.Inst.LoadCloud("Ability1", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability1Num = loadedAbility1;
+            }
+            else
+            {
+                ability1Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability2", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability2Num = loadedAbility1;
+            }
+            else
+            {
+                ability2Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability3", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability3Num = loadedAbility1;
+            }
+            else
+            {
+                ability3Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability4", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability4Num = loadedAbility1;
+            }
+            else
+            {
+                ability4Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability5", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability5Num = loadedAbility1;
+            }
+            else
+            {
+                ability5Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability6", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability6Num = loadedAbility1;
+            }
+            else
+            {
+                ability6Num = 0;
+            }
+        });
     }
 
     void Update()

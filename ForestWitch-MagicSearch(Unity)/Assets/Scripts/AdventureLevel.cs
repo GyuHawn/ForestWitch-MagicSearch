@@ -13,8 +13,28 @@ public class AdventureLevel : MonoBehaviour
 
     void Start()
     {
-        maxLevel = PlayerPrefs.GetInt("MaxAdventLevel", 1);
-        currentLevel = PlayerPrefs.GetInt("AdventLevel", 1);
+       // maxLevel = PlayerPrefs.GetInt("MaxAdventLevel", 1);
+        GPGSBinder.Inst.LoadCloud("MaxAdventLevel", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                maxLevel = loadedAbility1;
+            }
+            else
+            {
+                maxLevel = 1;
+            }
+        });
+        //currentLevel = PlayerPrefs.GetInt("AdventLevel", 1);
+        GPGSBinder.Inst.LoadCloud("AdventLevel", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                currentLevel = loadedAbility1;
+            }
+            else
+            {
+                currentLevel = 1;   
+            }
+        });
     }
 
     
@@ -28,7 +48,8 @@ public class AdventureLevel : MonoBehaviour
         if(maxLevel > currentLevel)
         {
             currentLevel++;
-            PlayerPrefs.SetInt("AdventLevel", currentLevel);
+           // PlayerPrefs.SetInt("AdventLevel", currentLevel);
+            GPGSBinder.Inst.SaveCloud("AdventLevel", currentLevel.ToString(), (success) => {});
         }
     }
     public void BeforeLevel()
@@ -36,7 +57,8 @@ public class AdventureLevel : MonoBehaviour
         if(currentLevel != 1)
         {
             currentLevel--;
-            PlayerPrefs.SetInt("AdventLevel", currentLevel);
+           // PlayerPrefs.SetInt("AdventLevel", currentLevel);
+            GPGSBinder.Inst.SaveCloud("AdventLevel", currentLevel.ToString(), (success) => {});
         }
     }
 

@@ -75,6 +75,10 @@ public class AudioManager : MonoBehaviour
     public TMP_Text f_PercentText;
     public Slider m_Slider; // 몬스터 볼륨 슬라이드
     public TMP_Text m_PercentText;
+    
+    private float bgmVolume;
+    private float fncVolume;
+    private float monsterVolume;
 
     void Start()
     {
@@ -83,11 +87,42 @@ public class AudioManager : MonoBehaviour
         {
             TileMapAudio();
         }
-        
+
+        /*bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
+        fncVolume = PlayerPrefs.GetFloat("FncVolume", 1.0f);
+        monsterVolume = PlayerPrefs.GetFloat("MonsterVolume", 1.0f);*/
         // 전체 볼륨 조절
-        float bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-        float fncVolume = PlayerPrefs.GetFloat("FncVolume", 1.0f);
-        float monsterVolume = PlayerPrefs.GetFloat("MonsterVolume", 1.0f);
+        GPGSBinder.Inst.LoadCloud("BGMVolume", (success, date) => {
+            if (float.TryParse(date, out float loadedAbility1))
+            {
+                bgmVolume = loadedAbility1;
+            }
+            else
+            {
+                bgmVolume = 1.0f;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("FncVolume", (success, date) => {
+            if (float.TryParse(date, out float loadedAbility1))
+            {
+                fncVolume = loadedAbility1;
+            }
+            else
+            {
+                fncVolume = 1.0f;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("MonsterVolume", (success, date) => {
+            if (float.TryParse(date, out float loadedAbility1))
+            {
+                monsterVolume = loadedAbility1;
+            }
+            else
+            {
+                monsterVolume = 1.0f;
+            }
+        });
+
 
         b_Slider.value = bgmVolume;
         f_Slider.value = fncVolume;
@@ -213,9 +248,12 @@ public class AudioManager : MonoBehaviour
             be_Aiming.volume = m_Slider.value;
         }
 
-       PlayerPrefs.SetFloat("BGMVolume", b_Slider.value);
+       /*PlayerPrefs.SetFloat("BGMVolume", b_Slider.value);
        PlayerPrefs.SetFloat("GenVolume", f_Slider.value);
-       PlayerPrefs.SetFloat("MonsterVolume", m_Slider.value);
+       PlayerPrefs.SetFloat("MonsterVolume", m_Slider.value);*/
+        GPGSBinder.Inst.SaveCloud("BGMVolume", b_Slider.value.ToString(), (success) => { });
+        GPGSBinder.Inst.SaveCloud("GenVolume", f_Slider.value.ToString(), (success) => { });
+        GPGSBinder.Inst.SaveCloud("MonsterVolume", m_Slider.value.ToString(), (success) => { });
     }
 
     // 현재 재생되고 있는 오디오 정지

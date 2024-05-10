@@ -12,11 +12,45 @@ public class GameSetting : MonoBehaviour
 
     public GameObject settingUI;
 
+    private int cannonNum1;
+    private int cannonNum2;
+
     void Start()
     {
-        playerNum = PlayerPrefs.GetInt("Player");
+        /*playerNum = PlayerPrefs.GetInt("Player");
         int cannonNum1 = PlayerPrefs.GetInt("Cannon1");
-        int cannonNum2 = PlayerPrefs.GetInt("Cannon2");
+        int cannonNum2 = PlayerPrefs.GetInt("Cannon2");*/
+        GPGSBinder.Inst.LoadCloud("Player", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                playerNum = loadedAbility1;
+            }
+            else
+            {
+                playerNum = 1;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Cannon1", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                cannonNum1 = loadedAbility1;
+            }
+            else
+            {
+                cannonNum1 = 1;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Cannon2", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                cannonNum2 = loadedAbility1;
+            }
+            else
+            {
+                cannonNum2 = 1;
+            }
+        });
+
         cannons.Add(cannonPrefabs[cannonNum1 - 1]);
         cannons.Add(cannonPrefabs[cannonNum2 - 1]);
     }

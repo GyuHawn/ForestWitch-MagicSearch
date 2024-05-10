@@ -70,8 +70,28 @@ public class ClearInfor : MonoBehaviour
 
     void Start()
     {
-        gameLevel = PlayerPrefs.GetInt("GameExp");
-        onStory = PlayerPrefs.GetInt("Story") == 1 ? true : false;
+       // gameLevel = PlayerPrefs.GetInt("GameExp");
+        //onStory = PlayerPrefs.GetInt("Story") == 1 ? true : false;
+        GPGSBinder.Inst.LoadCloud("GameExp", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                gameLevel = loadedAbility1;
+            }
+            else
+            {
+                gameLevel = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
+            if (success && int.TryParse(data, out int loadedValue))
+            {
+                onStory = loadedValue == 1;
+            }
+            else
+            {
+                onStory = false;
+            }
+        });
     }
 
     
@@ -153,7 +173,8 @@ public class ClearInfor : MonoBehaviour
         // ÃÑÇÕ Ç¥½Ã
         totalScoreText.text = totalScore.ToString();
 
-        PlayerPrefs.SetInt("GameExp", gameLevel + totalScore);
+        //PlayerPrefs.SetInt("GameExp", gameLevel + totalScore);
+        GPGSBinder.Inst.SaveCloud("GameExp", (gameLevel + totalScore).ToString(), (success) => { });
 
         result = false;
     }

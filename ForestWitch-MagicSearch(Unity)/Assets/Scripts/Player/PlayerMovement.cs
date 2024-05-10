@@ -109,7 +109,17 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerSetting() // 플레이어 관련 세팅
     {
-        playerNum = PlayerPrefs.GetInt("Player");
+        //playerNum = PlayerPrefs.GetInt("Player");
+        GPGSBinder.Inst.LoadCloud("Player", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                playerNum = loadedAbility1;
+            }
+            else
+            {
+                playerNum = 1;
+            }
+        });
 
         // 캐릭터에 따른 스탯
         if (playerNum == 1)

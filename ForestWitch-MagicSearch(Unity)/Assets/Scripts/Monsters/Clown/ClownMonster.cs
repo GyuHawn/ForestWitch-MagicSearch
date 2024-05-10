@@ -137,7 +137,8 @@ public class ClownMonster : MonoBehaviour
         clearInfor.clear = true; // 2스테이지 클리어시 게임 클리어
         clearInfor.clearStateText.text = "정복 완료!!";
         mapSetting.adventLevel++;
-        PlayerPrefs.SetInt("MaxAdventLevel", mapSetting.adventLevel);
+        //PlayerPrefs.SetInt("MaxAdventLevel", mapSetting.adventLevel);
+        GPGSBinder.Inst.SaveCloud("MaxAdventLevel", mapSetting.adventLevel.ToString(), (success) => { });
 
         /* playerMovement.OnTile();
          playerMovement.moveNum = 1;

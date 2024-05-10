@@ -126,7 +126,8 @@ public class GameStartScript : MonoBehaviour
         if (playerNum == 0)
         {
             playerNum = 1;
-            PlayerPrefs.SetInt("Player", 1);
+            //PlayerPrefs.SetInt("Player", 1);
+            GPGSBinder.Inst.SaveCloud("Player", playerNum.ToString(), (success) => { });
         }
     }
     public void Player2()
@@ -134,7 +135,8 @@ public class GameStartScript : MonoBehaviour
         if (playerNum == 0)
         {
             playerNum = 2;
-            PlayerPrefs.SetInt("Player", 2);
+            //PlayerPrefs.SetInt("Player", 2);
+            GPGSBinder.Inst.SaveCloud("Player", playerNum.ToString(), (success) => { });
         }
     }
 
@@ -145,13 +147,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 1;
-                PlayerPrefs.SetInt("Cannon1", 1);
+                //PlayerPrefs.SetInt("Cannon1", 1);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[0];
             }
             else
             {
                 cannonNum2 = 1;
-                PlayerPrefs.SetInt("Cannon2", 1);
+                //PlayerPrefs.SetInt("Cannon2", 1);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[0];
             }
         }
@@ -163,13 +167,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 2;
-                PlayerPrefs.SetInt("Cannon1", 2);
+                // PlayerPrefs.SetInt("Cannon1", 2);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[1];
             }
             else
             {
                 cannonNum2 = 2;
-                PlayerPrefs.SetInt("Cannon2", 2);
+                //PlayerPrefs.SetInt("Cannon2", 2);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[1];
             }
         }
@@ -181,13 +187,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 3;
-                PlayerPrefs.SetInt("Cannon1", 3);
+                //PlayerPrefs.SetInt("Cannon1", 3);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[2];
             }
             else
             {
                 cannonNum2 = 3;
-                PlayerPrefs.SetInt("Cannon2", 3);
+                //PlayerPrefs.SetInt("Cannon2", 3);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[2];
             }
         }
@@ -199,13 +207,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 4;
-                PlayerPrefs.SetInt("Cannon1", 4);
+                //PlayerPrefs.SetInt("Cannon1", 4);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[3];
             }
             else
             {
                 cannonNum2 = 4;
-                PlayerPrefs.SetInt("Cannon2", 4);
+                //PlayerPrefs.SetInt("Cannon2", 4);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[3];
             }
         }
@@ -217,13 +227,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 5;
-                PlayerPrefs.SetInt("Cannon1", 5);
+                //PlayerPrefs.SetInt("Cannon1", 5);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[4];
             }
             else
             {
                 cannonNum2 = 5;
-                PlayerPrefs.SetInt("Cannon2", 5);
+                //PlayerPrefs.SetInt("Cannon2", 5);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[4];
             }
         }
@@ -235,13 +247,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 6;
-                PlayerPrefs.SetInt("Cannon1", 6);
+                //PlayerPrefs.SetInt("Cannon1", 6);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[5];
             }
             else
             {
                 cannonNum2 = 6;
-                PlayerPrefs.SetInt("Cannon2", 6);
+                //PlayerPrefs.SetInt("Cannon2", 6);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[5];
             }
         }
@@ -253,13 +267,15 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 7;
-                PlayerPrefs.SetInt("Cannon1", 7);
+                //PlayerPrefs.SetInt("Cannon1", 7);
+                GPGSBinder.Inst.SaveCloud("Cannon1", cannonNum1.ToString(), (success) => { });
                 showCannonPos[0].sprite = showCannons[6];
             }
             else
             {
                 cannonNum2 = 7;
-                PlayerPrefs.SetInt("Cannon2", 7);
+                //PlayerPrefs.SetInt("Cannon2", 7);
+                GPGSBinder.Inst.SaveCloud("Cannon2", cannonNum2.ToString(), (success) => { });
                 showCannonPos[1].sprite = showCannons[6];
             }
         }
@@ -323,30 +339,39 @@ public class GameStartScript : MonoBehaviour
 
         // 게임레벨 초기화
         gameLevel.gameLevel = 1;
-        PlayerPrefs.SetInt("GameLevel", gameLevel.gameLevel);
-
+        //PlayerPrefs.SetInt("GameLevel", gameLevel.gameLevel);
+        GPGSBinder.Inst.SaveCloud("GameLevel", gameLevel.gameLevel.ToString(), (success) => { });
+        
         gameLevel.currentExp = 0;
         gameLevel.maxExp = 50;
 
         // 모험레벨 초기화
         adventureLevel.currentLevel = 1;
-        PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
+        //PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
+        GPGSBinder.Inst.SaveCloud("AdventLevel", adventureLevel.currentLevel.ToString(), (success) => { });
         adventureLevel.maxLevel = 1;
-        PlayerPrefs.SetInt("MaxAdventLevel", adventureLevel.maxLevel);
+        //PlayerPrefs.SetInt("MaxAdventLevel", adventureLevel.maxLevel);
+        GPGSBinder.Inst.SaveCloud("MaxAdventLevel", adventureLevel.maxLevel.ToString(), (success) => { });
 
         // 능력 초기화
         abilityUI.ability1Num = 0;
-        PlayerPrefs.SetInt("Ability1", 0);
+        //PlayerPrefs.SetInt("Ability1", abilityUI.ability1Num);
+        GPGSBinder.Inst.SaveCloud("Ability1", abilityUI.ability1Num.ToString(), (success) => { });
         abilityUI.ability2Num = 0;
-        PlayerPrefs.SetInt("Ability2", 0);
+        //PlayerPrefs.SetInt("Ability2", abilityUI.ability2Num);
+        GPGSBinder.Inst.SaveCloud("Ability2", abilityUI.ability2Num.ToString(), (success) => { });
         abilityUI.ability3Num = 0;
-        PlayerPrefs.SetInt("Ability3", 0);
+        //PlayerPrefs.SetInt("Ability3", abilityUI.ability3Num);
+        GPGSBinder.Inst.SaveCloud("Ability3", abilityUI.ability3Num.ToString(), (success) => { });
         abilityUI.ability4Num = 0;
-        PlayerPrefs.SetInt("Ability4", 0);
+        //PlayerPrefs.SetInt("Ability4", abilityUI.ability4Num);
+        GPGSBinder.Inst.SaveCloud("Ability4", abilityUI.ability4Num.ToString(), (success) => { });
         abilityUI.ability5Num = 0;
-        PlayerPrefs.SetInt("Ability5", 0);
+        //PlayerPrefs.SetInt("Ability5", abilityUI.ability5Num);
+        GPGSBinder.Inst.SaveCloud("Ability5", abilityUI.ability5Num.ToString(), (success) => { });
         abilityUI.ability6Num = 0;
-        PlayerPrefs.SetInt("Ability6", 0);
+        //PlayerPrefs.SetInt("Ability6", abilityUI.ability6Num);
+        GPGSBinder.Inst.SaveCloud("Ability6", abilityUI.ability6Num.ToString(), (success) => { });
 
         resetBtn.SetActive(true);
         resetUI.SetActive(false);

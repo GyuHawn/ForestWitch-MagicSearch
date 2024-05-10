@@ -22,7 +22,18 @@ public class PlayerSkill : MonoBehaviour
 
     void Start()
     {
-        playerNum = PlayerPrefs.GetInt("Player"); // 캐릭터 확인
+       // playerNum = PlayerPrefs.GetInt("Player"); // 캐릭터 확인
+        GPGSBinder.Inst.LoadCloud("Player", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                playerNum = loadedAbility1;
+            }
+            else
+            {
+                playerNum = 1;
+            }
+        });
+
 
         // 캐릭터에 따른 쿨타임 적용
         if (playerNum == 1)

@@ -50,12 +50,72 @@ public class AbilityUI : MonoBehaviour
 
     void LoadAbility() // 시작시 선택한 능력 적용
     {
-        ability1Num = PlayerPrefs.GetInt("Ability1", 0);
+        /*ability1Num = PlayerPrefs.GetInt("Ability1", 0);
         ability2Num = PlayerPrefs.GetInt("Ability2", 0);
         ability3Num = PlayerPrefs.GetInt("Ability3", 0);
         ability4Num = PlayerPrefs.GetInt("Ability4", 0);
         ability5Num = PlayerPrefs.GetInt("Ability5", 0);
-        ability6Num = PlayerPrefs.GetInt("Ability6", 0);
+        ability6Num = PlayerPrefs.GetInt("Ability6", 0);*/
+        GPGSBinder.Inst.LoadCloud("Ability1", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability1Num = loadedAbility1;
+            }
+            else
+            {
+                ability1Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability2", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability2Num = loadedAbility1;
+            }
+            else
+            {
+                ability2Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability3", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability3Num = loadedAbility1;
+            }
+            else
+            {
+                ability3Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability4", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability4Num = loadedAbility1;
+            }
+            else
+            {
+                ability4Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability5", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability5Num = loadedAbility1;
+            }
+            else
+            {
+                ability5Num = 0;
+            }
+        });
+        GPGSBinder.Inst.LoadCloud("Ability6", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                ability6Num = loadedAbility1;
+            }
+            else
+            {
+                ability6Num = 0;
+            }
+        });
     }
     
     void Update()
@@ -324,88 +384,100 @@ public class AbilityUI : MonoBehaviour
         }
     }
 
-    public void Ability1_1()
+    public void Ability1_1() 
     {
         abilityEx.SetActive(true);
         ability1Num = 1;
-        PlayerPrefs.SetInt("Ability1", 1);
         abilityExText.text = "총알을 획득시 30%의 확률로\n추가 총알을 1개 더 획득합니다.";
+       // PlayerPrefs.SetInt("Ability1", 1);
+        GPGSBinder.Inst.SaveCloud("Ability1", ability1Num.ToString(), (success) => {});
     }
     public void Ability1_2()
     {
         abilityEx.SetActive(true);
         ability1Num = 2;
-        PlayerPrefs.SetInt("Ability1", 2);
         abilityExText.text = "총알을 획득시 10%의 확률로\n모든 대포가 1개의 총알을 장전합니다.";
+        //PlayerPrefs.SetInt("Ability1", 2);
+        GPGSBinder.Inst.SaveCloud("Ability1", ability1Num.ToString(), (success) => { });
     }
     public void Ability2_1()
     {
         abilityEx.SetActive(true);
         ability2Num = 1;
-        PlayerPrefs.SetInt("Ability2", 1);
         abilityExText.text = "총알을 획득시 30%의 확률로\n마력으로 만든 나비를 생성하여 공격 합니다.";
+        //PlayerPrefs.SetInt("Ability2", 1);
+        GPGSBinder.Inst.SaveCloud("Ability2", ability1Num.ToString(), (success) => { });
     }
     public void Ability2_2()
     {
         abilityEx.SetActive(true);
         ability2Num = 2;
-        PlayerPrefs.SetInt("Ability2", 2);
         abilityExText.text = "공격시 30%의 확률로\n마력으로 만든 나비를 생성하여 공격 합니다.";
+        // PlayerPrefs.SetInt("Ability2", 2);
+        GPGSBinder.Inst.SaveCloud("Ability2", ability1Num.ToString(), (success) => { });
     }
     public void Ability3_1()
     {
         abilityEx.SetActive(true);
         ability3Num = 1;
-        PlayerPrefs.SetInt("Ability3", 1);
         abilityExText.text = "돈을 획득시 50%의 확률로\n획득한 돈의 절반 or 2배로 획득 합니다.";
+        // PlayerPrefs.SetInt("Ability3", 1);
+        GPGSBinder.Inst.SaveCloud("Ability3", ability1Num.ToString(), (success) => { });
     }
     public void Ability3_2()
     {
         abilityEx.SetActive(true);
         ability3Num = 2;
-        PlayerPrefs.SetInt("Ability3", 2);
         abilityExText.text = "돈을 획득시 50% 추가로 획득합니다.";
+        // PlayerPrefs.SetInt("Ability3", 2);
+        GPGSBinder.Inst.SaveCloud("Ability3", ability1Num.ToString(), (success) => { });
     }
     public void Ability4_1()
     {
         abilityEx.SetActive(true);
         ability4Num = 1;
-        PlayerPrefs.SetInt("Ability4", 1);
         abilityExText.text = "공격시 30%의 확률로 1회 추가 공격을 합니다.";
+        //  PlayerPrefs.SetInt("Ability4", 1);
+        GPGSBinder.Inst.SaveCloud("Ability4", ability1Num.ToString(), (success) => { });
     }
     public void Ability4_2()
     {
         abilityEx.SetActive(true);
         ability4Num = 2;
-        PlayerPrefs.SetInt("Ability4", 2);
         abilityExText.text = "공격시 80%의 확률로\n마력으로 만든 나비를 생성하여 공격 합니다.";
+        // PlayerPrefs.SetInt("Ability4", 2);
+        GPGSBinder.Inst.SaveCloud("Ability4", ability1Num.ToString(), (success) => { });
     }
     public void Ability5_1()
     {
         abilityEx.SetActive(true);
         ability5Num = 1;
-        PlayerPrefs.SetInt("Ability5", 1);
         abilityExText.text = "게임 중 1회 체력이 25% 이하로 줄어들시\n 자동으로 체력의 50%를 회복합니다.";
+        // PlayerPrefs.SetInt("Ability5", 1);
+        GPGSBinder.Inst.SaveCloud("Ability5", ability1Num.ToString(), (success) => { });
     }
     public void Ability5_2()
     {
         abilityEx.SetActive(true);
         ability5Num = 2;
-        PlayerPrefs.SetInt("Ability5", 2);
         abilityExText.text = "피격 시 일정 확률로 받은 피해를 무시합니다.";
+        //  PlayerPrefs.SetInt("Ability5", 2);
+        GPGSBinder.Inst.SaveCloud("Ability5", ability1Num.ToString(), (success) => { });
     }
     public void Ability6_1()
     {
         abilityEx.SetActive(true);
         ability6Num = 1;
-        PlayerPrefs.SetInt("Ability6", 1);
         abilityExText.text = "피격 시마다 모든 대포가 총알 1개을 장전합니다.";
+        // PlayerPrefs.SetInt("Ability6", 1);
+        GPGSBinder.Inst.SaveCloud("Ability6", ability1Num.ToString(), (success) => { });
     }
     public void Ability6_2()
     {
         abilityEx.SetActive(true);
         ability6Num = 2;
-        PlayerPrefs.SetInt("Ability6", 2);
         abilityExText.text = "피격 시마다 마력으로 만든 나비를 생성하여 2번 공격 합니다.";
+        // PlayerPrefs.SetInt("Ability6", 2);
+        GPGSBinder.Inst.SaveCloud("Ability6", ability1Num.ToString(), (success) => { });
     }
 }

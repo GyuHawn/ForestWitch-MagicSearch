@@ -28,7 +28,17 @@ public class StoryScript : MonoBehaviour
     private void Start()
     {
         onStory = false;
-        PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
+        // PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
+        GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
+            if (success && int.TryParse(data, out int loadedValue))
+            {
+                onStory = loadedValue == 1;
+            }
+            else
+            {
+                onStory = false;
+            }
+        });
     }
 
     public void CheckGameStory()
@@ -37,12 +47,32 @@ public class StoryScript : MonoBehaviour
         if (storyToggle.isOn && !onStory)
         {
             onStory = true;
-            PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
+            // PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
+            GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
+                if (success && int.TryParse(data, out int loadedValue))
+                {
+                    onStory = loadedValue == 1;
+                }
+                else
+                {
+                    onStory = false;
+                }
+            });
         }
         else if (!storyToggle.isOn && onStory)
         {
             onStory = false;
-            PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
+            // PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
+            GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
+                if (success && int.TryParse(data, out int loadedValue))
+                {
+                    onStory = loadedValue == 1;
+                }
+                else
+                {
+                    onStory = false;
+                }
+            });
         }
     }
 

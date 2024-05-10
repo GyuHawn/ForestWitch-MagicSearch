@@ -44,7 +44,17 @@ public class MapSetting : MonoBehaviour
     void Start()
     {
         stage = 1;
-        adventLevel = PlayerPrefs.GetInt("AdventLevel", 1);
+        //adventLevel = PlayerPrefs.GetInt("AdventLevel", 1);
+        GPGSBinder.Inst.LoadCloud("AdventLevel", (success, data) => {
+            if (int.TryParse(data, out int loadedAbility1))
+            {
+                adventLevel = loadedAbility1;
+            }
+            else
+            {
+                adventLevel = 0;
+            }
+        });
         StageMapSetting();
     }
 
