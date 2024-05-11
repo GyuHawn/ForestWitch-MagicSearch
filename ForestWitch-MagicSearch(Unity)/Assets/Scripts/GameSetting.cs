@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameSetting : MonoBehaviour
 {
+    private GameDatas gameDatas;
+
     public GameObject[] players;
     public GameObject player;
     public int playerNum;
@@ -15,40 +17,28 @@ public class GameSetting : MonoBehaviour
     private int cannonNum1;
     private int cannonNum2;
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+    }
+
     void Start()
     {
-        /*playerNum = PlayerPrefs.GetInt("Player");
-        int cannonNum1 = PlayerPrefs.GetInt("Cannon1");
-        int cannonNum2 = PlayerPrefs.GetInt("Cannon2");*/
-        GPGSBinder.Inst.LoadCloud("Player", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                playerNum = loadedAbility1;
-            }
-            else
-            {
-                playerNum = 1;
-            }
+
+        gameDatas.LoadFieldData<int>("playerNum", value => {
+            playerNum = value;
+        }, () => {
+            playerNum = 1;
         });
-        GPGSBinder.Inst.LoadCloud("Cannon1", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                cannonNum1 = loadedAbility1;
-            }
-            else
-            {
-                cannonNum1 = 1;
-            }
+        gameDatas.LoadFieldData<int>("cannonNum1", value => {
+            cannonNum1 = value;
+        }, () => {
+            cannonNum1 = 1;
         });
-        GPGSBinder.Inst.LoadCloud("Cannon2", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                cannonNum2 = loadedAbility1;
-            }
-            else
-            {
-                cannonNum2 = 1;
-            }
+        gameDatas.LoadFieldData<int>("cannonNum2", value => {
+            cannonNum2 = value;
+        }, () => {
+            cannonNum2 = 2;
         });
 
         cannons.Add(cannonPrefabs[cannonNum1 - 1]);

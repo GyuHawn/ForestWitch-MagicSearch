@@ -6,6 +6,7 @@ using TMPro;
 
 public class ClearInfor : MonoBehaviour
 {
+    private GameDatas gameDatas;
     private AudioManager audioManager;
     private TimeManager timeManager;
     private StoryScript storyScript;
@@ -58,7 +59,8 @@ public class ClearInfor : MonoBehaviour
     public bool onStory;
     public bool clear; // 클리어 여부
 
-    public int gameLevel;
+    public int currentExp;
+    public int gameExp;
 
     private void Awake()
     {
@@ -66,31 +68,20 @@ public class ClearInfor : MonoBehaviour
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
     }
 
     void Start()
     {
-       // gameLevel = PlayerPrefs.GetInt("GameExp");
-        //onStory = PlayerPrefs.GetInt("Story") == 1 ? true : false;
-        GPGSBinder.Inst.LoadCloud("GameExp", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                gameLevel = loadedAbility1;
-            }
-            else
-            {
-                gameLevel = 0;
-            }
+        gameDatas.LoadFieldData<int>("currentExp", value => {
+            currentExp = value;
+        }, () => {
+            currentExp = 0;
         });
-        GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
-            if (success && int.TryParse(data, out int loadedValue))
-            {
-                onStory = loadedValue == 1;
-            }
-            else
-            {
-                onStory = false;
-            }
+        gameDatas.LoadFieldData<bool>("onStory", value => {
+            onStory = value;
+        }, () => {
+            onStory = false;
         });
     }
 
@@ -173,8 +164,8 @@ public class ClearInfor : MonoBehaviour
         // 총합 표시
         totalScoreText.text = totalScore.ToString();
 
-        //PlayerPrefs.SetInt("GameExp", gameLevel + totalScore);
-        GPGSBinder.Inst.SaveCloud("GameExp", (gameLevel + totalScore).ToString(), (success) => { });
+        gameExp = currentExp + totalScore;
+        gameDatas.SaveFieldData("currentExp", gameExp);
 
         result = false;
     }

@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PlayerSkill : MonoBehaviour
 {
     private PlayerMovement playerMovement;
-
+    private GameDatas gameDatas;
+    
     public GameObject player; // 플레이어
 
     public int playerNum; // 캐릭터 확인
@@ -20,20 +21,19 @@ public class PlayerSkill : MonoBehaviour
 
     public GameObject purificatEffect;
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+    }
+
     void Start()
     {
-       // playerNum = PlayerPrefs.GetInt("Player"); // 캐릭터 확인
-        GPGSBinder.Inst.LoadCloud("Player", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                playerNum = loadedAbility1;
-            }
-            else
-            {
-                playerNum = 1;
-            }
-        });
 
+        gameDatas.LoadFieldData<int>("playerNum", value => {
+            playerNum = value;
+        }, () => {
+            playerNum = 1;
+        });
 
         // 캐릭터에 따른 쿨타임 적용
         if (playerNum == 1)

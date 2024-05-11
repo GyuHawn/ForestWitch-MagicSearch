@@ -6,6 +6,7 @@ using UnityEngine.UIElements.Experimental;
 public class Ability : MonoBehaviour
 {
     private PlayerMovement playerMovement;
+    private GameDatas gameDatas;
 
     public GameObject player;
 
@@ -20,73 +21,42 @@ public class Ability : MonoBehaviour
     // 능력 
     public bool healing = true; // 한번만 발동하도록
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+    }
+
     private void Start()
     {
-        /*ability1Num = PlayerPrefs.GetInt("Ability1");
-        ability2Num = PlayerPrefs.GetInt("Ability2");
-        ability3Num = PlayerPrefs.GetInt("Ability3");
-        ability4Num = PlayerPrefs.GetInt("Ability4");
-        ability5Num = PlayerPrefs.GetInt("Ability5");
-        ability6Num = PlayerPrefs.GetInt("Ability6");*/
-        GPGSBinder.Inst.LoadCloud("Ability1", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                ability1Num = loadedAbility1;
-            }
-            else
-            {
-                ability1Num = 0;
-            }
+        gameDatas.LoadFieldData<int>("ability1Num", value => {
+            ability1Num = value;
+        }, () => {
+            ability1Num = 0;
         });
-        GPGSBinder.Inst.LoadCloud("Ability2", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                ability2Num = loadedAbility1;
-            }
-            else
-            {
-                ability2Num = 0;
-            }
+        gameDatas.LoadFieldData<int>("ability2Num", value => {
+            ability2Num = value;
+        }, () => {
+            ability2Num = 0;
         });
-        GPGSBinder.Inst.LoadCloud("Ability3", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                ability3Num = loadedAbility1;
-            }
-            else
-            {
-                ability3Num = 0;
-            }
+        gameDatas.LoadFieldData<int>("ability3Num", value => {
+            ability3Num = value;
+        }, () => {
+            ability3Num = 0;
         });
-        GPGSBinder.Inst.LoadCloud("Ability4", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                ability4Num = loadedAbility1;
-            }
-            else
-            {
-                ability4Num = 0;
-            }
+        gameDatas.LoadFieldData<int>("ability4Num", value => {
+            ability4Num = value;
+        }, () => {
+            ability4Num = 0;
         });
-        GPGSBinder.Inst.LoadCloud("Ability5", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                ability5Num = loadedAbility1;
-            }
-            else
-            {
-                ability5Num = 0;
-            }
+        gameDatas.LoadFieldData<int>("ability5Num", value => {
+            ability5Num = value;
+        }, () => {
+            ability5Num = 0;
         });
-        GPGSBinder.Inst.LoadCloud("Ability6", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                ability6Num = loadedAbility1;
-            }
-            else
-            {
-                ability6Num = 0;
-            }
+        gameDatas.LoadFieldData<int>("ability6Num", value => {
+            ability6Num = value;
+        }, () => {
+            ability6Num = 0;
         });
     }
 

@@ -10989,51 +10989,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726505504}
   m_CullTransparentMesh: 1
---- !u!1 &731463069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 731463071}
-  - component: {fileID: 731463070}
-  m_Layer: 0
-  m_Name: GPGSManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &731463070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731463069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8efdc777b47651041ba788bcbcdd1fc6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  logText: {fileID: 0}
---- !u!4 &731463071
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 731463069}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.66044086, y: 6.893135, z: -1.0468693}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &734373555
 GameObject:
   m_ObjectHideFlags: 0
@@ -21661,6 +21616,8 @@ GameObject:
   - component: {fileID: 1439536919}
   - component: {fileID: 1439536920}
   - component: {fileID: 1439536921}
+  - component: {fileID: 1439536923}
+  - component: {fileID: 1439536922}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -21843,7 +21800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9466014583d9c73478f542c0c715614a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameLevel: {fileID: 0}
   abilityUI: {fileID: 311431710}
   abilitys:
   - {fileID: 1456693178}
@@ -21904,6 +21860,31 @@ MonoBehaviour:
   on: 1
   abilityEx: {fileID: 20100762}
   abilityExText: {fileID: 1345917825}
+--- !u!114 &1439536922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439536914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8efdc777b47651041ba788bcbcdd1fc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  logText: {fileID: 0}
+--- !u!114 &1439536923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439536914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cded526504ca094486d46ea08556944, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1442432114
 GameObject:
   m_ObjectHideFlags: 0
@@ -33959,4 +33940,3 @@ SceneRoots:
   - {fileID: 1439536916}
   - {fileID: 354892287}
   - {fileID: 1147456165}
-  - {fileID: 731463071}

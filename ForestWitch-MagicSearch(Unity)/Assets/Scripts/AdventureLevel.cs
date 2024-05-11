@@ -6,39 +6,36 @@ using System.Diagnostics.Tracing;
 
 public class AdventureLevel : MonoBehaviour
 {
+    private GameDatas gameDatas;
+
     public int maxLevel;
     public int currentLevel;
 
     public TMP_Text currentLevelText;
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+    }
+
     void Start()
     {
-       // maxLevel = PlayerPrefs.GetInt("MaxAdventLevel", 1);
-        GPGSBinder.Inst.LoadCloud("MaxAdventLevel", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                maxLevel = loadedAbility1;
-            }
-            else
-            {
-                maxLevel = 1;
-            }
+        gameDatas.LoadFieldData<int>("maxLevel", value => {
+            maxLevel = value;
+        }, () => {
+            maxLevel = 1;
         });
-        //currentLevel = PlayerPrefs.GetInt("AdventLevel", 1);
-        GPGSBinder.Inst.LoadCloud("AdventLevel", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                currentLevel = loadedAbility1;
-            }
-            else
-            {
-                currentLevel = 1;   
-            }
+
+        gameDatas.LoadFieldData<int>("currentLevel", value => {
+            currentLevel = value;
+            UpdateLevelText();
+        }, () => {
+            currentLevel = 1;
         });
     }
 
-    
-    void Update()
+
+    void UpdateLevelText()
     {
         currentLevelText.text = "모험 " + currentLevel + "레벨";
     }
@@ -48,19 +45,17 @@ public class AdventureLevel : MonoBehaviour
         if(maxLevel > currentLevel)
         {
             currentLevel++;
-           // PlayerPrefs.SetInt("AdventLevel", currentLevel);
-            GPGSBinder.Inst.SaveCloud("AdventLevel", currentLevel.ToString(), (success) => {});
+            UpdateLevelText();
+            gameDatas.SaveFieldData("currentLevel", currentLevel);
         }
     }
     public void BeforeLevel()
     {
-        if(currentLevel != 1)
+        if (currentLevel > 1)
         {
             currentLevel--;
-           // PlayerPrefs.SetInt("AdventLevel", currentLevel);
-            GPGSBinder.Inst.SaveCloud("AdventLevel", currentLevel.ToString(), (success) => {});
+            UpdateLevelText();
+            gameDatas.SaveFieldData("currentLevel", currentLevel);
         }
     }
-
-
 }

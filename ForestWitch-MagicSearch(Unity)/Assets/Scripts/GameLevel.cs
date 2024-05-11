@@ -5,6 +5,8 @@ using TMPro;
 
 public class GameLevel : MonoBehaviour
 {
+    private GameDatas gameDatas;
+
     // ·¹º§ 
     public int gameLevel;
     public TMP_Text gameLevelText;
@@ -16,40 +18,27 @@ public class GameLevel : MonoBehaviour
     public GameObject playerLock;
     public GameObject[] cannonLocks;
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+    }
+
     void Start()
     {
-        /*currentExp = PlayerPrefs.GetInt("GameExp");
-        maxExp = PlayerPrefs.GetInt("MaxExp", 50);
-        gameLevel = PlayerPrefs.GetInt("GameLevel", 1);*/
-        GPGSBinder.Inst.LoadCloud("GameExp", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                currentExp = loadedAbility1;
-            }
-            else
-            {
-                currentExp = 0;
-            }
+        gameDatas.LoadFieldData<int>("currentExp", value => {
+            currentExp = value;
+        }, () => {
+            currentExp = 1;
         });
-        GPGSBinder.Inst.LoadCloud("MaxExp", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                maxExp = loadedAbility1;
-            }
-            else
-            {
-                maxExp = 50;
-            }
+        gameDatas.LoadFieldData<int>("maxExp", value => {
+            maxExp = value;
+        }, () => {
+            maxExp = 1;
         });
-        GPGSBinder.Inst.LoadCloud("GameLevel", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                gameLevel = loadedAbility1;
-            }
-            else
-            {
-                gameLevel = 1;
-            }
+        gameDatas.LoadFieldData<int>("gameLevel", value => {
+            gameLevel = value;
+        }, () => {
+            gameLevel = 1;
         });
     }
 
@@ -63,8 +52,7 @@ public class GameLevel : MonoBehaviour
             gameLevel++;
             currentExp -= maxExp;
 
-            //PlayerPrefs.SetInt("GameLevel", gameLevel);
-            GPGSBinder.Inst.SaveCloud("GameLevel", gameLevel.ToString(), (success) => { });
+            gameDatas.SaveFieldData("gameLevel", gameLevel);
 
             SettingMaxExp();
         }
@@ -125,7 +113,6 @@ public class GameLevel : MonoBehaviour
     void SettingMaxExp()
     {
         maxExp = gameLevel * 50;
-        //PlayerPrefs.SetInt("MaxExp", maxExp);
-        GPGSBinder.Inst.SaveCloud("MaxExp", maxExp.ToString(), (success) => { });
+        gameDatas.SaveFieldData("maxExp", maxExp);
     }
 }

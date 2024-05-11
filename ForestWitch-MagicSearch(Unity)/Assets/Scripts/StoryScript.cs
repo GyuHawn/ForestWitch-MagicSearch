@@ -9,6 +9,7 @@ public class StoryScript : MonoBehaviour
     private AudioManager audioManager;
     private ClearInfor clearInfor;
     private GameStartScript gameStartScript;
+    private GameDatas gameDatas;
 
 
     public GameObject story; // ½ºÅä¸® UI¿ÀÇÂ
@@ -23,21 +24,16 @@ public class StoryScript : MonoBehaviour
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         gameStartScript = GameObject.Find("Manager").GetComponent<GameStartScript>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
     }
 
-    private void Start()
+    void Start()
     {
-        onStory = false;
-        // PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
-        GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
-            if (success && int.TryParse(data, out int loadedValue))
-            {
-                onStory = loadedValue == 1;
-            }
-            else
-            {
-                onStory = false;
-            }
+
+        gameDatas.LoadFieldData<bool>("onStory", value => {
+            onStory = value;
+        }, () => {
+            onStory = false;
         });
     }
 
@@ -47,32 +43,12 @@ public class StoryScript : MonoBehaviour
         if (storyToggle.isOn && !onStory)
         {
             onStory = true;
-            // PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
-            GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
-                if (success && int.TryParse(data, out int loadedValue))
-                {
-                    onStory = loadedValue == 1;
-                }
-                else
-                {
-                    onStory = false;
-                }
-            });
+            gameDatas.SaveFieldData("onStory", onStory);
         }
         else if (!storyToggle.isOn && onStory)
         {
             onStory = false;
-            // PlayerPrefs.SetInt("Story", onStory ? 1 : 0);
-            GPGSBinder.Inst.LoadCloud("Story", (success, data) => {
-                if (success && int.TryParse(data, out int loadedValue))
-                {
-                    onStory = loadedValue == 1;
-                }
-                else
-                {
-                    onStory = false;
-                }
-            });
+            gameDatas.SaveFieldData("onStory", onStory);
         }
     }
 

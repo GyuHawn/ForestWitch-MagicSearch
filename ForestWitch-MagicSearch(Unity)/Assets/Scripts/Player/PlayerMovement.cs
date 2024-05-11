@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private GameDatas gameDatas;
     private MonsterMap monsterMap;
     private ClearInfor clearInfor;
     private MapSetting mapSetting;
@@ -97,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         ability = GameObject.Find("Manager").GetComponent<Ability>();
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
     }
 
     private void Start()
@@ -109,16 +111,10 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerSetting() // 플레이어 관련 세팅
     {
-        //playerNum = PlayerPrefs.GetInt("Player");
-        GPGSBinder.Inst.LoadCloud("Player", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                playerNum = loadedAbility1;
-            }
-            else
-            {
-                playerNum = 1;
-            }
+        gameDatas.LoadFieldData<int>("playerNum", value => {
+            playerNum = value;
+        }, () => {
+            playerNum = 1;
         });
 
         // 캐릭터에 따른 스탯

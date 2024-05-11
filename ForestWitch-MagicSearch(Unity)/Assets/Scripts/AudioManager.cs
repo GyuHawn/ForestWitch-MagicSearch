@@ -8,6 +8,7 @@ using TMPro;
 
 public class AudioManager : MonoBehaviour
 {
+    private GameDatas gameDatas;
 
     // BGM
     public AudioSource b_MainMenu; // 메인메뉴
@@ -80,53 +81,39 @@ public class AudioManager : MonoBehaviour
     private float fncVolume;
     private float monsterVolume;
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+    }
+
     void Start()
     {
+        // 전체 볼륨 조절
+        gameDatas.LoadFieldData<int>("bgmVolume", value => {
+            bgmVolume = value;
+        }, () => {
+            bgmVolume = 1.0f;
+        });
+        gameDatas.LoadFieldData<int>("fncVolume", value => {
+            fncVolume = value;
+        }, () => {
+            fncVolume = 1.0f;
+        });
+        gameDatas.LoadFieldData<int>("monsterVolume", value => {
+            monsterVolume = value;
+        }, () => {
+            monsterVolume = 1.0f;
+        });
+
+        b_Slider.value = bgmVolume;
+        f_Slider.value = fncVolume;
+        m_Slider.value = monsterVolume;
+
         SartAudioSetting();
         if (SceneManager.GetActiveScene().name == "Game")
         {
             TileMapAudio();
         }
-
-        /*bgmVolume = PlayerPrefs.GetFloat("BGMVolume", 1.0f);
-        fncVolume = PlayerPrefs.GetFloat("FncVolume", 1.0f);
-        monsterVolume = PlayerPrefs.GetFloat("MonsterVolume", 1.0f);*/
-        // 전체 볼륨 조절
-        GPGSBinder.Inst.LoadCloud("BGMVolume", (success, date) => {
-            if (float.TryParse(date, out float loadedAbility1))
-            {
-                bgmVolume = loadedAbility1;
-            }
-            else
-            {
-                bgmVolume = 1.0f;
-            }
-        });
-        GPGSBinder.Inst.LoadCloud("FncVolume", (success, date) => {
-            if (float.TryParse(date, out float loadedAbility1))
-            {
-                fncVolume = loadedAbility1;
-            }
-            else
-            {
-                fncVolume = 1.0f;
-            }
-        });
-        GPGSBinder.Inst.LoadCloud("MonsterVolume", (success, date) => {
-            if (float.TryParse(date, out float loadedAbility1))
-            {
-                monsterVolume = loadedAbility1;
-            }
-            else
-            {
-                monsterVolume = 1.0f;
-            }
-        });
-
-
-        b_Slider.value = bgmVolume;
-        f_Slider.value = fncVolume;
-        m_Slider.value = monsterVolume;
 
         if (SceneManager.GetActiveScene().name == "MainMenu")
         {
@@ -248,12 +235,9 @@ public class AudioManager : MonoBehaviour
             be_Aiming.volume = m_Slider.value;
         }
 
-       /*PlayerPrefs.SetFloat("BGMVolume", b_Slider.value);
-       PlayerPrefs.SetFloat("GenVolume", f_Slider.value);
-       PlayerPrefs.SetFloat("MonsterVolume", m_Slider.value);*/
-        GPGSBinder.Inst.SaveCloud("BGMVolume", b_Slider.value.ToString(), (success) => { });
-        GPGSBinder.Inst.SaveCloud("GenVolume", f_Slider.value.ToString(), (success) => { });
-        GPGSBinder.Inst.SaveCloud("MonsterVolume", m_Slider.value.ToString(), (success) => { });
+        gameDatas.SaveFieldData("bgmVolume", b_Slider.value);
+        gameDatas.SaveFieldData("fncVolume", f_Slider.value);
+        gameDatas.SaveFieldData("monsterVolume", m_Slider.value);
     }
 
     // 현재 재생되고 있는 오디오 정지

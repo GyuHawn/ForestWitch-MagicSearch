@@ -5,6 +5,7 @@ using UnityEngine.UIElements.Experimental;
 
 public class ClownMonster : MonoBehaviour
 {
+    private GameDatas gameDatas;
     private PlayerMovement playerMovement;
     private MonsterMap monsterMap;
     private P_AttackSpawn p_AttackSpawn;
@@ -73,6 +74,7 @@ public class ClownMonster : MonoBehaviour
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         ability = GameObject.Find("Manager").GetComponent<Ability>();
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
     }
 
@@ -137,8 +139,8 @@ public class ClownMonster : MonoBehaviour
         clearInfor.clear = true; // 2스테이지 클리어시 게임 클리어
         clearInfor.clearStateText.text = "정복 완료!!";
         mapSetting.adventLevel++;
-        //PlayerPrefs.SetInt("MaxAdventLevel", mapSetting.adventLevel);
-        GPGSBinder.Inst.SaveCloud("MaxAdventLevel", mapSetting.adventLevel.ToString(), (success) => { });
+
+        gameDatas.SaveFieldData("maxLevel", mapSetting.adventLevel);
 
         /* playerMovement.OnTile();
          playerMovement.moveNum = 1;

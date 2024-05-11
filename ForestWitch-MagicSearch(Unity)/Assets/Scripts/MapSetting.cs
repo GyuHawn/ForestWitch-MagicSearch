@@ -10,6 +10,8 @@ using System.Diagnostics.Tracing;
 
 public class MapSetting : MonoBehaviour
 {
+    private GameDatas gameDatas;
+
     public int stage; // 현재 스테이지
     public int adventLevel; // 모험 레벨;
 
@@ -41,20 +43,21 @@ public class MapSetting : MonoBehaviour
     public int shopFloorNum; // 상점 타일 개수
     public int monsterFloorNum; // 몬스터 타일 개수
 
+    private void Awake()
+    {
+        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+
+    }
     void Start()
     {
         stage = 1;
-        //adventLevel = PlayerPrefs.GetInt("AdventLevel", 1);
-        GPGSBinder.Inst.LoadCloud("AdventLevel", (success, data) => {
-            if (int.TryParse(data, out int loadedAbility1))
-            {
-                adventLevel = loadedAbility1;
-            }
-            else
-            {
-                adventLevel = 0;
-            }
+
+        gameDatas.LoadFieldData<int>("currentLevel", value => {
+            adventLevel = value;
+        }, () => {
+            adventLevel = 1;
         });
+
         StageMapSetting();
     }
 
