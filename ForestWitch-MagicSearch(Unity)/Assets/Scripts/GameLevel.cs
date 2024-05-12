@@ -28,12 +28,12 @@ public class GameLevel : MonoBehaviour
         gameDatas.LoadFieldData<int>("currentExp", value => {
             currentExp = value;
         }, () => {
-            currentExp = 1;
+            currentExp = 0;
         });
         gameDatas.LoadFieldData<int>("maxExp", value => {
             maxExp = value;
         }, () => {
-            maxExp = 1;
+            maxExp = 50;
         });
         gameDatas.LoadFieldData<int>("gameLevel", value => {
             gameLevel = value;
@@ -42,11 +42,11 @@ public class GameLevel : MonoBehaviour
         });
     }
 
-    
+
     void Update()
     {
         gameLevelText.text = gameLevel.ToString();
-        gameExpText.text = currentExp.ToString() + " / " + maxExp.ToString(); 
+        gameExpText.text = currentExp.ToString() + " / " + maxExp.ToString();
         if (currentExp > maxExp)
         {
             gameLevel++;
@@ -57,7 +57,7 @@ public class GameLevel : MonoBehaviour
             SettingMaxExp();
         }
 
-        Unlocked();
+        // Unlocked();
     }
 
     void Unlocked() // 레벨에 따른 잠금해제

@@ -7,12 +7,8 @@ using GooglePlayGames.BasicApi;
 
 public class GPGS_Manager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text logText;
-
-    void Start()
-    {
-        
-    }
+    public GameObject login;
+    public GameObject noneLogin;
 
     public void GPGS_LogIn()
     {
@@ -23,11 +19,14 @@ public class GPGS_Manager : MonoBehaviour
     {
         if (status == SignInStatus.Success)
         {
-
+            noneLogin.SetActive(false);
+            login.SetActive(true);
         }
         else
         {
 
         }
     }
+
+
 }

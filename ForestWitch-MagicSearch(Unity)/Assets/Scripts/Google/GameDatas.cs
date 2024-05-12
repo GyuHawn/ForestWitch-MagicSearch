@@ -7,6 +7,7 @@ using GooglePlayGames.BasicApi;
 using System.Text;
 using System;
 using System.Reflection;
+using TMPro;
 
 public class DataSettings
 {
@@ -27,7 +28,7 @@ public class DataSettings
     public int gameExp = 0;
 
     // 게임 레벨
-    public int maxExp = 0;
+    public int maxExp = 50;
     public int currentExp = 0;
     public int gameLevel = 1;
 
@@ -48,11 +49,26 @@ public class GameDatas : MonoBehaviour
 
     private string fileName = "file.dat";
 
+    public TMP_Text text;
+    public void Update()
+    {
+        string infoText = "데이터 확인\n" +
+                          "Abilities: 0, 0, 0, 0, 0, 0\n" +
+                          $"Adventure Level: {dataSettings.maxLevel} (Current: {dataSettings.currentLevel})\n" +
+                          $"Story Cleared: {dataSettings.onStory}\n" +
+                          $"Game Exp: {dataSettings.gameExp}\n" +
+                          $"Game Level: {dataSettings.gameLevel}\n" +
+                          $"Player Count: {dataSettings.playerNum}\n" +
+                          $"Cannons: {dataSettings.cannonNum1}, {dataSettings.cannonNum2}\n" +
+                          $"Audio Settings - BGM: {dataSettings.bgmVolume}, Effects: {dataSettings.fncVolume}, Monster: {dataSettings.monsterVolume}";
+
+        text.text = infoText;
+    }
 
 
     void BasicData()
     {
-        // 레벨 능력 초기화
+        // 레벨 능력 기초
         dataSettings.ability1Num = 0;
         dataSettings.ability2Num = 0;
         dataSettings.ability3Num = 0;
@@ -60,25 +76,25 @@ public class GameDatas : MonoBehaviour
         dataSettings.ability5Num = 0;
         dataSettings.ability6Num = 0;
 
-        // 모험 레벨 초기화
+        // 모험 레벨 기초
         dataSettings.maxLevel = 1;
         dataSettings.currentLevel = 1;
 
-        // 클리어 정보 초기화
+        // 클리어 정보 기초
         dataSettings.onStory = false;
         dataSettings.gameExp = 0;
 
-        // 게임 레벨 초기화
+        // 게임 레벨 기초
         dataSettings.maxExp = 0;
         dataSettings.currentExp = 0;
         dataSettings.gameLevel = 1;
 
-        // 게임 세팅 초기화
+        // 게임 세팅 기초
         dataSettings.playerNum = 1;
         dataSettings.cannonNum1 = 1;
         dataSettings.cannonNum2 = 2;
 
-        // 오디오 설정 초기화
+        // 오디오 설정 기초
         dataSettings.bgmVolume = 1.0f;
         dataSettings.fncVolume = 1.0f;
         dataSettings.monsterVolume = 1.0f;
@@ -99,7 +115,7 @@ public class GameDatas : MonoBehaviour
             var json = JsonUtility.ToJson(dataSettings);
 
             // JSON 데이터를 클라우드에 저장
-            SaveJsonToCloud(json);
+            OpenSaveGame(json);
         }
         else
         {
@@ -107,12 +123,12 @@ public class GameDatas : MonoBehaviour
         }
     }
 
-    private void SaveJsonToCloud(string json)
-    {
-        // Google Play Games 서비스를 사용하여 클라우드에 저장
-        OpenSaveGame(json);
-    }
-
+    /*    private void SaveJsonToCloud(string json)
+        {
+            // Google Play Games 서비스를 사용하여 클라우드에 저장
+            OpenSaveGame(json);
+        }
+    */
     private void OpenSaveGame(string json)
     {
         ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;

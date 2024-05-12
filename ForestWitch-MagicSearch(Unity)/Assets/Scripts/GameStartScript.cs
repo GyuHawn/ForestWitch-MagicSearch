@@ -25,8 +25,8 @@ public class GameStartScript : MonoBehaviour
     public GameObject[] selectPlayers;
     public GameObject[] selectCannons;
 
-    public Sprite[] showCannons; 
-    public Image[] showCannonPos; 
+    public Sprite[] showCannons;
+    public Image[] showCannonPos;
 
     public GameObject cannon1;
     public GameObject cannon2;
@@ -52,7 +52,7 @@ public class GameStartScript : MonoBehaviour
     {
         Select();
 
-        if(cannonNum1 != 0)
+        if (cannonNum1 != 0)
         {
             showCannonPos[0].enabled = true;
         }
@@ -128,7 +128,7 @@ public class GameStartScript : MonoBehaviour
         if (playerNum == 0)
         {
             playerNum = 1;
-            gameDatas.SaveFieldData("playerNum", playerNum);
+            gameDatas.SaveFieldData("playerNum", 1);
         }
     }
     public void Player2()
@@ -136,7 +136,7 @@ public class GameStartScript : MonoBehaviour
         if (playerNum == 0)
         {
             playerNum = 2;
-            gameDatas.SaveFieldData("playerNum", playerNum);
+            gameDatas.SaveFieldData("playerNum", 2);
         }
     }
 
@@ -147,13 +147,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 1;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 1);
                 showCannonPos[0].sprite = showCannons[0];
             }
             else
             {
                 cannonNum2 = 1;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 1);
                 showCannonPos[1].sprite = showCannons[0];
             }
         }
@@ -165,13 +165,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 2;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 2);
                 showCannonPos[0].sprite = showCannons[1];
             }
             else
             {
                 cannonNum2 = 2;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 2);
                 showCannonPos[1].sprite = showCannons[1];
             }
         }
@@ -183,13 +183,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 3;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 3);
                 showCannonPos[0].sprite = showCannons[2];
             }
             else
             {
                 cannonNum2 = 3;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 3);
                 showCannonPos[1].sprite = showCannons[2];
             }
         }
@@ -201,13 +201,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 4;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 4);
                 showCannonPos[0].sprite = showCannons[3];
             }
             else
             {
                 cannonNum2 = 4;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 4);
                 showCannonPos[1].sprite = showCannons[3];
             }
         }
@@ -219,13 +219,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 5;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 5);
                 showCannonPos[0].sprite = showCannons[4];
             }
             else
             {
                 cannonNum2 = 5;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 5);
                 showCannonPos[1].sprite = showCannons[4];
             }
         }
@@ -237,13 +237,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 6;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 6);
                 showCannonPos[0].sprite = showCannons[5];
             }
             else
             {
                 cannonNum2 = 6;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 6);
                 showCannonPos[1].sprite = showCannons[5];
             }
         }
@@ -255,30 +255,30 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 7;
-                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
+                gameDatas.SaveFieldData("cannonNum1", 7);
                 showCannonPos[0].sprite = showCannons[6];
             }
             else
             {
                 cannonNum2 = 7;
-                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
+                gameDatas.SaveFieldData("cannonNum2", 7);
                 showCannonPos[1].sprite = showCannons[6];
             }
         }
     }
     public void Select()
     {
-        if(playerNum != 0)
+        if (playerNum != 0)
         {
             selectPlayers[playerNum - 1].SetActive(true);
         }
 
-        if(cannonNum1 != 0)
+        if (cannonNum1 != 0)
         {
             selectCannons[cannonNum1 - 1].SetActive(true);
         }
 
-        if(cannonNum2 != 0)
+        if (cannonNum2 != 0)
         {
             selectCannons[cannonNum2 - 1].SetActive(true);
         }
@@ -324,42 +324,6 @@ public class GameStartScript : MonoBehaviour
         PlayerPrefs.DeleteAll();
 
         gameDatas.DeleteData();
-
-        /*// 게임레벨 초기화
-        gameLevel.gameLevel = 1;
-        //PlayerPrefs.SetInt("GameLevel", gameLevel.gameLevel);
-        GPGSBinder.Inst.SaveCloud("GameLevel", gameLevel.gameLevel.ToString(), (success) => { });
-        
-        gameLevel.currentExp = 0;
-        gameLevel.maxExp = 50;
-
-        // 모험레벨 초기화
-        adventureLevel.currentLevel = 1;
-        //PlayerPrefs.SetInt("AdventLevel", adventureLevel.currentLevel);
-        GPGSBinder.Inst.SaveCloud("AdventLevel", adventureLevel.currentLevel.ToString(), (success) => { });
-        adventureLevel.maxLevel = 1;
-        //PlayerPrefs.SetInt("MaxAdventLevel", adventureLevel.maxLevel);
-        GPGSBinder.Inst.SaveCloud("MaxAdventLevel", adventureLevel.maxLevel.ToString(), (success) => { });
-
-        // 능력 초기화
-        abilityUI.ability1Num = 0;
-        //PlayerPrefs.SetInt("Ability1", abilityUI.ability1Num);
-        GPGSBinder.Inst.SaveCloud("Ability1", abilityUI.ability1Num.ToString(), (success) => { });
-        abilityUI.ability2Num = 0;
-        //PlayerPrefs.SetInt("Ability2", abilityUI.ability2Num);
-        GPGSBinder.Inst.SaveCloud("Ability2", abilityUI.ability2Num.ToString(), (success) => { });
-        abilityUI.ability3Num = 0;
-        //PlayerPrefs.SetInt("Ability3", abilityUI.ability3Num);
-        GPGSBinder.Inst.SaveCloud("Ability3", abilityUI.ability3Num.ToString(), (success) => { });
-        abilityUI.ability4Num = 0;
-        //PlayerPrefs.SetInt("Ability4", abilityUI.ability4Num);
-        GPGSBinder.Inst.SaveCloud("Ability4", abilityUI.ability4Num.ToString(), (success) => { });
-        abilityUI.ability5Num = 0;
-        //PlayerPrefs.SetInt("Ability5", abilityUI.ability5Num);
-        GPGSBinder.Inst.SaveCloud("Ability5", abilityUI.ability5Num.ToString(), (success) => { });
-        abilityUI.ability6Num = 0;
-        //PlayerPrefs.SetInt("Ability6", abilityUI.ability6Num);
-        GPGSBinder.Inst.SaveCloud("Ability6", abilityUI.ability6Num.ToString(), (success) => { });*/
 
         resetBtn.SetActive(true);
         resetUI.SetActive(false);
