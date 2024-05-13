@@ -23,17 +23,17 @@ public class PlayerSkill : MonoBehaviour
 
     private void Awake()
     {
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     void Start()
     {
 
-        gameDatas.LoadFieldData<int>("playerNum", value => {
+      /*  gameDatas.LoadFieldData<int>("playerNum", value => {
             playerNum = value;
         }, () => {
             playerNum = 1;
-        });
+        });*/
 
         // 캐릭터에 따른 쿨타임 적용
         if (playerNum == 1)

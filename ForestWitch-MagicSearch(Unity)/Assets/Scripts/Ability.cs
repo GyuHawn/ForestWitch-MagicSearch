@@ -23,10 +23,10 @@ public class Ability : MonoBehaviour
 
     private void Awake()
     {
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
-    private void Start()
+    /*private void Start()
     {
         gameDatas.LoadFieldData<int>("ability1Num", value => {
             ability1Num = value;
@@ -58,7 +58,7 @@ public class Ability : MonoBehaviour
         }, () => {
             ability6Num = 0;
         });
-    }
+    }*/
 
     void Update()
     {

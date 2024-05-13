@@ -12,24 +12,21 @@ public class SelectInfor : MonoBehaviour
 
     void Start()
     {
-        // Initialize buttons for cannon explanations
         for (int i = 0; i < cannonExBtn.Length; i++)
         {
-            int index = i; // local copy of i to avoid closure issues in the lambda expression
+            int index = i;
             cannonExBtn[i].onClick.AddListener(() => ToggleGameObject(cannonEx[index]));
         }
 
-        // Initialize buttons for player explanations
         for (int i = 0; i < PlayerExBtn.Length; i++)
         {
-            int index = i; // local copy of i to avoid closure issues in the lambda expression
+            int index = i;
             PlayerExBtn[i].onClick.AddListener(() => ToggleGameObject(PlayerEx[index]));
         }
     }
 
     void ToggleGameObject(GameObject obj)
     {
-        // Toggle the active state of the GameObject
         obj.SetActive(!obj.activeSelf);
     }
 }

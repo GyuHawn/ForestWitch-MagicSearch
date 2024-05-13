@@ -74,8 +74,8 @@ public class ClownMonster : MonoBehaviour
         hpBarScript = GameObject.Find("MosterHP").GetComponent<HpBarScript>();
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         ability = GameObject.Find("Manager").GetComponent<Ability>();
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     void Start()

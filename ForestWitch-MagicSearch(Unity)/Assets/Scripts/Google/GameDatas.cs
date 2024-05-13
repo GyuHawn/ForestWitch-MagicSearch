@@ -8,7 +8,7 @@ using System.Text;
 using System;
 using System.Reflection;
 using TMPro;
-
+ 
 public class DataSettings
 {
     // 레벨 능력
@@ -50,13 +50,18 @@ public class GameDatas : MonoBehaviour
     private string fileName = "file.dat";
 
     public TMP_Text text;
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void Update()
     {
         string infoText = "데이터 확인\n" +
                           "Abilities: 0, 0, 0, 0, 0, 0\n" +
                           $"Adventure Level: {dataSettings.maxLevel} (Current: {dataSettings.currentLevel})\n" +
                           $"Story Cleared: {dataSettings.onStory}\n" +
-                          $"Game Exp: {dataSettings.gameExp}\n" +
+                          $"Max Exp: {dataSettings.maxExp} / Currnet Exp: {dataSettings.currentExp}\n" +
                           $"Game Level: {dataSettings.gameLevel}\n" +
                           $"Player Count: {dataSettings.playerNum}\n" +
                           $"Cannons: {dataSettings.cannonNum1}, {dataSettings.cannonNum2}\n" +
@@ -65,8 +70,7 @@ public class GameDatas : MonoBehaviour
         text.text = infoText;
     }
 
-
-    void BasicData()
+    public void BasicData()
     {
         // 레벨 능력 기초
         dataSettings.ability1Num = 0;
@@ -101,6 +105,11 @@ public class GameDatas : MonoBehaviour
     }
 
     #region 저장 
+    public void UpdateAbility<T>(string fieldName, T fieldValue)
+    {
+        SaveFieldData(fieldName, fieldValue);
+    }
+
     public void SaveFieldData<T>(string fieldName, T fieldValue)
     {
         // 필드 정보를 가져옴
@@ -115,7 +124,7 @@ public class GameDatas : MonoBehaviour
             var json = JsonUtility.ToJson(dataSettings);
 
             // JSON 데이터를 클라우드에 저장
-            OpenSaveGame(json);
+            SaveJsonToCloud(json);
         }
         else
         {
@@ -123,12 +132,12 @@ public class GameDatas : MonoBehaviour
         }
     }
 
-    /*    private void SaveJsonToCloud(string json)
+    private void SaveJsonToCloud(string json)
         {
             // Google Play Games 서비스를 사용하여 클라우드에 저장
             OpenSaveGame(json);
         }
-    */
+
     private void OpenSaveGame(string json)
     {
         ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
@@ -176,8 +185,51 @@ public class GameDatas : MonoBehaviour
 
     #region 불러오기
 
+    public void LoadData()
+    {
+        OpenLoadGame();
+    }
+
+    private void OpenLoadGame()
+    {
+        ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+
+        savedGameClient.OpenWithAutomaticConflictResolution(fileName,
+                                                             DataSource.ReadCacheOrNetwork,
+                                                             ConflictResolutionStrategy.UseLastKnownGood,
+                                                            LoadGameData);
+    }
+
+    private void LoadGameData(SavedGameRequestStatus status, ISavedGameMetadata data)
+    {
+        ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+
+        if (status == SavedGameRequestStatus.Success)
+        {
+            Debug.Log("Save completed successfully");
+
+            savedGameClient.ReadBinaryData(data, OnSavedGameDataRead);
+        }
+        else
+        {
+            Debug.Log("Failed to save data");
+        }
+    }
+
+    private void OnSavedGameDataRead(SavedGameRequestStatus status, byte[] loadedData)
+    {
+        if (status == SavedGameRequestStatus.Success && loadedData.Length > 0)
+        {
+            string data = System.Text.Encoding.UTF8.GetString(loadedData);
+            if(data != "")
+            {
+                dataSettings = JsonUtility.FromJson<DataSettings>(data);
+            }
+        }
+    }
+
     // 필드 데이터를 불러오는 범용 메서드
-    public void LoadFieldData<T>(string fieldName, Action<T> onSuccess, Action onFailure)
+    /*public void LoadFieldData<T>(string fieldName, Action<T> onSuccess, Action onFailure)
     {
         OpenLoadGame((dataSettings) =>
         {
@@ -235,7 +287,7 @@ public class GameDatas : MonoBehaviour
             BasicData();
             onLoadedCallback(dataSettings);
         }
-    }
+    }*/
     #endregion
 
     #region 삭제

@@ -68,10 +68,10 @@ public class ClearInfor : MonoBehaviour
         storyScript = GameObject.Find("Manager").GetComponent<StoryScript>();
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
-    void Start()
+   /* void Start()
     {
         gameDatas.LoadFieldData<int>("currentExp", value => {
             currentExp = value;
@@ -83,7 +83,7 @@ public class ClearInfor : MonoBehaviour
         }, () => {
             onStory = false;
         });
-    }
+    }*/
 
     
     void Update()

@@ -83,12 +83,12 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     void Start()
     {
-        // 전체 볼륨 조절
+        /*// 전체 볼륨 조절
         gameDatas.LoadFieldData<int>("bgmVolume", value => {
             bgmVolume = value;
         }, () => {
@@ -103,7 +103,7 @@ public class AudioManager : MonoBehaviour
             monsterVolume = value;
         }, () => {
             monsterVolume = 1.0f;
-        });
+        });*/
 
         b_Slider.value = bgmVolume;
         f_Slider.value = fncVolume;

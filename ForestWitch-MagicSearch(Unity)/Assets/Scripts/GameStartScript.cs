@@ -44,8 +44,8 @@ public class GameStartScript : MonoBehaviour
         gameLevel = GameObject.Find("Manager").GetComponent<GameLevel>();
         adventureLevel = GameObject.Find("Manager").GetComponent<AdventureLevel>();
         abilityUI = GameObject.Find("Manager").GetComponent<AbilityUI>();
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
         audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     void Update()
@@ -128,7 +128,7 @@ public class GameStartScript : MonoBehaviour
         if (playerNum == 0)
         {
             playerNum = 1;
-            gameDatas.SaveFieldData("playerNum", 1);
+            gameDatas.SaveFieldData("playerNum", playerNum);
         }
     }
     public void Player2()
@@ -136,7 +136,7 @@ public class GameStartScript : MonoBehaviour
         if (playerNum == 0)
         {
             playerNum = 2;
-            gameDatas.SaveFieldData("playerNum", 2);
+            gameDatas.SaveFieldData("playerNum", playerNum);
         }
     }
 
@@ -147,13 +147,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 1;
-                gameDatas.SaveFieldData("cannonNum1", 1);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[0];
             }
             else
             {
                 cannonNum2 = 1;
-                gameDatas.SaveFieldData("cannonNum2", 1);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[0];
             }
         }
@@ -165,13 +165,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 2;
-                gameDatas.SaveFieldData("cannonNum1", 2);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[1];
             }
             else
             {
                 cannonNum2 = 2;
-                gameDatas.SaveFieldData("cannonNum2", 2);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[1];
             }
         }
@@ -183,13 +183,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 3;
-                gameDatas.SaveFieldData("cannonNum1", 3);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[2];
             }
             else
             {
                 cannonNum2 = 3;
-                gameDatas.SaveFieldData("cannonNum2", 3);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[2];
             }
         }
@@ -201,13 +201,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 4;
-                gameDatas.SaveFieldData("cannonNum1", 4);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[3];
             }
             else
             {
                 cannonNum2 = 4;
-                gameDatas.SaveFieldData("cannonNum2", 4);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[3];
             }
         }
@@ -219,13 +219,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 5;
-                gameDatas.SaveFieldData("cannonNum1", 5);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[4];
             }
             else
             {
                 cannonNum2 = 5;
-                gameDatas.SaveFieldData("cannonNum2", 5);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[4];
             }
         }
@@ -237,13 +237,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 6;
-                gameDatas.SaveFieldData("cannonNum1", 6);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[5];
             }
             else
             {
                 cannonNum2 = 6;
-                gameDatas.SaveFieldData("cannonNum2", 6);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[5];
             }
         }
@@ -255,13 +255,13 @@ public class GameStartScript : MonoBehaviour
             if (cannonNum1 == 0)
             {
                 cannonNum1 = 7;
-                gameDatas.SaveFieldData("cannonNum1", 7);
+                gameDatas.SaveFieldData("cannonNum1", cannonNum1);
                 showCannonPos[0].sprite = showCannons[6];
             }
             else
             {
                 cannonNum2 = 7;
-                gameDatas.SaveFieldData("cannonNum2", 7);
+                gameDatas.SaveFieldData("cannonNum2", cannonNum2);
                 showCannonPos[1].sprite = showCannons[6];
             }
         }

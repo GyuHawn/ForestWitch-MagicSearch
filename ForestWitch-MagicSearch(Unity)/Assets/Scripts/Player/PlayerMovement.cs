@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         clearInfor = GameObject.Find("Manager").GetComponent<ClearInfor>();
         mapSetting = GameObject.Find("Manager").GetComponent<MapSetting>();
         ability = GameObject.Find("Manager").GetComponent<Ability>();
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     private void Start()
@@ -111,11 +111,11 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerSetting() // 플레이어 관련 세팅
     {
-        gameDatas.LoadFieldData<int>("playerNum", value => {
+        /*gameDatas.LoadFieldData<int>("playerNum", value => {
             playerNum = value;
         }, () => {
             playerNum = 1;
-        });
+        });*/
 
         // 캐릭터에 따른 스탯
         if (playerNum == 1)

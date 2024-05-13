@@ -45,18 +45,18 @@ public class MapSetting : MonoBehaviour
 
     private void Awake()
     {
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
 
     }
     void Start()
     {
         stage = 1;
 
-        gameDatas.LoadFieldData<int>("currentLevel", value => {
+        /*gameDatas.LoadFieldData<int>("currentLevel", value => {
             adventLevel = value;
         }, () => {
             adventLevel = 1;
-        });
+        });*/
 
         StageMapSetting();
     }

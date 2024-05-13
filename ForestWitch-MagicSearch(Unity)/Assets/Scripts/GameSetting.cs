@@ -19,13 +19,13 @@ public class GameSetting : MonoBehaviour
 
     private void Awake()
     {
-        gameDatas = GameObject.Find("Manager").GetComponent<GameDatas>();
+        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     void Start()
     {
 
-        gameDatas.LoadFieldData<int>("playerNum", value => {
+        /*gameDatas.LoadFieldData<int>("playerNum", value => {
             playerNum = value;
         }, () => {
             playerNum = 1;
@@ -39,7 +39,7 @@ public class GameSetting : MonoBehaviour
             cannonNum2 = value;
         }, () => {
             cannonNum2 = 2;
-        });
+        });*/
 
         cannons.Add(cannonPrefabs[cannonNum1 - 1]);
         cannons.Add(cannonPrefabs[cannonNum2 - 1]);
