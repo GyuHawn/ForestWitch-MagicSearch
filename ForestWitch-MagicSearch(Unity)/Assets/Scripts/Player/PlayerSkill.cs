@@ -28,12 +28,7 @@ public class PlayerSkill : MonoBehaviour
 
     void Start()
     {
-
-      /*  gameDatas.LoadFieldData<int>("playerNum", value => {
-            playerNum = value;
-        }, () => {
-            playerNum = 1;
-        });*/
+        playerNum = gameDatas.dataSettings.playerNum;
 
         // 캐릭터에 따른 쿨타임 적용
         if (playerNum == 1)

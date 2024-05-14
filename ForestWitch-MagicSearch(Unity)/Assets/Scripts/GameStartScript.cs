@@ -321,8 +321,6 @@ public class GameStartScript : MonoBehaviour
     }
     public void Reset_O()
     {
-        PlayerPrefs.DeleteAll();
-
         gameDatas.DeleteData();
 
         resetBtn.SetActive(true);

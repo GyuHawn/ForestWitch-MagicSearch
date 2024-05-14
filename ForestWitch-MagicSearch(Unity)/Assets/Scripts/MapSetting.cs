@@ -52,11 +52,7 @@ public class MapSetting : MonoBehaviour
     {
         stage = 1;
 
-        /*gameDatas.LoadFieldData<int>("currentLevel", value => {
-            adventLevel = value;
-        }, () => {
-            adventLevel = 1;
-        });*/
+        adventLevel = gameDatas.dataSettings.adventLevel;
 
         StageMapSetting();
     }

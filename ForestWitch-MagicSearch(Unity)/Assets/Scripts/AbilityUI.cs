@@ -1,90 +1,3 @@
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-
-public class AbilityUI : MonoBehaviour
-{
-    private GameLevel gameLevel;
-    private  GameDatas gameDatas;
-
-    // 능력 UI
-    public GameObject abilityUI;
-    public GameObject[] abilitys;
-    public GameObject[] abilitys1;
-    public GameObject[] abilitys2;
-    public GameObject[] abilitys3;
-    public GameObject[] abilitys4;
-    public GameObject[] abilitys5;
-    public GameObject[] abilitys6;
-
-    // 선택한 능력
-    public GameObject[] ability1Check;
-    public int ability1Num;
-    public GameObject[] ability2Check;
-    public int ability2Num;
-    public GameObject[] ability3Check;
-    public int ability3Num;
-    public GameObject[] ability4Check;
-    public int ability4Num;
-    public GameObject[] ability5Check;
-    public int ability5Num;
-    public GameObject[] ability6Check;
-    public int ability6Num;
-
-    public GameObject[] locks; // 능력 잠금
-
-    public bool on = true;
-
-    public GameObject abilityEx;
-    public TMP_Text abilityExText;
-
-    private void Awake()
-    {
-        gameLevel = GameObject.Find("Manager").GetComponent<GameLevel>();
-        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
-    }
-
-    public void LoadAbilityUIData()
-    {
-        gameDatas.LoadFieldData<int>("ability1Num", value => {
-            ability1Num = value;
-        }, () => {
-            ability1Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability2Num", value => {
-            ability2Num = value;
-        }, () => {
-            ability2Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability3Num", value => {
-            ability3Num = value;
-        }, () => {
-            ability3Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability4Num", value => {
-            ability4Num = value;
-        }, () => {
-            ability4Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability5Num", value => {
-            ability5Num = value;
-        }, () => {
-            ability5Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability6Num", value => {
-            ability6Num = value;
-        }, () => {
-            ability6Num = 0;
-        });
-    }
-    
-
-    void Update()
-    {
-        AbilityLock(); // 게임 레벨에 따라 능력오픈
-        CheckAbility(); // 선택한 능력 표시
-    }*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -124,8 +37,6 @@ public class AbilityUI : MonoBehaviour
     {
         gameLevel = GameObject.Find("Manager").GetComponent<GameLevel>();
         gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
-
-        // Load ability data from gameDatas
     }
 
     public void LoadAbilityUIData()

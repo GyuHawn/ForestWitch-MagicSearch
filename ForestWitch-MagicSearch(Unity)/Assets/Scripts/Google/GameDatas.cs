@@ -21,16 +21,15 @@ public class DataSettings
 
     // 모험 레벨
     public int maxLevel = 1;
-    public int currentLevel = 1;
+    public int adventLevel = 1;
 
     // 클리어 정보
     public bool onStory = false;
-    public int gameExp = 0;
 
     // 게임 레벨
     public int maxExp = 50;
     public int currentExp = 0;
-    public int gameLevel = 1;
+    public int gameLevel = 50;
 
     // 게임 세팅
     public int playerNum = 1;
@@ -49,7 +48,7 @@ public class GameDatas : MonoBehaviour
 
     private string fileName = "file.dat";
 
-    public TMP_Text text;
+    //public TMP_Text text;
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -57,9 +56,9 @@ public class GameDatas : MonoBehaviour
 
     public void Update()
     {
-        string infoText = "데이터 확인\n" +
+        /*string infoText = "데이터 확인\n" +
                           "Abilities: 0, 0, 0, 0, 0, 0\n" +
-                          $"Adventure Level: {dataSettings.maxLevel} (Current: {dataSettings.currentLevel})\n" +
+                          $"Adventure Level: {dataSettings.maxLevel} (Current: {dataSettings.adventLevel})\n" +
                           $"Story Cleared: {dataSettings.onStory}\n" +
                           $"Max Exp: {dataSettings.maxExp} / Currnet Exp: {dataSettings.currentExp}\n" +
                           $"Game Level: {dataSettings.gameLevel}\n" +
@@ -67,7 +66,7 @@ public class GameDatas : MonoBehaviour
                           $"Cannons: {dataSettings.cannonNum1}, {dataSettings.cannonNum2}\n" +
                           $"Audio Settings - BGM: {dataSettings.bgmVolume}, Effects: {dataSettings.fncVolume}, Monster: {dataSettings.monsterVolume}";
 
-        text.text = infoText;
+        text.text = infoText;*/
     }
 
     public void BasicData()
@@ -82,11 +81,10 @@ public class GameDatas : MonoBehaviour
 
         // 모험 레벨 기초
         dataSettings.maxLevel = 1;
-        dataSettings.currentLevel = 1;
+        dataSettings.adventLevel = 1;
 
         // 클리어 정보 기초
         dataSettings.onStory = false;
-        dataSettings.gameExp = 0;
 
         // 게임 레벨 기초
         dataSettings.maxExp = 0;
@@ -227,67 +225,6 @@ public class GameDatas : MonoBehaviour
             }
         }
     }
-
-    // 필드 데이터를 불러오는 범용 메서드
-    /*public void LoadFieldData<T>(string fieldName, Action<T> onSuccess, Action onFailure)
-    {
-        OpenLoadGame((dataSettings) =>
-        {
-            FieldInfo fieldInfo = typeof(DataSettings).GetField(fieldName);
-            if (fieldInfo != null && fieldInfo.FieldType == typeof(T))
-            {
-                T value = (T)fieldInfo.GetValue(dataSettings);
-                onSuccess?.Invoke(value);  // 콜백을 호출하여 성공 처리
-            }
-            else
-            {
-                Debug.LogError("Field not found or type mismatch");
-                onFailure?.Invoke();  // 실패 콜백 호출
-            }
-        });
-    }
-
-    private void OpenLoadGame(Action<DataSettings> onLoadedCallback)
-    {
-        ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-        savedGameClient.OpenWithAutomaticConflictResolution(fileName,
-                                                            DataSource.ReadCacheOrNetwork,
-                                                            ConflictResolutionStrategy.UseLastKnownGood,
-                                                            (status, data) => LoadGameData(status, data, onLoadedCallback));
-    }
-
-    private void LoadGameData(SavedGameRequestStatus status, ISavedGameMetadata data, Action<DataSettings> onLoadedCallback)
-    {
-        ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
-
-        if (status == SavedGameRequestStatus.Success)
-        {
-            Debug.Log("Load successful");
-            savedGameClient.ReadBinaryData(data, (readStatus, loadedData) => OnSavedGameDataRead(readStatus, loadedData, onLoadedCallback));
-        }
-        else
-        {
-            Debug.Log("Load failed");
-        }
-    }
-
-    private void OnSavedGameDataRead(SavedGameRequestStatus status, byte[] loadedData, Action<DataSettings> onLoadedCallback)
-    {
-        if (status == SavedGameRequestStatus.Success && loadedData.Length > 0)
-        {
-            string jsonData = System.Text.Encoding.UTF8.GetString(loadedData);
-            Debug.Log("Loaded data: " + jsonData);
-
-            DataSettings loadedSettings = JsonUtility.FromJson<DataSettings>(jsonData);
-            onLoadedCallback(loadedSettings);
-        }
-        else
-        {
-            Debug.Log("No data found, initializing default data.");
-            BasicData();
-            onLoadedCallback(dataSettings);
-        }
-    }*/
     #endregion
 
     #region 삭제

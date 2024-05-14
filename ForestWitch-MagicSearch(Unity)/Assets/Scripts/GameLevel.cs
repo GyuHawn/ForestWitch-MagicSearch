@@ -1,122 +1,3 @@
-/*using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-
-public class GameLevel : MonoBehaviour
-{
-    private GameDatas gameDatas;
-
-    // 레벨 
-    public int gameLevel;
-    public TMP_Text gameLevelText;
-    public TMP_Text gameExpText;
-    public int maxExp;
-    public int currentExp;
-
-    // 캐릭터 락
-    public GameObject playerLock;
-    public GameObject[] cannonLocks;
-
-    private void Awake()
-    {
-        gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
-    }
-
-    public void LoadGameLevelData()
-    {
-        gameDatas.LoadFieldData<int>("currentExp", value => {
-            currentExp = value;
-        }, () => {
-            currentExp = 0;
-        });
-        gameDatas.LoadFieldData<int>("maxExp", value => {
-            maxExp = value;
-        }, () => {
-            maxExp = 50;
-        });
-        gameDatas.LoadFieldData<int>("gameLevel", value => {
-            gameLevel = value;
-        }, () => {
-            gameLevel = 1;
-        });
-    }
-
-
-    void Update()
-    {
-        gameLevelText.text = gameLevel.ToString();
-        gameExpText.text = currentExp.ToString() + " / " + maxExp.ToString();
-        if (currentExp > maxExp)
-        {
-            gameLevel++;
-            currentExp -= maxExp;
-
-            gameDatas.SaveFieldData("gameLevel", gameLevel);
-
-            SettingMaxExp();
-        }
-
-        // Unlocked();
-    }
-
-    void Unlocked() // 레벨에 따른 잠금해제
-    {
-        if (gameLevel >= 2)
-        {
-            cannonLocks[0].SetActive(false);
-        }
-        else
-        {
-            cannonLocks[0].SetActive(true);
-        }
-
-        if (gameLevel >= 3)
-        {
-            cannonLocks[1].SetActive(false);
-            cannonLocks[2].SetActive(false);
-        }
-        else
-        {
-            cannonLocks[1].SetActive(true);
-            cannonLocks[2].SetActive(true);
-        }
-
-        if (gameLevel >= 5)
-        {
-            playerLock.SetActive(false);
-        }
-        else
-        {
-            playerLock.SetActive(true);
-        }
-
-        if (gameLevel >= 6)
-        {
-            cannonLocks[3].SetActive(false);
-        }
-        else
-        {
-            cannonLocks[3].SetActive(true);
-        }
-
-        if (gameLevel >= 8)
-        {
-            cannonLocks[4].SetActive(false);
-        }
-        else
-        {
-            cannonLocks[4].SetActive(true);
-        }
-    }
-
-    void SettingMaxExp()
-    {
-        maxExp = gameLevel * 50;
-        gameDatas.SaveFieldData("maxExp", maxExp);
-    }
-}
-*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -135,18 +16,15 @@ public class GameLevel : MonoBehaviour
 
     private void Awake()
     {
-        // Obtain the GameDatas component from the GameObject named "GameData"
         gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
     public void LoadGameLevelData()
     {
-        // Directly accessing values from GameDatas
         gameLevel = gameDatas.dataSettings.gameLevel;
         maxExp = gameDatas.dataSettings.maxExp;
         currentExp = gameDatas.dataSettings.currentExp;
 
-        // Initialize the display texts
         UpdateUI();
     }
 
@@ -166,10 +44,8 @@ public class GameLevel : MonoBehaviour
         gameLevel++;
         currentExp -= maxExp;
 
-        // Set new max experience needed for the next level
         SettingMaxExp();
 
-        // Save updated data
         gameDatas.dataSettings.gameLevel = gameLevel;
         gameDatas.dataSettings.currentExp = currentExp;
         gameDatas.dataSettings.maxExp = maxExp;
@@ -180,11 +56,11 @@ public class GameLevel : MonoBehaviour
 
     void UpdateUI()
     {
-        gameLevelText.text = "Level: " + gameLevel.ToString();
+        gameLevelText.text = gameLevel.ToString();
         gameExpText.text = $"{currentExp} / {maxExp}";
     }
 
-    void Unlocked() // Unlock features based on the level
+    void Unlocked()
     {
         playerLock.SetActive(gameLevel < 5);
         cannonLocks[0].SetActive(gameLevel < 2);
@@ -211,10 +87,9 @@ public class GameLevel : MonoBehaviour
 
     void SettingMaxExp()
     {
-        maxExp = gameLevel * 50; // For example, each level requires 50 more experience
+        maxExp = gameLevel * 50;
     }
 
-    // Properties for easy access and auto-saving
     public int gameLevel
     {
         get { return gameDatas.dataSettings.gameLevel; }

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     public int currentHealth; // 현재 체력
     public float moveSpd; // 이동 속도
     public float rotateSpd; // 회전 속도
-    public int defence; // 방어력
     public bool itemShield; // 방패 아이템 획득시 보호막 사용
 
     // 이동관련
@@ -81,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     public bool bow;
     public bool dagger;
     public bool fish;
+    public bool hood;
     public bool necklace;
     public bool pick;
     public bool ring;
@@ -111,11 +112,7 @@ public class PlayerMovement : MonoBehaviour
 
     void PlayerSetting() // 플레이어 관련 세팅
     {
-        /*gameDatas.LoadFieldData<int>("playerNum", value => {
-            playerNum = value;
-        }, () => {
-            playerNum = 1;
-        });*/
+        playerNum = gameDatas.dataSettings.playerNum;
 
         // 캐릭터에 따른 스탯
         if (playerNum == 1)
@@ -131,7 +128,6 @@ public class PlayerMovement : MonoBehaviour
         
         rotateSpd = 3f; // 회전속도
         currentHealth = maxHealth; // 체력 설정
-        defence = 0; // 방어력
         moveNum = 1; // 플레이어 이동관련 
         tileMoveSpd = 3f; // 타일맵 이동속도
         moveDistance = 2.3f; // 타일맵 이동거리
@@ -529,8 +525,6 @@ public class PlayerMovement : MonoBehaviour
                         return;
                     }
                 }
-
-                currentHealth -= (bullet.damage - defence); // 체력감소
                 Destroy(collision.gameObject);
             }
 
@@ -564,6 +558,11 @@ public class PlayerMovement : MonoBehaviour
         {
             bulletNum++; // 총알 증가
             Destroy(collision.gameObject);
+
+            if (hood) // 후드 아이템 소지 중 총알 획득시 확률적 투사체 공격
+            {
+                ability.MPExtraAttack();
+            }
 
             // 능력 1-1이 활성화
             if (ability.ability1Num == 1)

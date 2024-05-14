@@ -24,22 +24,9 @@ public class GameSetting : MonoBehaviour
 
     void Start()
     {
-
-        /*gameDatas.LoadFieldData<int>("playerNum", value => {
-            playerNum = value;
-        }, () => {
-            playerNum = 1;
-        });
-        gameDatas.LoadFieldData<int>("cannonNum1", value => {
-            cannonNum1 = value;
-        }, () => {
-            cannonNum1 = 1;
-        });
-        gameDatas.LoadFieldData<int>("cannonNum2", value => {
-            cannonNum2 = value;
-        }, () => {
-            cannonNum2 = 2;
-        });*/
+        playerNum = gameDatas.dataSettings.playerNum;
+        cannonNum1 = gameDatas.dataSettings.cannonNum1;
+        cannonNum2 = gameDatas.dataSettings.cannonNum2;
 
         cannons.Add(cannonPrefabs[cannonNum1 - 1]);
         cannons.Add(cannonPrefabs[cannonNum2 - 1]);

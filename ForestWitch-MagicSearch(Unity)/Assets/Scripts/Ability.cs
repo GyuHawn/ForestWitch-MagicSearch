@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
@@ -26,39 +27,15 @@ public class Ability : MonoBehaviour
         gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
-    /*private void Start()
+    private void Start()
     {
-        gameDatas.LoadFieldData<int>("ability1Num", value => {
-            ability1Num = value;
-        }, () => {
-            ability1Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability2Num", value => {
-            ability2Num = value;
-        }, () => {
-            ability2Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability3Num", value => {
-            ability3Num = value;
-        }, () => {
-            ability3Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability4Num", value => {
-            ability4Num = value;
-        }, () => {
-            ability4Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability5Num", value => {
-            ability5Num = value;
-        }, () => {
-            ability5Num = 0;
-        });
-        gameDatas.LoadFieldData<int>("ability6Num", value => {
-            ability6Num = value;
-        }, () => {
-            ability6Num = 0;
-        });
-    }*/
+        ability1Num = gameDatas.dataSettings.ability1Num;
+        ability2Num = gameDatas.dataSettings.ability2Num;
+        ability3Num = gameDatas.dataSettings.ability3Num;
+        ability4Num = gameDatas.dataSettings.ability4Num;
+        ability5Num = gameDatas.dataSettings.ability5Num;
+        ability6Num = gameDatas.dataSettings.ability6Num;
+    }
 
     void Update()
     {
@@ -85,7 +62,6 @@ public class Ability : MonoBehaviour
 
     public void GetCannonReload() // (10%) 총알 획득시 확률적으로 모든 대포 총알 1 장전 (능력 1-2) 
     {
-        Debug.Log("1_2");
         int num = Random.Range(0, 10);
         if (num < 1)
         {
@@ -111,7 +87,6 @@ public class Ability : MonoBehaviour
 
     public void CannonExtraAttack() // (50%) 공격 시 확률적으로 투사체 공격 (능력 2-2) 
     {
-        Debug.Log("2_2");
         int num = Random.Range(0, 10);
         if (num < 5)
         {
@@ -135,7 +110,6 @@ public class Ability : MonoBehaviour
 
     public int PlusCoin(int money) // 코인 획득시 150%로 획득 (능력 3-2) 
     {
-        Debug.Log("3_2");
         return (int)(money * 1.5f);
     }
 
@@ -143,7 +117,6 @@ public class Ability : MonoBehaviour
                              
     public void PlusExtraAttack() // (80%) 공격시 확률적 투사체 공격 (능력 4-2) 
     {
-        Debug.Log("4_2");
         int num = Random.Range(0, 10);
         if (num < 8)
         {
@@ -168,7 +141,6 @@ public class Ability : MonoBehaviour
 
     public void HitExtraAttack() // 피격시 2개 투사체 발사 (능력 6-2) 
     {
-        Debug.Log("6_2");
         for (int i = 0; i < 2; i++)
         {
             GameObject attack = Instantiate(playerMovement.extraAttack, player.transform.position, Quaternion.identity);

@@ -59,7 +59,7 @@ public class ClearInfor : MonoBehaviour
     public bool onStory;
     public bool clear; // 클리어 여부
 
-    public int currentExp;
+    //public int currentExp;
     public int gameExp;
 
     private void Awake()
@@ -71,19 +71,11 @@ public class ClearInfor : MonoBehaviour
         gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
     }
 
-   /* void Start()
+    void Start()
     {
-        gameDatas.LoadFieldData<int>("currentExp", value => {
-            currentExp = value;
-        }, () => {
-            currentExp = 0;
-        });
-        gameDatas.LoadFieldData<bool>("onStory", value => {
-            onStory = value;
-        }, () => {
-            onStory = false;
-        });
-    }*/
+        currentExp = gameDatas.dataSettings.currentExp;
+        onStory = gameDatas.dataSettings.onStory;
+    }
 
     
     void Update()
@@ -164,8 +156,8 @@ public class ClearInfor : MonoBehaviour
         // 총합 표시
         totalScoreText.text = totalScore.ToString();
 
-        gameExp = currentExp + totalScore;
-        gameDatas.SaveFieldData("currentExp", gameExp);
+        currentExp += totalScore;
+        gameDatas.UpdateAbility("currentExp", currentExp);
 
         result = false;
     }
@@ -179,5 +171,15 @@ public class ClearInfor : MonoBehaviour
     public void GameClear()
     {
         LoadingController.LoadNextScene("MainMenu");
+    }
+
+    public int currentExp
+    {
+        get { return gameDatas.dataSettings.currentExp; }
+        set
+        {
+            gameDatas.dataSettings.currentExp = value;
+            gameDatas.SaveFieldData("currentExp", value);
+        }
     }
 }

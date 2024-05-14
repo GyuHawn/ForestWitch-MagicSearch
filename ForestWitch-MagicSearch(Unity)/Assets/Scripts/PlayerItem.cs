@@ -363,7 +363,7 @@ public class PlayerItem : MonoBehaviour
         playerMovement.moveSpd++; // 이동속도 1증가
     }
 
-    void Hood() // 방어력이 1증가합니다.
+    void Hood() // 총알 획득시 확률적 투사체 공격 
     {
         // 획득 아이템 표시
         int index = ltemList.Count;
@@ -372,8 +372,8 @@ public class PlayerItem : MonoBehaviour
         ltemList.Add(hoodObject);
 
         // 아이템 기능
-        playerMovement.defence++; // 방어력 1증가
-    }
+        playerMovement.hood = true;
+    }   
 
     public void Jewel() // 1500코인을 획득합니다.
     {

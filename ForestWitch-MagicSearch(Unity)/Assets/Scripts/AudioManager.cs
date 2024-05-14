@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class AudioManager : MonoBehaviour
 {
@@ -88,26 +89,14 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        /*// 전체 볼륨 조절
-        gameDatas.LoadFieldData<int>("bgmVolume", value => {
-            bgmVolume = value;
-        }, () => {
-            bgmVolume = 1.0f;
-        });
-        gameDatas.LoadFieldData<int>("fncVolume", value => {
-            fncVolume = value;
-        }, () => {
-            fncVolume = 1.0f;
-        });
-        gameDatas.LoadFieldData<int>("monsterVolume", value => {
-            monsterVolume = value;
-        }, () => {
-            monsterVolume = 1.0f;
-        });*/
+        bgmVolume = gameDatas.dataSettings.bgmVolume;
+        fncVolume = gameDatas.dataSettings.fncVolume;
+        monsterVolume = gameDatas.dataSettings.monsterVolume;
 
         b_Slider.value = bgmVolume;
         f_Slider.value = fncVolume;
         m_Slider.value = monsterVolume;
+        
 
         SartAudioSetting();
         if (SceneManager.GetActiveScene().name == "Game")
@@ -234,10 +223,31 @@ public class AudioManager : MonoBehaviour
             be_Multi.volume = m_Slider.value;
             be_Aiming.volume = m_Slider.value;
         }
+        /*
+                gameDatas.SaveFieldData("bgmVolume", b_Slider.value);
+                gameDatas.SaveFieldData("fncVolume", f_Slider.value);
+                gameDatas.SaveFieldData("monsterVolume", m_Slider.value);*/
+        b_Slider.onValueChanged.AddListener(new UnityAction<float>(UpdateBGMVolume));
+        f_Slider.onValueChanged.AddListener(new UnityAction<float>(UpdateFunctionVolume));
+        m_Slider.onValueChanged.AddListener(new UnityAction<float>(UpdateMonsterVolume));
+    }
 
-        gameDatas.SaveFieldData("bgmVolume", b_Slider.value);
-        gameDatas.SaveFieldData("fncVolume", f_Slider.value);
-        gameDatas.SaveFieldData("monsterVolume", m_Slider.value);
+    void UpdateBGMVolume(float value)
+    {
+        gameDatas.dataSettings.bgmVolume = value;
+        gameDatas.SaveFieldData("bgmVolume", value);
+    }
+
+    void UpdateFunctionVolume(float value)
+    {
+        gameDatas.dataSettings.fncVolume = value;
+        gameDatas.SaveFieldData("fncVolume", value);
+    }
+
+    void UpdateMonsterVolume(float value)
+    {
+        gameDatas.dataSettings.monsterVolume = value;
+        gameDatas.SaveFieldData("monsterVolume", value);
     }
 
     // 현재 재생되고 있는 오디오 정지
