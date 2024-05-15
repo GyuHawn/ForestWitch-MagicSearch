@@ -157,7 +157,7 @@ public class ClearInfor : MonoBehaviour
         totalScoreText.text = totalScore.ToString();
 
         currentExp += totalScore;
-        gameDatas.UpdateAbility("currentExp", currentExp);
+        gameDatas.SaveFieldData("currentExp", currentExp);
 
         result = false;
     }

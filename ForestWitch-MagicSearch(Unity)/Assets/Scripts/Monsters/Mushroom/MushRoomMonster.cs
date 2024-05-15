@@ -115,6 +115,7 @@ public class MushRoomMonster : MonoBehaviour
 
             hpBarScript.MoveToYStart(150, 0.1f);
             hpBarScript.ResetHealthBar(currentHealth, maxHealth);
+            hpBarScript.healthBarFill.fillAmount = 1.0f;
 
             playerMovement.OnTile();
             playerMovement.MoveFinalPosition();

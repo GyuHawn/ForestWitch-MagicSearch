@@ -4864,6 +4864,7 @@ MonoBehaviour:
   damage: 2
   dagger: 0
   sword: 0
+  player: {fileID: 0}
 --- !u!135 &8055382581249168192
 SphereCollider:
   m_ObjectHideFlags: 0

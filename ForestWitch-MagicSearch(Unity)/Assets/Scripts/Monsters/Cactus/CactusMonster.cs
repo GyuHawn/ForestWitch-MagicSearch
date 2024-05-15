@@ -104,7 +104,8 @@ public class CactusMonster : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         hpBarScript.MoveToYStart(150, 0.1f);
-        hpBarScript.ResetHealthBar(currentHealth, maxHealth); 
+        hpBarScript.ResetHealthBar(currentHealth, maxHealth);
+        hpBarScript.healthBarFill.fillAmount = 1.0f;
 
         GetMoney();
 

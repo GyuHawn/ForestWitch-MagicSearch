@@ -103,6 +103,7 @@ public class ChestMonster : MonoBehaviour
 
         hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar(currentHealth, maxHealth);
+        hpBarScript.healthBarFill.fillAmount = 1.0f;
 
         GameObject monster = GameObject.Find("EatingMonster");
         Destroy(monster);

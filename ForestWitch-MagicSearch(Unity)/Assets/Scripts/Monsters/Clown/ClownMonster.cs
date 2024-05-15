@@ -133,7 +133,8 @@ public class ClownMonster : MonoBehaviour
 
         hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar(currentHealth, maxHealth);
-
+        hpBarScript.healthBarFill.fillAmount = 1.0f;
+        
         GetMoney();
 
         clearInfor.clear = true; // 2스테이지 클리어시 게임 클리어
@@ -277,7 +278,7 @@ public class ClownMonster : MonoBehaviour
         }
     }
 
-    private void StartBreakAttack() // 기절 패턴
+    private void StartBreakAttack() // 파괴 패턴
     {
         if (playerCannons.Count > 1)
         {
@@ -386,24 +387,22 @@ public class ClownMonster : MonoBehaviour
 
             if (collision.gameObject.CompareTag("ExtraAttack"))
             {
+                if (!isSummon)
                 {
-                    if (!isSummon)
+                    ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
+                    if (attack != null)
                     {
-                        ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
-                        if (attack != null)
-                        {
-                            audioManager.HitMonsterAudio();
-                            StartCoroutine(HitEffect());
-                            currentHealth -= attack.damage;
-                            hpBarScript.UpdateHP(currentHealth, maxHealth);
-                            anim.SetTrigger("Hit");
-                        }
-                        Destroy(collision.gameObject);
+                        audioManager.HitMonsterAudio();
+                        StartCoroutine(HitEffect());
+                        currentHealth -= attack.damage;
+                        hpBarScript.UpdateHP(currentHealth, maxHealth);
+                        anim.SetTrigger("Hit");
                     }
-                    else
-                    {
-                        Destroy(collision.gameObject);
-                    }
+                    Destroy(collision.gameObject);
+                }
+                else
+                {
+                    Destroy(collision.gameObject);
                 }
             }
 

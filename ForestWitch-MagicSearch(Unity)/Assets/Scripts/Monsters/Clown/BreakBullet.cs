@@ -28,7 +28,7 @@ public class BreakBullet : MonoBehaviour
 
     void Update()
     {
-        if (targetCannon != null) // 플레이어를 따라다님
+        if (targetCannon != null) // 파괴할 대포로 이동
         {
             Vector3 direction = targetCannon.transform.position - transform.position;
             direction.Normalize();

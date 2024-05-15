@@ -8,19 +8,16 @@ public class AdventureLevel : MonoBehaviour
     private GameDatas gameDatas;
 
     public TMP_Text currentLevelText;
+    public TMP_Text maxLevelText;
 
     private void Awake()
     {
         gameDatas = GameObject.Find("GameData").GetComponent<GameDatas>();
-      
-       // gameDatas.LoadData();
     }
 
     private void Start()
     {
-       // maxLevel = gameDatas.dataSettings.maxLevel;
-      //  currentLevel = gameDatas.dataSettings.currentLevel;
-
+        maxLevelText.text = "최대 " + maxLevel + "레벨";
         UpdateLevelText();
     }
 

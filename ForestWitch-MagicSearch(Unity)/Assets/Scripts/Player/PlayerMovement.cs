@@ -525,6 +525,8 @@ public class PlayerMovement : MonoBehaviour
                         return;
                     }
                 }
+
+                currentHealth -= bullet.damage;
                 Destroy(collision.gameObject);
             }
 

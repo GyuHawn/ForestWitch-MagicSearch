@@ -113,6 +113,7 @@ public class FireMonster : MonoBehaviour
 
         hpBarScript.MoveToYStart(150, 0.1f);
         hpBarScript.ResetHealthBar(currentHealth, maxHealth);
+        hpBarScript.healthBarFill.fillAmount = 1.0f;
 
         GetMoney();
 
