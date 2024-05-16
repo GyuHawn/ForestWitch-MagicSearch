@@ -12395,7 +12395,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1463433002}
         m_TargetAssemblyTypeName: GPGS_Manager, Assembly-CSharp
         m_MethodName: GPGS_LogIn
         m_Mode: 1

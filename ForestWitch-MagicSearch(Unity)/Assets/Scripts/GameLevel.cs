@@ -26,6 +26,7 @@ public class GameLevel : MonoBehaviour
         currentExp = gameDatas.dataSettings.currentExp;
 
         UpdateUI();
+        Unlocked();
     }
 
     void Update()
@@ -34,9 +35,6 @@ public class GameLevel : MonoBehaviour
         {
             LevelUp();
         }
-
-        UpdateUI();
-        Unlocked();
     }
 
     private void LevelUp()
@@ -52,40 +50,28 @@ public class GameLevel : MonoBehaviour
         gameDatas.UpdateAbility("gameLevel", gameLevel);
         gameDatas.UpdateAbility("currentExp", currentExp);
         gameDatas.UpdateAbility("maxExp", maxExp);
+
+        UpdateUI();
+        Unlocked();
     }
 
-    void UpdateUI()
+    private void UpdateUI()
     {
         gameLevelText.text = gameLevel.ToString();
         gameExpText.text = $"{currentExp} / {maxExp}";
     }
 
-    void Unlocked()
+    private void Unlocked()
     {
         playerLock.SetActive(gameLevel < 5);
-        cannonLocks[0].SetActive(gameLevel < 2);
-
-        if (cannonLocks.Length > 1)
-        {
-            bool isLevel3 = gameLevel >= 3;
-            for (int i = 1; i < 3 && i < cannonLocks.Length; i++)
-            {
-                cannonLocks[i].SetActive(!isLevel3);
-            }
-        }
-
-        if (cannonLocks.Length > 3)
-        {
-            cannonLocks[3].SetActive(gameLevel < 6);
-        }
-
-        if (cannonLocks.Length > 4)
-        {
-            cannonLocks[4].SetActive(gameLevel < 8);
-        }
+        if (cannonLocks.Length > 0) cannonLocks[0].SetActive(gameLevel < 2);
+        if (cannonLocks.Length > 1) cannonLocks[1].SetActive(gameLevel < 3);
+        if (cannonLocks.Length > 2) cannonLocks[2].SetActive(gameLevel < 3);
+        if (cannonLocks.Length > 3) cannonLocks[3].SetActive(gameLevel < 6);
+        if (cannonLocks.Length > 4) cannonLocks[4].SetActive(gameLevel < 8);
     }
 
-    void SettingMaxExp()
+    private void SettingMaxExp()
     {
         maxExp = gameLevel * 50;
     }
@@ -97,6 +83,8 @@ public class GameLevel : MonoBehaviour
         {
             gameDatas.dataSettings.gameLevel = value;
             gameDatas.SaveFieldData("gameLevel", value);
+            UpdateUI();
+            Unlocked();
         }
     }
 
@@ -107,6 +95,7 @@ public class GameLevel : MonoBehaviour
         {
             gameDatas.dataSettings.maxExp = value;
             gameDatas.SaveFieldData("maxExp", value);
+            UpdateUI();
         }
     }
 
@@ -117,6 +106,7 @@ public class GameLevel : MonoBehaviour
         {
             gameDatas.dataSettings.currentExp = value;
             gameDatas.SaveFieldData("currentExp", value);
+            UpdateUI();
         }
     }
 }
