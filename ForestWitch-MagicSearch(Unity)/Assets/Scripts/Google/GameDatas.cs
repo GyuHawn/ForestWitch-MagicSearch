@@ -29,7 +29,7 @@ public class DataSettings
     // 게임 레벨
     public int maxExp = 50;
     public int currentExp = 0;
-    public int gameLevel = 50;
+    public int gameLevel = 1;
 
     // 게임 세팅
     public int playerNum = 1;
