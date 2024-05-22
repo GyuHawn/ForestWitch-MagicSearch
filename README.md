@@ -11,7 +11,7 @@ Unity 3D로 개발한 탑뷰 형식의 모바일 게임입니다.
 ## 게임플레이
 ### [메인화면]
 ![Screenshot_20240522-040255](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/de85bfda-1677-4423-85be-83586bbb23bf)
-* 스토리, 옵션, 능력, 모험 레벨 등 게임에 필요한 설정을 합니다.
+* **스토리, 옵션, 능력, 모험 레벨 등 게임에 필요한 설정을 합니다.**
 
 ### [캐릭터 선택]
 ![Screenshot_20240522-040310](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/177d5c55-6c79-4449-86bd-4239d1d66fb1)
