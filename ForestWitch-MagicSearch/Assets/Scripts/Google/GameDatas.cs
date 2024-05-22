@@ -48,8 +48,8 @@ public class GameDatas : MonoBehaviour
 
     private string fileName = "file.dat";
 
-    public TMP_Text saveFieldDataCheckText;
-    public TMP_Text loadDataText;
+    //public TMP_Text saveFieldDataCheckText;
+   // public TMP_Text loadDataText;
 
     void Awake()
     {
@@ -59,8 +59,8 @@ public class GameDatas : MonoBehaviour
     public void BasicData()
     {
         dataSettings = new DataSettings();
-        saveFieldDataCheckText.text = "데이터 리셋 베이스 데이터";
-        loadDataText.text = "데이터 리셋 베이스 데이터";
+       // saveFieldDataCheckText.text = "데이터 리셋 베이스 데이터";
+        //loadDataText.text = "데이터 리셋 베이스 데이터";
     }
 
     #region 저장 
@@ -79,24 +79,24 @@ public class GameDatas : MonoBehaviour
                 fieldInfo.SetValue(dataSettings, fieldValue);
                 var json = JsonUtility.ToJson(dataSettings);
                 SaveJsonToCloud(json);
-                saveFieldDataCheckText.text = $"Saving {fieldName}: {fieldValue}";
+               // saveFieldDataCheckText.text = $"Saving {fieldName}: {fieldValue}";
             }
             else
             {
-                saveFieldDataCheckText.text = "데이터가 맞지않음";
+               // saveFieldDataCheckText.text = "데이터가 맞지않음";
                 Debug.LogError("Field not found or type mismatch");
             }
         }
         catch (Exception ex)
         {
-            saveFieldDataCheckText.text = $"세이브 에러: {ex.Message}";
+           //saveFieldDataCheckText.text = $"세이브 에러: {ex.Message}";
             Debug.LogError($"Error saving data: {ex.Message}");
         }
     }
 
     private void SaveJsonToCloud(string json)
     {
-        saveFieldDataCheckText.text = "저장 확인";
+       // saveFieldDataCheckText.text = "저장 확인";
         OpenSaveGame(json);
     }
 
@@ -125,7 +125,7 @@ public class GameDatas : MonoBehaviour
         }
         else
         {
-            saveFieldDataCheckText.text = "저장된게임열지못함";
+            //saveFieldDataCheckText.text = "저장된게임열지못함";
             Debug.LogError("Save failed");
         }
     }
@@ -134,12 +134,12 @@ public class GameDatas : MonoBehaviour
     {
         if (status == SavedGameRequestStatus.Success)
         {
-            saveFieldDataCheckText.text = "세이브 성공";
+           // saveFieldDataCheckText.text = "세이브 성공";
             Debug.Log("Save completed successfully");
         }
         else
         {
-            saveFieldDataCheckText.text = "세이브 실패";
+            //saveFieldDataCheckText.text = "세이브 실패";
             Debug.LogError("Failed to save data");
         }
     }
@@ -149,7 +149,7 @@ public class GameDatas : MonoBehaviour
 
     public void LoadData()
     {
-        loadDataText.text = "불러오기 확인";
+        //loadDataText.text = "불러오기 확인";
         OpenLoadGame();
     }
 
@@ -170,12 +170,12 @@ public class GameDatas : MonoBehaviour
         if (status == SavedGameRequestStatus.Success)
         {
             Debug.Log("Load completed successfully");
-            loadDataText.text = "불러오기 성공";
+           // loadDataText.text = "불러오기 성공";
             savedGameClient.ReadBinaryData(data, OnSavedGameDataRead);
         }
         else
         {
-            loadDataText.text = "불러오기 실패";
+           // loadDataText.text = "불러오기 실패";
             Debug.LogError("Failed to load data");
         }
     }
@@ -190,18 +190,18 @@ public class GameDatas : MonoBehaviour
             if (!string.IsNullOrEmpty(data))
             {
                 dataSettings = JsonUtility.FromJson<DataSettings>(data);
-                loadDataText.text = "데이터 불러오기 성공";
+               // loadDataText.text = "데이터 불러오기 성공";
                 Debug.Log("Data loaded successfully");
             }
             else
             {
-                loadDataText.text = "데이터가 비어 있음";
+              //  loadDataText.text = "데이터가 비어 있음";
                 Debug.LogError("Loaded data is empty");
             }
         }
         else
         {
-            loadDataText.text = "데이터 불러오기 실패";
+           // loadDataText.text = "데이터 불러오기 실패";
             Debug.LogError("Failed to read saved data");
         }
     }
@@ -231,12 +231,12 @@ public class GameDatas : MonoBehaviour
         {
             savedGameClient.Delete(data);
             BasicData();
-            saveFieldDataCheckText.text = "데이터 리셋 성공";
+           // saveFieldDataCheckText.text = "데이터 리셋 성공";
             Debug.Log("Data deleted and reset to default");
         }
         else
         {
-            saveFieldDataCheckText.text = "데이터 리셋 실패";
+           // saveFieldDataCheckText.text = "데이터 리셋 실패";
             Debug.LogError("Failed to delete data");
         }
     }

@@ -19,8 +19,8 @@ public class GPGS_Manager : MonoBehaviour
 
     public bool login;
 
-    public TMP_Text processAuthenticationCheckText;
-    public TMP_Text dataText;
+   // public TMP_Text processAuthenticationCheckText;
+   // public TMP_Text dataText;
 
     void Start()
     {
@@ -50,7 +50,7 @@ public class GPGS_Manager : MonoBehaviour
 
     private void Update()
     {
-        DataText();
+       // DataText();
     }
     public void GPGS_LogIn()
     {
@@ -66,7 +66,7 @@ public class GPGS_Manager : MonoBehaviour
         
         if (status == SignInStatus.Success) // 로그인 성공시 저장한 데이터
         {
-            processAuthenticationCheckText.text = "로그인 불러오기 확인";
+            //processAuthenticationCheckText.text = "로그인 불러오기 확인";
             noneLoginUI.SetActive(false);
             loginUI.SetActive(true);
 
@@ -75,7 +75,7 @@ public class GPGS_Manager : MonoBehaviour
         }
         else // 실패시 기초 데이터
         {
-            processAuthenticationCheckText.text = "로그인 불러오기 실패";
+           // processAuthenticationCheckText.text = "로그인 불러오기 실패";
             noneLoginUI.SetActive(false);
             loginUI.SetActive(true);
 
@@ -85,14 +85,15 @@ public class GPGS_Manager : MonoBehaviour
 
     IEnumerator UpdateDataTextAfterLoad()
     {
-        yield return new WaitUntil(() => gameDatas.loadDataText.text == "로그인 데이터 불러오기 성공");
+        //yield return new WaitUntil(() => gameDatas.loadDataText.text == "로그인 데이터 불러오기 성공");
+        yield return new WaitForSeconds(0.01f);
         adventureLevel.LoadAbilityLevelData();
         story.LoadStoryData();
         abilityUI.LoadAbilityUIData();
         gameLevel.LoadGameLevelData();
     }
 
-    void DataText()
+    /*void DataText()
     {
         DataSettings data = gameDatas.dataSettings;
         dataText.text = $"Ability1: {data.ability1Num}\n" +
@@ -113,7 +114,7 @@ public class GPGS_Manager : MonoBehaviour
                         $"BGM Volume: {data.bgmVolume}\n" +
                         $"FNC Volume: {data.fncVolume}\n" +
                         $"Monster Volume: {data.monsterVolume}";
-    }
+    }*/
 
     void OnApplicationQuit()
     {

@@ -3203,7 +3203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &227845478
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23182,8 +23182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cded526504ca094486d46ea08556944, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveFieldDataCheckText: {fileID: 351712922}
-  loadDataText: {fileID: 2089634196}
 --- !u!4 &1463433001
 Transform:
   m_ObjectHideFlags: 0
@@ -23215,8 +23213,6 @@ MonoBehaviour:
   loginUI: {fileID: 1833241097}
   noneLoginUI: {fileID: 220423349}
   login: 0
-  processAuthenticationCheckText: {fileID: 950958238}
-  dataText: {fileID: 1424469877}
 --- !u!1 &1468422722
 GameObject:
   m_ObjectHideFlags: 0
