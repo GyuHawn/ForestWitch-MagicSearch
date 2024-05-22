@@ -9,13 +9,20 @@ Unity 3D로 개발한 탑뷰 형식의 모바일 게임입니다.
 몬스터는 탄막형식의 게임이고 난이도는 게임을 점점할때마다 쉬워질것입니다.
 
 ## 게임플레이
-[메인]  
+[메인화면]
+![Screenshot_20240522-040255](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/de85bfda-1677-4423-85be-83586bbb23bf)
 스토리, 옵션, 능력, 모험레벨등 게임에 필요한 설정을 합니다
-[선택]
+
+[캐릭터 선택]
+![Screenshot_20240522-040310](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/177d5c55-6c79-4449-86bd-4239d1d66fb1)
 1명의 캐릭터와 2개의 대포를 선택하여 원하는 플레이를 진행합니다
-[타일]
+
+[타일 맵]
+![Screenshot_20240522-040323](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/439302ee-716c-4623-9f19-e44d75a7631d)
 원하는 타일을 선택하여 자신이 원하는 빌드를 선택할수있습니다.
-[몬스터]
+
+[몬스터 맵]
+![Screenshot_20240522-040336](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/ad38f6dd-9fdf-4598-8069-158bde36dedb)
 탄막 형식으로 진행되며 총알을 주워 대포를 이용하여 몬스터를 공격합니다
 
 ## 사용기술
