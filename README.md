@@ -21,7 +21,7 @@ Unity 3D로 개발한 탑뷰 형식의 모바일 게임입니다.
 ![Screenshot_20240522-040323](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/439302ee-716c-4623-9f19-e44d75a7631d)
 * **원하는 타일을 선택하여 자신이 원하는 빌드를 선택할 수 있습니다.**
 
-### [몬스터 맵]
+### [몬스터 전투]
 ![Screenshot_20240522-040336](https://github.com/GyuHawn/ForestWitch-MagicSearch/assets/125939517/ad38f6dd-9fdf-4598-8069-158bde36dedb)
 * **탄막 형식으로 진행되며 총알을 주워 대포를 이용하여 몬스터를 공격합니다.**
   
