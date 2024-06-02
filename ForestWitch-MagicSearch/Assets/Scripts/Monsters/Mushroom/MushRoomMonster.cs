@@ -42,6 +42,8 @@ public class MushRoomMonster : MonoBehaviour
     public bool smlie; // smlie - true, angry - false (몬스터 확인)
 
     public GameObject hitEffectPos; // 이펙트 위치
+    public GameObject attackEffectPos; // 이펙트 위치
+    public GameObject attackEffect;
     public GameObject hitEffect; // 피격 이펙트
 
     private Animator anim;
@@ -64,8 +66,8 @@ public class MushRoomMonster : MonoBehaviour
     {
         anim = GetComponent<Animator>();
 
-        maxHealth = 5 + (mapSetting.adventLevel * 3);
-        currentHealth = maxHealth;
+       maxHealth = 5 + (mapSetting.adventLevel * 3);
+       currentHealth = maxHealth;
         money = 150;
         
         b_AttackSpd = 10;
@@ -80,7 +82,7 @@ public class MushRoomMonster : MonoBehaviour
 
         InvokeRepeating("StartPattern", 3f, 7f); // 랜덤 패턴 실행
 
-        hpBarScript.MoveToYStart(10, 0.5f);
+       hpBarScript.MoveToYStart(10, 0.5f);
     }
 
     void Update()
@@ -111,7 +113,7 @@ public class MushRoomMonster : MonoBehaviour
         }
         else
         {
-            GetMoney();
+           GetMoney();
 
             hpBarScript.MoveToYStart(150, 0.1f);
             hpBarScript.ResetHealthBar(currentHealth, maxHealth);
@@ -156,6 +158,8 @@ public class MushRoomMonster : MonoBehaviour
     {
         int randomPattern = Random.Range(0, 3); // 0 ~ 2 랜덤
 
+        StartCoroutine(AttackEffect());
+
         switch (randomPattern)
         {
             case 0:
@@ -170,6 +174,13 @@ public class MushRoomMonster : MonoBehaviour
         }
     }
 
+    IEnumerator AttackEffect()
+    {
+        GameObject effect = Instantiate(attackEffect, hitEffectPos.transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(1f);
+        Destroy(effect);
+    }
+
     private void StartButtAttack()
     {        
         StartCoroutine(ButtAttacks());
@@ -179,7 +190,7 @@ public class MushRoomMonster : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            audioManager.M_ButtAudio();
+          audioManager.M_ButtAudio();
             anim.SetTrigger("Butt");
 
             GameObject player = GameObject.Find("Player");
@@ -217,7 +228,7 @@ public class MushRoomMonster : MonoBehaviour
 
     IEnumerator SpinAttacks()
     {
-        audioManager.M_SpinAudio();
+       audioManager.M_SpinAudio();
         for (int i = 0; i < 5; i++)
         {
             s_BulletNum = s_BulletNums[b_CurrentNumIndex]; // 다음 총알 개수 가져오기
@@ -253,7 +264,7 @@ public class MushRoomMonster : MonoBehaviour
     {
         for (int i = 0; i < 2; i++)
         {
-            audioManager.M_UperAudio();
+           audioManager.M_UperAudio();
             anim.SetTrigger("Uper");
 
             GameObject player = GameObject.Find("Player");  // 플레이어 위치 찾기
@@ -297,7 +308,7 @@ public class MushRoomMonster : MonoBehaviour
             Bullet bulletComponent = collision.gameObject.GetComponent<Bullet>();
             if (bulletComponent != null)
             {
-                audioManager.HitMonsterAudio();
+               audioManager.HitMonsterAudio();
                 StartCoroutine(HitEffect());
                 currentHealth -= bulletComponent.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
@@ -311,7 +322,7 @@ public class MushRoomMonster : MonoBehaviour
             ExtraAttack attack = collision.gameObject.GetComponent<ExtraAttack>();
             if (attack != null)
             {
-                audioManager.HitMonsterAudio();
+               audioManager.HitMonsterAudio();
                 StartCoroutine(HitEffect());
                 currentHealth -= attack.damage;
                 hpBarScript.UpdateHP(currentHealth, maxHealth);
