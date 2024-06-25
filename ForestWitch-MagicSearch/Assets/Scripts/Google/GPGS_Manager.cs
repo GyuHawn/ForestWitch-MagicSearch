@@ -19,8 +19,8 @@ public class GPGS_Manager : MonoBehaviour
 
     public bool login;
 
-   // public TMP_Text processAuthenticationCheckText;
-   // public TMP_Text dataText;
+    public TMP_Text processAuthenticationCheckText;
+    //public TMP_Text dataText;
 
     void Start()
     {
@@ -48,10 +48,11 @@ public class GPGS_Manager : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
-       // DataText();
-    }
+       DataText();
+    }*/
+
     public void GPGS_LogIn()
     {
         if (!login)
@@ -60,13 +61,12 @@ public class GPGS_Manager : MonoBehaviour
             login = true;
         }
     }
-
+    
     internal void ProcessAuthentication(SignInStatus status)
     {
-        
         if (status == SignInStatus.Success) // 로그인 성공시 저장한 데이터
         {
-            //processAuthenticationCheckText.text = "로그인 불러오기 확인";
+            processAuthenticationCheckText.text = "로그인 불러오기 확인";
             noneLoginUI.SetActive(false);
             loginUI.SetActive(true);
 
@@ -75,14 +75,14 @@ public class GPGS_Manager : MonoBehaviour
         }
         else // 실패시 기초 데이터
         {
-           // processAuthenticationCheckText.text = "로그인 불러오기 실패";
+           processAuthenticationCheckText.text = "로그인 불러오기 실패";
             noneLoginUI.SetActive(false);
             loginUI.SetActive(true);
 
             gameDatas.BasicData();
         }
     }
-
+    
     IEnumerator UpdateDataTextAfterLoad()
     {
         //yield return new WaitUntil(() => gameDatas.loadDataText.text == "로그인 데이터 불러오기 성공");
